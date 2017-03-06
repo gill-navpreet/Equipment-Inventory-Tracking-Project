@@ -1,0 +1,71 @@
+<div class="page-header"> 
+	<h1>Edit User</h1>
+</div>
+
+<br>
+
+<ul class="nav nav-tabs">
+    <li role="presentation" ng-click="edit.namePhase();" ng-class="nameTab"><a href="">Name</a></li>
+    <li role="presentation" ng-click="edit.usernamePhase();" ng-class="usernameTab"><a href="">Username</a></li>
+    <li role="presentation" ng-click="edit.emailPhase();" ng-class="emailTab"><a href="">E-mail</a></li>
+    <li role="presentation" ng-click="edit.permissionsPhase();" ng-class="permissionsTab"><a href="">Permission</a></li>
+</ul>
+
+
+<form name ="edit.nameForm" ng-submit="edit.updateName(newName, edit.nameForm.name.$valid)" ng-show="edit.phase1">
+	<label>Current Name:</label>
+	<input class = "form-control" type = "text" name = "name" placeholder="please enter name" ng-model = "newName">
+	<br>
+	
+	<button class = "btn btn-primary" type = "submit">Update</button>
+	
+	<br>
+</form>
+
+<!-- Phase One: Username -->
+<form name ="edit.usernameForm" ng-submit="edit.updateUsername(newUsername, edit.usernameForm.username.$valid)" ng-show="edit.phase2">
+	<label>Current Username:</label>
+	<input class = "form-control" type = "text" name = "username" placeholder="please enter username" ng-model = "newUsername">
+	<br>
+	
+	<button class = "btn btn-primary" type = "submit">Update</button>
+	
+	<br>
+</form>
+<!-- Phase One: Email -->
+<form name ="edit.emailForm" ng-submit="edit.updateEmail(newEmail, edit.emailForm.email.$valid)" ng-show="edit.phase3">
+	<label>Current Email:</label>
+	<input class = "form-control" type = "text" name = "email" placeholder="please enter email" ng-model = "newEmail">
+	<br>
+	
+	<button class = "btn btn-primary" type = "submit">Update</button>
+	
+	<br>
+</form>
+<!-- Phase One: Permissions -->
+<div ng-show="edit.phase4">
+    <label>Current Permission:</label>{{ newPermission }}
+    <br>
+    <br>
+    <!-- User Permission Button -->
+    <button ng-disabled="edit.disableUser" ng-click="edit.updatePermissions('user');" type="button" class="btn btn-success">User</button>
+    <!-- Moderator Permision Button -->
+    <button ng-disabled="edit.disableModerator" ng-click="edit.updatePermissions('moderator');" type="button" class="btn btn-info">Moderator</button>
+    <!-- Admin Permission Button -->
+    <button ng-disabled="edit.disableAdmin" ng-click="edit.updatePermissions('admin');" type="button" class="btn btn-warning">Admin</button>
+</div>
+
+
+
+
+
+
+<div class = "row show-hide-message" ng-show = "edit.successMsg">
+	<div class = "alert alert-success">{{ edit.successMsg }}</div>
+</div>
+
+<br>
+
+<div class = "row show-hide-message" ng-show = "edit.errorMsg">
+	<div class = "alert alert-danger">{{ edit.errorMsg }}</div>
+</div> 

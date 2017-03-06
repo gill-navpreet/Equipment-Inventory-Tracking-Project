@@ -1,0 +1,80 @@
+<div class="page-header">
+<h1>Inventory Form</h1>
+</div>
+
+<form ng-submit="inventoryForm.logInventory(invData);">
+	<!-- First Name -->
+	<label>First Name:</label>
+	<input class="form-control" type="text" name="firstName" placeholder="please enter first name" ng-model="inventoryForm.invData.firstName">
+	<br>
+	<!-- Last Name -->
+	<label>Last Name:</label>
+	<input class="form-control" type="text" name="lastName" placeholder="please enter last name" ng-model="inventoryForm.invData.lastName">
+	<br>
+	<!-- Email -->
+	<label>Email:</label>
+	<input class="form-control" type="text" name="email" placeholder="please enter email" ng-model="inventoryForm.invData.email">
+	<br>
+	<!-- Bar Code -->
+	<label>Bar Code:</label>
+	<input class="form-control" type="text" name='barcode' placeholder="please scan an item" ng-model="inventoryForm.invData.barcode" id="bcode">
+	<br>
+
+	<button class="btn btn-primary" type="submit">Submit</button>
+</form>
+
+<br>
+
+<div class="jumbotron text-center" ng-show="inventoryForm.loading">
+	<span class="glyphicon glyphicon-repeat spinner"></span>
+	<p>Loading....</p>
+</div>
+
+<br>
+
+<div class="row show-hide-message" ng-show="inventoryForm.successMsg">
+	<div class="alert alert-success">{{ inventoryForm.successMsg }}</div>
+</div>
+
+<br>
+
+<div class="row show-hide-message" ng-show="inventoryForm.errorMsg">
+	<div class="alert alert-danger">{{ inventoryForm.errorMsg }}</div>
+</div>	
+
+
+  <script>
+    $(document).ready(function() {
+        var pressed = false;
+        var chars = [];
+        $(window).keypress(function(e) {
+            if (e.which >= 48 && e.which <= 57) {
+                chars.push(String.fromCharCode(e.which));
+            }
+            console.log(e.which + ":" + chars.join("|"));
+            if (pressed == false) {
+                setTimeout(function(){
+                    if (chars.length > 10) {
+                        var bcode = chars.join("");
+                        console.log("Barcode Scanned: " + bcode);
+                        // assign value to some input (or do whatever you want)
+                        $("#bcode").val(bcode);
+                        //included this trigger input so that the input into #bcode will bind with angular's ng-model=barcode
+                        $("#bcode").trigger('input');
+
+                    }
+                    chars = [];
+                    pressed = false;
+                },500);
+            }
+            pressed = true;
+        });
+    });
+    //prevents the scanner's terminating enter key.
+    $("#bcode").keypress(function(e){
+        if ( e.which === 13 ) {
+            console.log("Prevent form submit.");
+            e.preventDefault();
+        }
+    });
+</script>

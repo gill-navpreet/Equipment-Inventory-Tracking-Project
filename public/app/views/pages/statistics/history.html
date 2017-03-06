@@ -1,0 +1,28 @@
+<div class="page-header">
+	<h1>History</h1>
+</div>
+
+<div class="panel panel-success">
+	<div class="panel-heading">Panel heading</div>
+	<table class=table>
+		<thead>
+			<tr>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Email</th>
+				<th>Bar Code</th>
+			</tr>
+		</thead>
+		<tbody ng-repeat="inventory in inventoryData | pagination: (currentPage - 1) * pageSize | limitTo: pageSize">
+			<tr>
+				<td>{{ inventory.firstName }}</td>
+				<td>{{ inventory.lastName }}</td>
+				<td>{{ inventory.email }}</td>
+				<td>{{ inventory.barcode }}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>		
+
+
+<ul uib-pagination total-items="inventoryData.length" items-per-page="pageSize" ng-model="currentPage"></ul>
