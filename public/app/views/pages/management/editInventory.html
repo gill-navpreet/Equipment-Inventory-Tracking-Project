@@ -1,0 +1,94 @@
+<div class="page-header"> 
+	<h1>Edit User</h1>
+</div>
+
+<br>
+
+<ul class="nav nav-tabs">
+    <li role="presentation" ng-click="editInventory.firstNamePhase();" ng-class="firstNameTab"><a href="">First Name</a></li>
+    <li role="presentation" ng-click="editInventory.lastNamePhase();" ng-class="lastNameTab"><a href="">Last Name</a></li>
+    <li role="presentation" ng-click="editInventory.emailPhase();" ng-class="emailTab"><a href="">Email</a></li>
+    <li role="presentation" ng-click="editInventory.productPhase();" ng-class="productTab"><a href="">Product</a></li>
+    <li role="presentation" ng-click="editInventory.barcodePhase();" ng-class="barcodeTab"><a href="">Bar Code</a></li>
+    <li role="presentation" ng-click="editInventory.isCheckedInPhase();" ng-class="isCheckedInTab"><a href="">Is Checked In</a></li>
+
+</ul>
+
+<!-- Phase One: First Name -->
+<form name ="editInventory.firstNameForm" ng-submit="editInventory.updateFirstName(newFirstName)" ng-show="editInventory.phase1">
+	<label>Current First Name:</label>
+	<input class = "form-control" type = "text" name = "firstName" placeholder="please enter a first name" ng-model = "newFirstName">
+	<br>
+	
+	<button class = "btn btn-primary" type = "submit">Update</button>
+	
+	<br>
+</form>
+
+<!-- Phase Two: Last Name -->
+<form name ="editInventory.lastNameForm" ng-submit="editInventory.updateLastName(newLastName)" ng-show="editInventory.phase2">
+	<label>Current Last Name:</label>
+	<input class = "form-control" type = "text" name = "lastName" placeholder="please enter a last name" ng-model = "newLastName">
+	<br>
+	
+	<button class = "btn btn-primary" type = "submit">Update</button>
+	
+	<br>
+</form>
+
+<!-- Phase Three: Email -->
+<form name ="editInventory.emailForm" ng-submit="editInventory.updateEmail(newEmail)" ng-show="editInventory.phase3">
+	<label>Current Email:</label>
+	<input class = "form-control" type = "text" name = "email" placeholder="please enter an email" ng-model = "newEmail">
+	<br>
+	
+	<button class = "btn btn-primary" type = "submit">Update</button>
+	
+	<br>
+</form>
+
+<!-- Phase Four: Product -->
+<form name ="editInventory.productForm" ng-submit="editInventory.updateProduct(newProduct)" ng-show="editInventory.phase4">
+	<label>Current Product:</label>
+	<input class = "form-control" type = "text" name = "product" placeholder="please enter a product" ng-model = "newProduct">
+	<br>
+	
+	<button class = "btn btn-primary" type = "submit">Update</button>
+	
+	<br>
+</form>
+
+<!-- Phase Five: Barcode -->
+<form name ="editInventory.barcodeForm" ng-submit="editInventory.updateBarcode(newBarcode)" ng-show="editInventory.phase5">
+	<label>Current Bar Code:</label>
+	<input class = "form-control" type = "text" name = "barcode" placeholder="please enter or scan a barcode" ng-model = "newBarcode">
+	<br>
+	
+	<button class = "btn btn-primary" type = "submit">Update</button>
+	
+	<br>
+</form>
+
+<!-- Phase Six: Is Checked In -->
+<form name ="editInventory.isCheckedInForm" ng-submit="editInventory.updateIsCheckedIn(newIsCheckedIn)" ng-show="editInventory.phase6">
+	<label>Current Is Checked In:</label>
+	<input class = "form-control" type = "text" name = "isCheckedIn" placeholder="true: checked in, false: checked out" ng-model = "newIsCheckedIn">
+	<br>
+	
+	<button class = "btn btn-primary" type = "submit">Update</button>
+	
+	<br>
+</form>
+
+
+
+
+<div class = "row show-hide-message" ng-show = "editInventory.successMsg">
+	<div class = "alert alert-success">{{ editInventory.successMsg }}</div>
+</div>
+
+<br>
+
+<div class = "row show-hide-message" ng-show = "editInventory.errorMsg">
+	<div class = "alert alert-danger">{{ editInventory.errorMsg }}</div>
+</div> 

@@ -31,6 +31,10 @@
     <script src="app/controllers/historyCtrl.js"></script>
     <script src="app/controllers/managementCtrl.js"></script>
     <script src="app/controllers/inventoryManagementCtrl.js"></script>
+    <script src="app/controllers/inventoryCheckIn.js"></script>
+    <script src="app/controllers/inventoryCheckOut.js"></script>
+
+
 
     <!-- Angular Services -->
     <script src="app/services/userServices.js"></script>
@@ -68,9 +72,9 @@
             <li ng-show="main.isLoggedIn" class="dropdown">
               <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Inventory <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#inventoryForm">Checking in</a></li>
+                <li><a href="#inventory">Checking in</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#inventoryForm">Checking out</a></li>
+                <li><a href="#inventoryCheckOut">Checking out</a></li>
               </ul>
             </li>
             <li ng-show="main.isLoggedIn" class="dropdown">
@@ -92,7 +96,8 @@
             <li ng-show="main.isLoggedIn && main.authorized" class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Management<span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#inventoryManagement">Inventory</a></li>
+                <li><a href="#inventoryForm">Inventory Add</a></li>
+                <li><a href="#inventoryManagement">Inventory Edit/Delete</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="#management">Users</a></li>
               </ul>

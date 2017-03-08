@@ -6,7 +6,7 @@ angular.module('userServices', [])
 	//User.create(regData);
 	userFactory.create = function(regData){
 		return $http.post('/api/users', regData);
-	}
+	};
 
 	userFactory.getPermission = function() {
 		return $http.get('/api/permission/');
@@ -26,7 +26,7 @@ angular.module('userServices', [])
 
 	userFactory.editUser = function(id) {
 		return $http.put('/api/edit', id);
-	}
+	};
 
 	return userFactory;
 });

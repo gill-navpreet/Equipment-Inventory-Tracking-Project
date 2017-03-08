@@ -1,19 +1,11 @@
 <div class="page-header">
-<h1>Inventory Form</h1>
+<h1>Add Inventory Form</h1>
 </div>
 
 <form ng-submit="inventoryForm.logInventory(invData);">
 	<!-- First Name -->
-	<label>First Name:</label>
-	<input class="form-control" type="text" name="firstName" placeholder="please enter first name" ng-model="inventoryForm.invData.firstName">
-	<br>
-	<!-- Last Name -->
-	<label>Last Name:</label>
-	<input class="form-control" type="text" name="lastName" placeholder="please enter last name" ng-model="inventoryForm.invData.lastName">
-	<br>
-	<!-- Email -->
-	<label>Email:</label>
-	<input class="form-control" type="text" name="email" placeholder="please enter email" ng-model="inventoryForm.invData.email">
+	<label>Product:</label>
+	<input class="form-control" type="text" name="product" placeholder="please enter product name" ng-model="inventoryForm.invData.product">
 	<br>
 	<!-- Bar Code -->
 	<label>Bar Code:</label>

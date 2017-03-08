@@ -15,7 +15,7 @@ angular.module('inventoryFormController',['inventoryServices'])
 				app.successMsg = data.data.message + '...Redirecting';
 				// Redirect to home pages
 				$timeout(function(){
-					$location.path('/');
+					$location.path('/inventoryManagement');
 				}, 2000);
 			} else {
 				// Create an error message

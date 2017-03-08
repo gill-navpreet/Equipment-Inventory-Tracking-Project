@@ -76,6 +76,28 @@ var app = angular.module('appRoutes', ['ngRoute'])
 		permission: ['admin','moderator']
 	})
 
+	.when('/editInventory/:id', {
+		templateUrl: 'app/views/pages/management/editInventory.html',
+		controller: 'editInventoryCtrl',
+		controllerAs: 'editInventory',
+		authenticated: true,
+		permission: ['admin','moderator']
+	})
+
+	.when('/inventoryCheckOut', {
+		templateUrl: 'app/views/pages/inventory/inventoryCheckOut.html',
+		controller: 'inventoryCheckOutCtrl',
+		controllerAs: 'checkOut',
+		authenticated: true
+	})
+
+	.when('/inventoryCheckIn', {
+		templateUrl: 'app/views/pages/inventory/inventoryCheckIn.html',
+		controller: 'inventoryCheckInCtrl',
+		controllerAs: 'checkIn',
+		authenticated: true
+	})	
+
 	.otherwise({ redirectTo: '/'});
 
 

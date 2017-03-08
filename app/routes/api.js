@@ -7,6 +7,8 @@ var cron = require('node-cron');
 module.exports = function(router) {
 	// POST USER REGISTRATION ROUTE
 	// http://localhost:port/api/users
+
+
 	router.post('/users', function(req,res) {
 		var user = new User();
 		user.username = req.body.username;
@@ -55,9 +57,7 @@ module.exports = function(router) {
 	// http://localhost:port/api/inventory
 	router.post('/inventory', function(req,res) {
 		var inventory = new Inventory();
-		inventory.firstName = req.body.firstName;
-		inventory.lastName = req.body.lastName;
-		inventory.email = req.body.email;
+        inventory.product = req.body.product;
 		inventory.barcode = req.body.barcode;
 
 		//scheduler that fires every second.
@@ -68,14 +68,14 @@ module.exports = function(router) {
             console.log(inventory.isCheckedOut);
         }, 3000);
 
-        if(req.body.firstName == null || req.body.firstName == "" || req.body.lastName == null || req.body.lastName == "" || req.body.barcode == null || req.body.barcode ==""){
+        if(req.body.product == null || req.body.product == "" || req.body.barcode == null || req.body.barcode ==""){
 			res.json({ success: false, message: 'Please enter all entries' });
 		} else {
 			inventory.save(function(err) {
 			if(err) {
 				res.json({ success: false, message: 'Barcode already exists!' });
 			} else {
-				res.json({ success: true, message: 'Inventory Logged' });
+				res.json({ success: true, message: 'Inventory Created' });
 			}
 		});
 		}
@@ -414,6 +414,205 @@ module.exports = function(router) {
             });
         });
     });
+
+
+    // Route to delete an inventory item based on its barcode
+    router.delete('/inventoryManagement/:barcode', function(req, res) {
+        var deletedInventory = req.params.barcode; // Assign the barcode from request parameters to a variable
+        User.findOne({ username: req.decoded.username }, function(err, mainUser) {
+            if (err) throw err; // Throw error if cannot connect
+            // Check if current user was found in database
+            if (!mainUser) {
+                res.json({ success: false, message: 'No user found' }); // Return error
+            } else {
+                // Check if curent user has admin access
+                if (mainUser.permission !== 'admin') {
+                    res.json({ success: false, message: 'Insufficient Permissions' }); // Return error
+                } else {
+                    // Fine the user that needs to be deleted
+                    Inventory.findOneAndRemove({ barcode: deletedInventory }, function(err, inventory) {
+                        if (err) throw err; // Throw error if cannot connect
+                        res.json({ success: true }); // Return success status
+                    });
+                }
+            }
+        });
+    });
+
+    // Route to get the user that needs to be edited
+    router.get('/editInventory/:id', function(req, res) {
+        var editInventory = req.params.id; // Assign the _id from parameters to variable
+        User.findOne({ username: req.decoded.username }, function(err, mainUser) {
+            if (err) throw err; // Throw error if cannot connect
+            // Check if logged in user was found in database
+            if (!mainUser) {
+                res.json({ success: false, message: 'No user found' }); // Return error
+            } else {
+                // Check if logged in user has editing privileges
+                if (mainUser.permission === 'admin' || mainUser.permission === 'moderator') {
+                    // Find the user to be editted
+                    Inventory.findOne({ _id: editInventory }, function(err, inventory) {
+                        if (err) throw err; // Throw error if cannot connect
+                        // Check if user to edit is in database
+                        if (!inventory) {
+                            res.json({ success: false, message: 'No inventory found' }); // Return error
+                        } else {
+                            res.json({ success: true, inventory: inventory }); // Return the user to be editted
+                        }
+                    });
+                } else {
+                    res.json({ success: false, message: 'Insufficient Permission' }); // Return access error
+                }
+            }
+        });
+    });
+
+
+    router.put('/editInventory', function(req, res) {
+        var editInventory = req.body._id; // Assign _id from user to be editted to a variable
+        if (req.body.firstName) var newFirstName = req.body.firstName; // Check if a change to name was requested
+        if (req.body.lastName) var newLastName = req.body.lastName; // Check if a change to username was requested
+        if (req.body.email) var newEmail = req.body.email; // Check if a change to e-mail was requested
+        if (req.body.product) var newProduct = req.body.product; // Check if a change to permission was requested
+        if (req.body.barcode) var newBarcode = req.body.barcode;
+        if (req.body.isCheckedIn) var newIsCheckedIn = req.body.isCheckedIn;
+        User.findOne({ username: req.decoded.username }, function(err, mainUser) {
+            if (err) throw err; // Throw err if cannot connnect
+            if (!mainUser) {
+                res.json({ success: false, message: "no user found" }); // Return erro
+            } else {
+                if (newFirstName) {
+                    if (mainUser.permission === 'admin' || mainUser.permission === 'moderator') {
+                        Inventory.findOne({ _id: editInventory }, function(err, inventory) {
+                            if (err) throw err; // Throw error if cannot connect
+                            if (!inventory) {
+                                res.json({ success: false, message: 'No inventory found' }); // Return error
+                            } else {
+                                inventory.firstName = newFirstName; // Assign new name to user in database
+                                inventory.save(function(err) {
+                                    if (err) {
+                                        console.log(err); // Log any errors to the console
+                                    } else {
+                                        res.json({ success: true, message: 'First Name has been updated!' }); // Return success message
+                                    }
+                                });
+                            }
+                        });
+                    } else {
+                        res.json({ success: false, message: 'Insufficient Permissions' }); // Return error
+                    }
+                }
+                if (newLastName) {
+                    if (mainUser.permission === 'admin' || mainUser.permission === 'moderator') {
+                        Inventory.findOne({ _id: editInventory }, function(err, inventory) {
+                            if (err) throw err; // Throw error if cannot connect
+                            if (!inventory) {
+                                res.json({ success: false, message: 'No inventory found' }); // Return error
+                            } else {
+                                inventory.lastName = newLastName; // Assign new name to user in database
+                                inventory.save(function(err) {
+                                    if (err) {
+                                        console.log(err); // Log any errors to the console
+                                    } else {
+                                        res.json({ success: true, message: 'Last Name has been updated!' }); // Return success message
+                                    }
+                                });
+                            }
+                        });
+                    } else {
+                        res.json({ success: false, message: 'Insufficient Permissions' }); // Return error
+                    }
+                }
+                if (newEmail) {
+                    if (mainUser.permission === 'admin' || mainUser.permission === 'moderator') {
+                        Inventory.findOne({ _id: editInventory }, function(err, inventory) {
+                            if (err) throw err; // Throw error if cannot connect
+                            if (!inventory) {
+                                res.json({ success: false, message: 'No inventory found' }); // Return error
+                            } else {
+                                inventory.email = newEmail; // Assign new name to user in database
+                                inventory.save(function(err) {
+                                    if (err) {
+                                        console.log(err); // Log any errors to the console
+                                    } else {
+                                        res.json({ success: true, message: 'Email has been updated!' }); // Return success message
+                                    }
+                                });
+                            }
+                        });
+                    } else {
+                        res.json({ success: false, message: 'Insufficient Permissions' }); // Return error
+                    }
+                }
+                if (newProduct) {
+                    if (mainUser.permission === 'admin' || mainUser.permission === 'moderator') {
+                        Inventory.findOne({ _id: editInventory }, function(err, inventory) {
+                            if (err) throw err; // Throw error if cannot connect
+                            if (!inventory) {
+                                res.json({ success: false, message: 'No inventory found' }); // Return error
+                            } else {
+                                inventory.product = newProduct; // Assign new name to user in database
+                                inventory.save(function(err) {
+                                    if (err) {
+                                        console.log(err); // Log any errors to the console
+                                    } else {
+                                        res.json({ success: true, message: 'Product has been updated!' }); // Return success message
+                                    }
+                                });
+                            }
+                        });
+                    } else {
+                        res.json({ success: false, message: 'Insufficient Permissions' }); // Return error
+                    }
+                }
+                if (newBarcode) {
+                    if (mainUser.permission === 'admin' || mainUser.permission === 'moderator') {
+                        Inventory.findOne({ _id: editInventory }, function(err, inventory) {
+                            if (err) throw err; // Throw error if cannot connect
+                            if (!inventory) {
+                                res.json({ success: false, message: 'No inventory found' }); // Return error
+                            } else {
+                                inventory.barcode = newBarcode; // Assign new name to user in database
+                                inventory.save(function(err) {
+                                    if (err) {
+                                        console.log(err); // Log any errors to the console
+                                    } else {
+                                        res.json({ success: true, message: 'Barcode has been updated!' }); // Return success message
+                                    }
+                                });
+                            }
+                        });
+                    } else {
+                        res.json({ success: false, message: 'Insufficient Permissions' }); // Return error
+                    }
+                }
+                if (newIsCheckedIn) {
+                    if (mainUser.permission === 'admin' || mainUser.permission === 'moderator') {
+                        Inventory.findOne({ _id: editInventory }, function(err, inventory) {
+                            if (err) throw err; // Throw error if cannot connect
+                            if (!inventory) {
+                                res.json({ success: false, message: 'No inventory found' }); // Return error
+                            } else {
+                                inventory.isCheckedIn = newIsCheckedIn; // Assign new name to user in database
+                                inventory.save(function(err) {
+                                    if (err) {
+                                        console.log(err); // Log any errors to the console
+                                    } else {
+                                        res.json({ success: true, message: 'is Checked In has been updated!' }); // Return success message
+                                    }
+                                });
+                            }
+                        });
+                    } else {
+                        res.json({ success: false, message: 'Insufficient Permissions' }); // Return error
+                    }
+                }
+
+            }
+        });
+    });
+    
+
 
 	return router;
 }

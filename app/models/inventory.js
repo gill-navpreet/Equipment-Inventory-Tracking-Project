@@ -2,9 +2,10 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var InventorySchema = new Schema({
-	firstName: { type: String, lowercase: true, required: true },
-	lastName: { type: String, lowercase: true, required: true },
-	email: {type: String, lowercase: true, required: true },
+	product: { type: String, lowercase: true, required: true },
+	firstName: { type: String, lowercase: true, default: ' '},
+	lastName: { type: String, lowercase: true, default: ' ' },
+	email: {type: String, lowercase: true, default: ' ' },
 	barcode: {type: Number, required: true, unique: true },
 	isCheckedIn: {type: Boolean, required: true, default: true}
 });

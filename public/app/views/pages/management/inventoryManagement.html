@@ -16,10 +16,12 @@
 <br>
 
 <!-- Apply Button Filter -->
-<button type="button" class="btn btn-success">Apply Filter</button>
+<button type="button" ng-click="inventoryManagement.showMore(number);" class="btn btn-success">Apply Filter</button>
 
 <!--/ Show All Button -->
-<button type="button" class="btn btn-warning">Show All</button>
+<button type="button" ng-click="inventoryManagement.showAll();" class="btn btn-warning">Show All</button>
+
+
 
 <!-- Input For Filter  -->
 <div class="showmore">
@@ -31,9 +33,13 @@
     </div>
 </div>
 <!-- Input For Filter  -->
+<br>
+<br>
 
-<br>
-<br>
+<div class="row show-hide-message" ng-show="inventoryManagement.showMoreError">
+    <div class="alert alert-danger">{{ inventoryManagement.showMoreError }}</div>
+</div>
+
 <br>
 <br>
 
@@ -45,29 +51,37 @@
     </div>
     <!-- Start: Table -->
     <table class="table">
-        <tr>
-            <th>First Name:</th>
-            <th>Last Name:</th>
-            <th>Email</th>
-            <th>Bar Code:</th>
-            <th>Is Checked Out:</th>
-        </tr>
-        <tr ng-repeat="inventory in inventoryManagement.inventoryforms">
-            <td>{{ inventory.firstName }}</td>
-            <td>{{ inventory.lastName }}</td>
-            <td>{{ inventory.email }}</td>
-            <td>{{ inventory.barcode }}</td>
-            <td>{{ inventory.isCheckedIn }}</td>
-            <td>
-                <a>
-                    <button type="button"  ng-show="inventoryManagement.editAccess" class="btn btn-primary">Edit</button>
-                </a>
-                <button type="button"  ng-show="inventoryManagement.deleteAccess" class="btn btn-danger">Delete</button>
-            </td>
-        </tr>
+    	<thead>
+	        <tr>
+	            <th>First Name:</th>
+	            <th>Last Name:</th>
+	            <th>Email:</th>
+	            <th>Product:</th>
+	            <th>Bar Code:</th>
+	            <th>Is Checked In:</th>
+	        </tr>
+        </thead>
+        <tbody ng-repeat="inventory in inventoryManagement.inventoryforms | pagination: (inventoryManagement.currentPage -1) * inventoryManagement.pageSize | limitTo: inventoryManagement.pageSize">
+	        <tr>
+	            <td>{{ inventory.firstName }}</td>
+	            <td>{{ inventory.lastName }}</td>
+	            <td>{{ inventory.email }}</td>
+	            <td>{{ inventory.product }}</td>
+	            <td>{{ inventory.barcode }}</td>
+	            <td>{{ inventory.isCheckedIn }}</td>
+	            <td>
+	                <a href="#editInventory/{{ inventory._id }}">
+	                    <button type="button"  ng-show="inventoryManagement.editAccess" class="btn btn-primary">Edit</button>
+	                </a>
+	                <button type="button" ng-click="inventoryManagement.deleteInventory(inventory.barcode);" ng-show="inventoryManagement.deleteAccess" class="btn btn-danger">Delete</button>
+	            </td>
+	        </tr>
+	    </tbody>    
         <!-- End: Table -->
     </table>
 </div>
+
+<ul uib-pagination total-items="inventoryManagement.inventoryforms.length" items-per-page="inventoryManagement.pageSize" ng-model="inventoryManagement.currentPage"></ul>
 <!-- User Management Table -->
 
 <br>
