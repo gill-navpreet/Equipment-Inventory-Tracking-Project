@@ -157,6 +157,7 @@
                         // assign value to some input (or do whatever you want)
                         $("#bcode").val(bcode);
                         //included this trigger input so that the input into #bcode will bind with angular's ng-model=barcode
+                        $("#bcode").focus();
                         $("#bcode").trigger('input');
 
                     }

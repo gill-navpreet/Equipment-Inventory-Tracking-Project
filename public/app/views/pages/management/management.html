@@ -56,11 +56,13 @@
             <th>Name</th>
             <th>Username</th>
             <th>Email</th>
+            <th>Permissions </th>
         </tr>
         <tr ng-repeat="person in management.users | limitTo: management.limit">
             <td>{{ person.name }}</td>
             <td>{{ person.username }}</td>
             <td>{{ person.email }}</td>
+            <td>{{ person.permission }}</td>
             <td>
                 <a href="#edit/{{ person._id }}">
                     <button type="button" ng-show="management.editAccess" class="btn btn-primary">Edit</button>
