@@ -1,17 +1,12 @@
 angular.module('inventoryCheckOutController',[])
 
-.controller('inventoryCheckOutCtrl', function($scope,Inventory,$routeParams) {
+.controller('inventoryCheckOutCtrl', function(Inventory) {
 	app = this;
 
-	Inventory.findOne({ barcode: 387648267}), function(err,inventory) {
-		console.log(inventory.barcode);
-	}
-
-	app.checkOut = function(checkOutData) {
 
 
-
-
-
-	}
+	app.checkOut = function(barcode){
+		
+		console.log(barcode);
+	};
 });

@@ -24,6 +24,9 @@ angular.module('inventoryServices', [])
 		return $http.put('/api/editInventory', id);
 	};
 
+	inventoryFactory.postBarcodeJSON = function(barcode) {
+		return $http.post('/api/barcode');
+	}
 
 	return inventoryFactory;
 });

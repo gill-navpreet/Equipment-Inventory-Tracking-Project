@@ -44,7 +44,9 @@ var app = angular.module('appRoutes', ['ngRoute'])
 	.when('/inventoryForm', {
 		templateUrl: 'app/views/pages/inventory/inventoryForm.html',
 		controller: 'invFormCtrl',
-		controllerAs: "inventoryForm"
+		controllerAs: "inventoryForm",
+		authenticated: true,
+		permission: ['admin','moderator']
 	})
 
 	.when('/history', {

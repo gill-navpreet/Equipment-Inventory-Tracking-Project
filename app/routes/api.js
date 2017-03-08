@@ -4,10 +4,23 @@ var jwt = require('jsonwebtoken');
 var secret = 'harrypotter';
 var cron = require('node-cron');
 
+/*
+scheduler = function(barcode){
+    cron.schedule('* * * * * *', function(barcode){
+        Inventory.findOne({ barcode: barcode }).select('isCheckedIn').exec(function(err,inventory) {
+            if(err) throw err;
+                    console.log(inventory.isCheckedIn);
+        }); 
+    });
+}
+*/
 module.exports = function(router) {
 	// POST USER REGISTRATION ROUTE
 	// http://localhost:port/api/users
 
+    router.post('/barcode', function(req,res) {
+        Inventory.findOne({barcode: req.body.barcode }, function(err,obj) { res.json(obj); });
+    });
 
 	router.post('/users', function(req,res) {
 		var user = new User();
@@ -59,14 +72,8 @@ module.exports = function(router) {
 		var inventory = new Inventory();
         inventory.product = req.body.product;
 		inventory.barcode = req.body.barcode;
-
 		//scheduler that fires every second.
-		task = cron.schedule('* * * * * *', function(){
-            //console.log(inventory.firstName);
-        });
-        setInterval( function() {
-            console.log(inventory.isCheckedOut);
-        }, 3000);
+        //scheduler(inventory.barcode);
 
         if(req.body.product == null || req.body.product == "" || req.body.barcode == null || req.body.barcode ==""){
 			res.json({ success: false, message: 'Please enter all entries' });
