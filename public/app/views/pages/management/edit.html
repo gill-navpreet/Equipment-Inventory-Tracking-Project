@@ -12,7 +12,7 @@
 </ul>
 
 
-<form name ="edit.nameForm" ng-submit="edit.updateName(newName, edit.nameForm.name.$valid)" ng-show="edit.phase1">
+<form name ="edit.nameForm" ng-submit="edit.updateName(newName)" ng-show="edit.phase1">
 	<label>Current Name:</label>
 	<input class = "form-control" type = "text" name = "name" placeholder="please enter name" ng-model = "newName">
 	<br>
@@ -23,7 +23,7 @@
 </form>
 
 <!-- Phase One: Username -->
-<form name ="edit.usernameForm" ng-submit="edit.updateUsername(newUsername, edit.usernameForm.username.$valid)" ng-show="edit.phase2">
+<form name ="edit.usernameForm" ng-submit="edit.updateUsername(newUsername)" ng-show="edit.phase2">
 	<label>Current Username:</label>
 	<input class = "form-control" type = "text" name = "username" placeholder="please enter username" ng-model = "newUsername">
 	<br>
@@ -33,7 +33,7 @@
 	<br>
 </form>
 <!-- Phase One: Email -->
-<form name ="edit.emailForm" ng-submit="edit.updateEmail(newEmail, edit.emailForm.email.$valid)" ng-show="edit.phase3">
+<form name ="edit.emailForm" ng-submit="edit.updateEmail(newEmail)" ng-show="edit.phase3">
 	<label>Current Email:</label>
 	<input class = "form-control" type = "text" name = "email" placeholder="please enter email" ng-model = "newEmail">
 	<br>

@@ -158,11 +158,11 @@ angular.module('managementController', [])
     };
 
     // Function: Update the user's name
-    app.updateName = function(newName, valid) {
+    app.updateName = function(newName) {
         app.errorMsg = false; // Clear any error messages
         app.disabled = true; // Disable form while processing
         // Check if the name being submitted is valid
-        if (valid) {
+ 
             var userObject = {}; // Create a user object to pass to function
             userObject._id = app.currentUser; // Get _id to search database
             userObject.name = $scope.newName; // Set the new name to the user
@@ -183,18 +183,15 @@ angular.module('managementController', [])
                     app.disabled = false; // Enable form for editing
                 }
             });
-        } else {
-            app.errorMsg = 'Please ensure form is filled out properly'; // Set error message
-            app.disabled = false; // Enable form for editing
-        }
+       
     };
 
     // Function: Update the user's e-mail
-    app.updateEmail = function(newEmail, valid) {
+    app.updateEmail = function(newEmail) {
         app.errorMsg = false; // Clear any error messages
         app.disabled = true; // Lock form while processing
         // Check if submitted e-mail is valid
-        if (valid) {
+
             var userObject = {}; // Create the user object to pass in function
             userObject._id = app.currentUser; // Get the user's _id in order to edit
             userObject.email = $scope.newEmail; // Pass the new e-mail to save to user in database
@@ -215,18 +212,15 @@ angular.module('managementController', [])
                     app.disabled = false; // Enable form for editing
                 }
             });
-        } else {
-            app.errorMsg = 'Please ensure form is filled out properly'; // Set error message
-            app.disabled = false; // Enable form for editing
-        }
+        
     };
 
     // Function: Update the user's username
-    app.updateUsername = function(newUsername, valid) {
+    app.updateUsername = function(newUsername) {
         app.errorMsg = false; // Clear any error message
         app.disabled = true; // Lock form while processing
         // Check if username submitted is valid
-        if (valid) {
+       
             var userObject = {}; // Create the user object to pass to function
             userObject._id = app.currentUser; // Pass current user _id in order to edit
             userObject.username = $scope.newUsername; // Set the new username provided
@@ -247,10 +241,7 @@ angular.module('managementController', [])
                     app.disabled = false; // Enable form for editing
                 }
             });
-        } else {
-            app.errorMsg = 'Please ensure form is filled out properly'; // Set error message
-            app.disabled = false; // Enable form for editing
-        }
+       
     };
 
     // Function: Update the user's permission
