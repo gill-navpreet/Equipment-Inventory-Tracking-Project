@@ -2,6 +2,7 @@ var User = require('../models/user');
 var Inventory = require('../models/inventory')
 var jwt = require('jsonwebtoken');
 var secret = 'harrypotter';
+var cron = require('node-cron');
 
 module.exports = function(router) {
 	// POST USER REGISTRATION ROUTE
@@ -58,7 +59,16 @@ module.exports = function(router) {
 		inventory.lastName = req.body.lastName;
 		inventory.email = req.body.email;
 		inventory.barcode = req.body.barcode;
-		if(req.body.firstName == null || req.body.firstName == "" || req.body.lastName == null || req.body.lastName == "" || req.body.barcode == null || req.body.barcode ==""){
+
+		//scheduler that fires every second.
+		task = cron.schedule('* * * * * *', function(){
+            //console.log(inventory.firstName);
+        });
+        setInterval( function() {
+            console.log(inventory.isCheckedOut);
+        }, 3000);
+
+        if(req.body.firstName == null || req.body.firstName == "" || req.body.lastName == null || req.body.lastName == "" || req.body.barcode == null || req.body.barcode ==""){
 			res.json({ success: false, message: 'Please enter all entries' });
 		} else {
 			inventory.save(function(err) {

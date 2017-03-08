@@ -46,7 +46,7 @@ angular.module('mainController', ['authServices'])
 				//Redirect to home page
 				$timeout(function(){
 					$location.path('/about');
-					app.loginData = '';
+					app.loginData = {};
 					app.successMsg = false;
 				}, 2000);
 			} else {
