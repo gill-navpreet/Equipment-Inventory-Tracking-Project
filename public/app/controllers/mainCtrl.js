@@ -60,11 +60,7 @@ angular.module('mainController', ['authServices'])
 
 	this.logout = function() {
 		Auth.logout();
-		$location.path('/logout');
-		$timeout(function() {
-			$location.path('/');
-		}, 2000);
-
+		$location.path('/');
 	};
 });
 

@@ -68,6 +68,14 @@ var app = angular.module('appRoutes', ['ngRoute'])
 		permission: ['admin','moderator']
 	})
 
+	.when('/inventoryManagement', {
+		templateUrl: 'app/views/pages/management/inventoryManagement.html',
+		controller: 'inventoryManagementCtrl',
+		controllerAs: 'inventoryManagement',
+		authenticated: true,
+		permission: ['admin','moderator']
+	})
+
 	.otherwise({ redirectTo: '/'});
 
 
@@ -75,7 +83,7 @@ var app = angular.module('appRoutes', ['ngRoute'])
 
 
 // Run a check on each route to see if user is logged in or not (depending on if it is specified in the individual route)
-app.run(['$rootScope', 'Auth', '$location', 'User' ,function($rootScope, Auth, $location, User) {
+app.run(['$rootScope', 'Auth', '$location', 'User',function($rootScope, Auth, $location, User) {
 	
 	// Check each time route changes
 	$rootScope.$on('$routeChangeStart', function(event, next, current) {

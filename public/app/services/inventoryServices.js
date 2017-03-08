@@ -8,6 +8,10 @@ angular.module('inventoryServices', [])
 		return $http.post('/api/inventory', invData);
 	}
 
+	inventoryFactory.getInventoryForms = function() {
+		return $http.get('/api/inventoryManagement/');
+	}
+
 	return inventoryFactory;
 });
 

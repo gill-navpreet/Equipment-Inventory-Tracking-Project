@@ -390,5 +390,30 @@ module.exports = function(router) {
         });
     });
 
+    router.get('/inventoryManagement', function(req, res) {
+        Inventory.find({}, function(err, inventoryforms) {
+            if (err) throw err; // Throw error if cannot connect
+            User.findOne({ username: req.decoded.username }, function(err, mainUser) {
+                if (err) throw err; // Throw error if cannot connect
+                // Check if logged in user was found in database
+                if (!mainUser) {
+                    res.json({ success: false, message: 'No user found' }); // Return error
+                } else {
+                    // Check if user has editing/deleting privileges 
+                    if (mainUser.permission === 'admin' || mainUser.permission === 'moderator') {
+                        // Check if inventoryforms were retrieved from database
+                        if (!inventoryforms) {
+                            res.json({ success: false, message: 'Inventory not found' }); // Return error
+                        } else {
+                            res.json({ success: true, inventoryforms: inventoryforms, permission: mainUser.permission }); // Return inventory forms, along with current user's permission
+                        }
+                    } else {
+                        res.json({ success: false, message: 'Insufficient Permissions' }); // Return access error
+                    }
+                }
+            });
+        });
+    });
+
 	return router;
 }

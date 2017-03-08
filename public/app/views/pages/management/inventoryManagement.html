@@ -1,0 +1,100 @@
+<!-- Header -->
+<div class="page-header">
+    <h1>Inventory Management</h1>
+</div>
+<!-- Header -->
+
+<br>
+
+<!-- Loading Icon (Bootstrap) -->
+<div class="jumbotron text-center" ng-show="inventoryManagement.loading">
+    <span class="glyphicon glyphicon-repeat spinner"></span>
+    <p>Loading....</p>
+</div>
+<!-- Loading Icon (Bootstrap) -->
+
+<br>
+
+<!-- Apply Button Filter -->
+<button type="button" class="btn btn-success">Apply Filter</button>
+
+<!--/ Show All Button -->
+<button type="button" class="btn btn-warning">Show All</button>
+
+<!-- Input For Filter  -->
+<div class="showmore">
+    <div class="col-lg-6">
+        <div class="input-group">
+            <span class="input-group-addon">Results to display:</span>
+            <input type="text" class="form-control" ng-model="number">
+        </div>
+    </div>
+</div>
+<!-- Input For Filter  -->
+
+<br>
+<br>
+<br>
+<br>
+
+<!-- User Management Table -->
+<div class="panel panel-primary">
+    <!-- Heading -->
+    <div class="panel-heading">
+        <strong>Inventory Management</strong>
+    </div>
+    <!-- Start: Table -->
+    <table class="table">
+        <tr>
+            <th>First Name:</th>
+            <th>Last Name:</th>
+            <th>Email</th>
+            <th>Bar Code:</th>
+            <th>Is Checked Out:</th>
+        </tr>
+        <tr ng-repeat="inventory in inventoryManagement.inventoryforms">
+            <td>{{ inventory.firstName }}</td>
+            <td>{{ inventory.lastName }}</td>
+            <td>{{ inventory.email }}</td>
+            <td>{{ inventory.barcode }}</td>
+            <td>{{ inventory.isCheckedIn }}</td>
+            <td>
+                <a>
+                    <button type="button"  ng-show="inventoryManagement.editAccess" class="btn btn-primary">Edit</button>
+                </a>
+                <button type="button"  ng-show="inventoryManagement.deleteAccess" class="btn btn-danger">Delete</button>
+            </td>
+        </tr>
+        <!-- End: Table -->
+    </table>
+</div>
+<!-- User Management Table -->
+
+<br>
+<br>
+
+<!-- Custom Error Message -->
+<div class="row show-hide-message" ng-show="inventoryManagement.showMoreError">
+    <div class="alert alert-danger">{{ inventoryManagement.showMoreError }}</div>
+</div>
+<!-- Custom Error Message -->
+
+<!-- Apply Button Filter -->
+<button type="button" class="btn btn-success">Apply Filter</button>
+
+<!--/ Show All Button -->
+<button type="button" class="btn btn-warning">Show All</button>
+
+<!-- Input For Filter  -->
+<div class="showmore">
+    <div class="col-lg-6">
+        <div class="input-group">
+            <span class="input-group-addon">Results to display:</span>
+            <input type="text" class="form-control" ng-model="number">
+        </div>
+    </div>
+</div>
+<!-- Input For Filter  -->
+
+<br>
+<br>
