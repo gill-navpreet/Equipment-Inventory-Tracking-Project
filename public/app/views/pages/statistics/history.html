@@ -12,6 +12,8 @@
 				<th>Email:</th>
 				<th>Product:</th>
 				<th>Bar Code:</th>
+				<th>Last Checked In:</th>
+				<th>Last Checked Out:</th>
 			</tr>
 		</thead>
 		<tbody ng-repeat="inventory in inventoryData | pagination: (currentPage - 1) * pageSize | limitTo: pageSize">
@@ -21,6 +23,8 @@
 				<td>{{ inventory.email }}</td>
 				<td>{{ inventory.product }}</td>
 				<td>{{ inventory.barcode }}</td>
+				<td>{{ inventory.dateCheckedIn | date: 'medium'}}</td>
+				<td>{{ inventory.dateCheckedOut | date: 'medium'}}</td>
 			</tr>
 		</tbody>
 	</table>

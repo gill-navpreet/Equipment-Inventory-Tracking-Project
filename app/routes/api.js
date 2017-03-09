@@ -4,16 +4,53 @@ var jwt = require('jsonwebtoken');
 var secret = 'harrypotter';
 var cron = require('node-cron');
 
-/*
-scheduler = function(barcode){
-    cron.schedule('* * * * * *', function(barcode){
-        Inventory.findOne({ barcode: barcode }).select('isCheckedIn').exec(function(err,inventory) {
-            if(err) throw err;
-                    console.log(inventory.isCheckedIn);
-        }); 
-    });
+var nodemailer = require('nodemailer');
+var sgTransport = require('nodemailer-sendgrid-transport');
+
+
+//sendgrid information to send autonomous emails. 
+var options = {
+  auth: {
+    api_user: 'SENDGRID_USERNAME',
+    api_key: 'SENDGRID_PASSWORD'
+  }
 }
-*/
+
+var client = nodemailer.createTransport(sgTransport(options));
+
+var email = {
+  from: 'awesome@bar.com',
+  to: 'mr.walrus@foo.com',
+  subject: 'Hello',
+  text: 'Hello world',
+  html: '<b>Hello world</b>'
+};
+
+client.sendMail(email, function(err, info){
+    if (err ){
+      console.log(error);
+    }
+    else {
+      console.log('Message sent: ' + info.response);
+    }
+});
+
+
+//Scheduler. If an inventory has been checked out for longer than 10 seconds, it will post the message to the console.
+cron.schedule('* * * * * *', function(){
+    Inventory.find({}, function(err,inventoryforms) {
+        for(var i = 0; i < inventoryforms.length; i++){
+            if(inventoryforms[i].isCheckedIn == 'false'){
+                if((Date.now() - inventoryforms[i].dateCheckedOut) > 10000){// replace the console logs with the mail sent above. 
+                    console.log('Email sent to: ' + inventoryforms[i].email);
+                    console.log(inventoryforms[i].firstName + ' ' + inventoryforms[i].lastName + ', your item: ' + inventoryforms[i].product + ' has been checked out for longer than 10 seconds.\n\n');
+                }
+            }    
+        }
+    });
+
+});
+
 module.exports = function(router) {
 	// POST USER REGISTRATION ROUTE
 	// http://localhost:port/api/users
@@ -69,8 +106,7 @@ module.exports = function(router) {
 		var inventory = new Inventory();
         inventory.product = req.body.product;
 		inventory.barcode = req.body.barcode;
-		//scheduler that fires every second.
-        //scheduler(inventory.barcode);
+
 
         if(req.body.product == null || req.body.product == "" || req.body.barcode == null || req.body.barcode ==""){
 			res.json({ success: false, message: 'Please enter all entries' });
@@ -641,7 +677,8 @@ module.exports = function(router) {
         if (req.body.email) var newEmail = req.body.email; // Check if a change to e-mail was requested
         if (req.body.product) var newProduct = req.body.product; // Check if a change to permission was requested
         if (req.body.barcode) var newBarcode = req.body.barcode;
-        if (req.body.isCheckedIn) var newIsCheckedIn = req.body.isCheckedIn;   
+        if (req.body.isCheckedIn) var newIsCheckedIn = req.body.isCheckedIn; 
+        if (req.body.dateCheckedOut) var newDateCheckedOut = req.body.dateCheckedOut;  
         if (newFirstName) {
             Inventory.findOne({ _id: editInventory}, function(err, inventory) {
                 inventory.firstName = newFirstName;
@@ -663,6 +700,12 @@ module.exports = function(router) {
         if (newIsCheckedIn) {
             Inventory.findOne({ _id: editInventory}, function(err, inventory) {
                 inventory.isCheckedIn = newIsCheckedIn;
+                inventory.save();
+            });
+        }
+        if (newDateCheckedOut) {
+            Inventory.findOne({ _id: editInventory}, function(err, inventory) {
+                inventory.dateCheckedOut = newDateCheckedOut;
                 inventory.save();
             });
         }

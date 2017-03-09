@@ -36,6 +36,8 @@ angular.module('inventoryServices', [])
 		return $http.put('/api/checkOutUpdate', id);
 	};
 
+
+
 	return inventoryFactory;
 });
 
