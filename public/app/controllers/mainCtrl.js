@@ -11,6 +11,7 @@ angular.module('mainController', ['authServices'])
 	$rootScope.$on('$routeChangeStart', function() {
 		if(Auth.isLoggedIn()) {
 			app.isLoggedIn = true;
+			//app.authorized - false;
 			Auth.getUser().then(function(data) { 
 				app.username = data.data.username;
 				app.useremail = data.data.email;

@@ -1,0 +1,23 @@
+<div class="page-header">
+<h1>Please Enter your information</h1>
+</div>
+
+<form ng-submit="checkOutForm.checkOutForm(newData);">
+	<!-- Bar Code -->
+	<label>First Name:</label>
+	<input class="form-control" type="text" name='firstName' placeholder="please enter first name" ng-model="newData.newFirstName" >
+	<br>
+
+	<label>Last Name:</label>
+	<input class="form-control" type="text" name='lastName' placeholder="please enter last name" ng-model="newData.newLastName" >
+	<br>
+
+	<label>Email:</label>
+	<input class="form-control" type="text" name='email' placeholder="please enter email" ng-model="newData.newEmail" >
+	<br>
+			
+	<button class="btn btn-primary" type="submit">Submit</button>
+</form>
+
+<br>
+

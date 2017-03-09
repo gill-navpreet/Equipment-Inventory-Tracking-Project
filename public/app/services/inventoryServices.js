@@ -24,9 +24,17 @@ angular.module('inventoryServices', [])
 		return $http.put('/api/editInventory', id);
 	};
 
-	inventoryFactory.postBarcodeJSON = function(barcode) {
-		return $http.post('/api/barcode');
-	}
+	inventoryFactory.getInventoryIdBasedOnBarcode = function(barcode) {
+		return $http.get('/api/getInventoryIdBasedOnBarcode/' + barcode);
+	};
+
+	inventoryFactory.getInventoryBasedOnId = function(id) {
+		return $http.get('/api/getInventoryBasedOnId/' + id);
+	};	
+
+	inventoryFactory.checkOutUpdate = function(id) {
+		return $http.put('/api/checkOutUpdate', id);
+	};
 
 	return inventoryFactory;
 });

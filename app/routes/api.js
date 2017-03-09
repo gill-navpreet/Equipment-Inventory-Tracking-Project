@@ -18,9 +18,6 @@ module.exports = function(router) {
 	// POST USER REGISTRATION ROUTE
 	// http://localhost:port/api/users
 
-    router.post('/barcode', function(req,res) {
-        Inventory.findOne({barcode: req.body.barcode }, function(err,obj) { res.json(obj); });
-    });
 
 	router.post('/users', function(req,res) {
 		var user = new User();
@@ -618,7 +615,59 @@ module.exports = function(router) {
             }
         });
     });
-    
+
+    router.get('/getInventoryIdBasedOnBarcode/:barcode', function(req, res) {
+
+        Inventory.findOne({ barcode: req.params.barcode }, function(err, inventory) {
+            res.json({ inventory: inventory });
+        });
+    });
+
+
+
+    router.get('/getInventoryBasedOnId/:id', function(req, res) {
+        var editInventory = req.params.id; // Assign the _id from parameters to variable
+        Inventory.findOne({ _id: editInventory}, function (err, inventory) {
+            res.json({ inventory: inventory});
+        });
+        
+    });
+
+
+    router.put('/checkOutUpdate', function(req, res) {
+        var editInventory = req.body._id; // Assign _id from user to be editted to a variable
+        if (req.body.firstName) var newFirstName = req.body.firstName; // Check if a change to name was requested
+        if (req.body.lastName) var newLastName = req.body.lastName; // Check if a change to username was requested
+        if (req.body.email) var newEmail = req.body.email; // Check if a change to e-mail was requested
+        if (req.body.product) var newProduct = req.body.product; // Check if a change to permission was requested
+        if (req.body.barcode) var newBarcode = req.body.barcode;
+        if (req.body.isCheckedIn) var newIsCheckedIn = req.body.isCheckedIn;   
+        if (newFirstName) {
+            Inventory.findOne({ _id: editInventory}, function(err, inventory) {
+                inventory.firstName = newFirstName;
+                inventory.save();
+            });
+        }
+        if (newLastName) {
+            Inventory.findOne({ _id: editInventory}, function(err, inventory) {
+                inventory.lastName = newLastName;
+                inventory.save();
+            });
+        }
+        if (newEmail) {
+            Inventory.findOne({ _id: editInventory}, function(err, inventory) {
+                inventory.email = newEmail;
+                inventory.save();
+            });
+        }
+        if (newIsCheckedIn) {
+            Inventory.findOne({ _id: editInventory}, function(err, inventory) {
+                inventory.isCheckedIn = newIsCheckedIn;
+                inventory.save();
+            });
+        }
+    });
+
 
 
 	return router;

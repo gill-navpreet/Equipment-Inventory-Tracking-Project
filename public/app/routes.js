@@ -100,6 +100,13 @@ var app = angular.module('appRoutes', ['ngRoute'])
 		authenticated: true
 	})	
 
+	.when('/checkOutForm/:id', {
+		templateUrl: 'app/views/pages/inventory/inventoryCheckOutForm.html',
+		controller: 'inventoryCheckOutFormCtrl',
+		controllerAs: 'checkOutForm',
+		authenticated: true
+	})
+
 	.otherwise({ redirectTo: '/'});
 
 

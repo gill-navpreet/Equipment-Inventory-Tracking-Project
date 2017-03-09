@@ -1,12 +1,14 @@
 angular.module('inventoryCheckOutController',[])
 
-.controller('inventoryCheckOutCtrl', function(Inventory) {
+.controller('inventoryCheckOutCtrl', function(Inventory, $location) {
 	app = this;
 
 
 
 	app.checkOut = function(barcode){
-		
-		console.log(barcode);
+		Inventory.getInventoryIdBasedOnBarcode(barcode).then(function(data) {
+			console.log(data.data.inventory._id);
+			$location.path('/checkOutForm/' + data.data.inventory._id);
+		});
 	};
 });
