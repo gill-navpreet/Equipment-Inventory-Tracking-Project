@@ -8,7 +8,8 @@ var nodemailer = require('nodemailer');
 var sgTransport = require('nodemailer-sendgrid-transport');
 
 
-//sendgrid information to send autonomous emails. 
+//sendgrid information to send autonomous emails.
+/* 
 var options = {
   auth: {
     api_user: 'SENDGRID_USERNAME',
@@ -35,7 +36,7 @@ client.sendMail(email, function(err, info){
     }
 });
 
-
+*/
 //Scheduler. If an inventory has been checked out for longer than 10 seconds, it will post the message to the console.
 cron.schedule('* * * * * *', function(){
     Inventory.find({}, function(err,inventoryforms) {
