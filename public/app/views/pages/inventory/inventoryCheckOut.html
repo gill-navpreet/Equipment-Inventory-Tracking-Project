@@ -12,3 +12,20 @@
 </form>
 
 <br>
+
+<div class = "jumbotron text-center" ng-show = "checkOut.loading">
+	<span class = "glyphicon glyphicon-repeat spinner"></span>
+	<p>Loading....</p>
+</div>
+
+
+
+<div class = "row show-hide-message" ng-show = "checkOut.successMsg">
+	<div class = "alert alert-success">{{ checkOut.successMsg }}</div>
+</div>
+
+<br>
+
+<div class = "row show-hide-message" ng-show = "checkOut.errorMsg">
+	<div class = "alert alert-danger">{{ checkOut.errorMsg }}</div>
+</div> 

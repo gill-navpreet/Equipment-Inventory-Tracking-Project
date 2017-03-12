@@ -36,6 +36,10 @@ angular.module('inventoryServices', [])
 		return $http.put('/api/checkOutUpdate', id);
 	};
 
+	inventoryFactory.checkInUpdate = function(id) {
+		return $http.put('/api/checkInUpdate', id);
+	};	
+
 
 
 	return inventoryFactory;

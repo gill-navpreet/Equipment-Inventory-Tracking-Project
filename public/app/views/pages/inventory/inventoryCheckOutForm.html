@@ -2,18 +2,18 @@
 <h1>Please Enter your information</h1>
 </div>
 
-<form ng-submit="checkOutForm.checkOutForm(newData);">
+<form name ="checkOutForm.checkOutFormTable" ng-submit="checkOutForm.checkOutForm(newData);">
 	<!-- Bar Code -->
 	<label>First Name:</label>
-	<input class="form-control" type="text" name='firstName' placeholder="please enter first name" ng-model="newData.newFirstName" >
+	<input class="form-control" type="text" name='firstName' placeholder="please enter first name" ng-model="newData.newFirstName" required>
 	<br>
 
 	<label>Last Name:</label>
-	<input class="form-control" type="text" name='lastName' placeholder="please enter last name" ng-model="newData.newLastName" >
+	<input class="form-control" type="text" name='lastName' placeholder="please enter last name" ng-model="newData.newLastName" required>
 	<br>
 
 	<label>Email:</label>
-	<input class="form-control" type="text" name='email' placeholder="please enter email" ng-model="newData.newEmail" >
+	<input class="form-control" type="text" name='email' placeholder="please enter email" ng-model="newData.newEmail" required>
 	<br>
 			
 	<button class="btn btn-primary" type="submit">Submit</button>
@@ -21,3 +21,20 @@
 
 <br>
 
+
+<div class = "jumbotron text-center" ng-show = "checkOutForm.loading">
+	<span class = "glyphicon glyphicon-repeat spinner"></span>
+	<p>Loading....</p>
+</div>
+
+
+
+<div class = "row show-hide-message" ng-show = "checkOutForm.successMsg">
+	<div class = "alert alert-success">{{ checkOutForm.successMsg }}</div>
+</div>
+
+<br>
+
+<div class = "row show-hide-message" ng-show = "checkOutForm.errorMsg">
+	<div class = "alert alert-danger">{{ checkOutForm.errorMsg }}</div>
+</div> 

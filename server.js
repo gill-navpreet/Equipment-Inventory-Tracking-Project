@@ -29,6 +29,6 @@ app.get('*', function(req, res) {
 	res.sendFile(path.join(__dirname + '/public/app/views/index.html'));
 });
 
-app.listen(port, function(){
+app.listen(3000, function(){
 	console.log('Running the server on port ' + port);
 });

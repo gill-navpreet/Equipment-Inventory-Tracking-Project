@@ -16,9 +16,7 @@ var options = {
     api_key: 'SENDGRID_PASSWORD'
   }
 }
-
 var client = nodemailer.createTransport(sgTransport(options));
-
 var email = {
   from: 'awesome@bar.com',
   to: 'mr.walrus@foo.com',
@@ -26,7 +24,6 @@ var email = {
   text: 'Hello world',
   html: '<b>Hello world</b>'
 };
-
 client.sendMail(email, function(err, info){
     if (err ){
       console.log(error);
@@ -35,7 +32,6 @@ client.sendMail(email, function(err, info){
       console.log('Message sent: ' + info.response);
     }
 });
-
 */
 //Scheduler. If an inventory has been checked out for longer than 10 seconds, it will post the message to the console.
 cron.schedule('* * * * * *', function(){
@@ -53,120 +49,120 @@ cron.schedule('* * * * * *', function(){
 });
 
 module.exports = function(router) {
-	// POST USER REGISTRATION ROUTE
-	// http://localhost:port/api/users
+    // POST USER REGISTRATION ROUTE
+    // http://localhost:port/api/users
 
 
-	router.post('/users', function(req,res) {
-		var user = new User();
-		user.username = req.body.username;
-		user.password = req.body.password;
-		user.email = req.body.email;
- 		user.name = req.body.name; // Save name from request to User object
+    router.post('/users', function(req,res) {
+        var user = new User();
+        user.username = req.body.username;
+        user.password = req.body.password;
+        user.email = req.body.email;
+        user.name = req.body.name; // Save name from request to User object
 
-		if(req.body.username == null || req.body.username == '' || req.body.password == null || req.body.password == '' || req.body.email == null || req.body.email == '' || req.body.name === null || req.body.name === '') {
-			res.json({ success: false, message:'Ensure username, email, and password were provided' });
-		} else {
-			user.save(function(err) {
-				if(err) { 
-					res.json({ success: false, message: 'Username or Email already exists!' });
-				} else {
-					res.send({ success: true, message: 'user created!' });
-				}
-			});
-		}
-	});
+        if(req.body.username == null || req.body.username == '' || req.body.password == null || req.body.password == '' || req.body.email == null || req.body.email == '' || req.body.name === null || req.body.name === '') {
+            res.json({ success: false, message:'Ensure username, email, and password were provided' });
+        } else {
+            user.save(function(err) {
+                if(err) { 
+                    res.json({ success: false, message: 'Username or Email already exists!' });
+                } else {
+                    res.send({ success: true, message: 'user created!' });
+                }
+            });
+        }
+    });
 
-	// POST USER LOGIN ROUTE
-	// http://localhost:port/api/authenticate
-	router.post('/authenticate', function(req,res) {
-		User.findOne({ username: req.body.username }).select('email username password').exec(function(err,user) {
-			if (err) throw err;
+    // POST USER LOGIN ROUTE
+    // http://localhost:port/api/authenticate
+    router.post('/authenticate', function(req,res) {
+        User.findOne({ username: req.body.username }).select('email username password').exec(function(err,user) {
+            if (err) throw err;
 
-			if(!user){
-				res.json({ success: false, message: 'Could not authenticate user' });
-			} else if (user) {
-				if(req.body.password) {
-					var validPassword = user.comparePassword(req.body.password);
-				} else {
-					res.json({ success: false, message: 'No password provided'});
-				}
-				if (!validPassword) {
-					res.json({ success: false, message: 'Could not authenticate password' });
-				} else {
-					var token = jwt.sign({ username: user.username, email: user.email }, secret, {expiresIn: '24h'} );
-					res.json({ success: true, message: "User authenticated!", token: token });
-				}
-			}
-		});
-	});
+            if(!user){
+                res.json({ success: false, message: 'Could not authenticate user' });
+            } else if (user) {
+                if(req.body.password) {
+                    var validPassword = user.comparePassword(req.body.password);
+                } else {
+                    res.json({ success: false, message: 'No password provided'});
+                }
+                if (!validPassword) {
+                    res.json({ success: false, message: 'Could not authenticate password' });
+                } else {
+                    var token = jwt.sign({ username: user.username, email: user.email }, secret, {expiresIn: '24h'} );
+                    res.json({ success: true, message: "User authenticated!", token: token });
+                }
+            }
+        });
+    });
 
-	// POST INVENTORY FORM ROUTE
-	// http://localhost:port/api/inventory
-	router.post('/inventory', function(req,res) {
-		var inventory = new Inventory();
+    // POST INVENTORY FORM ROUTE
+    // http://localhost:port/api/inventory
+    router.post('/inventory', function(req,res) {
+        var inventory = new Inventory();
         inventory.product = req.body.product;
-		inventory.barcode = req.body.barcode;
+        inventory.barcode = req.body.barcode;
 
 
         if(req.body.product == null || req.body.product == "" || req.body.barcode == null || req.body.barcode ==""){
-			res.json({ success: false, message: 'Please enter all entries' });
-		} else {
-			inventory.save(function(err) {
-			if(err) {
-				res.json({ success: false, message: 'Barcode already exists!' });
-			} else {
-				res.json({ success: true, message: 'Inventory Created' });
-			}
-		});
-		}
-	});
+            res.json({ success: false, message: 'Please enter all entries' });
+        } else {
+            inventory.save(function(err) {
+            if(err) {
+                res.json({ success: false, message: 'Barcode already exists!' });
+            } else {
+                res.json({ success: true, message: 'Inventory Created' });
+            }
+        });
+        }
+    });
 
-	// GET INVENTORY FROM ROUTE
-	//: http://localhost:port/api/inventory
-	router.get('/inventory', function(req,res) {
-		Inventory.find({}, function(err,inventoryforms) {
-			if(err) throw err;
-			res.json({ success:true, inventoryforms: inventoryforms});
-		});
-	});
+    // GET INVENTORY FROM ROUTE
+    //: http://localhost:port/api/inventory
+    router.get('/inventory', function(req,res) {
+        Inventory.find({}, function(err,inventoryforms) {
+            if(err) throw err;
+            res.json({ success:true, inventoryforms: inventoryforms});
+        });
+    });
 
-	// decrypting token and sending back to the user.
-	router.use(function(req,res,next) {
-		var token = req.body.token || req.body.query || req.headers['x-access-token'];
+    // decrypting token and sending back to the user.
+    router.use(function(req,res,next) {
+        var token = req.body.token || req.body.query || req.headers['x-access-token'];
 
-		if(token) {
-			// verify token
-			jwt.verify(token, secret, function(err, decoded) {
-				if(err) {
-					res.json({ success: false, message: 'Token invalid' });
-				} else {
-					// takes the token, combines it with the secret, verifies it, once it's good it sends it back decoded
-					req.decoded = decoded;
-					next();
-				}
-			});
-		} else {
-			res.json({ success: false, message: 'No token provided' });
-		}
-	});
+        if(token) {
+            // verify token
+            jwt.verify(token, secret, function(err, decoded) {
+                if(err) {
+                    res.json({ success: false, message: 'Token invalid' });
+                } else {
+                    // takes the token, combines it with the secret, verifies it, once it's good it sends it back decoded
+                    req.decoded = decoded;
+                    next();
+                }
+            });
+        } else {
+            res.json({ success: false, message: 'No token provided' });
+        }
+    });
 
-	router.post('/me', function(req,res) {
-		res.send(req.decoded);
-	});
+    router.post('/me', function(req,res) {
+        res.send(req.decoded);
+    });
 
 
-	// route used to obtain what permission a user has.
-	router.get('/permission', function(req,res) {
-		User.findOne({ username: req.decoded.username }, function(err,user) {
-			if(err) throw err;
-			if(!user) {
-				res.json({ success: false, message: 'No user was found' });
-			} else {
-				res.json({ success: true, permission: user.permission });
-			}
-		});
-	});
+    // route used to obtain what permission a user has.
+    router.get('/permission', function(req,res) {
+        User.findOne({ username: req.decoded.username }, function(err,user) {
+            if(err) throw err;
+            if(!user) {
+                res.json({ success: false, message: 'No user was found' });
+            } else {
+                res.json({ success: true, permission: user.permission });
+            }
+        });
+    });
 
     // Route to get all users for management page
     router.get('/management', function(req, res) {
@@ -654,13 +650,15 @@ module.exports = function(router) {
     });
 
     router.get('/getInventoryIdBasedOnBarcode/:barcode', function(req, res) {
-
-        Inventory.findOne({ barcode: req.params.barcode }, function(err, inventory) {
-            res.json({ inventory: inventory });
+        var editInventory = req.params.barcode;
+        Inventory.findOne({ barcode: editInventory }, function(err, inventory) {
+            if (!inventory) {
+                res.json({ success: false, message: 'No inventory found' });
+            } else {
+                res.json({ success: true, inventory: inventory });
+            }
         });
     });
-
-
 
     router.get('/getInventoryBasedOnId/:id', function(req, res) {
         var editInventory = req.params.id; // Assign the _id from parameters to variable
@@ -713,6 +711,48 @@ module.exports = function(router) {
     });
 
 
+    router.put('/checkInUpdate', function(req, res) {
+        var editInventory = req.body._id; // Assign _id from user to be editted to a variable
+        if (req.body.firstName) var newFirstName = req.body.firstName; // Check if a change to name was requested
+        if (req.body.lastName) var newLastName = req.body.lastName; // Check if a change to username was requested
+        if (req.body.email) var newEmail = req.body.email; // Check if a change to e-mail was requested
+        if (req.body.product) var newProduct = req.body.product; // Check if a change to permission was requested
+        if (req.body.barcode) var newBarcode = req.body.barcode;
+        if (req.body.isCheckedIn) var newIsCheckedIn = req.body.isCheckedIn; 
+        if (req.body.dateCheckedIn) var newDateCheckedIn = req.body.dateCheckedIn;  
+        if (newFirstName) {
+            Inventory.findOne({ _id: editInventory}, function(err, inventory) {
+                inventory.firstName = newFirstName;
+                inventory.save();
+            });
+        }
+        if (newLastName) {
+            Inventory.findOne({ _id: editInventory}, function(err, inventory) {
+                inventory.lastName = newLastName;
+                inventory.save();
+            });
+        }
+        if (newEmail) {
+            Inventory.findOne({ _id: editInventory}, function(err, inventory) {
+                inventory.email = newEmail;
+                inventory.save();
+            });
+        }
+        if (newIsCheckedIn) {
+            Inventory.findOne({ _id: editInventory}, function(err, inventory) {
+                inventory.isCheckedIn = newIsCheckedIn;
+                inventory.save();
+            });
+        }
+        if (newDateCheckedIn) {
+            Inventory.findOne({ _id: editInventory}, function(err, inventory) {
+                inventory.dateCheckedIn = newDateCheckedIn;
+                inventory.save();
+            });
+        }
+    });
 
-	return router;
+
+
+    return router;
 }
