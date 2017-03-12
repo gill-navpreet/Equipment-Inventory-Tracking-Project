@@ -1,10 +1,12 @@
 angular.module('historyController',['ui.bootstrap'])
 
-.controller('histCtrl', function($scope, $http) {
-	$scope.currentPage = 1;
-	$scope.pageSize = 10;
-	$http.get('/api/inventory').then(function(data) {
-		$scope.inventoryData = data.data.inventoryforms;
+.controller('histCtrl', function($scope, $http,History) {
+	app = this;
+	app.currentPage = 1;
+	app.pageSize = 10;
+	History.getHistory().then(function(data) {
+		console.log(data);
+		app.historyData = data.data.history;
 	});
 
 })

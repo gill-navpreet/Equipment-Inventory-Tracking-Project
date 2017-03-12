@@ -1,5 +1,6 @@
 var User = require('../models/user');
-var Inventory = require('../models/inventory')
+var Inventory = require('../models/inventory');
+var History = require('../models/history');
 var jwt = require('jsonwebtoken');
 var secret = 'harrypotter';
 var cron = require('node-cron');
@@ -71,6 +72,27 @@ module.exports = function(router) {
                 }
             });
         }
+    });
+
+
+    router.post('/history', function(req,res) {
+        var history = new History();
+        history.firstName = req.body.firstName;
+        history.lastName = req.body.lastName;
+        history.email = req.body.email;
+        history.product = req.body.product;
+        history.barcode = req.body.barcode;
+        history.checkedType = req.body.checkedType;
+        history.date = Date.now();
+        history.description = req.body.description;
+        history.save();
+    });
+
+    router.get('/history', function(req,res) {
+        History.find({}, function(err,history) {
+            if(err) throw err;
+            res.json({ success:true, history: history});
+        });
     });
 
     // POST USER LOGIN ROUTE

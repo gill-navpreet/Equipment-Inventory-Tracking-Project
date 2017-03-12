@@ -1,6 +1,6 @@
 angular.module('inventoryCheckInController',[])
 
-.controller('inventoryCheckInCtrl', function(Inventory, $location,$timeout) {
+.controller('inventoryCheckInCtrl', function(Inventory, $location,$timeout,History) {
 	app = this;
 
 	app.checkIn = function(barcode){
@@ -9,20 +9,34 @@ angular.module('inventoryCheckInController',[])
 			app.loading = false;
 		} else {
 			var inventoryObject = {};
+			var historyObject = {};
 			Inventory.getInventoryIdBasedOnBarcode(barcode).then(function(data) {
 				if (data.data.success){
 					if (data.data.inventory.isCheckedIn == 'false') {
 						app.errorMsg = false;
 						app.loading = true;
-						console.log(data.data.inventory.isCheckedIn);
 						inventoryObject._id = data.data.inventory._id;
 						inventoryObject.firstName = "n/a";
 						inventoryObject.lastName = "n/a";
 						inventoryObject.email = "n/a";
 						inventoryObject.isCheckedIn = 'true';
 						inventoryObject.dateCheckedIn = Date.now();
+
+						historyObject.firstName = data.data.inventory.firstName;
+						historyObject.lastName = data.data.inventory.lastName;
+						historyObject.email = data.data.inventory.email;
+						historyObject.product = data.data.inventory.product;
+						historyObject.barcode = data.data.inventory.barcode;
+						historyObject.checkedType = 'checked in';
+						historyObject.date = Date.now();
+						historyObject.description = historyObject.firstName + " " + historyObject.lastName + " " + historyObject.checkedType + " a " + historyObject.product;
+
+						History.create(historyObject);
+						
 						Inventory.checkInUpdate(inventoryObject);
 						app.successMsg = 'Checking in ....Redirecting';
+
+
 						$timeout(function(){
 							$location.path('/');	
 						}, 2000);
@@ -38,3 +52,5 @@ angular.module('inventoryCheckInController',[])
 		}
 	};
 });
+
+

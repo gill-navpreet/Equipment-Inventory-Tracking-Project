@@ -51,7 +51,9 @@ var app = angular.module('appRoutes', ['ngRoute'])
 
 	.when('/history', {
 		templateUrl: 'app/views/pages/statistics/history.html',
-		controller: 'histCtrl'
+		controller: 'histCtrl',
+		controllerAs: 'hist',
+		authenticated: true
 	})
 
 	.when('/management', {
