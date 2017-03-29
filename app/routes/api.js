@@ -1,3 +1,4 @@
+// packages
 var User = require('../models/user');
 var Inventory = require('../models/inventory');
 var History = require('../models/history');
@@ -53,18 +54,20 @@ module.exports = function(router) {
     // POST USER REGISTRATION ROUTE
     // http://localhost:port/api/users
 
-
+    
     router.post('/users', function(req,res) {
         var user = new User();
         user.username = req.body.username;
         user.password = req.body.password;
         user.email = req.body.email;
         user.name = req.body.name; // Save name from request to User object
-
+        // Check if user provides all of the fields
         if(req.body.username == null || req.body.username == '' || req.body.password == null || req.body.password == '' || req.body.email == null || req.body.email == '' || req.body.name === null || req.body.name === '') {
             res.json({ success: false, message:'Ensure username, email, and password were provided' });
         } else {
+            // user provided all of the required info --> save it
             user.save(function(err) {
+                // if error on saving, send error message; else save user
                 if(err) { 
                     res.json({ success: false, message: 'Username or Email already exists!' });
                 } else {
@@ -775,6 +778,6 @@ module.exports = function(router) {
     });
 
 
-
+    // return router to server
     return router;
 }
