@@ -1,25 +1,21 @@
 // The given vars are packages
 
-// Creates an Express application
-var express = require('express');
-var app = express();
-// Server listens at this port
-var port = process.env.PORT || 8000;
-// Morgan:- HTTP request logger middleware for node.js
-var morgan = require('morgan');
-// Handler for mongo database
-var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
-var router = express.Router(); // Define router 
+var express = require('express'); // ExperssJS Framework
+var app = express();// Invoke express to variable for use in application
+var port = process.env.PORT || 8000; // Set default port or assign a port in environment
+var morgan = require('morgan');// Morgan:- HTTP request logger middleware for node.js
+var mongoose = require('mongoose');// Handler for mongo database
+var bodyParser = require('body-parser');// Node.js body parsing middleware. Parses incoming request bodies in a middleware before your handlers, available under req.body.
+var router = express.Router(); // Invoke the express router 
 var appRoutes = require('./app/routes/api')(router); // file for routes
-var path = require('path');
+var path = require('path');// Import path module
 var Inventory = require('./app/models/inventory');
 
 // app.use allows you ti use all  of the middleware
 // Middlewares have to be running before the rest of the code
 // Order of middleware is important. Need to parse json before routing. 
-app.use(morgan('dev'));
-app.use(bodyParser.json());
+app.use(morgan('dev'));  // Morgan Middleware
+app.use(bodyParser.json()); // Body-parser middleware
 app.use(bodyParser.urlencoded({extended: true}));
 // serve static content for the app from the "public" directory; frontend has access to everything is public folder
 app.use(express.static(__dirname + '/public')); //static file location of public for frontend files 

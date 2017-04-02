@@ -26,7 +26,8 @@ UserSchema.pre('save', function(next){
   });
 });
 
-// decrypt password
+// Function validates password by comparing password provided by user to the "this" user password
+// returns true or false value
 UserSchema.methods.comparePassword = function(password) {
   return bcrypt.compareSync(password, this.password);
 };

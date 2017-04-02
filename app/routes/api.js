@@ -2,8 +2,8 @@
 var User = require('../models/user');
 var Inventory = require('../models/inventory');
 var History = require('../models/history');
-var jwt = require('jsonwebtoken');
-var secret = 'harrypotter';
+var jwt = require('jsonwebtoken'); // Used to provide session info as cookie in a secured way
+var secret = 'ecs193ab'; // Provides extra security to jwt
 var cron = require('node-cron');
 
 var nodemailer = require('nodemailer');
@@ -53,8 +53,6 @@ cron.schedule('* * * * * *', function(){
 module.exports = function(router) {
     // POST USER REGISTRATION ROUTE
     // http://localhost:port/api/users
-
-    
     router.post('/users', function(req,res) {
         var user = new User();
         user.username = req.body.username;
@@ -101,21 +99,31 @@ module.exports = function(router) {
     // POST USER LOGIN ROUTE
     // http://localhost:port/api/authenticate
     router.post('/authenticate', function(req,res) {
+        // Search the database for username, select email,username, and password from database, then pass in a function w/ err and user
         User.findOne({ username: req.body.username }).select('email username password').exec(function(err,user) {
-            if (err) throw err;
+            if (err) throw err; // throw err
 
-            if(!user){
+            if(!user){ 
+                // if the user doesn't exist, then send message
                 res.json({ success: false, message: 'Could not authenticate user' });
-            } else if (user) {
-                if(req.body.password) {
+            } else if (user) { // else user exists
+                if(req.body.password) { 
+                    // if password is provided then validate password 
                     var validPassword = user.comparePassword(req.body.password);
-                } else {
+                } else { 
+                    // no password provided
                     res.json({ success: false, message: 'No password provided'});
                 }
-                if (!validPassword) {
+                if (!validPassword) { 
+                    // if the comparePassword return false
                     res.json({ success: false, message: 'Could not authenticate password' });
-                } else {
+                } else { 
+                    // valid user
+                    // Give the JSON web token to the user with username and email info in it
+                    // secret : provides extra security to the token 
+                    // Token expires in 24 hr
                     var token = jwt.sign({ username: user.username, email: user.email }, secret, {expiresIn: '24h'} );
+                    // respond with success and token
                     res.json({ success: true, message: "User authenticated!", token: token });
                 }
             }
@@ -152,8 +160,9 @@ module.exports = function(router) {
         });
     });
 
-    // decrypting token and sending back to the user.
+    // Middleware for decrypting token and sending back to the user.
     router.use(function(req,res,next) {
+        // Get the token from eiher the request, or url, or the headers
         var token = req.body.token || req.body.query || req.headers['x-access-token'];
 
         if(token) {
@@ -164,7 +173,7 @@ module.exports = function(router) {
                 } else {
                     // takes the token, combines it with the secret, verifies it, once it's good it sends it back decoded
                     req.decoded = decoded;
-                    next();
+                    next(); // move to the next route '/me'
                 }
             });
         } else {
@@ -172,6 +181,7 @@ module.exports = function(router) {
         }
     });
 
+    // Router that gets the current user
     router.post('/me', function(req,res) {
         res.send(req.decoded);
     });

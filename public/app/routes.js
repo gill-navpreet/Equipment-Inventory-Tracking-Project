@@ -142,8 +142,7 @@ app.run(['$rootScope', 'Auth', '$location', 'User',function($rootScope, Auth, $l
 					});
 				}
 
-			} else if (next.$$route.authenticated === false) {
-				//If authentication is not required, make sure is not Logged in
+			} else if (next.$$route.authenticated === false) { //If authentication is not required, make sure is not Logged in
 				if(Auth.isLoggedIn()){
 					event.preventDefault(); // If user is logged in, prevent accessing route
 					$location.path('/profile') // Redirect to profile instead

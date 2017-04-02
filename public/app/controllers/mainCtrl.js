@@ -1,13 +1,14 @@
 angular.module('mainController', ['authServices'])
-
+// name the controller and pass the function
 .controller('mainCtrl', function(Auth, User, $timeout, $location, $rootScope) {
 	
 	var app = this;
 
-	// hide html until page its true
+	// hide html until loadme is true i.e until we get all of our data like username, email, etc
+	// Helps with switching the view on the basis of if the user is logged in or not 
 	app.loadme = false;
 
-
+    // ANytime the route is changed or a page is refreshed, attach the user info to it
 	$rootScope.$on('$routeChangeStart', function() {
 		if(Auth.isLoggedIn()) {
 			app.isLoggedIn = true;
@@ -47,7 +48,9 @@ angular.module('mainController', ['authServices'])
 				//Redirect to home page
 				$timeout(function(){
 					$location.path('/about');
+					// Hides the Login option
 					app.loginData = {};
+					// Hides the success message
 					app.successMsg = false;
 				}, 2000);
 			} else {
@@ -58,9 +61,11 @@ angular.module('mainController', ['authServices'])
 		});
 	};
 
-
+	// Steps to do when user presses logout
 	this.logout = function() {
 		Auth.logout();
+		//redirect the user to home page 
+		//TODO : remove the logout.html file
 		$location.path('/');
 	};
 });
