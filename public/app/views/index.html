@@ -142,43 +142,7 @@
 
 
   </body>
-  <script>
-    $(document).ready(function() {
-        var pressed = false;
-        var chars = [];
-        $(window).keypress(function(e) {
-            if (e.which >= 48 && e.which <= 57) {
-                chars.push(String.fromCharCode(e.which));
-            }
-            console.log(e.which + ":" + chars.join("|"));
-            if (pressed == false) {
-                setTimeout(function(){
-                    if (chars.length > 10) {
-                        var bcode = chars.join("");
-                        console.log("Barcode Scanned: " + bcode);
-                        // assign value to some input (or do whatever you want)
-                        $("#bcode").val(bcode);
-                        //included this trigger input so that the input into #bcode will bind with angular's ng-model=barcode
-                        $("#bcode").focus();
-                        $("#bcode").trigger('input');
-
-                    }
-                    chars = [];
-                    pressed = false;
-                },500);
-            }
-            pressed = true;
-        });
-    });
-    //prevents the scanner's terminating enter key.
-    $("#bcode").keypress(function(e){
-        if ( e.which === 13 ) {
-            console.log("Prevent form submit.");
-            e.preventDefault();
-        }
-    });
-    </script>
-
+ 
 
 
 </html>

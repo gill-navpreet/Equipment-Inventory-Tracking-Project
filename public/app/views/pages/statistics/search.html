@@ -1,0 +1,95 @@
+<div class="page-header">
+	<h1>Search Engine</h1>
+</div>
+
+
+
+
+<div class="navbar-form">
+	<div class="form-group">
+		<input type="text" class="form-control" name="search" placeholder="search by..." ng-model="searchByFirstName">
+	</div>
+	<button type="button" class="btn btn-default">First Name</button>
+</div>
+
+<div class="navbar-form">
+	<div class="form-group">
+		<input type="text" class="form-control" name="search" placeholder="search by..." ng-model="searchByLastName">
+	</div>
+	<button type="button" class="btn btn-default">Last Name</button>
+</div>
+
+<div class="navbar-form">
+	<div class="form-group">
+		<input type="text" class="form-control" name="search" placeholder="search by..." ng-model="searchByEmail">
+	</div>
+	<button type="button" class="btn btn-default">Email</button>
+</div>
+
+<div class="navbar-form">
+	<button type="button" ng-click="hist.advancedSearch(searchByFirstName, searchByLastName, searchByEmail);" class="btn btn-default">Search</button>
+	<br>
+	<br>
+
+	<div class="btn-group">
+	<button type="button" class="btn btn-danger">Sort by</button>
+	<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		<span class="caret"></span>
+		<span class="sr-only">Toggle Dropdown</span>
+	</button>
+	<ul class="dropdown-menu">
+		<li><a ng-click="hist.sortOrder('firstName');" href="">First Name</a></li>
+		<li><a ng-click="hist.sortOrder('lastName');" href="">Last Name</a></li>
+		<li><a ng-click="hist.sortOrder('email');" href="">Email</a></li>
+	</ul>
+
+</div>
+
+<br>
+
+<div ng-show="hist.searchLimit === undefined">
+	<p><strong>Results: </strong>
+	{{ (hist.historyData  | filter: advancedSearchFilter | limitTo: hist.searchLimit).length }}
+
+	</p>
+</div>
+
+<div ng-show="hist.sort">
+	<p><strong>Sort by: </strong>
+	{{ hist.sort }}
+	</p>
+</div>
+
+
+<div class="panel panel-success">
+	<div class="panel-heading">History Log Actions</div>
+	<table class=table>
+		<thead>
+			<tr>
+				<th>Date:</th>
+				<th>First Name:</th>
+				<th>Last Name:</th>
+				<th>Email:</th>
+				<th>Product:</th>
+				<th>Bar Code:</th>
+				<th>Checked Type:</th>
+				<th>Description: </th>
+			</tr>
+		</thead>
+		<tbody ng-repeat="history in hist.historyData  | filter: advancedSearchFilter | pagination: (hist.currentPage - 1) * hist.pageSize | limitTo: hist.searchLimit | orderBy: hist.sort">
+			<tr>
+				<td>{{ history.date | date: 'medium' }}</td>
+				<td>{{ history.firstName }}</td>
+				<td>{{ history.lastName }}</td>
+				<td>{{ history.email }}</td>
+				<td>{{ history.product }}</td>
+				<td>{{ history.barcode }}</td>
+				<td>{{ history.checkedType }}</td>
+				<td>{{ history.description }}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>		
+
+
+<ul uib-pagination total-items="(hist.historyData  | filter: advancedSearchFilter).length" items-per-page="hist.pageSize" ng-model="hist.currentPage"></ul>

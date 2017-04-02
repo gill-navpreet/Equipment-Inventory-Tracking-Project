@@ -109,6 +109,13 @@ var app = angular.module('appRoutes', ['ngRoute'])
 		authenticated: true
 	})
 
+	.when('/search', {
+		templateUrl: 'app/views/pages/statistics/search.html',
+		controller: 'histCtrl',
+		controllerAs: 'hist',
+		authenticated: true
+	})
+
 	.otherwise({ redirectTo: '/'});
 
 
