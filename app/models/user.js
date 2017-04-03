@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt-nodejs'); // for password encryption
-var titlize = require('mongoose-title-case');
+//var titlize = require('mongoose-title-case');
 
 // Define the mongoose schema 
 var UserSchema = new Schema({

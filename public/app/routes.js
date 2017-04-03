@@ -1,9 +1,18 @@
 var app = angular.module('appRoutes', ['ngRoute'])
 
+// Configure Routes
+
+// 'templateUrl' : Provides the html page to show when the route i saccessed
+// 'controller' : Defines the name of registered controller for each "view".
+// 'controllerAs' : An identifier name for a reference to the controller. If present, the controller will be published to scope under the controllerAs name.
+// 'authenticated = true' means the user must be logged in to access the route
+// 'permission:' : Defines which users are allowed to visit the page, used to implement management
+
 .config(function($routeProvider, $locationProvider) {
 	$locationProvider.hashPrefix('');
 	$routeProvider
 
+	// Home Route
 	.when('/', {
 		templateUrl: 'app/views/pages/home.html'
 	})
@@ -56,6 +65,7 @@ var app = angular.module('appRoutes', ['ngRoute'])
 		authenticated: true
 	})
 
+	// Manage User Accounts
 	.when('/management', {
 		templateUrl: 'app/views/pages/management/management.html',
 		controller: 'managementCtrl',
@@ -116,6 +126,7 @@ var app = angular.module('appRoutes', ['ngRoute'])
 		authenticated: true
 	})
 
+	// If user tries to access any other route --> redirect to home page
 	.otherwise({ redirectTo: '/'});
 
 
@@ -138,8 +149,10 @@ app.run(['$rootScope', 'Auth', '$location', 'User',function($rootScope, Auth, $l
 				if(!Auth.isLoggedIn()){
 					event.preventDefault(); // If not logged in, prevent accessing route
 					$location.path('/'); // Redirect to home instead
-				} else if (next.$$route.permission) {
+				} else if (next.$$route.permission) { // if the permission is present in the route
 					User.getPermission().then(function(data) {
+						// If the user doesn't have oth index i.e admin permission or 1st index which is moderator permission
+						// then prevent the user from accessing that page
 						if (next.$$route.permission[0] !== data.data.permission){
 							if(next.$$route.permission[1] !== data.data.permission){
 								event.preventDefault(); // If not logged in, prevent accessing route

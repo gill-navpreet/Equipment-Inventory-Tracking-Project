@@ -16,9 +16,10 @@ angular.module('mainController', ['authServices'])
 			Auth.getUser().then(function(data) { 
 				app.username = data.data.username;
 				app.useremail = data.data.email;
-
+				// make sure to not show pages for admin or moderator if the user doesn't have those permission
 				User.getPermission().then(function(data) {
 					if(data.data.permission === 'admin' || data.data.permission === 'moderator'){
+						// can use this variable in Index.html file; see Index.html file for usage
 						app.authorized = true;
 						app.loadme = true;
 					} else {
