@@ -51,19 +51,22 @@ cron.schedule('* * * * * *', function(){
 });
 
 module.exports = function(router) {
+
     // POST USER REGISTRATION ROUTE
+    // Route to register new users
     // http://localhost:port/api/users
     router.post('/users', function(req,res) {
-        var user = new User();
-        user.username = req.body.username;
-        user.password = req.body.password;
-        user.email = req.body.email;
+        var user = new User(); // Create new User object
+        user.username = req.body.username; // Save username from request to User object
+        user.password = req.body.password; // Save password from request to User object
+        user.email = req.body.email; // Save email from request to User object
         user.name = req.body.name; // Save name from request to User object
+        
         // Check if user provides all of the fields
         if(req.body.username == null || req.body.username == '' || req.body.password == null || req.body.password == '' || req.body.email == null || req.body.email == '' || req.body.name === null || req.body.name === '') {
             res.json({ success: false, message:'Ensure username, email, and password were provided' });
         } else {
-            // user provided all of the required info --> save it
+            // user provided all of the required info --> save it in the database
             user.save(function(err) {
                 // if error on saving, send error message; else save user
                 if(err) { 

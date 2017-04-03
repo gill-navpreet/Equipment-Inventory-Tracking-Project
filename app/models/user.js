@@ -1,11 +1,12 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt-nodejs'); // for password encryption
-//var titlize = require('mongoose-title-case');
+var titlize = require('mongoose-title-case'); // Import Mongoose Title Case Plugin
+
 
 // Define the mongoose schema 
 var UserSchema = new Schema({
-  name: { type: String, lowercase: true, required: true },
+  name: { type: String, required: true },
   // unique ensures only one user
   username: { type: String, lowercase: true, required: true, unique: true },
   password: { type: String, required: true },
@@ -24,6 +25,11 @@ UserSchema.pre('save', function(next){
     user.password = hash;
     next();
   });
+});
+
+// Mongoose Plugin to change fields to title case after saved to database (ensures consistency)
+UserSchema.plugin(titlize, {
+    paths: ['name']
 });
 
 // Function validates password by comparing password provided by user to the "this" user password
