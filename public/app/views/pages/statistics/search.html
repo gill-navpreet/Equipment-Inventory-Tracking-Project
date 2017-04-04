@@ -60,6 +60,7 @@
 	</p>
 </div>
 
+<br>
 
 <div class="panel panel-success">
 	<div class="panel-heading">History Log Actions</div>
@@ -73,7 +74,7 @@
 				<th>Product:</th>
 				<th>Bar Code:</th>
 				<th>Checked Type:</th>
-				<th>Description: </th>
+				<th>Description:</th>
 			</tr>
 		</thead>
 		<tbody ng-repeat="history in hist.historyData  | filter: advancedSearchFilter | pagination: (hist.currentPage - 1) * hist.pageSize | limitTo: hist.searchLimit | orderBy: hist.sort">

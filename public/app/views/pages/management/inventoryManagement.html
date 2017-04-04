@@ -69,6 +69,8 @@
 	            <td>{{ inventory.product }}</td>
 	            <td>{{ inventory.barcode }}</td>
 	            <td>{{ inventory.isCheckedIn }}</td>
+                <td ng-if="inventory.isCheckedIn === 'true'"><img src="assets/pictures/battery/green.png" style="width:25px;height:36px;"></td>
+                <td ng-if="inventory.isCheckedIn === 'false'"><img src="assets/pictures/battery/orange.png" style="width:25px;height:36px"></td>
 	            <td>
 	                <a href="#editInventory/{{ inventory._id }}">
 	                    <button type="button"  ng-show="inventoryManagement.editAccess" class="btn btn-primary">Edit</button>

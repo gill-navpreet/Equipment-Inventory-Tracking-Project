@@ -9,12 +9,13 @@ angular.module('inventoryManagementController', ['ui.bootstrap'])
 	app.errorMsg = false;
 	app.editAccess = false;
 	app.deleteAccess = false;
-
+	app.dateNow = Date.now();
 	function getInventory() {
 		Inventory.getInventoryForms().then(function(data) {
 			if(data.data.success) {
 				if(data.data.permission === 'admin' || data.data.permission === 'moderator') {
 					app.inventoryforms = data.data.inventoryforms;
+					console.log(data);
 					app.loading = false
 					app.accessDenied = false;
 					if(data.data.permission === 'admin') {
