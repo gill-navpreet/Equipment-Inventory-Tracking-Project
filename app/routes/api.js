@@ -70,10 +70,18 @@ module.exports = function(router) {
             user.save(function(err) {
                 // if error on saving, send error message; else save user
                 if(err) { 
-                    // res.json({ success: false, message: 'Username or Email already exists!' });
                     // Check if any validation errors exists (from user model)
                     if (err.errors !== null) {
-                        if (err.errors.name) {
+                        // console.log(err);
+                        // console.log(err.errors);
+                        // console.log(err.code);
+                        if (err.code == 11000) {
+                            if (err.errmsg[61] == "u") {
+                                res.json({ success: false, message: 'That username is already taken' }); // Display error if username already taken
+                            } else if (err.errmsg[61] == "e") {
+                                res.json({ success: false, message: 'That e-mail is already taken' }); // Display error if e-mail already taken
+                            }
+                        } else if (err.errors.name) {
                             res.json({ success: false, message: err.errors.name.message }); // Display error in validation (name)
                         } else if (err.errors.email) {
                             res.json({ success: false, message: err.errors.email.message }); // Display error in validation (email)
@@ -86,7 +94,6 @@ module.exports = function(router) {
                         }
                     } else if (err) {
                         // Check if duplication error exists
-                        res.json({ success: false, message: err });
                         if (err.code == 11000) {
                             if (err.errmsg[61] == "u") {
                                 res.json({ success: false, message: 'That username is already taken' }); // Display error if username already taken
@@ -98,7 +105,10 @@ module.exports = function(router) {
                         }
                     }
                 } else { // Send success message back to controller/request
-                    res.send({ success: true, message: 'user created!' });
+                    if(err)
+                        {console.log(err);}
+                    else
+                        {res.send({ success: true, message: 'user created!' });}
                 }
             });
         }
