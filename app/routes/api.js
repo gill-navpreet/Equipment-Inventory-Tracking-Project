@@ -70,8 +70,34 @@ module.exports = function(router) {
             user.save(function(err) {
                 // if error on saving, send error message; else save user
                 if(err) { 
-                    res.json({ success: false, message: 'Username or Email already exists!' });
-                } else {
+                    // res.json({ success: false, message: 'Username or Email already exists!' });
+                    // Check if any validation errors exists (from user model)
+                    if (err.errors !== null) {
+                        if (err.errors.name) {
+                            res.json({ success: false, message: err.errors.name.message }); // Display error in validation (name)
+                        } else if (err.errors.email) {
+                            res.json({ success: false, message: err.errors.email.message }); // Display error in validation (email)
+                        } else if (err.errors.username) {
+                            res.json({ success: false, message: err.errors.username.message }); // Display error in validation (username)
+                        } else if (err.errors.password) {
+                            res.json({ success: false, message: err.errors.password.message }); // Display error in validation (password)
+                        } else {
+                            res.json({ success: false, message: err }); // Display any other errors with validation
+                        }
+                    } else if (err) {
+                        // Check if duplication error exists
+                        res.json({ success: false, message: err });
+                        if (err.code == 11000) {
+                            if (err.errmsg[61] == "u") {
+                                res.json({ success: false, message: 'That username is already taken' }); // Display error if username already taken
+                            } else if (err.errmsg[61] == "e") {
+                                res.json({ success: false, message: 'That e-mail is already taken' }); // Display error if e-mail already taken
+                            }
+                        } else {
+                            res.json({ success: false, message: err }); // Display any other error
+                        }
+                    }
+                } else { // Send success message back to controller/request
                     res.send({ success: true, message: 'user created!' });
                 }
             });
