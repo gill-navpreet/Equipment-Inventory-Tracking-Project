@@ -62,9 +62,17 @@ module.exports = function(router) {
         user.email = req.body.email; // Save email from request to User object
         user.name = req.body.name; // Save name from request to User object
         
+        // Just for debugging purposes to see if the front-end transfers the correct data to each user component
+        console.log(req.body.username);
+        console.log(req.body.password);
+        console.log(req.body.email);
+        console.log(req.body.name);
+        console.log(req.body.repassword); //This is always null somehow, so the condition at line 73 always runs
+
         // Check if user provides all of the fields
-        if(req.body.username == null || req.body.username == '' || req.body.password == null || req.body.password == '' || req.body.email == null || req.body.email == '' || req.body.name === null || req.body.name === '') {
-            res.json({ success: false, message:'Ensure username, email, and password were provided' });
+        if(req.body.username == null || req.body.username == '' || req.body.password == null || req.body.password == '' 
+            || req.body.email == null || req.body.email == '' || req.body.name === null || req.body.name === '' || req.body.repassword == null || req.body.repassword == '') {
+            res.json({ success: false, message:'Ensure username, email, password, and password confirmation were provided' });
         } else {
             // user provided all of the required info --> save it in the database
             user.save(function(err) {
@@ -89,6 +97,8 @@ module.exports = function(router) {
                             res.json({ success: false, message: err.errors.username.message }); // Display error in validation (username)
                         } else if (err.errors.password) {
                             res.json({ success: false, message: err.errors.password.message }); // Display error in validation (password)
+                        } else if ((req.body.password).localeCompare(req.body.repassword) != 0) {
+                            res.json({ success: false, message: 'The password may have been entered incorrectly.' }); // Display error msg for wrong re-password
                         } else {
                             res.json({ success: false, message: err }); // Display any other errors with validation
                         }
