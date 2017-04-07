@@ -2,11 +2,21 @@
 	<h1> User Registration</h1>
 </div>
 
-<form ng-submit = "register.regUser();">
-	<!-- Name -->
-	<label>Name:</label>
-	<input class = "form-control" type = "text" name = "name" placeholder="please enter name" ng-model = "register.regData.name">
-	<br>
+<form name="regForm" ng-submit = "register.regUser();" novalidate>
+	<div ng-class="{'has-success': (regForm.name.$valid && !regForm.name.$pristine),'has-error':((!regForm.name.$valid && !regForm.name.$pristine) || ((!regForm.name.$valid)&& regForm.$submitted)) }">
+		<!-- Name -->
+		<label>Name:</label>
+		<input class = "form-control" type = "text" name = "name" placeholder="please enter name" ng-model = "register.regData.name" ng-pattern="/^(([a-zA-Z]{3,20})+[ ]+([a-zA-Z]{3,20})+)+$/" ng-minlength="3" ng-maxlength="20" required>
+		<p class="help-block "ng-show="(!regForm.$pristine && regForm.name.$error.required) || (regForm.$submitted && regForm.name.$error.required)"> This field is required </p>
+		<ul ng-show="(!regForm.name.$pristine && regForm.name.$error.pattern) || (!regForm.name.$pristine && regForm.name.$error.minlength) || (!regForm.name.$pristine && regForm.name.$error.maxlength)" class="help-block">
+            <li>Must have a space in between first and last firstName</li>
+            <li>Must not contain any special characters</li>
+            <li>Must not contain any numbers</li>
+            <li>Must be at least 3 characters but no more than 20</li>
+        </ul>
+		<br>
+	</div>
+
 	<!-- Email -->
 	<label>Email:</label>
 	<input class = "form-control" type = "text" name = "email" placeholder="please enter email" ng-model = "register.regData.email">
@@ -23,6 +33,7 @@
 
 </form>
 
+<span> {{ regForm}}</span>
 <br>
 
 <div class = "jumbotron text-center" ng-show = "register.loading">
