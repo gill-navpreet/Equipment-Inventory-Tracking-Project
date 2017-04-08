@@ -19,7 +19,8 @@ var InventorySchema = new Schema({
 	title: { type: String, default: 'n/a'},
 	department: { type: String, default: 'n/a'}, 
 	location: { type: String, default: 'n/a'},
-	chargeNumber: { type: String }
+	chargeNumber: { type: String },
+	emailSent: { type: String, default: 'false' }
 
 });
 

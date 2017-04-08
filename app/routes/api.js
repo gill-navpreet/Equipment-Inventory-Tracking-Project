@@ -12,38 +12,57 @@ var sgTransport = require('nodemailer-sendgrid-transport');
 
 
 //sendgrid information to send autonomous emails.
-/* 
+
+var nodemailer = require('nodemailer');
+var sgTransport = require('nodemailer-sendgrid-transport');
+
+
+
+//sendgrid information to send autonomous emails.
+
 var options = {
   auth: {
-    api_user: 'SENDGRID_USERNAME',
-    api_key: 'SENDGRID_PASSWORD'
+    api_user: '',
+    api_key: ''
   }
 }
 var client = nodemailer.createTransport(sgTransport(options));
-var email = {
-  from: 'awesome@bar.com',
-  to: 'mr.walrus@foo.com',
-  subject: 'Hello',
-  text: 'Hello world',
-  html: '<b>Hello world</b>'
-};
-client.sendMail(email, function(err, info){
-    if (err ){
-      console.log(error);
-    }
-    else {
-      console.log('Message sent: ' + info.response);
-    }
-});
-*/
+
+
+
+
+
+var emailSent = 'false';
+
 //Scheduler. If an inventory has been checked out for longer than 10 seconds, it will post the message to the console.
 cron.schedule('* * * * * *', function(){
     Inventory.find({}, function(err,inventoryforms) {
         for(var i = 0; i < inventoryforms.length; i++){
-            if(inventoryforms[i].isCheckedIn == 'false'){
-                if((Date.now() - inventoryforms[i].dateCheckedOut) > 10000){// replace the console logs with the mail sent above. 
+            if(inventoryforms[i].isCheckedIn == 'false' && inventoryforms[i].emailSent == 'false'){
+                if((Date.now() - inventoryforms[i].dateCheckedOut) > 10000){// replace the console logs with the mail sent above.
+                    inventoryforms[i].emailSent = 'true'; 
+                    inventoryforms[i].save(); //please don't delete this, or it sends TONS Of emails
+                    var message = '<b>' + inventoryforms[i].firstName + ' ' + inventoryforms[i].lastName + ', your item: ' + inventoryforms[i].product + ' has been checked out for longer than 10 seconds.\n\n' + '<b>';
+                    var email = {
+                        from: 'ErgDept@ucdavis.edu',
+                        to: inventoryforms[i].email,
+                        subject: 'Ergonomics Dept, late item',
+                        text: message,
+                        html: message
+                    };
+                    var sendEmail = function(){
+                        client.sendMail(email, function(err, info){
+                            if (err ){
+                                console.log(error);
+                            }
+                            else {
+                                console.log('Message sent: ' + info.response);
+                            }
+                        });
+                    };
+                    sendEmail();    
                     console.log('Email sent to: ' + inventoryforms[i].email);
-                    console.log(inventoryforms[i].firstName + ' ' + inventoryforms[i].lastName + ', your item: ' + inventoryforms[i].product + ' has been checked out for longer than 10 seconds.\n\n');
+                
                 }
             }    
         }
