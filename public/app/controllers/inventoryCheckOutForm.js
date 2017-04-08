@@ -22,19 +22,36 @@ angular.module('inventoryCheckOutFormController',[])
 			inventoryObject.firstName = $scope.newData.newFirstName;
 			inventoryObject.lastName = $scope.newData.newLastName;
 			inventoryObject.email = $scope.newData.newEmail;
+			inventoryObject.phoneNumber = $scope.newData.newPhoneNumber;
+			inventoryObject.title = $scope.newData.newTitle;
+			inventoryObject.department = $scope.newData.newDepartment;
+			inventoryObject.location = $scope.newData.newLocation;
+			inventoryObject.chargeNumber = $scope.newData.newChargeNumber;
+			inventoryObject.supervisorFirstName = $scope.newData.newSupervisorFirstName;
+			inventoryObject.supervisorLastName = $scope.newData.newSupervisorLastName;
+			inventoryObject.supervisorEmail = $scope.newData.newSupervisorEmail;
+			inventoryObject.supervisorPhoneNumber = $scope.newData.newSupervisorPhoneNumber;
 			inventoryObject.isCheckedIn = 'false';
 			inventoryObject.dateCheckedOut = Date.now();
 
-
-			historyObject.firstName = $scope.newData.newFirstName;
-			historyObject.lastName =  $scope.newData.newLastName;
-			historyObject.email =  $scope.newData.newEmail;
 			historyObject.product = product;
 			historyObject.barcode = barcode;
 			historyObject.checkedType = 'checked out';
+			historyObject.firstName = $scope.newData.newFirstName;
+			historyObject.lastName =  $scope.newData.newLastName;
+			historyObject.email =  $scope.newData.newEmail;
 			historyObject.date = Date.now();
+			historyObject.phoneNumber =  $scope.newData.newPhoneNumber;
+			historyObject.supervisorFirstName =  $scope.newData.newSupervisorFirstName;
+			historyObject.supervisorLastName =  $scope.newData.newSupervisorLastName;
+			historyObject.supervisorEmail =  $scope.newData.newSupervisorEmail;
+			historyObject.supervisorPhoneNumber =  $scope.newData.newSupervisorPhoneNumber;
+			historyObject.title =  $scope.newData.newTitle;
+			historyObject.department =  $scope.newData.newDepartment;
+			historyObject.location =  $scope.newData.newLocation;
+			historyObject.chargeNumber =  $scope.newData.newChargeNumber;
 			historyObject.description = historyObject.firstName + " " + historyObject.lastName + " " + historyObject.checkedType + " a " + historyObject.product;
-			console.log(historyObject);
+
 			History.create(historyObject);
 
 

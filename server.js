@@ -29,6 +29,10 @@ csv.
 	], {headers:true})
 	.pipe(ws);
 
+
+
+
+
 // app.use allows you ti use all  of the middleware
 // Middlewares have to be running before the rest of the code
 // Order of middleware is important. Need to parse json before routing. 
