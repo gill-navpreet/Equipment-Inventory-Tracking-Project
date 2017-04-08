@@ -1,9 +1,15 @@
 <div class="page-header">
 	<h1>Search Engine</h1>
 </div>
-
-
-
+<div class="navbar-form">
+	<div class="form-group">
+	    <input type="date" class="form-control" ng-model="from">
+	</div>
+	<div class="form-group">
+	    <input type="date" class="form-control" ng-model="to">
+	</div>
+	<button type="button" class="btn btn-default">Date</button>
+</div>	
 
 <div class="navbar-form">
 	<div class="form-group">
@@ -27,7 +33,15 @@
 </div>
 
 <div class="navbar-form">
-	<button type="button" ng-click="hist.advancedSearch(searchByFirstName, searchByLastName, searchByEmail);" class="btn btn-default">Search</button>
+	<div class="form-group">
+		<input type="text" class="form-control" name="search" placeholder="search by..." ng-model="searchByDate">
+	</div>
+	<button type="button" class="btn btn-default">Date</button>
+</div>
+
+
+<div class="navbar-form">
+	<button type="button" ng-click="hist.advancedSearch(searchByFirstName, searchByLastName, searchByEmail, searchByDate);" class="btn btn-default">Search</button>
 	<br>
 	<br>
 
@@ -41,6 +55,7 @@
 		<li><a ng-click="hist.sortOrder('firstName');" href="">First Name</a></li>
 		<li><a ng-click="hist.sortOrder('lastName');" href="">Last Name</a></li>
 		<li><a ng-click="hist.sortOrder('email');" href="">Email</a></li>
+		<li><a ng-click="hist.sortOrder('date');" href="">Date</a></li>
 	</ul>
 
 </div>
@@ -77,8 +92,8 @@
 				<th>Description:</th>
 			</tr>
 		</thead>
-		<tbody ng-repeat="history in hist.historyData  | filter: advancedSearchFilter | pagination: (hist.currentPage - 1) * hist.pageSize | limitTo: hist.searchLimit | orderBy: hist.sort">
-			<tr>
+		<tbody ng-repeat="history in hist.historyData |filter: advancedSearchFilter | pagination: (hist.currentPage - 1) * hist.pageSize | limitTo: hist.searchLimit | orderBy: hist.sort">
+			<tr ng-if= "(history.date | date:'d M') >= (from | date:'d M') && (history.date | date:'d M') <= (to | date:'d M')">
 				<td>{{ history.date | date: 'medium' }}</td>
 				<td>{{ history.firstName }}</td>
 				<td>{{ history.lastName }}</td>
