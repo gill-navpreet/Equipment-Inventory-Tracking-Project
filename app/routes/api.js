@@ -62,10 +62,13 @@ module.exports = function(router) {
         user.password = req.body.password; // Save password from request to User object
         user.email = req.body.email; // Save email from request to User object
         user.name = req.body.name; // Save name from request to User object
-        
+
         // Check if user provides all of the fields
-        if(req.body.username == null || req.body.username == '' || req.body.password == null || req.body.password == '' || req.body.email == null || req.body.email == '' || req.body.name === null || req.body.name === '') {
-            res.json({ success: false, message:'Ensure username, email, and password were provided' });
+        if(req.body.username == null || req.body.username == '' || req.body.password == null || req.body.password == '' 
+            || req.body.email == null || req.body.email == '' || req.body.name === null || req.body.name === '' || req.body.repassword == null || req.body.repassword == '') {
+            res.json({ success: false, message:'Ensure username, email, password, and password confirmation were provided' });
+        } else if((req.body.password).localeCompare(req.body.repassword) != 0){
+            res.json({ success: false, message:'The password may have been entered incorrectly.'});
         } else {
             // user provided all of the required info --> save it in the database
             user.save(function(err) {
