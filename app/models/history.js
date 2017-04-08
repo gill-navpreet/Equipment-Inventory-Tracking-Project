@@ -11,15 +11,15 @@ var HistorySchema = new Schema({
 	email: {type: String, lowercase: true, default: ' ' },	
 	date: { type: Date, required: true, default: Date},
 	description: { type: String, default: 'description'},
-	phoneNumber: { type: Number, default: 0 },
+	phoneNumber: { type: String, default: ' ' },
 	supervisorFirstName: { type: String, default: ' ' },
 	supervisorLastName: { type: String, default: ' ' },
 	supervisorEmail: { type: String, default: ' ' },
-	supervisorPhoneNumber: { type: Number, default: 0 },
+	supervisorPhoneNumber: { type: String, default: ' ' },
 	title: { type: String, default: ' '},
 	department: { type: String, default: ' '}, 
 	location: { type: String, default: ' '},
-	chargeNumber: { type: Number, default: 0 }
+	chargeNumber: { type: String, default: ' ' }
 
 });
 
