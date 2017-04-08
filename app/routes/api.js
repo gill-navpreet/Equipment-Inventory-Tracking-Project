@@ -42,13 +42,16 @@ cron.schedule('* * * * * *', function(){
                 if((Date.now() - inventoryforms[i].dateCheckedOut) > 10000){// replace the console logs with the mail sent above.
                     inventoryforms[i].emailSent = 'true'; 
                     inventoryforms[i].save(); //please don't delete this, or it sends TONS Of emails
-                    var message = '<b>' + inventoryforms[i].firstName + ' ' + inventoryforms[i].lastName + ', your item: ' + inventoryforms[i].product + ' has been checked out for longer than 10 seconds.\n\n' + '<b>';
+                    var returnDate = new Date();
+                    returnDate.setDate(returnDate.getDate()+14);
+                    var textMessage = '<b>' + inventoryforms[i].firstName + ' ' + inventoryforms[i].lastName + ', your item: ' + inventoryforms[i].product + ' must be returned by\n\n' + returnDate + '<b>';
+                    var subjectMessage = 'Ergonomics Dept, return date reminder';
                     var email = {
                         from: 'ErgDept@ucdavis.edu',
                         to: inventoryforms[i].email,
-                        subject: 'Ergonomics Dept, late item',
-                        text: message,
-                        html: message
+                        subject: subjectMessage,
+                        text: textMessage,
+                        html: textMessage
                     };
                     var sendEmail = function(){
                         client.sendMail(email, function(err, info){
@@ -61,7 +64,7 @@ cron.schedule('* * * * * *', function(){
                         });
                     };
                     sendEmail();    
-                    console.log('Email sent to: ' + inventoryforms[i].email);
+                    console.log('Email sent to: ' + inventoryforms[i].email + ' with message ' + textMessage);
                 
                 }
             }    
