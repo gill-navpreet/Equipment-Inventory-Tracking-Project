@@ -4,11 +4,12 @@ angular.module('userControllers',['userServices'])
 
 	var app = this;
 
-	this.regUser = function(regData){
+	this.regUser = function(regData, valid){
 		app.loading = true;
 		app.errorMsg = false;
 
-		User.create(app.regData).then(function(data) {
+		if(valid){ // Form is fille dout completely, go to database for further validation
+			User.create(app.regData).then(function(data) {
 			if(data.data.success){
 				app.loading = false;
 				//Create Success Message
@@ -23,6 +24,12 @@ angular.module('userControllers',['userServices'])
 				app.errorMsg = data.data.message;
 			}
 		});
+		}else{ // form is not filled out, prevent accessing the back end/ database
+			app.loading = false;
+			//Create on error message
+			app.errorMsg = "Please ensure form is filled out completely";
+		}
+		
 	};
 });
 
