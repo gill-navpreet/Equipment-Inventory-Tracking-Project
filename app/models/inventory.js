@@ -11,15 +11,15 @@ var InventorySchema = new Schema({
 	firstName: { type: String, lowercase: true, default: 'n/a'},
 	lastName: { type: String, lowercase: true, default: 'n/a' },
 	email: { type: String, lowercase: true, default: 'n/a' },
-	phoneNumber: { type: Number },
+	phoneNumber: { type: String },
 	supervisorFirstName: { type: String, default: 'n/a' },
 	supervisorLastName: { type: String, default: 'n/a' },
 	supervisorEmail: { type: String, default: 'n/a' },
-	supervisorPhoneNumber: { type: Number },
+	supervisorPhoneNumber: { type: String },
 	title: { type: String, default: 'n/a'},
 	department: { type: String, default: 'n/a'}, 
 	location: { type: String, default: 'n/a'},
-	chargeNumber: { type: Number }
+	chargeNumber: { type: String }
 
 });
 
