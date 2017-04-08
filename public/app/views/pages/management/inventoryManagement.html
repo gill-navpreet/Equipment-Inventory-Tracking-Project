@@ -50,12 +50,21 @@
         <strong>Inventory</strong>
     </div>
     <!-- Start: Table -->
-    <table class="table">
+    <table class="table table-condensed" style="font-size: 12px">
     	<thead>
 	        <tr>
 	            <th>First Name:</th>
 	            <th>Last Name:</th>
 	            <th>Email:</th>
+                <th>Phone Number:</th>
+                <th>Supervisor First Name:</th>
+                <th>Supervisor Last Name:</th>
+                <th>Supervisor Email:</th>
+                <th>Supervisor Phone Number:</th>
+                <th>Title:</th> 
+                <th>Department:</th>
+                <th>Location:</th>
+                <th>Charge Number:</th>
 	            <th>Product:</th>
 	            <th>Bar Code:</th>
 	            <th>Is Checked In:</th>
@@ -65,10 +74,20 @@
 	        <tr>
 	            <td>{{ inventory.firstName }}</td>
 	            <td>{{ inventory.lastName }}</td>
-	            <td>{{ inventory.email }}</td>
+                <td>{{ inventory.email }}</td>
+                <td>{{ inventory.phoneNumber }}</td>
+                <td>{{ inventory.supervisorFirstName }}</td>
+                <td>{{ inventory.supervisorLastName }}</td>
+                <td>{{ inventory.supervisorEmail }}</td>
+                <td>{{ inventory.supervisorPhoneNumber }}</td>
+                <td>{{ inventory.title }}</td>
+                <td>{{ inventory.department }}</td>
+                <td>{{ inventory.location }}</td>
+                <td>{{ inventory.chargeNumber }}</td>
 	            <td>{{ inventory.product }}</td>
 	            <td>{{ inventory.barcode }}</td>
-	            <td>{{ inventory.isCheckedIn }}</td>
+                <td>{{ inventory.isCheckedIn }}</td>
+
                 <td ng-if="inventory.isCheckedIn === 'true'"><img src="assets/pictures/battery/green.png" style="width:25px;height:36px;"></td>
                 <td ng-if="inventory.isCheckedIn === 'false'"><img src="assets/pictures/battery/orange.png" style="width:25px;height:36px"></td>
 	            <td>

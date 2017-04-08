@@ -22,6 +22,15 @@ angular.module('inventoryCheckOutFormController',[])
 			inventoryObject.firstName = $scope.newData.newFirstName;
 			inventoryObject.lastName = $scope.newData.newLastName;
 			inventoryObject.email = $scope.newData.newEmail;
+			inventoryObject.phoneNumber = $scope.newData.newPhoneNumber;
+			inventoryObject.title = $scope.newData.newTitle;
+			inventoryObject.department = $scope.newData.newDepartment;
+			inventoryObject.location = $scope.newData.newLocation;
+			inventoryObject.chargeNumber = $scope.newData.newChargeNumber;
+			inventoryObject.supervisorFirstName = $scope.newData.newSupervisorFirstName;
+			inventoryObject.supervisorLastName = $scope.newData.newSupervisorLastName;
+			inventoryObject.supervisorEmail = $scope.newData.newSupervisorEmail;
+			inventoryObject.supervisorPhoneNumber = $scope.newData.newSupervisorPhoneNumber;
 			inventoryObject.isCheckedIn = 'false';
 			inventoryObject.dateCheckedOut = Date.now();
 
