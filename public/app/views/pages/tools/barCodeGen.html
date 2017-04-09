@@ -1,11 +1,8 @@
 <div class="page-header">
 	<h1>Bar Code Generator</h1>
 </div>
-<svg id="barcode"></svg><br>
-<form ng-submit="barcodeGenerator.generate(bcode);">
-	<label>Enter Code:</label>
-	<input class = "form-control" type = "text" name = "bcode" placeholder="please enter barcode" ng-model = "barcodeGenerator.bcode">
-	<br>
+<img id="barcode"></img><br>
+<form ng-submit="barcodeGenerator.generate();">
 	<button class="btn btn-primary" type="submit">Generate</button>
 </form>
 
