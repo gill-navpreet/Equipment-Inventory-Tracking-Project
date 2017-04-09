@@ -3985,11 +3985,6 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   display: block;
   padding: 10px 15px;
 }
-.nav > li > a:hover,
-.nav > li > a:focus {
-  text-decoration: none;
-  background-color: #eee;
-}
 .nav > li.disabled > a {
   color: #777;
 }
@@ -4015,6 +4010,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav > li > a > img {
   max-width: none;
 }
+
 .nav-tabs {
   border-bottom: 1px solid #ddd;
 }
@@ -4093,10 +4089,13 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav-pills > li + li {
   margin-left: 2px;
 }
-.nav-pills > li.active > a,
-.nav-pills > li.active > a:hover,
-.nav-pills > li.active > a:focus {
-  color: #fff;
+.nav-pills > li > a:hover {
+  text-decoration: none;
+  background-color: #eee;
+}
+.nav-pills > li > a:focus {
+  text-decoration: none;
+  color: white;
   background-color: #337ab7;
 }
 .nav-stacked > li {
