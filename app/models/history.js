@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var mongooseToCsv = require('mongoose-to-csv');
 var Schema = mongoose.Schema;
 
 
@@ -21,6 +22,30 @@ var HistorySchema = new Schema({
 	location: { type: String, default: ' '},
 	chargeNumber: { type: String, default: ' ' }
 
+});
+
+
+HistorySchema.plugin(mongooseToCsv, {
+	headers: 'Date Product Barcode Status First-Name Last-Name Email Phone-Number Supervisor-First-Name Supervisor-Last-Name Supervisor-Email Supervisor-Phone-Number Title Department Charge-Number Description',
+	constraints: {
+		'Date': 'date',
+		'Product': 'product',
+		'Barcode': 'barcode',
+		'Status': 'checkedType',
+		'First-Name': 'firstName',
+		'Last-Name': 'lastName',
+		'Email': 'email',
+		'Phone-Number': 'phoneNumber',
+		'Supervisor-First-Name': 'supervisorFirstName',
+		'Supervisor-Last-Name': 'supervisorLastName',
+		'Supervisor-Email': 'supervisorEmail',
+		'Supervisor-Phone Number': 'supervisorPhoneNumber',
+		'Title': 'title',
+		'Department': 'department',
+		'Location': 'location',
+		'Charge-Number': 'chargeNumber',
+		'Description': 'description'
+	}
 });
 
 

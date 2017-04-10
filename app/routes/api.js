@@ -5,18 +5,16 @@ var History = require('../models/history');
 var jwt = require('jsonwebtoken'); // Used to provide session info as cookie in a secured way
 var secret = 'ecs193ab'; // Provides extra security to jwt
 var cron = require('node-cron');
-
-var nodemailer = require('nodemailer');
-var sgTransport = require('nodemailer-sendgrid-transport');
-
-
-
 //sendgrid information to send autonomous emails.
-
 var nodemailer = require('nodemailer');
 var sgTransport = require('nodemailer-sendgrid-transport');
+var fs = require('fs');
 
+Inventory.findAndStreamCsv()
+  .pipe(fs.createWriteStream('csvFiles/Inventory.csv'));
 
+History.findAndStreamCsv()
+  .pipe(fs.createWriteStream('csvFiles/History.csv'));
 
 //sendgrid information to send autonomous emails.
 
@@ -29,12 +27,7 @@ var options = {
 var client = nodemailer.createTransport(sgTransport(options));
 
 
-
-
-
-var emailSent = 'false';
-
-//Scheduler. If an inventory has been checked out for longer than 10 seconds, it will post the message to the console.
+//Scheduler. any inventory checked out will send an email reminder. 
 cron.schedule('* * * * * *', function(){
     Inventory.find({}, function(err,inventoryforms) {
         for(var i = 0; i < inventoryforms.length; i++){
