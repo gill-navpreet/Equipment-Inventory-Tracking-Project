@@ -14,19 +14,40 @@ var parse = require('csv-parse');
 Inventory.findAndStreamCsv()
   .pipe(fs.createWriteStream('csvFiles/Inventory.csv'));
 
+//Transfer whatever is in history into an input stream that becomes parsed
+inputFileStream = fs.createReadStream('csvFiles/History.csv');
 History.findAndStreamCsv()
-  .pipe(fs.createWriteStream('csvFiles/History.csv'));
+  .pipe(inputFileStream);
 
-var csvData=[];
-fs.createReadStream('csvFiles/History.csv')
-.pipe(parse({delimiter: ','}))
-.on('data', function(token) {
-    csvData.push(token);        
-})
-.on('end',function() {
-  //print out read data onto the console for testing
-  console.log(csvData);
+//Keep track of the number of items that are checked in and checked out based on history
+var checkedIn = 0;
+var checkedOut = 0;
+
+
+//Data is read line by line. Each line is an array of strings separated by commas
+inputFileStream.pipe(parse({delimiter: ','}))
+.on('data', function(line) {
+    for(var i = 0; i < line.length; i++)
+    {
+        switch(i)
+        {
+            //Example case for statistics. Storage structure can be better, so will get back to it later
+            case 3:
+                if(line[i] === "checked in")
+                    checkedIn++;
+                else if(line[i] === "checked out")
+                    checkedOut++;
+                break;
+        }
+    }
+    console.log(line);
 });
+
+inputFileStream.on('end', function() {
+    console.log("Done processing data.");
+    console.log("Number of checked in items: " + checkedIn);
+    console.log("Number of checked out items: " + checkedOut);
+})
 
 //sendgrid information to send autonomous emails.
 
