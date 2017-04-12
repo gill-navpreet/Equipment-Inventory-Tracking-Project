@@ -1,8 +1,10 @@
 angular.module('barCodeGeneratorController',[])
 
-.controller('barCodeGenCtrl', function(){
-	this.generate = function(bcode){
-		JsBarcode("#barcode",this.bcode);
+.controller('barCodeGenCtrl', function($scope){
+
+	this.generate = function(){
+
+		JsBarcode("#barcode",Math.floor(Math.random() * 10000000000));
 	};
 });
 

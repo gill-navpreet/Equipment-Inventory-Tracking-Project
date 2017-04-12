@@ -71,7 +71,6 @@
           <ul class="nav nav-pills nav-stacked">
             <li><a ng-show="true" href="#">Home</a></li>
             <li><a ng-show="!main.isLoggedIn" href="#login">Login</a></li>
-            <li><a ng-show="!main.isLoggedIn" href="#register">Register</a></li>
             <li ng-show="main.isLoggedIn" class="dropdown">
               <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Inventory <span class="caret"></span></a>
               <ul class="dropdown-menu">
@@ -85,7 +84,7 @@
               <ul class="dropdown-menu">
                 <li><a href="#history">History</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#">Advanced Statistics</a></li>
+                <li><a href="#search">Search Statistics</a></li>
               </ul>
             </li>
             <li ng-show="main.isLoggedIn" class="dropdown">
@@ -102,6 +101,7 @@
                 <li><a href="#inventoryForm">Inventory Add</a></li>
                 <li><a href="#inventoryManagement">Inventory Edit/Delete</a></li>
                 <li role="separator" class="divider"></li>
+                <li><a href="#register">User Register</a></li>
                 <li><a href="#management">Users</a></li>
               </ul>
             </li>

@@ -1,9 +1,16 @@
 <div class="page-header">
-	<h1>Search Engine</h1>
+	<h1>Search Statistics</h1>
 </div>
+<div class="navbar-form">
+	<div class="form-group">
+	    <input type="date" class="form-control" ng-model="from">
+	</div>
+	<div class="form-group">
+	    <input type="date" class="form-control" ng-model="to">
 
-
-
+	</div>
+	<button type="button" class="btn btn-default">Date</button>
+</div>	
 
 <div class="navbar-form">
 	<div class="form-group">
@@ -25,6 +32,7 @@
 	</div>
 	<button type="button" class="btn btn-default">Email</button>
 </div>
+
 
 <div class="navbar-form">
 	<button type="button" ng-click="hist.advancedSearch(searchByFirstName, searchByLastName, searchByEmail);" class="btn btn-default">Search</button>
@@ -49,7 +57,7 @@
 
 <div ng-show="hist.searchLimit === undefined">
 	<p><strong>Results: </strong>
-	{{ (hist.historyData  | filter: advancedSearchFilter | limitTo: hist.searchLimit).length }}
+	{{ (hist.historyData | filter: advancedSearchFilter | limitTo: hist.searchLimit).length }}
 
 	</p>
 </div>
@@ -77,8 +85,8 @@
 				<th>Description:</th>
 			</tr>
 		</thead>
-		<tbody ng-repeat="history in hist.historyData  | filter: advancedSearchFilter | pagination: (hist.currentPage - 1) * hist.pageSize | limitTo: hist.searchLimit | orderBy: hist.sort">
-			<tr>
+		<tbody ng-repeat="history in hist.historyData |filter: advancedSearchFilter | pagination: (hist.currentPage - 1) * hist.pageSize | limitTo: hist.searchLimit | orderBy: hist.sort">
+			<tr ng-if= "(history.date | date:'yyyyMMdd') >= (from | date:'yyyyMMdd') && (history.date | date:'yyyyMMdd') <= (to | date:'yyyyMMdd')">
 				<td>{{ history.date | date: 'medium' }}</td>
 				<td>{{ history.firstName }}</td>
 				<td>{{ history.lastName }}</td>

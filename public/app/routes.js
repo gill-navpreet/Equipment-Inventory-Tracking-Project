@@ -25,7 +25,8 @@ var app = angular.module('appRoutes', ['ngRoute'])
 		templateUrl: 'app/views/pages/users/register.html',
 		controller: 'regCtrl',
 		controllerAs: 'register',
-		authenticated: false
+		authenticated: true,
+		permission: ['admin','moderator']
 	})
 	
 	.when('/login', {
@@ -125,6 +126,12 @@ var app = angular.module('appRoutes', ['ngRoute'])
 		controllerAs: 'hist',
 		authenticated: true
 	})
+	.when('/batteryManager', {
+		templateUrl: 'app/views/pages/tools/batteryManager.html',
+		controller: 'batteryManagerCtrl',
+		controllerAs: 'battery',
+		authenticated: true
+	})	
 
 	// If user tries to access any other route --> redirect to home page
 	.otherwise({ redirectTo: '/'});

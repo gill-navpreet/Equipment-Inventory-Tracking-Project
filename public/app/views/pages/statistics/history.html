@@ -1,7 +1,16 @@
 <div class="page-header">
 	<h1>History</h1>
 </div>
+<div class="navbar-form">
+	<div class="form-group">
+	    <input type="date" class="form-control" ng-model="from">
+	</div>
+	<div class="form-group">
+	    <input type="date" class="form-control" ng-model="to">
 
+	</div>
+	<button type="button" class="btn btn-default">Date</button>
+</div>
 
 <!-- Apply Button Filter -->
 <button type="button" ng-click="hist.showMore(number);" class="btn btn-success">Apply Filter</button>
@@ -32,9 +41,6 @@
 	</div>
 	<button type="button" ng-click="hist.search(searchKeyword, number);" class="btn btn-default">Search</button>
 	<button type="button" ng-click="hist.clear();" class="btn btn-default">Clear</button>
-	<a href="#search">
-		<button type="button" class="btn btn-default">Advanced Search</button>
-	</a>
 </div>
 
 <br>
@@ -69,7 +75,7 @@
 			</tr>
 		</thead>
 		<tbody ng-repeat="history in hist.historyData  | filter: searchFilter | pagination: (hist.currentPage - 1) * hist.pageSize | limitTo: hist.pageSize">
-			<tr>
+			<tr ng-if= "(history.date | date:'yyyyMMdd') >= (from | date:'yyyyMMdd') && (history.date | date:'yyyyMMdd') <= (to | date:'yyyyMMdd')">
 				<td>{{ history.date | date: 'medium' }}</td>
 				<td>{{ history.firstName }}</td>
 				<td>{{ history.lastName }}</td>

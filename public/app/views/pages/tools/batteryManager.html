@@ -1,1 +1,28 @@
-<h1>Hello from battery manager</h1>
+<div class="page-header">
+    <h1>Battery Manager</h1>
+</div>
+<div class="panel panel-primary">
+    <!-- Heading -->
+    <div class="panel-heading">
+        <strong>Inventory</strong>
+    </div>
+    <!-- Start: Table -->
+    <table class="table table-condensed">
+    	<thead>
+	        <tr>
+	            <th>Product:</th>
+	            <th>Bar Code:</th>
+	            <th>Battery Life:</th>
+	        </tr>
+        </thead>
+        <tbody ng-repeat="inventory in battery.inventoryforms">
+	        <tr>
+	            <td>{{ inventory.product }}</td>
+	            <td>{{ inventory.barcode }}</td>
+                <td ng-if="inventory.isCheckedIn === 'true'"><img src="assets/pictures/battery/green.png" style="width:25px;height:36px;"></td>
+                <td ng-if="inventory.isCheckedIn === 'false'"><img src="assets/pictures/battery/orange.png" style="width:25px;height:36px"></td>
+	        </tr>
+	    </tbody>    
+        <!-- End: Table -->
+    </table>
+</div>

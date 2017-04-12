@@ -5,45 +5,60 @@ var History = require('../models/history');
 var jwt = require('jsonwebtoken'); // Used to provide session info as cookie in a secured way
 var secret = 'ecs193ab'; // Provides extra security to jwt
 var cron = require('node-cron');
-
+//sendgrid information to send autonomous emails.
 var nodemailer = require('nodemailer');
 var sgTransport = require('nodemailer-sendgrid-transport');
+var fs = require('fs');
 
+Inventory.findAndStreamCsv()
+  .pipe(fs.createWriteStream('csvFiles/Inventory.csv'));
 
+History.findAndStreamCsv()
+  .pipe(fs.createWriteStream('csvFiles/History.csv'));
 
 //sendgrid information to send autonomous emails.
-/* 
+
 var options = {
   auth: {
-    api_user: 'SENDGRID_USERNAME',
-    api_key: 'SENDGRID_PASSWORD'
+    api_user: '',
+    api_key: ''
   }
 }
 var client = nodemailer.createTransport(sgTransport(options));
-var email = {
-  from: 'awesome@bar.com',
-  to: 'mr.walrus@foo.com',
-  subject: 'Hello',
-  text: 'Hello world',
-  html: '<b>Hello world</b>'
-};
-client.sendMail(email, function(err, info){
-    if (err ){
-      console.log(error);
-    }
-    else {
-      console.log('Message sent: ' + info.response);
-    }
-});
-*/
-//Scheduler. If an inventory has been checked out for longer than 10 seconds, it will post the message to the console.
+
+
+//Scheduler. any inventory checked out will send an email reminder. 
 cron.schedule('* * * * * *', function(){
     Inventory.find({}, function(err,inventoryforms) {
         for(var i = 0; i < inventoryforms.length; i++){
-            if(inventoryforms[i].isCheckedIn == 'false'){
-                if((Date.now() - inventoryforms[i].dateCheckedOut) > 10000){// replace the console logs with the mail sent above. 
-                    console.log('Email sent to: ' + inventoryforms[i].email);
-                    console.log(inventoryforms[i].firstName + ' ' + inventoryforms[i].lastName + ', your item: ' + inventoryforms[i].product + ' has been checked out for longer than 10 seconds.\n\n');
+            if(inventoryforms[i].isCheckedIn == 'false' && inventoryforms[i].emailSent == 'false'){
+                if((Date.now() - inventoryforms[i].dateCheckedOut) > 10000){// replace the console logs with the mail sent above.
+                    inventoryforms[i].emailSent = 'true'; 
+                    inventoryforms[i].save(); //please don't delete this, or it sends TONS Of emails
+                    var returnDate = new Date();
+                    returnDate.setDate(returnDate.getDate()+14);
+                    var textMessage = '<b>' + inventoryforms[i].firstName + ' ' + inventoryforms[i].lastName + ', your item: ' + inventoryforms[i].product + ' must be returned by\n\n' + returnDate + '<b>';
+                    var subjectMessage = 'Ergonomics Dept, return date reminder';
+                    var email = {
+                        from: 'ErgDept@ucdavis.edu',
+                        to: inventoryforms[i].email,
+                        subject: subjectMessage,
+                        text: textMessage,
+                        html: textMessage
+                    };
+                    var sendEmail = function(){
+                        client.sendMail(email, function(err, info){
+                            if (err ){
+                                console.log(error);
+                            }
+                            else {
+                                console.log('Message sent: ' + info.response);
+                            }
+                        });
+                    };
+                    sendEmail();    
+                    console.log('Email sent to: ' + inventoryforms[i].email + ' with message ' + textMessage);
+                
                 }
             }    
         }
@@ -752,6 +767,15 @@ module.exports = function(router) {
         if (req.body.firstName) var newFirstName = req.body.firstName; // Check if a change to name was requested
         if (req.body.lastName) var newLastName = req.body.lastName; // Check if a change to username was requested
         if (req.body.email) var newEmail = req.body.email; // Check if a change to e-mail was requested
+        if (req.body.phoneNumber) var newPhoneNumber = req.body.phoneNumber;
+        if (req.body.supervisorFirstName) var newSupervisorFirstName = req.body.supervisorFirstName;
+        if (req.body.supervisorLastName) var newSupervisorLastName = req.body.supervisorLastName;
+        if (req.body.supervisorPhoneNumber) var newSupervisorPhoneNumber = req.body.supervisorPhoneNumber;
+        if (req.body.supervisorEmail) var newSupervisorEmail = req.body.supervisorEmail;
+        if (req.body.title) var newTitle = req.body.title;
+        if (req.body.department) var newDepartment = req.body.department;
+        if (req.body.location) var newLocation = req.body.location;
+        if (req.body.chargeNumber) var newChargeNumber = req.body.chargeNumber;
         if (req.body.product) var newProduct = req.body.product; // Check if a change to permission was requested
         if (req.body.barcode) var newBarcode = req.body.barcode;
         if (req.body.isCheckedIn) var newIsCheckedIn = req.body.isCheckedIn; 
@@ -774,6 +798,62 @@ module.exports = function(router) {
                 inventory.save();
             });
         }
+        if (newPhoneNumber) {
+            Inventory.findOne({ _id: editInventory}, function(err, inventory) {
+                inventory.phoneNumber = newPhoneNumber;
+                inventory.save();
+            });
+        }
+        if (newSupervisorFirstName) {
+            Inventory.findOne({ _id: editInventory}, function(err, inventory) {
+                inventory.supervisorFirstName = newSupervisorFirstName;
+                inventory.save();
+            });
+        }
+        if (newSupervisorLastName) {
+            Inventory.findOne({ _id: editInventory}, function(err, inventory) {
+                inventory.supervisorLastName = newSupervisorLastName;
+                inventory.save();
+            });
+        }
+        if (newSupervisorEmail) {
+            Inventory.findOne({ _id: editInventory}, function(err, inventory) {
+                inventory.supervisorEmail = newSupervisorEmail;
+                inventory.save();
+            });
+        }
+
+        if (newSupervisorPhoneNumber) {
+            Inventory.findOne({ _id: editInventory}, function(err, inventory) {
+                inventory.supervisorPhoneNumber = newSupervisorPhoneNumber;
+                inventory.save();
+            });
+        }
+        if (newTitle) {
+            Inventory.findOne({ _id: editInventory}, function(err, inventory) {
+                inventory.title = newTitle;
+                inventory.save();
+            });
+        }
+        if (newDepartment) {
+            Inventory.findOne({ _id: editInventory}, function(err, inventory) {
+                inventory.department = newDepartment;
+                inventory.save();
+            });
+        }
+        if (newLocation) {
+            Inventory.findOne({ _id: editInventory}, function(err, inventory) {
+                inventory.location = newLocation;
+                inventory.save();
+            });
+        }
+        if (newChargeNumber) {
+            Inventory.findOne({ _id: editInventory}, function(err, inventory) {
+                inventory.chargeNumber = newChargeNumber;
+                inventory.save();
+            });
+        }
+
         if (newIsCheckedIn) {
             Inventory.findOne({ _id: editInventory}, function(err, inventory) {
                 inventory.isCheckedIn = newIsCheckedIn;

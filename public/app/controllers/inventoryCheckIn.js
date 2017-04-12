@@ -16,9 +16,18 @@ angular.module('inventoryCheckInController',[])
 						app.errorMsg = false;
 						app.loading = true;
 						inventoryObject._id = data.data.inventory._id;
-						inventoryObject.firstName = "n/a";
-						inventoryObject.lastName = "n/a";
-						inventoryObject.email = "n/a";
+						inventoryObject.firstName = " ";
+						inventoryObject.lastName = " ";
+						inventoryObject.email = " ";
+						inventoryObject.phoneNumber = " ";
+						inventoryObject.supervisorFirstName = " ";
+						inventoryObject.supervisorLastName = " ";
+						inventoryObject.supervisorEmail = " ";
+						inventoryObject.supervisorPhoneNumber = " ";
+						inventoryObject.title = " ";
+						inventoryObject.department = " ";
+						inventoryObject.location = " ";
+						inventoryObject.chargeNumber = " ";
 						inventoryObject.isCheckedIn = 'true';
 						inventoryObject.dateCheckedIn = Date.now();
 
@@ -33,7 +42,7 @@ angular.module('inventoryCheckInController',[])
 
 						History.create(historyObject);
 						
-						Inventory.checkInUpdate(inventoryObject);
+						Inventory.checkOutUpdate(inventoryObject);
 						app.successMsg = 'Checking in ....Redirecting';
 
 

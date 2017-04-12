@@ -73,6 +73,13 @@ angular.module('historyController',['ui.bootstrap'])
 		app.sort = order;
 	};
 
+
+    $scope.from = new Date();
+    $scope.from.setMonth($scope.from.getMonth()-1);
+    $scope.to = new Date();    
+
+    
+
 })
 
 .filter('pagination', function() {
