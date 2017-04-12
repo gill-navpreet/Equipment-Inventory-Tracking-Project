@@ -9,6 +9,7 @@ var cron = require('node-cron');
 var nodemailer = require('nodemailer');
 var sgTransport = require('nodemailer-sendgrid-transport');
 var fs = require('fs');
+var parse = require('csv-parse');
 
 Inventory.findAndStreamCsv()
   .pipe(fs.createWriteStream('csvFiles/Inventory.csv'));
@@ -16,14 +17,27 @@ Inventory.findAndStreamCsv()
 History.findAndStreamCsv()
   .pipe(fs.createWriteStream('csvFiles/History.csv'));
 
+var csvData=[];
+fs.createReadStream('csvFiles/History.csv')
+.pipe(parse({delimiter: ','}))
+.on('data', function(token) {
+    csvData.push(token);        
+})
+.on('end',function() {
+  //print out read data onto the console for testing
+  console.log(csvData);
+});
+
 //sendgrid information to send autonomous emails.
 
 var options = {
   auth: {
-    api_user: '',
-    api_key: ''
+    api_user: 'ecs19300000',
+    api_key: 'Adminadmin1@'
   }
 }
+
+
 var client = nodemailer.createTransport(sgTransport(options));
 
 
@@ -909,7 +923,6 @@ module.exports = function(router) {
             });
         }
     });
-
 
     // return router to server
     return router;

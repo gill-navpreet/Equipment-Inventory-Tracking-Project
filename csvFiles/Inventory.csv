@@ -1,6 +1,4 @@
 Product,Barcode,Status,Date-Checked-Out,Date-Checked-In,First-Name,Last-Name,Email,Phone-Number,Supervisor-First-Name,Supervisor-Last-Name,Supervisor-Email,Supervisor-Phone-Number,Title,Department,Charge-Number
-mouse,123,true,Sat Apr 08 2017 10:07:37 GMT-0700 (Pacific Daylight Time),Sat Apr 08 2017 10:07:02 GMT-0700 (Pacific Daylight Time), , , , , , , ,, , , 
-keyboard,213,false,Sat Apr 08 2017 10:14:01 GMT-0700 (Pacific Daylight Time),Sat Apr 08 2017 10:07:12 GMT-0700 (Pacific Daylight Time),oihjoihj,oihjoiujho,hjoihj,oihjoi,joi,hjoi,hjoi,,hjoih,joi,hjoi
-sladkfj,999,false,Sat Apr 08 2017 10:15:57 GMT-0700 (Pacific Daylight Time),Sat Apr 08 2017 10:15:42 GMT-0700 (Pacific Daylight Time),;lsdkjflik;j,;oilj,oij,oij,joi,ij,joi,,ioji,ji,jio
-hlkjdhfs,987987,false,Sat Apr 08 2017 10:18:02 GMT-0700 (Pacific Daylight Time),Sat Apr 08 2017 10:17:37 GMT-0700 (Pacific Daylight Time),oihjoi,hjoiioh,iahays25@gmail.com,9165991264,oihjo,ihjoi,hjoi,,oijh,oihjoi,hjoihj
-hnkjhnbu,111,false,Sat Apr 08 2017 10:23:49 GMT-0700 (Pacific Daylight Time),Sat Apr 08 2017 10:23:31 GMT-0700 (Pacific Daylight Time),ohoihoi,hoioi,iahays25@gmail.com,9165991264,oihjo,ihjo,ihjoi,,oijhoihj,hoih,ihj
+aklsdfjlaskdjf,11,false,Tue Apr 11 2017 22:20:36 GMT-0700 (Pacific Daylight Time),Mon Apr 10 2017 16:19:44 GMT-0700 (Pacific Daylight Time),billy,bob,billybob@yahoo.com,1234567890,sfn,sln,supervisor@yahoo.com,,title,department,chargenumber
+ksdjflskdjflsdkj,21309812309128,true,,Mon Apr 10 2017 16:22:34 GMT-0700 (Pacific Daylight Time),n/a,n/a,n/a,,n/a,n/a,n/a,,n/a,n/a,
+computer mouse,123456789,true,,Mon Apr 10 2017 16:24:32 GMT-0700 (Pacific Daylight Time),n/a,n/a,n/a,,n/a,n/a,n/a,,n/a,n/a,
