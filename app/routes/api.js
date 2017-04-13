@@ -40,9 +40,9 @@ writeStream.on('finish', function() {
                 //Example case for statistics. Storage structure can be better, so will get back to it later
                 case 3:
                     if(line[i] === "checked in")
-                        checkedIn.add(entry.set(line[1], (line[4]).concat(" " + line[5])));
+                        checkedIn.add(entry.set(line[1], [(line[4]).concat(" " + line[5]), line[0]]));
                     else if(line[i] === "checked out")
-                        checkedOut.add(entry.set(line[1], (line[4]).concat(" " + line[5])));
+                        checkedOut.add(entry.set(line[1], [(line[4]).concat(" " + line[5]), line[0]]));
                     break;
             }
         }
@@ -50,18 +50,21 @@ writeStream.on('finish', function() {
 
     readStream.on('end', function() {
         var key = checkedIn.get(0).keys();
+        var values;
         console.log("Checked-in equipment:");
         for(var i = 0; i < key.length; i++) {
             for(var j = 0; j < checkedIn.size(); j++) {
-                console.log(key[i] + " - " + checkedIn.get(j).get(key[i]));
+                values = checkedIn.get(j).get(key[i]);
+                console.log(key[i] + " - " + values[0] + " " + values[1]);
             }
         }
 
         key = checkedOut.get(0).keys();
-        console.log("\nCheckeded-out equipment:");
+        console.log("\nChecked-out equipment:");
         for(var i = 0; i < key.length; i++) {
             for(var j = 0; j < checkedOut.size(); j++) {
-                console.log(key[i] + " - " + checkedOut.get(j).get(key[i]));
+                values = checkedOut.get(j).get(key[i]);
+                console.log(key[i] + " - " + values[0] + " " + values[1]);
             }
         }
     });
