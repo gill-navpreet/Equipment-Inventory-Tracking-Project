@@ -14,40 +14,42 @@ var parse = require('csv-parse');
 Inventory.findAndStreamCsv()
   .pipe(fs.createWriteStream('csvFiles/Inventory.csv'));
 
-//Transfer whatever is in history into an input stream that becomes parsed
-inputFileStream = fs.createReadStream('csvFiles/History.csv');
+var writeStream = fs.createWriteStream('csvFiles/History.csv');
+
 History.findAndStreamCsv()
-  .pipe(inputFileStream);
+  .pipe(writeStream);
 
-//Keep track of the number of items that are checked in and checked out based on history
-var checkedIn = 0;
-var checkedOut = 0;
+//When the csv is created, read what's in it and parse the data
+writeStream.on('finish', function() {
+    var checkedIn = 0;
+    var checkedOut = 0;
 
-
-//Data is read line by line. Each line is an array of strings separated by commas
-inputFileStream.pipe(parse({delimiter: ','}))
-.on('data', function(line) {
-    for(var i = 0; i < line.length; i++)
-    {
-        switch(i)
+    var readStream = fs.createReadStream('csvFiles/History.csv');
+    readStream.pipe(parse({delimiter: ','}))
+    .on('data', function(line) {
+        for(var i = 0; i < line.length; i++)
         {
-            //Example case for statistics. Storage structure can be better, so will get back to it later
-            case 3:
-                if(line[i] === "checked in")
-                    checkedIn++;
-                else if(line[i] === "checked out")
-                    checkedOut++;
-                break;
+            switch(i)
+            {
+                //Example case for statistics. Storage structure can be better, so will get back to it later
+                case 3:
+                    if(line[i] === "checked in")
+                        checkedIn++;
+                    else if(line[i] === "checked out")
+                        checkedOut++;
+                    break;
+            }
         }
-    }
-    console.log(line);
+        console.log(line);
+    });
+
+    readStream.on('end', function() {
+        console.log("Number of checked in items: " + checkedIn);
+        console.log("Number of checked out items: " + checkedOut);
+    });
 });
 
-inputFileStream.on('end', function() {
-    console.log("Done processing data.");
-    console.log("Number of checked in items: " + checkedIn);
-    console.log("Number of checked out items: " + checkedOut);
-})
+
 
 //sendgrid information to send autonomous emails.
 
@@ -58,9 +60,7 @@ var options = {
   }
 }
 
-
 var client = nodemailer.createTransport(sgTransport(options));
-
 
 //Scheduler. any inventory checked out will send an email reminder. 
 cron.schedule('* * * * * *', function(){
