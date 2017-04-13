@@ -67,8 +67,6 @@ writeStream.on('finish', function() {
     });
 });
 
-
-
 //sendgrid information to send autonomous emails.
 
 var options = {
