@@ -1,7 +1,18 @@
 Date,Product,Barcode,Status,First-Name,Last-Name,Email,Phone-Number,Supervisor-First-Name,Supervisor-Last-Name,Supervisor-Email,Supervisor-Phone-Number,Title,Department,Charge-Number,Description
-Mon Apr 10 2017 16:19:44 GMT-0700 (Pacific Daylight Time),aklsdfjlaskdjf,11,created, , , , , , , ,, , , ,created a aklsdfjlaskdjf with barcode: 11
-Mon Apr 10 2017 16:22:34 GMT-0700 (Pacific Daylight Time),ksdjflskdjflsdkj,21309812309128,created, , , , , , , ,, , , ,created a KSDJFLSKDJFLSDKJ with barcode: 21309812309128
-Mon Apr 10 2017 16:24:32 GMT-0700 (Pacific Daylight Time),computer mouse,123456789,created, , , , , , , ,, , , ,created a computer mouse with barcode: 123456789
-Mon Apr 10 2017 16:28:06 GMT-0700 (Pacific Daylight Time),aklsdfjlaskdjf,11,checked out,billy,bob,billybob@yahoo.com, , , , ,, , , ,billy bob checked out a aklsdfjlaskdjf
-Tue Apr 11 2017 20:59:09 GMT-0700 (Pacific Daylight Time),aklsdfjlaskdjf,11,checked in,billy,bob,billybob@yahoo.com, , , , ,, , , ,billy bob checked in a aklsdfjlaskdjf
-Tue Apr 11 2017 22:20:37 GMT-0700 (Pacific Daylight Time),aklsdfjlaskdjf,11,checked out,billy,bob,billybob@yahoo.com, , , , ,, , , ,billy bob checked out a aklsdfjlaskdjf
+Wed Apr 12 2017 19:52:49 GMT-0700 (Pacific Daylight Time),computer mouse,12345678,checked out,billy,bob,billybob@yahoo.com, , , , ,, , , ,billy bob checked out a computer mouse
+Wed Apr 12 2017 19:54:46 GMT-0700 (Pacific Daylight Time),computer mouse,12345678,checked in,billy,bob,billybob@yahoo.com, , , , ,, , , ,billy bob checked in a computer mouse
+Wed Apr 12 2017 19:54:49 GMT-0700 (Pacific Daylight Time),computer mouse,12345678,checked out,billy,bob,billybob@yahoo.com, , , , ,, , , ,billy bob checked out a computer mouse
+Wed Apr 12 2017 19:56:15 GMT-0700 (Pacific Daylight Time),computer mouse,12345678,checked in,billy,bob,billybob@yahoo.com, , , , ,, , , ,billy bob checked in a computer mouse
+Wed Apr 12 2017 19:56:42 GMT-0700 (Pacific Daylight Time),keyboard,87654321,created, , , , , , , ,, , , ,created a keyboard with barcode: 87654321
+Wed Apr 12 2017 19:58:15 GMT-0700 (Pacific Daylight Time),computer mouse,12345678,checked in,billy,bob,billybob@yahoo.com, , , , ,, , , ,billy bob checked in a computer mouse
+Wed Apr 12 2017 19:58:42 GMT-0700 (Pacific Daylight Time),keyboard,87654321,created, , , , , , , ,, , , ,created a keyboard with barcode: 87654321
+Wed Apr 12 2017 19:58:47 GMT-0700 (Pacific Daylight Time),keyboard,87654321,checked out,anna,bob,annabob@yahoo.com, , , , ,, , , ,anna bob checked out a keyboard
+Wed Apr 12 2017 20:00:15 GMT-0700 (Pacific Daylight Time),computer mouse,12345678,checked in,billy,bob,billybob@yahoo.com, , , , ,, , , ,billy bob checked in a computer mouse
+Wed Apr 12 2017 20:00:22 GMT-0700 (Pacific Daylight Time),keyboard,87654321,checked in,anna,bob,annabob@yahoo.com, , , , ,, , , ,anna bob checked in a keyboard
+Wed Apr 12 2017 20:02:02 GMT-0700 (Pacific Daylight Time),computer mouse,12345678,checked out,billy,bob,billybob@yahoo.com, , , , ,, , , ,billy bob checked out a computer mouse
+Wed Apr 12 2017 20:02:15 GMT-0700 (Pacific Daylight Time),computer mouse,12345678,checked in,billy,bob,billybob@yahoo.com, , , , ,, , , ,billy bob checked in a computer mouse
+Wed Apr 12 2017 20:02:22 GMT-0700 (Pacific Daylight Time),keyboard,87654321,checked in,anna,bob,annabob@yahoo.com, , , , ,, , , ,anna bob checked in a keyboard
+Wed Apr 12 2017 20:04:02 GMT-0700 (Pacific Daylight Time),computer mouse,12345678,checked out,billy,bob,billybob@yahoo.com, , , , ,, , , ,billy bob checked out a computer mouse
+Wed Apr 12 2017 20:04:15 GMT-0700 (Pacific Daylight Time),computer mouse,12345678,checked in,billy,bob,billybob@yahoo.com, , , , ,, , , ,billy bob checked in a computer mouse
+Wed Apr 12 2017 20:04:22 GMT-0700 (Pacific Daylight Time),keyboard,87654321,checked in,anna,bob,annabob@yahoo.com, , , , ,, , , ,anna bob checked in a keyboard
+Wed Apr 12 2017 20:06:02 GMT-0700 (Pacific Daylight Time),computer mouse,12345678,checked out,billy,bob,billybob@yahoo.com, , , , ,, , , ,billy bob checked out a computer mouse

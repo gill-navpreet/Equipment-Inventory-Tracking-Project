@@ -10,6 +10,8 @@ var nodemailer = require('nodemailer');
 var sgTransport = require('nodemailer-sendgrid-transport');
 var fs = require('fs');
 var parse = require('csv-parse');
+var HashMap = require('hashmap');
+var ArrayList = require('arraylist');
 
 Inventory.findAndStreamCsv()
   .pipe(fs.createWriteStream('csvFiles/Inventory.csv'));
@@ -21,8 +23,12 @@ History.findAndStreamCsv()
 
 //When the csv is created, read what's in it and parse the data
 writeStream.on('finish', function() {
-    var checkedIn = 0;
-    var checkedOut = 0;
+
+    //Array lists to keep track of equipment checked in/out and by who
+    var checkedIn = new ArrayList;
+    var checkedOut = new ArrayList;
+    //Hash map entry with values set before being added into either list
+    var entry = new HashMap();
 
     var readStream = fs.createReadStream('csvFiles/History.csv');
     readStream.pipe(parse({delimiter: ','}))
@@ -34,18 +40,30 @@ writeStream.on('finish', function() {
                 //Example case for statistics. Storage structure can be better, so will get back to it later
                 case 3:
                     if(line[i] === "checked in")
-                        checkedIn++;
+                        checkedIn.add(entry.set(line[1], (line[4]).concat(" " + line[5])));
                     else if(line[i] === "checked out")
-                        checkedOut++;
+                        checkedOut.add(entry.set(line[1], (line[4]).concat(" " + line[5])));
                     break;
             }
         }
-        console.log(line);
     });
 
     readStream.on('end', function() {
-        console.log("Number of checked in items: " + checkedIn);
-        console.log("Number of checked out items: " + checkedOut);
+        var key = checkedIn.get(0).keys();
+        console.log("Checked-in equipment:");
+        for(var i = 0; i < key.length; i++) {
+            for(var j = 0; j < checkedIn.size(); j++) {
+                console.log(key[i] + " - " + checkedIn.get(j).get(key[i]));
+            }
+        }
+
+        key = checkedOut.get(0).keys();
+        console.log("\nCheckeded-out equipment:");
+        for(var i = 0; i < key.length; i++) {
+            for(var j = 0; j < checkedOut.size(); j++) {
+                console.log(key[i] + " - " + checkedOut.get(j).get(key[i]));
+            }
+        }
     });
 });
 
