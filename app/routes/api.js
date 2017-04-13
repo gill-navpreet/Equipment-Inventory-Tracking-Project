@@ -23,49 +23,46 @@ History.findAndStreamCsv()
 
 //When the csv is created, read what's in it and parse the data
 writeStream.on('finish', function() {
-
-    //Array lists to keep track of equipment checked in/out and by who
-    var checkedIn = new ArrayList;
-    var checkedOut = new ArrayList;
-    //Hash map entry with values set before being added into either list
-    var entry = new HashMap();
-
+    //Store each history entry into a list
+    var entries = [];
+    //Read history from csv file that was just produced
     var readStream = fs.createReadStream('csvFiles/History.csv');
     readStream.pipe(parse({delimiter: ','}))
     .on('data', function(line) {
-        for(var i = 0; i < line.length; i++)
-        {
-            switch(i)
-            {
-                //Example case for statistics. Storage structure can be better, so will get back to it later
-                case 3:
-                    if(line[i] === "checked in")
-                        checkedIn.add(entry.set(line[1], [(line[4]).concat(" " + line[5]), line[0]]));
-                    else if(line[i] === "checked out")
-                        checkedOut.add(entry.set(line[1], [(line[4]).concat(" " + line[5]), line[0]]));
-                    break;
-            }
-        }
+        entries.push(line);
     });
 
     readStream.on('end', function() {
-        var key = checkedIn.get(0).keys();
-        var values;
-        console.log("Checked-in equipment:");
-        for(var i = 0; i < key.length; i++) {
-            for(var j = 0; j < checkedIn.size(); j++) {
-                values = checkedIn.get(j).get(key[i]);
-                console.log(key[i] + " - " + values[0] + " " + values[1]);
+        var element;
+        console.log("Check-ins:");
+        for(var i = 0; i < entries.length; i++) {
+            element = entries[i];
+            if(element[3] === "checked in")
+                console.log(element[1] + " - " + element[4] + " " + element[5]);
+        }
+
+        console.log("\nCheck-outs:");
+        for(var i = 0; i < entries.length; i++) {
+            element = entries[i];
+            if(element[3] === "checked out")
+                console.log(element[1] + " - " + element[4] + " " + element[5]);
+        }
+
+        var equipment = new HashMap();
+        console.log("\nList of items checked out:");
+        for(var i = 0; i < entries.length; i++) {
+            element = entries[i];
+            if(element[3] === "checked out") {
+                if(!equipment.has(element[1]) && element[1] != "Product")
+                    equipment.set(element[1], 1);
+                else if(equipment.has(element[1]))
+                    equipment.set(element[1], equipment.get(element[1])+1);
             }
         }
 
-        key = checkedOut.get(0).keys();
-        console.log("\nChecked-out equipment:");
-        for(var i = 0; i < key.length; i++) {
-            for(var j = 0; j < checkedOut.size(); j++) {
-                values = checkedOut.get(j).get(key[i]);
-                console.log(key[i] + " - " + values[0] + " " + values[1]);
-            }
+        var keys = equipment.keys();
+        for(var i = 0; i < equipment.count(); i++) {
+            console.log(keys[i] + " " + "(" + equipment.get(keys[i]) + ")");
         }
     });
 });
