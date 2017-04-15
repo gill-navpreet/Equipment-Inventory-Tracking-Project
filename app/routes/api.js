@@ -34,22 +34,23 @@ writeStream.on('finish', function() {
 
     readStream.on('end', function() {
         var element;
-        console.log("Check-ins:");
+        var parsedData = fs.createWriteStream('csvFiles/Data.csv');
+        parsedData.write("Check-ins:\n");
         for(var i = 0; i < entries.length; i++) {
             element = entries[i];
             if(element[3] === "checked in")
-                console.log(element[1] + " - " + element[4] + " " + element[5]);
+                parsedData.write(element[1] + " - " + element[4] + " " + element[5] + "\n");
         }
 
-        console.log("\nCheck-outs:");
+        parsedData.write("\nCheck-outs:");
         for(var i = 0; i < entries.length; i++) {
             element = entries[i];
             if(element[3] === "checked out")
-                console.log(element[1] + " - " + element[4] + " " + element[5]);
+                parsedData.write(element[1] + " - " + element[4] + " " + element[5] + "\n");
         }
 
         var equipment = new HashMap();
-        console.log("\nList of items checked out:");
+        parsedData.write("\nList of items checked out:\n");
         for(var i = 0; i < entries.length; i++) {
             element = entries[i];
             if(element[3] === "checked out") {
@@ -62,7 +63,7 @@ writeStream.on('finish', function() {
 
         var keys = equipment.keys();
         for(var i = 0; i < equipment.count(); i++) {
-            console.log(keys[i] + " " + "(" + equipment.get(keys[i]) + ")");
+            parsedData.write(keys[i] + " " + "(" + equipment.get(keys[i]) + ")" + "\n");
         }
     });
 });
