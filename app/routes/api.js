@@ -33,24 +33,29 @@ writeStream.on('finish', function() {
     });
 
     readStream.on('end', function() {
+        //Iterative element per data entry
         var element;
-        var parsedData = fs.createWriteStream('csvFiles/Data.csv');
-        parsedData.write("Check-ins:\n");
+        //Parse all the data from History.csv into another csv
+        var data = fs.createWriteStream('csvFiles/Data.csv');
+
+        parseDates(entries);
+
+        data.write("Check-ins:\n");
         for(var i = 0; i < entries.length; i++) {
             element = entries[i];
             if(element[3] === "checked in")
-                parsedData.write(element[1] + " - " + element[4] + " " + element[5] + "\n");
+                data.write(element[1] + " - " + element[4] + " " + element[5] + "\n");
         }
 
-        parsedData.write("\nCheck-outs:");
+        data.write("\nCheck-outs:");
         for(var i = 0; i < entries.length; i++) {
             element = entries[i];
             if(element[3] === "checked out")
-                parsedData.write(element[1] + " - " + element[4] + " " + element[5] + "\n");
+                data.write(element[1] + " - " + element[4] + " " + element[5] + "\n");
         }
 
         var equipment = new HashMap();
-        parsedData.write("\nList of items checked out:\n");
+        data.write("\nList of items checked out:\n");
         for(var i = 0; i < entries.length; i++) {
             element = entries[i];
             if(element[3] === "checked out") {
@@ -63,10 +68,47 @@ writeStream.on('finish', function() {
 
         var keys = equipment.keys();
         for(var i = 0; i < equipment.count(); i++) {
-            parsedData.write(keys[i] + " " + "(" + equipment.get(keys[i]) + ")" + "\n");
+            data.write(keys[i] + " " + "(" + equipment.get(keys[i]) + ")" + "\n");
         }
     });
 });
+
+function parseDates(data) {
+    //Parse date string into a certain format to be used later for D3 output
+    var element;
+    var month;
+    for(var i = 0; i < data.length; i++) {
+        element = data[i][0].split(" ");
+        if(element.length < 9)//Skip iteration code if entry isn't valid
+            continue;
+        if(element[1] === "Jan")
+            month = "01";
+        else if(element[1] === "Feb")
+            month = "02";
+        else if(element[1] === "Mar")
+            month = "03";
+        else if(element[1] === "Apr")
+            month = "04";
+        else if(element[1] === "May")
+            month = "05";
+        else if(element[1] === "Jun")
+            month = "06";
+        else if(element[1] === "Jul")
+            month = "07";
+        else if(element[1] === "Aug")
+            month = "08";
+        else if(element[1] === "Sep")
+            month = "09";
+        else if(element[1] === "Oct")
+            month = "10";
+        else if(element[1] === "Nov")
+            month = "11";
+        else if(element[1] === "Dec")
+            month = "12";
+        data[i][0] = element[3].concat("-" + month);
+        console.log(data[i][0]); //Just a test to see if the dates were parsed correctly
+    }
+}
 
 //sendgrid information to send autonomous emails.
 
