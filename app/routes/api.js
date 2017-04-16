@@ -71,37 +71,6 @@ writeStream.on('finish', function() {
         keys = checkoutDates.keys();
         for(var i = 0; i < keys.length; i++)
             data.write(keys[i] + "," + checkoutDates.get(keys[i]) + "\n");
-
-        /*data.write("Check-ins:\n");
-        for(var i = 0; i < entries.length; i++) {
-            element = entries[i];
-            if(element[3] === "checked in")
-                data.write(element[1] + " - " + element[4] + " " + element[5] + "\n");
-        }
-
-        data.write("\nCheck-outs:");
-        for(var i = 0; i < entries.length; i++) {
-            element = entries[i];
-            if(element[3] === "checked out")
-                data.write(element[1] + " - " + element[4] + " " + element[5] + "\n");
-        }
-
-        var equipment = new HashMap();
-        data.write("\nList of items checked out:\n");
-        for(var i = 0; i < entries.length; i++) {
-            element = entries[i];
-            if(element[3] === "checked out") {
-                if(!equipment.has(element[1]) && element[1] != "Product")
-                    equipment.set(element[1], 1);
-                else if(equipment.has(element[1]))
-                    equipment.set(element[1], equipment.get(element[1])+1);
-            }
-        }
-
-        var keys = equipment.keys();
-        for(var i = 0; i < equipment.count(); i++) {
-            data.write(keys[i] + " " + "(" + equipment.get(keys[i]) + ")" + "\n");
-        }*/
     });
 });
 
@@ -138,7 +107,6 @@ function parseDates(data) {
         else if(element[1] === "Dec")
             month = "12";
         data[i][0] = element[3].concat("-" + month);
-        console.log(data[i][0]); //Just a test to see if the dates were parsed correctly
     }
 }
 
