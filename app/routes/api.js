@@ -9,23 +9,149 @@ var cron = require('node-cron');
 var nodemailer = require('nodemailer');
 var sgTransport = require('nodemailer-sendgrid-transport');
 var fs = require('fs');
+var parse = require('csv-parse');
+var HashMap = require('hashmap');
+var ArrayList = require('arraylist');
 
 Inventory.findAndStreamCsv()
   .pipe(fs.createWriteStream('csvFiles/Inventory.csv'));
 
+var writeStream = fs.createWriteStream('csvFiles/History.csv');
+
 History.findAndStreamCsv()
-  .pipe(fs.createWriteStream('csvFiles/History.csv'));
+  .pipe(writeStream);
+
+//When the csv is created, read what's in it and parse the data
+writeStream.on('finish', function() {
+    //Store each history entry into a list
+    var entries = [];
+    //Read history from csv file that was just produced
+    var readStream = fs.createReadStream('csvFiles/History.csv');
+    readStream.pipe(parse({delimiter: ','}))
+    .on('data', function(line) {
+        entries.push(line);
+    });
+
+    readStream.on('end', function() {
+        //Keep track of number of items checked in/out for each month
+        var checkinDates = new HashMap();
+        var checkoutDates = new HashMap();
+        //Iterative element per data entry
+        var element;
+        var keys;
+        //Parse all the data from History.csv into another csv
+        var data = fs.createWriteStream('csvFiles/Data.csv');
+
+        parseDates(entries);
+
+        for(var i = 0; i < entries.length; i++) {
+            var element = entries[i];
+
+            if(element[3] === "checked in") {
+                if(!checkinDates.has(element[0]))
+                    checkinDates.set(element[0], 1);
+                else
+                    checkinDates.set(element[0], checkinDates.get(element[0])+1);
+            }
+            else if(element[3] === "checked out") {
+                if(!checkoutDates.has(element[0]))
+                    checkoutDates.set(element[0], 1);
+                else
+                    checkoutDates.set(element[0], checkoutDates.get(element[0])+1);
+
+            }
+        }
+
+        data.write("Check-ins for each month:\n");
+        keys = checkinDates.keys();
+        for(var i = 0; i < keys.length; i++)
+            data.write(keys[i] + "," + checkinDates.get(keys[i]) + "\n");
+
+        data.write("\nCheck-outs for each month:\n");
+        keys = checkoutDates.keys();
+        for(var i = 0; i < keys.length; i++)
+            data.write(keys[i] + "," + checkoutDates.get(keys[i]) + "\n");
+
+        /*data.write("Check-ins:\n");
+        for(var i = 0; i < entries.length; i++) {
+            element = entries[i];
+            if(element[3] === "checked in")
+                data.write(element[1] + " - " + element[4] + " " + element[5] + "\n");
+        }
+
+        data.write("\nCheck-outs:");
+        for(var i = 0; i < entries.length; i++) {
+            element = entries[i];
+            if(element[3] === "checked out")
+                data.write(element[1] + " - " + element[4] + " " + element[5] + "\n");
+        }
+
+        var equipment = new HashMap();
+        data.write("\nList of items checked out:\n");
+        for(var i = 0; i < entries.length; i++) {
+            element = entries[i];
+            if(element[3] === "checked out") {
+                if(!equipment.has(element[1]) && element[1] != "Product")
+                    equipment.set(element[1], 1);
+                else if(equipment.has(element[1]))
+                    equipment.set(element[1], equipment.get(element[1])+1);
+            }
+        }
+
+        var keys = equipment.keys();
+        for(var i = 0; i < equipment.count(); i++) {
+            data.write(keys[i] + " " + "(" + equipment.get(keys[i]) + ")" + "\n");
+        }*/
+    });
+});
+
+function parseDates(data) {
+    //Parse date string into a certain format to be used later for D3 output
+    var element;
+    var month;
+    for(var i = 0; i < data.length; i++) {
+        element = data[i][0].split(" ");
+        if(element.length < 9)//Skip iteration code if entry isn't valid
+            continue;
+        if(element[1] === "Jan")
+            month = "1";
+        else if(element[1] === "Feb")
+            month = "2";
+        else if(element[1] === "Mar")
+            month = "3";
+        else if(element[1] === "Apr")
+            month = "4";
+        else if(element[1] === "May")
+            month = "5";
+        else if(element[1] === "Jun")
+            month = "6";
+        else if(element[1] === "Jul")
+            month = "7";
+        else if(element[1] === "Aug")
+            month = "8";
+        else if(element[1] === "Sep")
+            month = "9";
+        else if(element[1] === "Oct")
+            month = "10";
+        else if(element[1] === "Nov")
+            month = "11";
+        else if(element[1] === "Dec")
+            month = "12";
+        data[i][0] = element[3].concat("-" + month);
+        console.log(data[i][0]); //Just a test to see if the dates were parsed correctly
+    }
+}
 
 //sendgrid information to send autonomous emails.
 
 var options = {
   auth: {
-    api_user: '',
-    api_key: ''
+    api_user: 'ecs19300000',
+    api_key: 'Adminadmin1@'
   }
 }
-var client = nodemailer.createTransport(sgTransport(options));
 
+var client = nodemailer.createTransport(sgTransport(options));
 
 //Scheduler. any inventory checked out will send an email reminder. 
 cron.schedule('* * * * * *', function(){
@@ -909,7 +1035,6 @@ module.exports = function(router) {
             });
         }
     });
-
 
     // return router to server
     return router;

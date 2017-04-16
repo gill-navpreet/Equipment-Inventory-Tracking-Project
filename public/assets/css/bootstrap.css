@@ -1581,12 +1581,25 @@ pre code {
   max-height: 340px;
   overflow-y: scroll;
 }
-.container {
+
+#about {
   padding-right: 15px;
   padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
+  /*Fixes margin problems for different pages*/
+  margin-right: 271px;
+  margin-left: 271px;
 }
+
+#mainmenu {
+  position: fixed;
+  top: 0;
+  width: 270px !important;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: 0;
+  margin-left: 0;
+} 
+
 @media (min-width: 768px) {
   .container {
     width: 750px;
@@ -3512,6 +3525,7 @@ tbody.collapse.in {
 }
 .dropup,
 .dropdown {
+  width: 270px; /*Fix color width problem in each pill for dropdowns*/
   position: relative;
 }
 .dropdown-toggle:focus {
@@ -3985,11 +3999,6 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   display: block;
   padding: 10px 15px;
 }
-.nav > li > a:hover,
-.nav > li > a:focus {
-  text-decoration: none;
-  background-color: #eee;
-}
 .nav > li.disabled > a {
   color: #777;
 }
@@ -4015,6 +4024,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav > li > a > img {
   max-width: none;
 }
+
 .nav-tabs {
   border-bottom: 1px solid #ddd;
 }
@@ -4093,10 +4103,15 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav-pills > li + li {
   margin-left: 2px;
 }
-.nav-pills > li.active > a,
-.nav-pills > li.active > a:hover,
-.nav-pills > li.active > a:focus {
-  color: #fff;
+.nav-pills > li > a:hover {
+  text-decoration: none;
+  width: 270px;
+  background-color: #eee;
+}
+.nav-pills > li > a:focus {
+  text-decoration: none;
+  width: 270px;
+  color: white;
   background-color: #337ab7;
 }
 .nav-stacked > li {
@@ -4985,7 +5000,7 @@ a.badge:focus {
 }
 @media screen and (min-width: 768px) {
   .jumbotron {
-    padding-top: 48px;
+    padding-top: 48;
     padding-bottom: 48px;
   }
   .container .jumbotron,
