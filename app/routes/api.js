@@ -175,7 +175,7 @@ cron.schedule('* * * * * *', function(){
                     var sendEmail = function(){
                         client.sendMail(email, function(err, info){
                             if (err ){
-                                console.log(error);
+                                console.log(err);
                             }
                             else {
                                 console.log('Message sent: ' + info.response);

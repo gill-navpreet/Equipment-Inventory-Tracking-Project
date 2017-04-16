@@ -2,10 +2,17 @@
 <h1>Check In Inventory</h1>
 </div>
 
-<form ng-submit="checkIn.checkIn(checkIn.barcode);">
+<form name="ciForm" ng-submit="checkIn.checkIn(checkIn.barcode);" novalidate>
 	<!-- Bar Code -->
-	<label>Bar Code:</label>
-	<input class="form-control" type="text" name='barcode' placeholder="please scan an item" ng-model="checkIn.barcode" focus = "true">
+	<div ng-class="{'has-success': (ciForm.barcode.$valid && !ciForm.barcode.$pristine),'has-error':((!ciForm.barcode.$valid && !ciForm.barcode.$pristine) || ((!ciForm.barcode.$valid)&& ciForm.$submitted)) }">
+		<label>Bar Code:</label>
+		<input class = "form-control" type = "text" name = "barcode" placeholder="please scan an item or enter a 10-digit barcode" ng-model="checkIn.barcode" ng-pattern="/^[0-9]{10}/" ng-minlength="10" ng-maxlength="10" focus="true" required>
+		<p class="help-block "ng-show="(!ciForm.$pristine && ciForm.barcode.$error.required) || (ciForm.$submitted && ciForm.barcode.$error.required)"> This field is required </p>
+		<ul ng-show="(!ciForm.barcode.$pristine && ciForm.barcode.$error.pattern) || (!ciForm.barcode.$pristine && ciForm.barcode.$error.minlength) || (!ciForm.barcode.$pristine && ciForm.barcode.$error.maxlength)" class="help-block">
+            <li>Must be exactly 10 digits long</li>
+            <li>Must not contain any special characters</li>
+        </ul>
+	</div>
 	<br>
 
 	<button class="btn btn-primary" type="submit">Submit</button>
