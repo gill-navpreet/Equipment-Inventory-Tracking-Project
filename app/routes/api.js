@@ -33,14 +33,46 @@ writeStream.on('finish', function() {
     });
 
     readStream.on('end', function() {
+        //Keep track of number of items checked in/out for each month
+        var checkinDates = new HashMap();
+        var checkoutDates = new HashMap();
         //Iterative element per data entry
         var element;
+        var keys;
         //Parse all the data from History.csv into another csv
         var data = fs.createWriteStream('csvFiles/Data.csv');
 
         parseDates(entries);
 
-        data.write("Check-ins:\n");
+        for(var i = 0; i < entries.length; i++) {
+            var element = entries[i];
+
+            if(element[3] === "checked in") {
+                if(!checkinDates.has(element[0]))
+                    checkinDates.set(element[0], 1);
+                else
+                    checkinDates.set(element[0], checkinDates.get(element[0])+1);
+            }
+            else if(element[3] === "checked out") {
+                if(!checkoutDates.has(element[0]))
+                    checkoutDates.set(element[0], 1);
+                else
+                    checkoutDates.set(element[0], checkoutDates.get(element[0])+1);
+
+            }
+        }
+
+        data.write("Check-ins for each month:\n");
+        keys = checkinDates.keys();
+        for(var i = 0; i < keys.length; i++)
+            data.write(keys[i] + "," + checkinDates.get(keys[i]) + "\n");
+
+        data.write("\nCheck-outs for each month:\n");
+        keys = checkoutDates.keys();
+        for(var i = 0; i < keys.length; i++)
+            data.write(keys[i] + "," + checkoutDates.get(keys[i]) + "\n");
+
+        /*data.write("Check-ins:\n");
         for(var i = 0; i < entries.length; i++) {
             element = entries[i];
             if(element[3] === "checked in")
@@ -69,7 +101,7 @@ writeStream.on('finish', function() {
         var keys = equipment.keys();
         for(var i = 0; i < equipment.count(); i++) {
             data.write(keys[i] + " " + "(" + equipment.get(keys[i]) + ")" + "\n");
-        }
+        }*/
     });
 });
 
@@ -82,23 +114,23 @@ function parseDates(data) {
         if(element.length < 9)//Skip iteration code if entry isn't valid
             continue;
         if(element[1] === "Jan")
-            month = "01";
+            month = "1";
         else if(element[1] === "Feb")
-            month = "02";
+            month = "2";
         else if(element[1] === "Mar")
-            month = "03";
+            month = "3";
         else if(element[1] === "Apr")
-            month = "04";
+            month = "4";
         else if(element[1] === "May")
-            month = "05";
+            month = "5";
         else if(element[1] === "Jun")
-            month = "06";
+            month = "6";
         else if(element[1] === "Jul")
-            month = "07";
+            month = "7";
         else if(element[1] === "Aug")
-            month = "08";
+            month = "8";
         else if(element[1] === "Sep")
-            month = "09";
+            month = "9";
         else if(element[1] === "Oct")
             month = "10";
         else if(element[1] === "Nov")
