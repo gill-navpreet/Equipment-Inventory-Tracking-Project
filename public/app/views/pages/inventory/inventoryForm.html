@@ -4,7 +4,6 @@
 
 <form name="ciForm" ng-submit="inventoryForm.logInventory(invData);" novalidate>
 	<!-- Product -->
-	<!-- Bar Code -->
 	<div ng-class="{'has-success': (ciForm.product.$valid && !ciForm.product.$pristine),'has-error':((!ciForm.product.$valid && !ciForm.product.$pristine) || ((!ciForm.product.$valid)&& ciForm.$submitted)) }">
 		<label>Product:</label>
 		<input class = "form-control" type = "text" name = "product" placeholder="please enter product name" ng-model="inventoryForm.invData.product" id="bcode" ng-pattern="/^((([a-zA-Z])+[ ]*)+)$/" required>
