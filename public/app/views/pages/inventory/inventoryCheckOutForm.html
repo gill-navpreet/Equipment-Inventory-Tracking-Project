@@ -2,13 +2,13 @@
 <h1>Please Enter your information</h1>
 </div>
 
-<form name ="checkOutForm" ng-submit="checkOutForm.checkOutForm(newData);" novalidate>
+<form name ="checkOutForm.checkOutFormTable" ng-submit="checkOutForm.checkOutForm(newData);" novalidate>
 	<!-- First Name -->
-	<div ng-class="{'has-success': (checkOutForm.firstName.$valid && !checkOutForm.firstName.$pristine),'has-error':((!checkOutForm.firstName.$valid && !checkOutForm.firstName.$pristine) || ((!checkOutForm.firstName.$valid)&& checkOutForm.$submitted)) }">
+	<div ng-class="{'has-success': (checkOutForm.checkOutFormTable.firstName.$valid && !checkOutForm.checkOutFormTable.firstName.$pristine),'has-error':((!checkOutForm.checkOutFormTable.firstName.$valid && !checkOutForm.checkOutFormTable.firstName.$pristine) || ((!checkOutForm.checkOutFormTable.firstName.$valid)&& checkOutForm.checkOutFormTable.$submitted)) }">
 		<label>First Name:</label>
 		<input class = "form-control" type = "text" name = "firstName" placeholder="please enter first name" ng-model="newData.newFirstName" ng-pattern="/^([a-zA-Z]{2,20})$/" ng-minlength="2" ng-maxlength="20" required>
-		<p class="help-block "ng-show="(!checkOutForm.$pristine && checkOutForm.firstName.$error.required) || (checkOutForm.$submitted && checkOutForm.firstName.$error.required)"> This field is required </p>
-		<ul ng-show="(!checkOutForm.firstName.$pristine && checkOutForm.firstName.$error.pattern) || (!checkOutForm.firstName.$pristine && checkOutForm.firstName.$error.minlength) || (!checkOutForm.firstName.$pristine && checkOutForm.firstName.$error.maxlength)" class="help-block">
+		<p class="help-block "ng-show="(!checkOutForm.checkOutFormTable.$pristine && checkOutForm.checkOutFormTable.firstName.$error.required) || (checkOutForm.checkOutFormTable.$submitted && checkOutForm.checkOutFormTable.firstName.$error.required)"> This field is required </p>
+		<ul ng-show="(!checkOutForm.checkOutFormTable.firstName.$pristine && checkOutForm.checkOutFormTable.firstName.$error.pattern) || (!checkOutForm.checkOutFormTable.firstName.$pristine && checkOutForm.checkOutFormTable.firstName.$error.minlength) || (!checkOutForm.checkOutFormTable.firstName.$pristine && checkOutForm.checkOutFormTable.firstName.$error.maxlength)" class="help-block">
             <li>Must not contain any special characters</li>
             <li>Must not contain any numbers</li>
             <li>Must be at least 2 characters but no more than 20</li>
@@ -20,11 +20,11 @@
 	<br> -->
 
 	<!-- Last Name -->
-	<div ng-class="{'has-success': (checkOutForm.lastName.$valid && !checkOutForm.lastName.$pristine),'has-error':((!checkOutForm.lastName.$valid && !checkOutForm.lastName.$pristine) || ((!checkOutForm.lastName.$valid)&& checkOutForm.$submitted)) }">
+	<div ng-class="{'has-success': (checkOutForm.checkOutFormTable.lastName.$valid && !checkOutForm.checkOutFormTable.lastName.$pristine),'has-error':((!checkOutForm.checkOutFormTable.lastName.$valid && !checkOutForm.checkOutFormTable.lastName.$pristine) || ((!checkOutForm.checkOutFormTable.lastName.$valid)&& checkOutForm.checkOutFormTable.$submitted)) }">
 		<label>Last Name:</label>
 		<input class = "form-control" type = "text" name = "lastName" placeholder="please enter last name" ng-model="newData.newLastName" ng-pattern="/^([a-zA-Z]{2,20})$/" ng-minlength="2" ng-maxlength="20" required>
-		<p class="help-block "ng-show="(!checkOutForm.$pristine && checkOutForm.lastName.$error.required) || (checkOutForm.$submitted && checkOutForm.lastName.$error.required)"> This field is required </p>
-		<ul ng-show="(!checkOutForm.lastName.$pristine && checkOutForm.lastName.$error.pattern) || (!checkOutForm.lastName.$pristine && checkOutForm.lastName.$error.minlength) || (!checkOutForm.lastName.$pristine && checkOutForm.lastName.$error.maxlength)" class="help-block">
+		<p class="help-block "ng-show="(!checkOutForm.checkOutFormTable.$pristine && checkOutForm.checkOutFormTable.lastName.$error.required) || (checkOutForm.checkOutFormTable.$submitted && checkOutForm.checkOutFormTable.lastName.$error.required)"> This field is required </p>
+		<ul ng-show="(!checkOutForm.checkOutFormTable.lastName.$pristine && checkOutForm.checkOutFormTable.lastName.$error.pattern) || (!checkOutForm.checkOutFormTable.lastName.$pristine && checkOutForm.checkOutFormTable.lastName.$error.minlength) || (!checkOutForm.checkOutFormTable.lastName.$pristine && checkOutForm.checkOutFormTable.lastName.$error.maxlength)" class="help-block">
             <li>Must not contain any special characters</li>
             <li>Must not contain any numbers</li>
             <li>Must be at least 2 characters but no more than 20</li>
@@ -36,11 +36,11 @@
 	<br> -->
 
 	<!-- Email -->
-	<div ng-class="{ 'has-success':(checkOutForm.email.$valid && !checkOutForm.email.$pristine && !register.emailInvalid), 'has-error':(!checkOutForm.email.$valid && !checkOutForm.email.$pristine) || (!checkOutForm.email.$valid && checkOutForm.$submitted)}">
+	<div ng-class="{ 'has-success':(checkOutForm.checkOutFormTable.email.$valid && !checkOutForm.checkOutFormTable.email.$pristine && !register.emailInvalid), 'has-error':(!checkOutForm.checkOutFormTable.email.$valid && !checkOutForm.checkOutFormTable.email.$pristine) || (!checkOutForm.checkOutFormTable.email.$valid && checkOutForm.checkOutFormTable.$submitted)}">
 		<label>Email:</label>
 		<input class = "form-control" type = "text" name = "email" placeholder="please enter email" ng-model="newData.newEmail" ng-minlength="3" ng-maxlength="40" ng-pattern="/^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$/" required>
-		<p class="help-block" ng-show="(!checkOutForm.$pristine && checkOutForm.email.$error.required) || (checkOutForm.$submitted  && checkOutForm.email.$error.required)"> This field is required </p>
-        <ul ng-show="(!checkOutForm.email.$pristine && checkOutForm.email.$error.pattern) || (!checkOutForm.email.$pristine && checkOutForm.email.$error.minlength) || (!checkOutForm.email.$pristine && checkOutForm.email.$error.maxlength)" class="help-block">
+		<p class="help-block" ng-show="(!checkOutForm.checkOutFormTable.$pristine && checkOutForm.checkOutFormTable.email.$error.required) || (checkOutForm.checkOutFormTable.$submitted  && checkOutForm.checkOutFormTable.email.$error.required)"> This field is required </p>
+        <ul ng-show="(!checkOutForm.checkOutFormTable.email.$pristine && checkOutForm.checkOutFormTable.email.$error.pattern) || (!checkOutForm.checkOutFormTable.email.$pristine && checkOutForm.checkOutFormTable.email.$error.minlength) || (!checkOutForm.checkOutFormTable.email.$pristine && checkOutForm.checkOutFormTable.email.$error.maxlength)" class="help-block">
             <li>Must contain "@"</li>
             <li>Must not contain any special characters</li>
             <li>Must be at least 3 characters but no more than 40</li>
@@ -52,11 +52,11 @@
 	<br> -->
 	
 	<!-- Phone Number -->
-	<div ng-class="{ 'has-success':(checkOutForm.phoneNumber.$valid && !checkOutForm.phoneNumber.$pristine), 'has-error':(!checkOutForm.phoneNumber.$valid && !checkOutForm.phoneNumber.$pristine) || (!checkOutForm.phoneNumber.$valid && checkOutForm.$submitted)}">
+	<div ng-class="{ 'has-success':(checkOutForm.checkOutFormTable.phoneNumber.$valid && !checkOutForm.checkOutFormTable.phoneNumber.$pristine), 'has-error':(!checkOutForm.checkOutFormTable.phoneNumber.$valid && !checkOutForm.checkOutFormTable.phoneNumber.$pristine) || (!checkOutForm.checkOutFormTable.phoneNumber.$valid && checkOutForm.checkOutFormTable.$submitted)}">
 		<label>Phone Number:</label>
 		<input class = "form-control" type = "text" name = "phoneNumber" placeholder="please enter phone number in the format xxx-xxx-xxxx" ng-model="newData.newPhoneNumber" ng-pattern="/^[2-9]\d{2}-\d{3}-\d{4}$/" required>
-		<p class="help-block" ng-show="(!checkOutForm.$pristine && checkOutForm.phoneNumber.$error.required) || (checkOutForm.$submitted  && checkOutForm.phoneNumber.$error.required)"> This field is required </p>
-        <ul ng-show="(!checkOutForm.phoneNumber.$pristine && checkOutForm.phoneNumber.$error.pattern)" class="help-block">
+		<p class="help-block" ng-show="(!checkOutForm.checkOutFormTable.$pristine && checkOutForm.checkOutFormTable.phoneNumber.$error.required) || (checkOutForm.checkOutFormTable.$submitted  && checkOutForm.checkOutFormTable.phoneNumber.$error.required)"> This field is required </p>
+        <ul ng-show="(!checkOutForm.checkOutFormTable.phoneNumber.$pristine && checkOutForm.checkOutFormTable.phoneNumber.$error.pattern)" class="help-block">
             <li>Must be in format xxx-xxx-xxxx </li>
             <li>Must only contain numbers </li>
             <li>Must be 10 digits long</li>
@@ -68,43 +68,43 @@
 	<br> -->
 
 	<!-- Title -->
-	<div ng-class="{ 'has-success':(checkOutForm.title.$valid && !checkOutForm.title.$pristine), 'has-error':(!checkOutForm.title.$valid && !checkOutForm.title.$pristine) || (!checkOutForm.title.$valid && checkOutForm.$submitted)}">
+	<div ng-class="{ 'has-success':(checkOutForm.checkOutFormTable.title.$valid && !checkOutForm.checkOutFormTable.title.$pristine), 'has-error':(!checkOutForm.checkOutFormTable.title.$valid && !checkOutForm.checkOutFormTable.title.$pristine) || (!checkOutForm.checkOutFormTable.title.$valid && checkOutForm.checkOutFormTable.$submitted)}">
 		<label>Title:</label>
 		<input class="form-control" type="text" name='title' placeholder="please enter title" ng-model="newData.newTitle" required>
-		<p class="help-block" ng-show="(!checkOutForm.$pristine && checkOutForm.title.$error.required) || (checkOutForm.$submitted  && checkOutForm.title.$error.required)"> This field is required </p>
+		<p class="help-block" ng-show="(!checkOutForm.checkOutFormTable.$pristine && checkOutForm.checkOutFormTable.title.$error.required) || (checkOutForm.checkOutFormTable.$submitted  && checkOutForm.checkOutFormTable.title.$error.required)"> This field is required </p>
 	</div>
 	<br>
 
 	<!-- Department -->
-	<div ng-class="{ 'has-success':(checkOutForm.department.$valid && !checkOutForm.department.$pristine), 'has-error':(!checkOutForm.department.$valid && !checkOutForm.department.$pristine) || (!checkOutForm.department.$valid && checkOutForm.$submitted)}">
+	<div ng-class="{ 'has-success':(checkOutForm.checkOutFormTable.department.$valid && !checkOutForm.checkOutFormTable.department.$pristine), 'has-error':(!checkOutForm.checkOutFormTable.department.$valid && !checkOutForm.checkOutFormTable.department.$pristine) || (!checkOutForm.checkOutFormTable.department.$valid && checkOutForm.checkOutFormTable.$submitted)}">
 		<label>Department:</label>
 		<input class="form-control" type="text" name='department' placeholder="please enter department" ng-model="newData.newDepartment" required>
-		<p class="help-block" ng-show="(!checkOutForm.$pristine && checkOutForm.department.$error.required) || (checkOutForm.$submitted  && checkOutForm.department.$error.required)"> This field is required </p>
+		<p class="help-block" ng-show="(!checkOutForm.checkOutFormTable.$pristine && checkOutForm.checkOutFormTable.department.$error.required) || (checkOutForm.checkOutFormTable.$submitted  && checkOutForm.checkOutFormTable.department.$error.required)"> This field is required </p>
 	</div>
 	<br>
 
 	<!-- Location -->
-	<div ng-class="{ 'has-success':(checkOutForm.location.$valid && !checkOutForm.location.$pristine), 'has-error':(!checkOutForm.location.$valid && !checkOutForm.location.$pristine) || (!checkOutForm.location.$valid && checkOutForm.$submitted)}">
+	<div ng-class="{ 'has-success':(checkOutForm.checkOutFormTable.location.$valid && !checkOutForm.checkOutFormTable.location.$pristine), 'has-error':(!checkOutForm.checkOutFormTable.location.$valid && !checkOutForm.checkOutFormTable.location.$pristine) || (!checkOutForm.checkOutFormTable.location.$valid && checkOutForm.checkOutFormTable.$submitted)}">
 		<label>Location:</label>
 		<input class="form-control" type="text" name='location' placeholder="please enter location" ng-model="newData.newLocation" required>
-		<p class="help-block" ng-show="(!checkOutForm.$pristine && checkOutForm.location.$error.required) || (checkOutForm.$submitted  && checkOutForm.location.$error.required)"> This field is required </p>
+		<p class="help-block" ng-show="(!checkOutForm.checkOutFormTable.$pristine && checkOutForm.checkOutFormTable.location.$error.required) || (checkOutForm.checkOutFormTable.$submitted  && checkOutForm.checkOutFormTable.location.$error.required)"> This field is required </p>
 	</div>
 	<br>
 
 	<!-- Charge Number -->
-	<div ng-class="{ 'has-success':(checkOutForm.chargeNumber.$valid && !checkOutForm.chargeNumber.$pristine), 'has-error':(!checkOutForm.chargeNumber.$valid && !checkOutForm.chargeNumber.$pristine) || (!checkOutForm.chargeNumber.$valid && checkOutForm.$submitted)}">
+	<div ng-class="{ 'has-success':(checkOutForm.checkOutFormTable.chargeNumber.$valid && !checkOutForm.checkOutFormTable.chargeNumber.$pristine), 'has-error':(!checkOutForm.checkOutFormTable.chargeNumber.$valid && !checkOutForm.checkOutFormTable.chargeNumber.$pristine) || (!checkOutForm.checkOutFormTable.chargeNumber.$valid && checkOutForm.checkOutFormTable.$submitted)}">
 		<label>Charge Number:</label>
 		<input class="form-control" type="text" name='chargeNumber' placeholder="please enter charge number" ng-model="newData.newChargeNumber" required>
-		<p class="help-block" ng-show="(!checkOutForm.$pristine && checkOutForm.chargeNumber.$error.required) || (checkOutForm.$submitted  && checkOutForm.chargeNumber.$error.required)"> This field is required </p>
+		<p class="help-block" ng-show="(!checkOutForm.checkOutFormTable.$pristine && checkOutForm.checkOutFormTable.chargeNumber.$error.required) || (checkOutForm.checkOutFormTable.$submitted  && checkOutForm.checkOutFormTable.chargeNumber.$error.required)"> This field is required </p>
 	</div>
 	<br>
 
 	<!-- Supervisor's First Name -->
-	<div ng-class="{'has-success': (checkOutForm.supervisorFirstName.$valid && !checkOutForm.supervisorFirstName.$pristine),'has-error':((!checkOutForm.supervisorFirstName.$valid && !checkOutForm.supervisorFirstName.$pristine) || ((!checkOutForm.supervisorFirstName.$valid)&& checkOutForm.$submitted)) }">
+	<div ng-class="{'has-success': (checkOutForm.checkOutFormTable.supervisorFirstName.$valid && !checkOutForm.checkOutFormTable.supervisorFirstName.$pristine),'has-error':((!checkOutForm.checkOutFormTable.supervisorFirstName.$valid && !checkOutForm.checkOutFormTable.supervisorFirstName.$pristine) || ((!checkOutForm.checkOutFormTable.supervisorFirstName.$valid)&& checkOutForm.checkOutFormTable.$submitted)) }">
 		<label>Supervisor's First Name:</label>
 		<input class = "form-control" type = "text" name = "supervisorFirstName" placeholder="please enter supervisor's first name" ng-model="newData.newSupervisorFirstName"  ng-pattern="/^([a-zA-Z]{2,20})$/" ng-minlength="2" ng-maxlength="20" required>
-		<p class="help-block "ng-show="(!checkOutForm.$pristine && checkOutForm.supervisorFirstName.$error.required) || (checkOutForm.$submitted && checkOutForm.supervisorFirstName.$error.required)"> This field is required </p>
-		<ul ng-show="(!checkOutForm.supervisorFirstName.$pristine && checkOutForm.supervisorFirstName.$error.pattern) || (!checkOutForm.supervisorFirstName.$pristine && checkOutForm.supervisorFirstName.$error.minlength) || (!checkOutForm.supervisorFirstName.$pristine && checkOutForm.supervisorFirstName.$error.maxlength)" class="help-block">
+		<p class="help-block "ng-show="(!checkOutForm.checkOutFormTable.$pristine && checkOutForm.checkOutFormTable.supervisorFirstName.$error.required) || (checkOutForm.checkOutFormTable.$submitted && checkOutForm.checkOutFormTable.supervisorFirstName.$error.required)"> This field is required </p>
+		<ul ng-show="(!checkOutForm.checkOutFormTable.supervisorFirstName.$pristine && checkOutForm.checkOutFormTable.supervisorFirstName.$error.pattern) || (!checkOutForm.checkOutFormTable.supervisorFirstName.$pristine && checkOutForm.checkOutFormTable.supervisorFirstName.$error.minlength) || (!checkOutForm.checkOutFormTable.supervisorFirstName.$pristine && checkOutForm.checkOutFormTable.supervisorFirstName.$error.maxlength)" class="help-block">
             <li>Must not contain any special characters</li>
             <li>Must not contain any numbers</li>
             <li>Must be at least 2 characters but no more than 20</li>
@@ -116,11 +116,11 @@
 	<br> -->
 
 	<!-- Supervisor's Last Name -->
-	<div ng-class="{'has-success': (checkOutForm.supervisorLastName.$valid && !checkOutForm.supervisorLastName.$pristine),'has-error':((!checkOutForm.supervisorLastName.$valid && !checkOutForm.supervisorLastName.$pristine) || ((!checkOutForm.supervisorLastName.$valid)&& checkOutForm.$submitted)) }">
+	<div ng-class="{'has-success': (checkOutForm.checkOutFormTable.supervisorLastName.$valid && !checkOutForm.checkOutFormTable.supervisorLastName.$pristine),'has-error':((!checkOutForm.checkOutFormTable.supervisorLastName.$valid && !checkOutForm.checkOutFormTable.supervisorLastName.$pristine) || ((!checkOutForm.checkOutFormTable.supervisorLastName.$valid)&& checkOutForm.checkOutFormTable.$submitted)) }">
 		<label>Supervisor's Last Name:</label>
 		<input class = "form-control" type = "text" name = "supervisorLastName" placeholder="please enter supervisor's first name" ng-model="newData.newSupervisorLastName"  ng-pattern="/^([a-zA-Z]{2,20})$/" ng-minlength="2" ng-maxlength="20" required>
-		<p class="help-block "ng-show="(!checkOutForm.$pristine && checkOutForm.supervisorLastName.$error.required) || (checkOutForm.$submitted && checkOutForm.supervisorLastName.$error.required)"> This field is required </p>
-		<ul ng-show="(!checkOutForm.supervisorLastName.$pristine && checkOutForm.supervisorLastName.$error.pattern) || (!checkOutForm.supervisorLastName.$pristine && checkOutForm.supervisorLastName.$error.minlength) || (!checkOutForm.supervisorLastName.$pristine && checkOutForm.supervisorLastName.$error.maxlength)" class="help-block">
+		<p class="help-block "ng-show="(!checkOutForm.checkOutFormTable.$pristine && checkOutForm.checkOutFormTable.supervisorLastName.$error.required) || (checkOutForm.checkOutFormTable.$submitted && checkOutForm.checkOutFormTable.supervisorLastName.$error.required)"> This field is required </p>
+		<ul ng-show="(!checkOutForm.checkOutFormTable.supervisorLastName.$pristine && checkOutForm.checkOutFormTable.supervisorLastName.$error.pattern) || (!checkOutForm.checkOutFormTable.supervisorLastName.$pristine && checkOutForm.checkOutFormTable.supervisorLastName.$error.minlength) || (!checkOutForm.checkOutFormTable.supervisorLastName.$pristine && checkOutForm.checkOutFormTable.supervisorLastName.$error.maxlength)" class="help-block">
             <li>Must not contain any special characters</li>
             <li>Must not contain any numbers</li>
             <li>Must be at least 2 characters but no more than 20</li>
@@ -132,11 +132,11 @@
 	<br> -->
 
 	<!-- Supervisor's Email -->
-	<div ng-class="{ 'has-success':(checkOutForm.supEmail.$valid && !checkOutForm.supEmail.$pristine && !register.emailInvalid), 'has-error':(!checkOutForm.supEmail.$valid && !checkOutForm.supEmail.$pristine) || (!checkOutForm.supEmail.$valid && checkOutForm.$submitted) }">
+	<div ng-class="{ 'has-success':(checkOutForm.checkOutFormTable.supEmail.$valid && !checkOutForm.checkOutFormTable.supEmail.$pristine && !register.emailInvalid), 'has-error':(!checkOutForm.checkOutFormTable.supEmail.$valid && !checkOutForm.checkOutFormTable.supEmail.$pristine) || (!checkOutForm.checkOutFormTable.supEmail.$valid && checkOutForm.checkOutFormTable.$submitted) }">
 		<label>Email:</label>
 		<input class = "form-control" type = "text" name = "supEmail" placeholder="please enter supervisor's email" ng-model="newData.newSupervisorEmail" ng-minlength="3" ng-maxlength="40" ng-pattern="/^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$/" required>
-		<p class="help-block" ng-show="(!checkOutForm.$pristine && checkOutForm.supEmail.$error.required) || (checkOutForm.$submitted  && checkOutForm.supEmail.$error.required)"> This field is required </p>
-        <ul ng-show="(!checkOutForm.email.$pristine && checkOutForm.supEmail.$error.pattern) || (!checkOutForm.supEmail.$pristine && checkOutForm.supEmail.$error.minlength) || (!checkOutForm.supEmail.$pristine && checkOutForm.supEmail.$error.maxlength)" class="help-block">
+		<p class="help-block" ng-show="(!checkOutForm.checkOutFormTable.$pristine && checkOutForm.checkOutFormTable.supEmail.$error.required) || (checkOutForm.checkOutFormTable.$submitted  && checkOutForm.checkOutFormTable.supEmail.$error.required)"> This field is required </p>
+        <ul ng-show="(!checkOutForm.checkOutFormTable.email.$pristine && checkOutForm.checkOutFormTable.supEmail.$error.pattern) || (!checkOutForm.checkOutFormTable.supEmail.$pristine && checkOutForm.checkOutFormTable.supEmail.$error.minlength) || (!checkOutForm.checkOutFormTable.supEmail.$pristine && checkOutForm.checkOutFormTable.supEmail.$error.maxlength)" class="help-block">
             <li>Must contain "@"</li>
             <li>Must not contain any special characters</li>
             <li>Must be at least 3 characters but no more than 40</li>
@@ -148,11 +148,11 @@
 	<br> -->
 
 	<!-- Supervisor's Phone Number -->
-	<div ng-class="{ 'has-success':(checkOutForm.supervisorPhoneNumber.$valid && !checkOutForm.supervisorPhoneNumber.$pristine), 'has-error':(!checkOutForm.supervisorPhoneNumber.$valid && !checkOutForm.supervisorPhoneNumber.$pristine) || (!checkOutForm.supervisorPhoneNumber.$valid && checkOutForm.$submitted)}">
+	<div ng-class="{ 'has-success':(checkOutForm.checkOutFormTable.supervisorPhoneNumber.$valid && !checkOutForm.checkOutFormTable.supervisorPhoneNumber.$pristine), 'has-error':(!checkOutForm.checkOutFormTable.supervisorPhoneNumber.$valid && !checkOutForm.checkOutFormTable.supervisorPhoneNumber.$pristine) || (!checkOutForm.checkOutFormTable.supervisorPhoneNumber.$valid && checkOutForm.checkOutFormTable.$submitted)}">
 		<label>Supervisor's Phone Number:</label>
 		<input class = "form-control" type = "text" name = "supervisorPhoneNumber" placeholder="please enter supervisor's phone number in the format xxx-xxx-xxxx" ng-model="newData.newSupervisorPhoneNumber" ng-pattern="/^[2-9]\d{2}-\d{3}-\d{4}$/" required>
-		<p class="help-block" ng-show="(!checkOutForm.$pristine && checkOutForm.supervisorPhoneNumber.$error.required) || (checkOutForm.$submitted  && checkOutForm.supervisorPhoneNumber.$error.required)"> This field is required </p>
-        <ul ng-show="(!checkOutForm.supervisorPhoneNumber.$pristine && checkOutForm.supervisorPhoneNumber.$error.pattern)" class="help-block">
+		<p class="help-block" ng-show="(!checkOutForm.checkOutFormTable.$pristine && checkOutForm.checkOutFormTable.supervisorPhoneNumber.$error.required) || (checkOutForm.checkOutFormTable.$submitted  && checkOutForm.checkOutFormTable.supervisorPhoneNumber.$error.required)"> This field is required </p>
+        <ul ng-show="(!checkOutForm.checkOutFormTable.supervisorPhoneNumber.$pristine && checkOutForm.checkOutFormTable.supervisorPhoneNumber.$error.pattern)" class="help-block">
             <li>Must be in format xxx-xxx-xxxx </li>
             <li>Must only contain numbers </li>
             <li>Must be 10 digits long</li>
@@ -163,7 +163,7 @@
 	<input class="form-control" type="text" name='supervisorPhoneNumber' placeholder="please enter supervisor phone number" ng-model="newData.newSupervisorPhoneNumber" required>
 	<br> -->
 
-	<!-- <span> {{ checkOutForm}}</span> -->
+	< <span> {{ checkOutForm.checkOutFormTable}}</span> 
 
 	<button class="btn btn-primary" type="submit">Submit</button>
 </form>
