@@ -36,8 +36,7 @@ writeStream.on('finish', function() {
         //Keep track of number of items checked in/out for each month
         var checkinDates = new HashMap();
         var checkoutDates = new HashMap();
-        //Iterative element per data entry
-        var element;
+        //Iterate through keys (dates) used for hashmaps
         var keys;
         //Parse all the data from History.csv into another csv
         var data = fs.createWriteStream('csvFiles/Data.csv');
@@ -46,31 +45,32 @@ writeStream.on('finish', function() {
 
         for(var i = 0; i < entries.length; i++) {
             var element = entries[i];
+            var departments = [];
 
             if(element[3] === "checked in") {
-                if(!checkinDates.has(element[0]))
-                    checkinDates.set(element[0], 1);
-                else
-                    checkinDates.set(element[0], checkinDates.get(element[0])+1);
+                //If there is already a registered checkin/out, add the department to the existing list
+                if(checkinDates.has(element[0]))
+                    departments = checkinDates.get(element[0]);
+                departments.push(element[13]);
+                checkinDates.set(element[0], departments);
             }
             else if(element[3] === "checked out") {
-                if(!checkoutDates.has(element[0]))
-                    checkoutDates.set(element[0], 1);
-                else
-                    checkoutDates.set(element[0], checkoutDates.get(element[0])+1);
-
+                if(checkoutDates.has(element[0]))
+                   departments = checkoutDates.get(element[0]);
+                departments.push(element[13]);
+                checkoutDates.set(element[0], departments);
             }
         }
 
         data.write("Check-ins for each month:\n");
         keys = checkinDates.keys();
         for(var i = 0; i < keys.length; i++)
-            data.write(keys[i] + "," + checkinDates.get(keys[i]) + "\n");
+            data.write(keys[i] + "," + checkinDates.get(keys[i]).length + "\n");
 
         data.write("\nCheck-outs for each month:\n");
         keys = checkoutDates.keys();
         for(var i = 0; i < keys.length; i++)
-            data.write(keys[i] + "," + checkoutDates.get(keys[i]) + "\n");
+            data.write(keys[i] + "," + checkoutDates.get(keys[i]).length + "\n");
 
         /*data.write("Check-ins:\n");
         for(var i = 0; i < entries.length; i++) {
@@ -138,7 +138,6 @@ function parseDates(data) {
         else if(element[1] === "Dec")
             month = "12";
         data[i][0] = element[3].concat("-" + month);
-        console.log(data[i][0]); //Just a test to see if the dates were parsed correctly
     }
 }
 
