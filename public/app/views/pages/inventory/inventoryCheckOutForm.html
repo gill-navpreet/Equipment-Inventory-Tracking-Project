@@ -35,9 +35,21 @@
 	<input class="form-control" type="text" name='lastName' placeholder="please enter last name" ng-model="newData.newLastName" required>
 	<br> -->
 
-	<label>Email:</label>
-	<input class="form-control" type="text" name='email' placeholder="please enter email" ng-model="newData.newEmail" required>
+	<!-- Email -->
+	<div ng-class="{ 'has-success':(checkOutForm.email.$valid && !checkOutForm.email.$pristine && !register.emailInvalid), 'has-error':(!checkOutForm.email.$valid && !checkOutForm.email.$pristine) || (!checkOutForm.email.$valid && checkOutForm.$submitted)}">
+		<label>Email:</label>
+		<input class = "form-control" type = "text" name = "email" placeholder="please enter email" ng-model="newData.newEmail" ng-minlength="3" ng-maxlength="40" ng-pattern="/^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$/" required>
+		<p class="help-block" ng-show="(!checkOutForm.$pristine && checkOutForm.email.$error.required) || (checkOutForm.$submitted  && checkOutForm.email.$error.required)"> This field is required </p>
+        <ul ng-show="(!checkOutForm.email.$pristine && checkOutForm.email.$error.pattern) || (!checkOutForm.email.$pristine && checkOutForm.email.$error.minlength) || (!checkOutForm.email.$pristine && checkOutForm.email.$error.maxlength)" class="help-block">
+            <li>Must contain "@"</li>
+            <li>Must not contain any special characters</li>
+            <li>Must be at least 3 characters but no more than 40</li>
+        </ul>
+	</div>
 	<br>
+	<!-- <label>Email:</label>
+	<input class="form-control" type="text" name='email' placeholder="please enter email" ng-model="newData.newEmail" required>
+	<br> -->
 			
 	<label>Phone Number:</label>
 	<input class="form-control" type="text" name='phoneNumber' placeholder="please enter your phone number" ng-model="newData.newPhoneNumber" required>
@@ -91,15 +103,27 @@
 	<input class="form-control" type="text" name='supervisorLastName' placeholder="please enter supervisor last name" ng-model="newData.newSupervisorLastName" required>
 	<br> -->
 
-	<label>Supervisor Email:</label>
-	<input class="form-control" type="text" name='supervisorEmail' placeholder="please enter supervisor email" ng-model="newData.newSupervisorEmail" required>
+	<!-- Supervisor's Email -->
+	<div ng-class="{ 'has-success':(checkOutForm.supEmail.$valid && !checkOutForm.supEmail.$pristine && !register.emailInvalid), 'has-error':(!checkOutForm.supEmail.$valid && !checkOutForm.supEmail.$pristine) || (!checkOutForm.supEmail.$valid && checkOutForm.$submitted) }">
+		<label>Email:</label>
+		<input class = "form-control" type = "text" name = "supEmail" placeholder="please enter supervisor's email" ng-model="newData.newSupervisorEmail" ng-minlength="3" ng-maxlength="40" ng-pattern="/^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$/" required>
+		<p class="help-block" ng-show="(!checkOutForm.$pristine && checkOutForm.supEmail.$error.required) || (checkOutForm.$submitted  && checkOutForm.supEmail.$error.required)"> This field is required </p>
+        <ul ng-show="(!checkOutForm.email.$pristine && checkOutForm.supEmail.$error.pattern) || (!checkOutForm.supEmail.$pristine && checkOutForm.supEmail.$error.minlength) || (!checkOutForm.supEmail.$pristine && checkOutForm.supEmail.$error.maxlength)" class="help-block">
+            <li>Must contain "@"</li>
+            <li>Must not contain any special characters</li>
+            <li>Must be at least 3 characters but no more than 40</li>
+        </ul>
+	</div>
 	<br>
+	<!-- <label>Supervisor Email:</label>
+	<input class="form-control" type="text" name='supervisorEmail' placeholder="please enter supervisor email" ng-model="newData.newSupervisorEmail" required>
+	<br> -->
 
 	<label>Supervisor Phone Number:</label>
 	<input class="form-control" type="text" name='supervisorPhoneNumber' placeholder="please enter supervisor phone number" ng-model="newData.newSupervisorPhoneNumber" required>
 	<br>
 
-
+<!-- <span> {{ checkOutForm}}</span> -->
 
 	<button class="btn btn-primary" type="submit">Submit</button>
 </form>

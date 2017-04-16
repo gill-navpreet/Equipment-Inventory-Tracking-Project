@@ -14,7 +14,8 @@
             <li>Must not contain any numbers</li>
         </ul>
 	</div>
-
+	<br>
+	
 	<!-- Bar Code -->
 	<div ng-class="{'has-success': (ciForm.barcode.$valid && !ciForm.barcode.$pristine),'has-error':((!ciForm.barcode.$valid && !ciForm.barcode.$pristine) || ((!ciForm.barcode.$valid)&& ciForm.$submitted)) }">
 		<label>Bar Code:</label>
