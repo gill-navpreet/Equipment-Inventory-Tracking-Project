@@ -2,11 +2,22 @@
 <h1>Please Enter your information</h1>
 </div>
 
-<form name ="checkOutForm.checkOutFormTable" ng-submit="checkOutForm.checkOutForm(newData);">
-	<!-- Bar Code -->
-	<label>First Name:</label>
-	<input class="form-control" type="text" name='firstName' placeholder="please enter first name" ng-model="newData.newFirstName" required>
+<form name ="checkOutForm" ng-submit="checkOutForm.checkOutForm(newData);" novalidate>
+	<!-- First Name -->
+	<div ng-class="{'has-success': (checkOutForm.firstName.$valid && !checkOutForm.firstName.$pristine),'has-error':((!checkOutForm.firstName.$valid && !checkOutForm.firstName.$pristine) || ((!checkOutForm.firstName.$valid)&& checkOutForm.$submitted)) }">
+		<label>First Name:</label>
+		<input class = "form-control" type = "text" name = "firstName" placeholder="please enter first name" ng-model="newData.newFirstName" ng-pattern="/^([a-zA-Z]{3,20})$/" ng-minlength="3" ng-maxlength="20" required>
+		<p class="help-block "ng-show="(!checkOutForm.$pristine && checkOutForm.firstName.$error.required) || (checkOutForm.$submitted && checkOutForm.firstName.$error.required)"> This field is required </p>
+		<ul ng-show="(!checkOutForm.firstName.$pristine && checkOutForm.firstName.$error.pattern) || (!checkOutForm.firstName.$pristine && checkOutForm.firstName.$error.minlength) || (!checkOutForm.firstName.$pristine && checkOutForm.firstName.$error.maxlength)" class="help-block">
+            <li>Must not contain any special characters</li>
+            <li>Must not contain any numbers</li>
+            <li>Must be at least 3 characters but no more than 20</li>
+        </ul>
+	</div>
 	<br>
+	<!-- <label>First Name:</label>
+	<input class="form-control" type="text" name='firstName' placeholder="please enter first name" ng-model="newData.newFirstName" required>
+	<br> -->
 
 	<label>Last Name:</label>
 	<input class="form-control" type="text" name='lastName' placeholder="please enter last name" ng-model="newData.newLastName" required>

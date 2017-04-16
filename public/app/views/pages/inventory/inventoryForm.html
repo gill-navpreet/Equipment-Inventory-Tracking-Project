@@ -7,7 +7,7 @@
 	<!-- Bar Code -->
 	<div ng-class="{'has-success': (ciForm.product.$valid && !ciForm.product.$pristine),'has-error':((!ciForm.product.$valid && !ciForm.product.$pristine) || ((!ciForm.product.$valid)&& ciForm.$submitted)) }">
 		<label>Product:</label>
-		<input class = "form-control" type = "text" name = "product" placeholder="please enter product name" ng-model="inventoryForm.invData.product" id="bcode" ng-pattern="/^((([a-zA-Z])+[ ]*)+)/" required>
+		<input class = "form-control" type = "text" name = "product" placeholder="please enter product name" ng-model="inventoryForm.invData.product" id="bcode" ng-pattern="/^((([a-zA-Z])+[ ]*)+)$/" required>
 		<p class="help-block "ng-show="(!ciForm.$pristine && ciForm.name.$error.required) || (ciForm.$submitted && ciForm.name.$error.required)"> This field is required </p>
 		<ul ng-show="(!ciForm.product.$pristine && ciForm.product.$error.pattern)" class="help-block">
             <li>Must not contain any special characters</li>
