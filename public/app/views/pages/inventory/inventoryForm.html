@@ -8,7 +8,7 @@
 	<div ng-class="{'has-success': (ciForm.product.$valid && !ciForm.product.$pristine),'has-error':((!ciForm.product.$valid && !ciForm.product.$pristine) || ((!ciForm.product.$valid)&& ciForm.$submitted)) }">
 		<label>Product:</label>
 		<input class = "form-control" type = "text" name = "product" placeholder="please enter product name" ng-model="inventoryForm.invData.product" id="bcode" ng-pattern="/^((([a-zA-Z])+[ ]*)+)$/" required>
-		<p class="help-block "ng-show="(!ciForm.$pristine && ciForm.name.$error.required) || (ciForm.$submitted && ciForm.name.$error.required)"> This field is required </p>
+		<p class="help-block "ng-show="(!ciForm.$pristine && ciForm.product.$error.required) || (ciForm.$submitted && ciForm.product.$error.required)"> This field is required </p>
 		<ul ng-show="(!ciForm.product.$pristine && ciForm.product.$error.pattern)" class="help-block">
             <li>Must not contain any special characters</li>
             <li>Must not contain any numbers</li>
@@ -19,7 +19,7 @@
 	<div ng-class="{'has-success': (ciForm.barcode.$valid && !ciForm.barcode.$pristine),'has-error':((!ciForm.barcode.$valid && !ciForm.barcode.$pristine) || ((!ciForm.barcode.$valid)&& ciForm.$submitted)) }">
 		<label>Bar Code:</label>
 		<input class = "form-control" type = "text" name = "barcode" placeholder="please scan an item or enter a 10-digit barcode" ng-model="inventoryForm.invData.barcode" id="bcode" ng-pattern="/^[0-9]{10}/" ng-minlength="10" ng-maxlength="10" required>
-		<p class="help-block "ng-show="(!ciForm.$pristine && ciForm.name.$error.required) || (ciForm.$submitted && ciForm.name.$error.required)"> This field is required </p>
+		<p class="help-block "ng-show="(!ciForm.$pristine && ciForm.barcode.$error.required) || (ciForm.$submitted && ciForm.barcode.$error.required)"> This field is required </p>
 		<ul ng-show="(!ciForm.barcode.$pristine && ciForm.barcode.$error.pattern) || (!ciForm.barcode.$pristine && ciForm.barcode.$error.minlength) || (!ciForm.barcode.$pristine && ciForm.barcode.$error.maxlength)" class="help-block">
             <li>Must be exactly 10 digits long</li>
             <li>Must not contain any special characters</li>
