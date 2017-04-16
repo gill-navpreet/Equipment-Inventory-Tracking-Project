@@ -110,7 +110,7 @@
 	<!-- Bar Code -->
 	<div ng-class="{'has-success': (editInventory.barcodeForm.barcode.$valid && !editInventory.barcodeForm.barcode.$pristine),'has-error':((!editInventory.barcodeForm.barcode.$valid && !editInventory.barcodeForm.barcode.$pristine) || ((!editInventory.barcodeForm.barcode.$valid)&& editInventory.barcodeForm.$submitted)) }">
 		<label>Bar Code:</label>
-		<input class = "form-control" type = "text" name = "barcode" placeholder="please scan an item or enter a 10-digit barcode" ng-model="newBarcode" id="bcode" ng-pattern="/^[0-9]{10}/" ng-minlength="10" ng-maxlength="10" required>
+		<input class = "form-control" type = "text" name = "barcode" placeholder="please scan an item or enter a 10-digit barcode" ng-model="newBarcode" id="bcode" ng-pattern="/^[0-9]{10}/" ng-minlength="10" ng-maxlength="10" focus="true" required>
 		<p class="help-block "ng-show="(!editInventory.barcodeForm.$pristine && editInventory.barcodeForm.barcode.$error.required) || (editInventory.barcodeForm.$submitted && editInventory.barcodeForm.barcode.$error.required)"> This field is required </p>
 		<ul ng-show="(!editInventory.barcodeForm.barcode.$pristine && editInventory.barcodeForm.barcode.$error.pattern) || (!editInventory.barcodeForm.barcode.$pristine && editInventory.barcodeForm.barcode.$error.minlength) || (!editInventory.barcodeForm.barcode.$pristine && editInventory.barcodeForm.barcode.$error.maxlength)" class="help-block">
             <li>Must be exactly 10 digits long</li>
