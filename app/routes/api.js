@@ -11,7 +11,6 @@ var sgTransport = require('nodemailer-sendgrid-transport');
 var fs = require('fs');
 var parse = require('csv-parse');
 var HashMap = require('hashmap');
-var ArrayList = require('arraylist');
 
 Inventory.findAndStreamCsv()
   .pipe(fs.createWriteStream('csvFiles/Inventory.csv'));
@@ -34,11 +33,13 @@ writeStream.on('finish', function() {
 
     readStream.on('end', function() {
         //Keep track of number of items checked in/out for each month
+        //Each hashmap stores a hashmap that keeps the number of equipment used by each department
         var checkinDates = new HashMap();
         var checkoutDates = new HashMap();
-        //Iterative element per data entry
-        var element;
-        var keys;
+        //Iterate through hashmap keys for storage
+        var dateKeys, deptKeys;
+        //Iterate through hashmap values for output
+        var deptValues, items;
         //Parse all the data from History.csv into another csv
         var data = fs.createWriteStream('csvFiles/Data.csv');
 
@@ -46,62 +47,79 @@ writeStream.on('finish', function() {
 
         for(var i = 0; i < entries.length; i++) {
             var element = entries[i];
+            var departments = new HashMap();
 
             if(element[3] === "checked in") {
-                if(!checkinDates.has(element[0]))
-                    checkinDates.set(element[0], 1);
+                //If there is already a department list for a given date, obtain that list
+                if(checkinDates.has(element[0]))
+                    departments.copy(checkinDates.get(element[0]));
+
+                //If a new department checks out equipment, add to the list
+                if(!departments.has(element[13]))
+                    items = 1;
+                //Otherwise increment the number of items by 1
                 else
-                    checkinDates.set(element[0], checkinDates.get(element[0])+1);
+                    items = departments.get(element[13])+1;
+
+                //Store number of items with department as key
+                departments.set(element[13], items);
+                //Store departments with date as key
+                checkinDates.set(element[0], departments);
             }
             else if(element[3] === "checked out") {
-                if(!checkoutDates.has(element[0]))
-                    checkoutDates.set(element[0], 1);
+                if(checkoutDates.has(element[0]))
+                   departments.copy(checkoutDates.get(element[0]));
+
+                if(!departments.has(element[13]))
+                    items = 1;
                 else
-                    checkoutDates.set(element[0], checkoutDates.get(element[0])+1);
+                    items = departments.get(element[13])+1;
 
+                departments.set(element[13], items);
+                checkoutDates.set(element[0], departments);
             }
         }
-
-        data.write("Check-ins for each month:\n");
-        keys = checkinDates.keys();
-        for(var i = 0; i < keys.length; i++)
-            data.write(keys[i] + "," + checkinDates.get(keys[i]) + "\n");
-
-        data.write("\nCheck-outs for each month:\n");
-        keys = checkoutDates.keys();
-        for(var i = 0; i < keys.length; i++)
-            data.write(keys[i] + "," + checkoutDates.get(keys[i]) + "\n");
-
-        /*data.write("Check-ins:\n");
-        for(var i = 0; i < entries.length; i++) {
-            element = entries[i];
-            if(element[3] === "checked in")
-                data.write(element[1] + " - " + element[4] + " " + element[5] + "\n");
+      
+        // Output to Data.csv (unfixed)
+        data.write("Date, Check-Ins:\n");
+        dateKeys = checkinDates.keys();
+        for(var i = 0; i < dateKeys.length; i++) {
+            items = 0;
+            deptValues = checkinDates.get(dateKeys[i]).values();
+            for(var j = 0; j < deptValues.length; j++)
+                items += deptValues[j];
+            data.write(dateKeys[i] + "," + items + "\n");
         }
 
-        data.write("\nCheck-outs:");
-        for(var i = 0; i < entries.length; i++) {
-            element = entries[i];
-            if(element[3] === "checked out")
-                data.write(element[1] + " - " + element[4] + " " + element[5] + "\n");
+        data.write("\nDate, Check-Outs:\n");
+        dateKeys = checkoutDates.keys();
+        for(var i = 0; i < dateKeys.length; i++) {
+            items = 0;
+            deptValues = checkoutDates.get(dateKeys[i]).values();
+            for(var j = 0; j < deptValues.length; j++)
+                items += deptValues[j];
+            data.write(dateKeys[i] + "," + items + "\n");
         }
 
-        var equipment = new HashMap();
-        data.write("\nList of items checked out:\n");
-        for(var i = 0; i < entries.length; i++) {
-            element = entries[i];
-            if(element[3] === "checked out") {
-                if(!equipment.has(element[1]) && element[1] != "Product")
-                    equipment.set(element[1], 1);
-                else if(equipment.has(element[1]))
-                    equipment.set(element[1], equipment.get(element[1])+1);
-            }
+        data.write("\nDate, Department(s) (# of items checked in):\n");
+        dateKeys = checkinDates.keys();
+        for(var i = 0; i < dateKeys.length; i++) {
+            deptKeys = checkinDates.get(dateKeys[i]).keys().sort();
+            data.write(dateKeys[i]);
+            for(var j = 0; j < deptKeys.length; j++)
+                data.write("," + deptKeys[j] + "(" + checkinDates.get(dateKeys[i]).get(deptKeys[j]) + ")");
+            data.write("\n");
         }
 
-        var keys = equipment.keys();
-        for(var i = 0; i < equipment.count(); i++) {
-            data.write(keys[i] + " " + "(" + equipment.get(keys[i]) + ")" + "\n");
-        }*/
+        data.write("\nDate, Department(s) (# of items checked out):\n");
+        dateKeys = checkoutDates.keys();
+        for(var i = 0; i < dateKeys.length; i++) {
+            deptKeys = checkoutDates.get(dateKeys[i]).keys().sort();
+            data.write(dateKeys[i]);
+            for(var j = 0; j < deptKeys.length; j++)
+                data.write("," + deptKeys[j] + "(" + checkoutDates.get(dateKeys[i]).get(deptKeys[j]) + ")");
+            data.write("\n");
+        }
     });
 });
 
@@ -138,7 +156,6 @@ function parseDates(data) {
         else if(element[1] === "Dec")
             month = "12";
         data[i][0] = element[3].concat("-" + month);
-        console.log(data[i][0]); //Just a test to see if the dates were parsed correctly
     }
 }
 
