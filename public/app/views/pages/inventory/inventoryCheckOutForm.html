@@ -67,20 +67,36 @@
 	<input class="form-control" type="text" name='phoneNumber' placeholder="please enter your phone number" ng-model="newData.newPhoneNumber" required>
 	<br> -->
 
-	<label>Title:</label>
-	<input class="form-control" type="text" name='title' placeholder="please enter title" ng-model="newData.newTitle" required>
+	<!-- Title -->
+	<div ng-class="{ 'has-success':(checkOutForm.title.$valid && !checkOutForm.title.$pristine), 'has-error':(!checkOutForm.title.$valid && !checkOutForm.title.$pristine) || (!checkOutForm.title.$valid && checkOutForm.$submitted)}">
+		<label>Title:</label>
+		<input class="form-control" type="text" name='title' placeholder="please enter title" ng-model="newData.newTitle" required>
+		<p class="help-block" ng-show="(!checkOutForm.$pristine && checkOutForm.title.$error.required) || (checkOutForm.$submitted  && checkOutForm.title.$error.required)"> This field is required </p>
+	</div>
 	<br>
 
-	<label>Department:</label>
-	<input class="form-control" type="text" name='department' placeholder="please enter department" ng-model="newData.newDepartment" required>
+	<!-- Department -->
+	<div ng-class="{ 'has-success':(checkOutForm.department.$valid && !checkOutForm.department.$pristine), 'has-error':(!checkOutForm.department.$valid && !checkOutForm.department.$pristine) || (!checkOutForm.department.$valid && checkOutForm.$submitted)}">
+		<label>Department:</label>
+		<input class="form-control" type="text" name='department' placeholder="please enter department" ng-model="newData.newDepartment" required>
+		<p class="help-block" ng-show="(!checkOutForm.$pristine && checkOutForm.department.$error.required) || (checkOutForm.$submitted  && checkOutForm.department.$error.required)"> This field is required </p>
+	</div>
 	<br>
 
-	<label>Location:</label>
-	<input class="form-control" type="text" name='location' placeholder="please enter location" ng-model="newData.newLocation" required>
+	<!-- Location -->
+	<div ng-class="{ 'has-success':(checkOutForm.location.$valid && !checkOutForm.location.$pristine), 'has-error':(!checkOutForm.location.$valid && !checkOutForm.location.$pristine) || (!checkOutForm.location.$valid && checkOutForm.$submitted)}">
+		<label>Location:</label>
+		<input class="form-control" type="text" name='location' placeholder="please enter location" ng-model="newData.newLocation" required>
+		<p class="help-block" ng-show="(!checkOutForm.$pristine && checkOutForm.location.$error.required) || (checkOutForm.$submitted  && checkOutForm.location.$error.required)"> This field is required </p>
+	</div>
 	<br>
 
-	<label>Charge Number:</label>
-	<input class="form-control" type="text" name='chargeNumber' placeholder="please enter charge number" ng-model="newData.newChargeNumber" required>
+	<!-- Charge Number -->
+	<div ng-class="{ 'has-success':(checkOutForm.chargeNumber.$valid && !checkOutForm.chargeNumber.$pristine), 'has-error':(!checkOutForm.chargeNumber.$valid && !checkOutForm.chargeNumber.$pristine) || (!checkOutForm.chargeNumber.$valid && checkOutForm.$submitted)}">
+		<label>Charge Number:</label>
+		<input class="form-control" type="text" name='chargeNumber' placeholder="please enter charge number" ng-model="newData.newChargeNumber" required>
+		<p class="help-block" ng-show="(!checkOutForm.$pristine && checkOutForm.chargeNumber.$error.required) || (checkOutForm.$submitted  && checkOutForm.chargeNumber.$error.required)"> This field is required </p>
+	</div>
 	<br>
 
 	<!-- Supervisor's First Name -->
@@ -147,7 +163,7 @@
 	<input class="form-control" type="text" name='supervisorPhoneNumber' placeholder="please enter supervisor phone number" ng-model="newData.newSupervisorPhoneNumber" required>
 	<br> -->
 
-<!-- <span> {{ checkOutForm}}</span> -->
+	<!-- <span> {{ checkOutForm}}</span> -->
 
 	<button class="btn btn-primary" type="submit">Submit</button>
 </form>
