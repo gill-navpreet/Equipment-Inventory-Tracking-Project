@@ -6,7 +6,7 @@
 	<!-- Bar Code -->
 	<div ng-class="{'has-success': (coForm.barcode.$valid && !coForm.barcode.$pristine),'has-error':((!coForm.barcode.$valid && !coForm.barcode.$pristine) || ((!coForm.barcode.$valid)&& coForm.$submitted)) }">
 		<label>Bar Code:</label>
-		<input class = "form-control" type = "text" name = "barcode" placeholder="please scan an item or enter a 10-digit barcode" ng-model="checkOut.barcode" ng-pattern="/^[0-9]{10}/" ng-minlength="10" ng-maxlength="10" required>
+		<input class = "form-control" type = "text" name = "barcode" placeholder="please scan an item or enter a 10-digit barcode" ng-model="checkOut.barcode" ng-pattern="/^[0-9]{10}/" ng-minlength="10" ng-maxlength="10" focus="true" required>
 		<p class="help-block "ng-show="(!coForm.$pristine && coForm.barcode.$error.required) || (coForm.$submitted && coForm.barcode.$error.required)"> This field is required </p>
 		<ul ng-show="(!coForm.barcode.$pristine && coForm.barcode.$error.pattern) || (!coForm.barcode.$pristine && coForm.barcode.$error.minlength) || (!coForm.barcode.$pristine && coForm.barcode.$error.maxlength)" class="help-block">
             <li>Must be exactly 10 digits long</li>
