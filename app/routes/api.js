@@ -88,7 +88,7 @@ writeStream.on('finish', function() {
             items = 0;
             deptValues = checkinDates.get(dateKeys[i]).values();
             for(var j = 0; j < deptValues.length; j++)
-                items += deptValues[i];
+                items += deptValues[j];
             data.write(dateKeys[i] + "," + items + "\n");
         }
 
@@ -98,7 +98,7 @@ writeStream.on('finish', function() {
             items = 0;
             deptValues = checkoutDates.get(dateKeys[i]).values();
             for(var j = 0; j < deptValues.length; j++)
-                items += deptValues[i];
+                items += deptValues[j];
             data.write(dateKeys[i] + "," + items + "\n");
         }
 
