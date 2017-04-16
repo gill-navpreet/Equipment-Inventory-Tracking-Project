@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="assets/css/animate.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/simplesidebar.css">
 
     <!-- Main Angular Files -->
     <script src="assets/js/angular.js"></script>
@@ -57,67 +58,92 @@
   <body ng-app="userApp" ng-controller="mainCtrl as main" ng-show="main.loadme" ng-cloak>
 
     <!-- Fixed navbar -->
-    <!--<nav class="navbar navbar-inverse navbar-fixed-top">-->
-      <div class="container" id="mainmenu">
-        <!--<div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#menu-toggle" id="menu-toggle"><span class="glyphicon glyphicon-list" aria-hidden="true"></span></a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">-->
-          <ul class="nav nav-pills nav-stacked">
-            <li><a ng-show="true" href="#">Home</a></li>
-            <li><a ng-show="!main.isLoggedIn" href="#login">Login</a></li>
-            <li ng-show="main.isLoggedIn" class="dropdown">
-              <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Inventory <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#inventoryCheckIn">Checking in</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#inventoryCheckOut">Checking out</a></li>
-              </ul>
-            </li>
-            <li ng-show="main.isLoggedIn" class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Statistics<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#history">History</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#search">Search Statistics</a></li>
-              </ul>
-            </li>
-            <li ng-show="main.isLoggedIn" class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Apps <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#barCodeGen">Bar Code Generator</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#batteryManager">Battery Manager</a></li>
-              </ul>
-            </li>
-            <li ng-show="main.isLoggedIn && main.authorized" class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Management<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#inventoryForm">Inventory Add</a></li>
-                <li><a href="#inventoryManagement">Inventory Edit/Delete</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#register">User Register</a></li>
-                <li><a href="#management">Users</a></li>
-              </ul>
-            </li>
-            <li ng-show="main.isLoggedIn" class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hello {{ main.username }} <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#profile">Profile</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="" ng-click="main.logout();">Logout</a></li>
-              </ul>
-            </li>
-          </ul>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
+                <li><a ng-show="main.isLoggedIn" href="#login" ng-click="main.logout();"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a></li>
+                <li><a ng-show="!main.isLoggedIn" href="#login"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Login</a></li>
+            </ul>
+           
+        </div>
+    </div>
+</nav>
 
+<div id="wrapper" class="toggled" ng-show="main.isLoggedIn && main.authorized">
+    <div class="container-fluid">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <br>
+                </li>
+                <li class="sidebar-brand">
+                    <a ng-show="main.isLoggedIn" href="#profile" class="navbar-brand">
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{ main.username }}'s Profile
+                    </a>
+                </li>
+                <li ng-show="main.isLoggedIn">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span><font color="#337AB7"> INVENTORY</font>
+                </li>
+                <li>
+                    <a ng-show="main.isLoggedIn" href="#inventoryCheckIn"><span class="glyphicon glyphicon-save" aria-hidden="true"></span> Checking In</a>
+                </li>
+                <li>
+                    <a ng-show="main.isLoggedIn" href="#inventoryCheckOut"><span class="glyphicon glyphicon-open" aria-hidden="true"></span> Checking Out</a>
+                </li>               
+                <li ng-show="main.isLoggedIn">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span><font color="#337AB7"> STATISTICS</font>
+                </li>
+                <li>
+                    <a ng-show="main.isLoggedIn" href="#history"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> History</a>
+                </li>
+                <li>
+                    <a ng-show="main.isLoggedIn" href="#search"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Search Statistic</a>
+                </li>
+                <li ng-show="main.isLoggedIn">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span><font color="#337AB7"> APPS</font>
+                </li>
+                <li>
+                    <a ng-show="main.isLoggedIn" href="#barCodeGen"><span class="glyphicon glyphicon-barcode" aria-hidden="true"></span> Bar Code Generator</a>
+                </li>
+                <li>
+                    <a ng-show="main.isLoggedIn" href="#batteryManager"><span class="glyphicon glyphicon-scale" aria-hidden="true"></span> Battery Managment</a>
+                </li>
+                  <li ng-show="main.isLoggedIn && main.authorized">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span><font color="#337AB7"> MANAGMENT</font>
+                </li>
+                <li>
+                    <a ng-show="main.isLoggedIn && main.authorized" href="#inventoryForm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Inventory Add</a>
+                </li>
+                <li>
+                    <a ng-show="main.isLoggedIn && main.authorized" href="#inventoryManagement"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Inventory Edit/Delete</a>
+                </li>
+                <li>
+                    <a ng-show="main.isLoggedIn && main.authorized" href="#register"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> User Register</a>
+                </li>
+                <li>
+                    <a ng-show="main.isLoggedIn && main.authorized" href="#management"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> User Edit/Delete</a>
+                </li> 
+            </ul>
         </div>
-      <!--</div>
-    </nav>-->
+        <!-- /#sidebar-wrapper -->
+
+
+    </div>
+</div>
+
+
 
     <div class="container theme-showcase" id="about" role="main">
 
@@ -147,3 +173,11 @@
 
 
 </html>
+
+<script>
+$("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+});
+</script>
+<!-- /#wrapper -->

@@ -11,25 +11,6 @@ var appRoutes = require('./app/routes/api')(router); // file for routes
 var path = require('path');// Import path module
 var Inventory = require('./app/models/inventory');
 
-var fs = require('fs');
-
-var csv = require('fast-csv');
-
-var ws = fs.createWriteStream('my.csv');
-
-csv.
-	write([
-		["a1","b1"],
-		["a1","b1"],
-		["a1","b1"],
-		["a1","b1"],
-		["a1","b1"],
-		["a1","b1"],
-
-	], {headers:true})
-	.pipe(ws);
-
-
 
 
 

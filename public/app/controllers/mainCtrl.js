@@ -48,7 +48,7 @@ angular.module('mainController', ['authServices'])
 				app.successMsg = data.data.message +'....Redirecting';
 				//Redirect to home page
 				$timeout(function(){
-					$location.path('/about');
+					$location.path('/home');
 					// Hides the Login option
 					app.loginData = {};
 					// Hides the success message
