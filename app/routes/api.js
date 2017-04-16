@@ -11,7 +11,6 @@ var sgTransport = require('nodemailer-sendgrid-transport');
 var fs = require('fs');
 var parse = require('csv-parse');
 var HashMap = require('hashmap');
-var ArrayList = require('arraylist');
 
 Inventory.findAndStreamCsv()
   .pipe(fs.createWriteStream('csvFiles/Inventory.csv'));
@@ -80,7 +79,7 @@ writeStream.on('finish', function() {
                 checkoutDates.set(element[0], departments);
             }
         }
-
+      
         // Output to Data.csv (unfixed)
         data.write("Date, Check-Ins:\n");
         dateKeys = checkinDates.keys();
