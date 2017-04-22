@@ -106,8 +106,12 @@
 	<!-- Charge Number -->
 	<div ng-class="{ 'has-success':(checkOutForm.checkOutFormTable.chargeNumber.$valid && !checkOutForm.checkOutFormTable.chargeNumber.$pristine), 'has-error':(!checkOutForm.checkOutFormTable.chargeNumber.$valid && !checkOutForm.checkOutFormTable.chargeNumber.$pristine) || (!checkOutForm.checkOutFormTable.chargeNumber.$valid && checkOutForm.checkOutFormTable.$submitted)}">
 		<label>Charge Number:</label>
-		<input class="form-control" type="text" name='chargeNumber' placeholder="please enter charge number" ng-model="newData.newChargeNumber" required>
+		<input class="form-control" type="text" name='chargeNumber' placeholder="please enter charge number" ng-model="newData.newChargeNumber" ng-pattern="/^((([0-9]){4})|(([a-zA-Z0-9]){8}))$/" required>
 		<p class="help-block" ng-show="(!checkOutForm.checkOutFormTable.$pristine && checkOutForm.checkOutFormTable.chargeNumber.$error.required) || (checkOutForm.checkOutFormTable.$submitted  && checkOutForm.checkOutFormTable.chargeNumber.$error.required)"> This field is required </p>
+		<ul ng-show="(!checkOutForm.checkOutFormTable.chargeNumber.$pristine && checkOutForm.checkOutFormTable.chargeNumber.$error.pattern)" class="help-block">
+           <li>Must not contain any special characters </li>
+           <li>Must be either 4 digits long or 7 characters long </li>
+        </ul>
 	</div>
 	<br>
 
@@ -175,7 +179,7 @@
 	<input class="form-control" type="text" name='supervisorPhoneNumber' placeholder="please enter supervisor phone number" ng-model="newData.newSupervisorPhoneNumber" required>
 	<br> -->
 
-	< <span> {{ checkOutForm.checkOutFormTable}}</span> 
+	<!-- < <span> {{ checkOutForm.checkOutFormTable}}</span>  -->
 
 	<button class="btn btn-primary" type="submit">Submit</button>
 </form>
