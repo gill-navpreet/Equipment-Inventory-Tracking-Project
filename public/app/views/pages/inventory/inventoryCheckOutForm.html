@@ -70,24 +70,36 @@
 	<!-- Title -->
 	<div ng-class="{ 'has-success':(checkOutForm.checkOutFormTable.title.$valid && !checkOutForm.checkOutFormTable.title.$pristine), 'has-error':(!checkOutForm.checkOutFormTable.title.$valid && !checkOutForm.checkOutFormTable.title.$pristine) || (!checkOutForm.checkOutFormTable.title.$valid && checkOutForm.checkOutFormTable.$submitted)}">
 		<label>Title:</label>
-		<input class="form-control" type="text" name='title' placeholder="please enter title" ng-model="newData.newTitle" required>
+		<input class="form-control" type="text" name='title' placeholder="please enter title" ng-model="newData.newTitle" ng-pattern="/((([a-zA-Z])+[ ]*)+)$/" required>
 		<p class="help-block" ng-show="(!checkOutForm.checkOutFormTable.$pristine && checkOutForm.checkOutFormTable.title.$error.required) || (checkOutForm.checkOutFormTable.$submitted  && checkOutForm.checkOutFormTable.title.$error.required)"> This field is required </p>
+		<ul ng-show="(!checkOutForm.checkOutFormTable.title.$pristine && checkOutForm.checkOutFormTable.title.$error.pattern)" class="help-block">
+           <li>Must not contain any special characters </li>
+           <li>Must not contain any numbers</li>
+        </ul>
 	</div>
 	<br>
 
 	<!-- Department -->
 	<div ng-class="{ 'has-success':(checkOutForm.checkOutFormTable.department.$valid && !checkOutForm.checkOutFormTable.department.$pristine), 'has-error':(!checkOutForm.checkOutFormTable.department.$valid && !checkOutForm.checkOutFormTable.department.$pristine) || (!checkOutForm.checkOutFormTable.department.$valid && checkOutForm.checkOutFormTable.$submitted)}">
 		<label>Department:</label>
-		<input class="form-control" type="text" name='department' placeholder="please enter department" ng-model="newData.newDepartment" required>
+		<input class="form-control" type="text" name='department' placeholder="please enter department" ng-model="newData.newDepartment" ng-pattern="/((([a-zA-Z])+[ ]*)+)$/" required>
 		<p class="help-block" ng-show="(!checkOutForm.checkOutFormTable.$pristine && checkOutForm.checkOutFormTable.department.$error.required) || (checkOutForm.checkOutFormTable.$submitted  && checkOutForm.checkOutFormTable.department.$error.required)"> This field is required </p>
+		<ul ng-show="(!checkOutForm.checkOutFormTable.department.$pristine && checkOutForm.checkOutFormTable.department.$error.pattern)" class="help-block">
+           <li>Must not contain any special characters </li>
+           <li>Must not contain any numbers</li>
+        </ul>
 	</div>
 	<br>
 
 	<!-- Location -->
 	<div ng-class="{ 'has-success':(checkOutForm.checkOutFormTable.location.$valid && !checkOutForm.checkOutFormTable.location.$pristine), 'has-error':(!checkOutForm.checkOutFormTable.location.$valid && !checkOutForm.checkOutFormTable.location.$pristine) || (!checkOutForm.checkOutFormTable.location.$valid && checkOutForm.checkOutFormTable.$submitted)}">
 		<label>Location:</label>
-		<input class="form-control" type="text" name='location' placeholder="please enter location" ng-model="newData.newLocation" required>
+		<input class="form-control" type="text" name='location' placeholder="please enter location" ng-model="newData.newLocation" ng-pattern="/((([a-zA-Z])+[ ]*)+)$/" required>
 		<p class="help-block" ng-show="(!checkOutForm.checkOutFormTable.$pristine && checkOutForm.checkOutFormTable.location.$error.required) || (checkOutForm.checkOutFormTable.$submitted  && checkOutForm.checkOutFormTable.location.$error.required)"> This field is required </p>
+		<ul ng-show="(!checkOutForm.checkOutFormTable.location.$pristine && checkOutForm.checkOutFormTable.location.$error.pattern)" class="help-block">
+           <li>Must not contain any special characters </li>
+           <li>Must not contain any numbers</li>
+        </ul>
 	</div>
 	<br>
 

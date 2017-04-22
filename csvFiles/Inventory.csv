@@ -1,7 +1,5 @@
 Product,Barcode,Status,Date-Checked-Out,Date-Checked-In,First-Name,Last-Name,Email,Phone-Number,Supervisor-First-Name,Supervisor-Last-Name,Supervisor-Email,Supervisor-Phone-Number,Title,Department,Charge-Number
-keyboard,213,false,Sat Apr 15 2017 22:03:09 GMT-0700 (Pacific Daylight Time),Sat Apr 08 2017 10:07:12 GMT-0700 (Pacific Daylight Time),uyoi,likho;,hoi,ho;i,oih,;oih,o;ih,,h;oi,hoi,oih;
-sladkfj,999,false,Sat Apr 08 2017 10:15:57 GMT-0700 (Pacific Daylight Time),Sat Apr 08 2017 10:15:42 GMT-0700 (Pacific Daylight Time),;lsdkjflik;j,;oilj,oij,oij,joi,ij,joi,,ioji,ji,jio
-hlkjdhfs,987987,false,Sat Apr 08 2017 10:18:02 GMT-0700 (Pacific Daylight Time),Sat Apr 08 2017 10:17:37 GMT-0700 (Pacific Daylight Time),oihjoi,hjoiioh,iahays25@gmail.com,9165991264,oihjo,ihjoi,hjoi,,oijh,oihjoi,hjoihj
-hnkjhnbu,111,false,Sat Apr 08 2017 10:23:49 GMT-0700 (Pacific Daylight Time),Sat Apr 08 2017 10:23:31 GMT-0700 (Pacific Daylight Time),ohoihoi,hoioi,iahays25@gmail.com,9165991264,oihjo,ihjo,ihjoi,,oijhoihj,hoih,ihj
-joseph,2938289183,false,Sat Apr 15 2017 22:19:58 GMT-0700 (Pacific Daylight Time),Sat Apr 15 2017 22:18:06 GMT-0700 (Pacific Daylight Time),yu,jab,akd@jkj.com,222-222-2222,lh,hoi,ih@oihf.com,,h,h,97897
-water bottle,5207413843,true,,Sat Apr 15 2017 22:26:55 GMT-0700 (Pacific Daylight Time),n/a,n/a,n/a,,n/a,n/a,n/a,,n/a,n/a,
+mouse,2222222222,true,Sat Apr 15 2017 12:46:31 GMT-0700 (PDT),Sat Apr 15 2017 12:42:51 GMT-0700 (PDT), , , , , , , ,, , , 
+mouse,23,false,,Sat Apr 15 2017 12:44:09 GMT-0700 (PDT),n/a,n/a,n/a,n/a,n/a,n/a,n/a,,n/a,n/a,n/a
+mouse,3333333333,false,Sat Apr 15 2017 21:42:25 GMT-0700 (PDT),Sat Apr 15 2017 14:08:54 GMT-0700 (PDT),navpreet,kaur,ee@hotmail.com,333-333-3333,ewe,ewe,gill@hotmail.com,,ew,we,ewew
+printer for lab,3333333334,true,,Sat Apr 15 2017 17:51:10 GMT-0700 (PDT),reverse,n/a,n/a,,n/a,n/a,n/a,,n/a,n/a,
