@@ -81,7 +81,7 @@ writeStream.on('finish', function() {
         }
       
         // Output to Data.csv (unfixed)
-        data.write("Date, Check-Ins:\n");
+        data.write("Date,Check-Ins\n");
         dateKeys = checkinDates.keys();
         for(var i = 0; i < dateKeys.length; i++) {
             items = 0;
@@ -91,7 +91,7 @@ writeStream.on('finish', function() {
             data.write(dateKeys[i] + "," + items + "\n");
         }
 
-        data.write("\nDate, Check-Outs:\n");
+        data.write("\nDate,Check-Outs\n");
         dateKeys = checkoutDates.keys();
         for(var i = 0; i < dateKeys.length; i++) {
             items = 0;
@@ -101,7 +101,7 @@ writeStream.on('finish', function() {
             data.write(dateKeys[i] + "," + items + "\n");
         }
 
-        data.write("\nDate, Department(s) (# of items checked in):\n");
+        data.write("\nDate,Departments(# of items checked in):\n");
         dateKeys = checkinDates.keys();
         for(var i = 0; i < dateKeys.length; i++) {
             deptKeys = checkinDates.get(dateKeys[i]).keys().sort();
@@ -111,7 +111,7 @@ writeStream.on('finish', function() {
             data.write("\n");
         }
 
-        data.write("\nDate, Department(s) (# of items checked out):\n");
+        data.write("\nDate,Departments(# of items checked out):\n");
         dateKeys = checkoutDates.keys();
         for(var i = 0; i < dateKeys.length; i++) {
             deptKeys = checkoutDates.get(dateKeys[i]).keys().sort();
