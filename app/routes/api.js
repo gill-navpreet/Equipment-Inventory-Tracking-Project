@@ -81,7 +81,7 @@ writeStream.on('finish', function() {
         }
       
         // Output to Data.csv (unfixed)
-        data.write("Date, Check-Ins:\n");
+        data.write("Date,Check-Ins\n");
         dateKeys = checkinDates.keys();
         for(var i = 0; i < dateKeys.length; i++) {
             items = 0;
@@ -91,7 +91,7 @@ writeStream.on('finish', function() {
             data.write(dateKeys[i] + "," + items + "\n");
         }
 
-        data.write("\nDate, Check-Outs:\n");
+        /*data.write("\nDate,Check-Outs\n");
         dateKeys = checkoutDates.keys();
         for(var i = 0; i < dateKeys.length; i++) {
             items = 0;
@@ -119,7 +119,7 @@ writeStream.on('finish', function() {
             for(var j = 0; j < deptKeys.length; j++)
                 data.write("," + deptKeys[j] + "(" + checkoutDates.get(dateKeys[i]).get(deptKeys[j]) + ")");
             data.write("\n");
-        }
+        }*/
     });
 });
 
