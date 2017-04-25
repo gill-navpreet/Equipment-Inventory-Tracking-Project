@@ -82,7 +82,7 @@ writeStream.on('finish', function() {
         }
       
         // Output to Data.csv (unfixed)
-        data.write("Date,Check-Ins\n");
+        data.write("date,value\n");
         dateKeys = checkinDates.keys();
         for(var i = 0; i < dateKeys.length; i++) {
             items = 0;
@@ -137,23 +137,23 @@ function parseDates(data) {
         if(element.length < 9)//Skip iteration code if entry isn't valid
             continue;
         if(element[1] === "Jan")
-            month = "1";
+            month = "01";
         else if(element[1] === "Feb")
-            month = "2";
+            month = "02";
         else if(element[1] === "Mar")
-            month = "3";
+            month = "03";
         else if(element[1] === "Apr")
-            month = "4";
+            month = "04";
         else if(element[1] === "May")
-            month = "5";
+            month = "05";
         else if(element[1] === "Jun")
-            month = "6";
+            month = "06";
         else if(element[1] === "Jul")
-            month = "7";
+            month = "07";
         else if(element[1] === "Aug")
-            month = "8";
+            month = "08";
         else if(element[1] === "Sep")
-            month = "9";
+            month = "09";
         else if(element[1] === "Oct")
             month = "10";
         else if(element[1] === "Nov")
