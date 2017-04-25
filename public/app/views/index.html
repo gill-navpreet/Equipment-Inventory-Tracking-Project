@@ -154,9 +154,6 @@
       </div>
       <div ng-view></div>
      
-
-
-     
     </div> <!-- /container -->
 
 
@@ -166,24 +163,7 @@
     <script src="assets/js/jquery-3.1.1.min.js"></script>
     <script src="assets/js/bootstrap.js"></script>
 
-
-
-  </body>
- 
-
-
-</html>
-
-<script>
-$("#menu-toggle").click(function(e) {
-    e.preventDefault();
-    $("#wrapper").toggleClass("toggled");
-});
-</script>
-
-<meta charset="utf-8">
-
-<head>
+<!--<head>
     <style>
 
     .axis {
@@ -198,14 +178,11 @@ $("#menu-toggle").click(function(e) {
     }
 
     </style>
-</head>
-
-<body>
+</head>-->
     
 <script src="http://d3js.org/d3.v3.min.js"></script>
 
 <script>
-
 var margin = {top: 20, right: 20, bottom: 70, left: 40},
     width = 600 - margin.left - margin.right,
     height = 300 - margin.top - margin.bottom;
@@ -234,7 +211,7 @@ var svg = d3.select("body").append("svg")
     .attr("transform", 
           "translate(" + margin.left + "," + margin.top + ")");
 
-d3.csv("Data.csv", function(error, data) {
+d3.csv("csvFiles/Data.csv", function(error, data) {
 
     data.forEach(function(d) {
         d.date = parseDate(d.date);
@@ -277,5 +254,15 @@ d3.csv("Data.csv", function(error, data) {
 
 </script>
 
-</body>
+
+  </body>
+
+</html>
+
+<script>
+$("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+});
+</script>
 <!-- /#wrapper -->

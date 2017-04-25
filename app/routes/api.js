@@ -11,6 +11,7 @@ var sgTransport = require('nodemailer-sendgrid-transport');
 var fs = require('fs');
 var parse = require('csv-parse');
 var HashMap = require('hashmap');
+var d3 = require('d3');
 
 Inventory.findAndStreamCsv()
   .pipe(fs.createWriteStream('csvFiles/Inventory.csv'));
@@ -101,7 +102,8 @@ writeStream.on('finish', function() {
             data.write(dateKeys[i] + "," + items + "\n");
         }
 
-        data.write("\nDate, Department(s) (# of items checked in):\n");
+        //Check-Ins
+        data.write("\nDate,Departments\n");
         dateKeys = checkinDates.keys();
         for(var i = 0; i < dateKeys.length; i++) {
             deptKeys = checkinDates.get(dateKeys[i]).keys().sort();
@@ -111,7 +113,8 @@ writeStream.on('finish', function() {
             data.write("\n");
         }
 
-        data.write("\nDate, Department(s) (# of items checked out):\n");
+        //Check-Outs
+        data.write("\nDate,Departments\n");
         dateKeys = checkoutDates.keys();
         for(var i = 0; i < dateKeys.length; i++) {
             deptKeys = checkoutDates.get(dateKeys[i]).keys().sort();
@@ -120,6 +123,8 @@ writeStream.on('finish', function() {
                 data.write("," + deptKeys[j] + "(" + checkoutDates.get(dateKeys[i]).get(deptKeys[j]) + ")");
             data.write("\n");
         }*/
+        
+        data.end();
     });
 });
 
