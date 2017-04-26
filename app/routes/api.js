@@ -11,6 +11,7 @@ var sgTransport = require('nodemailer-sendgrid-transport');
 var fs = require('fs');
 var parse = require('csv-parse');
 var HashMap = require('hashmap');
+var d3 = require('d3');
 
 Inventory.findAndStreamCsv()
   .pipe(fs.createWriteStream('csvFiles/Inventory.csv'));
@@ -41,7 +42,7 @@ writeStream.on('finish', function() {
         //Iterate through hashmap values for output
         var deptValues, items;
         //Parse all the data from History.csv into another csv
-        var data = fs.createWriteStream('csvFiles/Data.csv');
+        var data = fs.createWriteStream('csvFiles/DatevsTotalCheckins.csv');
 
         parseDates(entries);
 
@@ -81,7 +82,8 @@ writeStream.on('finish', function() {
         }
       
         // Output to Data.csv (unfixed)
-        data.write("Date,Check-Ins\n");
+        // Check-ins by month
+        data.write("Date,Checkins\n");
         dateKeys = checkinDates.keys();
         for(var i = 0; i < dateKeys.length; i++) {
             items = 0;
@@ -91,7 +93,9 @@ writeStream.on('finish', function() {
             data.write(dateKeys[i] + "," + items + "\n");
         }
 
-        data.write("\nDate,Check-Outs\n");
+        data = fs.createWriteStream('csvFiles/DatevsTotalCheckouts.csv');
+
+        data.write("Date,Checkouts\n");
         dateKeys = checkoutDates.keys();
         for(var i = 0; i < dateKeys.length; i++) {
             items = 0;
@@ -101,7 +105,10 @@ writeStream.on('finish', function() {
             data.write(dateKeys[i] + "," + items + "\n");
         }
 
-        data.write("\nDate,Departments(# of items checked in):\n");
+        data = fs.createWriteStream('csvFIles/DatevsDepartmentCheckins.csv');
+
+        //Check-Ins by department
+        data.write("Date,Departments\n");
         dateKeys = checkinDates.keys();
         for(var i = 0; i < dateKeys.length; i++) {
             deptKeys = checkinDates.get(dateKeys[i]).keys().sort();
@@ -111,7 +118,10 @@ writeStream.on('finish', function() {
             data.write("\n");
         }
 
-        data.write("\nDate,Departments(# of items checked out):\n");
+        data = fs.createWriteStream('csvFiles/DatevsDepartmentCheckouts.csv');
+
+        //Check-Outs by department
+        data.write("Date,Departments\n");
         dateKeys = checkoutDates.keys();
         for(var i = 0; i < dateKeys.length; i++) {
             deptKeys = checkoutDates.get(dateKeys[i]).keys().sort();
@@ -120,6 +130,8 @@ writeStream.on('finish', function() {
                 data.write("," + deptKeys[j] + "(" + checkoutDates.get(dateKeys[i]).get(deptKeys[j]) + ")");
             data.write("\n");
         }
+        
+        data.end();
     });
 });
 
@@ -132,23 +144,23 @@ function parseDates(data) {
         if(element.length < 9)//Skip iteration code if entry isn't valid
             continue;
         if(element[1] === "Jan")
-            month = "1";
+            month = "01";
         else if(element[1] === "Feb")
-            month = "2";
+            month = "02";
         else if(element[1] === "Mar")
-            month = "3";
+            month = "03";
         else if(element[1] === "Apr")
-            month = "4";
+            month = "04";
         else if(element[1] === "May")
-            month = "5";
+            month = "05";
         else if(element[1] === "Jun")
-            month = "6";
+            month = "06";
         else if(element[1] === "Jul")
-            month = "7";
+            month = "07";
         else if(element[1] === "Aug")
-            month = "8";
+            month = "08";
         else if(element[1] === "Sep")
-            month = "9";
+            month = "09";
         else if(element[1] === "Oct")
             month = "10";
         else if(element[1] === "Nov")
