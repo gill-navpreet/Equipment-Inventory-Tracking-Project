@@ -11,7 +11,6 @@ var sgTransport = require('nodemailer-sendgrid-transport');
 var fs = require('fs');
 var parse = require('csv-parse');
 var HashMap = require('hashmap');
-var d3 = require('d3');
 
 Inventory.findAndStreamCsv()
   .pipe(fs.createWriteStream('csvFiles/Inventory.csv'));
