@@ -42,7 +42,7 @@ writeStream.on('finish', function() {
         //Iterate through hashmap values for output
         var deptValues, items;
         //Parse all the data from History.csv into another csv
-        var data = fs.createWriteStream('csvFiles/Data.csv');
+        var data = fs.createWriteStream('csvFiles/DatevsTotalCheckins.csv');
 
         parseDates(entries);
 
@@ -82,7 +82,8 @@ writeStream.on('finish', function() {
         }
       
         // Output to Data.csv (unfixed)
-        data.write("date,value\n");
+        // Check-ins by month
+        data.write("Date,Checkins\n");
         dateKeys = checkinDates.keys();
         for(var i = 0; i < dateKeys.length; i++) {
             items = 0;
@@ -92,7 +93,9 @@ writeStream.on('finish', function() {
             data.write(dateKeys[i] + "," + items + "\n");
         }
 
-        /*data.write("\nDate,Check-Outs\n");
+        data = fs.createWriteStream('csvFiles/DatevsTotalCheckouts.csv');
+
+        data.write("Date,Checkouts\n");
         dateKeys = checkoutDates.keys();
         for(var i = 0; i < dateKeys.length; i++) {
             items = 0;
@@ -102,8 +105,10 @@ writeStream.on('finish', function() {
             data.write(dateKeys[i] + "," + items + "\n");
         }
 
-        //Check-Ins
-        data.write("\nDate,Departments\n");
+        data = fs.createWriteStream('csvFIles/DatevsDepartmentCheckins.csv');
+
+        //Check-Ins by department
+        data.write("Date,Departments\n");
         dateKeys = checkinDates.keys();
         for(var i = 0; i < dateKeys.length; i++) {
             deptKeys = checkinDates.get(dateKeys[i]).keys().sort();
@@ -113,8 +118,10 @@ writeStream.on('finish', function() {
             data.write("\n");
         }
 
-        //Check-Outs
-        data.write("\nDate,Departments\n");
+        data = fs.createWriteStream('csvFiles/DatevsDepartmentCheckouts.csv');
+
+        //Check-Outs by department
+        data.write("Date,Departments\n");
         dateKeys = checkoutDates.keys();
         for(var i = 0; i < dateKeys.length; i++) {
             deptKeys = checkoutDates.get(dateKeys[i]).keys().sort();
@@ -122,7 +129,7 @@ writeStream.on('finish', function() {
             for(var j = 0; j < deptKeys.length; j++)
                 data.write("," + deptKeys[j] + "(" + checkoutDates.get(dateKeys[i]).get(deptKeys[j]) + ")");
             data.write("\n");
-        }*/
+        }
         
         data.end();
     });
