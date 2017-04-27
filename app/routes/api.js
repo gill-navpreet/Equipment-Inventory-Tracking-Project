@@ -41,7 +41,7 @@ writeStream.on('finish', function() {
         //Iterate through hashmap values for output
         var deptValues, items;
         //Parse all the data from History.csv into another csv
-        var data = fs.createWriteStream('csvFiles/DatevsTotalCheckins.csv');
+        var data = fs.createWriteStream('public/csvFiles/DatevsTotalCheckins.csv');
 
         parseDates(entries);
 
@@ -92,7 +92,7 @@ writeStream.on('finish', function() {
             data.write(dateKeys[i] + "," + items + "\n");
         }
 
-        data = fs.createWriteStream('csvFiles/DatevsTotalCheckouts.csv');
+        data = fs.createWriteStream('public/csvFiles/DatevsTotalCheckouts.csv');
 
         data.write("Date,Checkouts\n");
         dateKeys = checkoutDates.keys();
@@ -104,7 +104,7 @@ writeStream.on('finish', function() {
             data.write(dateKeys[i] + "," + items + "\n");
         }
 
-        data = fs.createWriteStream('csvFIles/DatevsDepartmentCheckins.csv');
+        data = fs.createWriteStream('public/csvFiles/DatevsDepartmentCheckins.csv');
 
         //Check-Ins by department
         data.write("Date,Departments\n");
@@ -117,7 +117,7 @@ writeStream.on('finish', function() {
             data.write("\n");
         }
 
-        data = fs.createWriteStream('csvFiles/DatevsDepartmentCheckouts.csv');
+        data = fs.createWriteStream('public/csvFiles/DatevsDepartmentCheckouts.csv');
 
         //Check-Outs by department
         data.write("Date,Departments\n");

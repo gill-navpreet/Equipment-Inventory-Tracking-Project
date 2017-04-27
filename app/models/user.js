@@ -63,7 +63,7 @@ var UserSchema = new Schema({
   name: { type: String, required: true, validate: nameValidator },
   // unique ensures only one user
   username: { type: String, lowercase: true, required: true, unique: true , validate: usernameValidator },
-  password: { type: String, required: true,  validate: passwordValidator},
+  password: { type: String, required: true}, //,  validate: passwordValidator
   email: { type: String, required: true, lowercase: true, unique: true ,validate: emailValidator },
   permission: { type: String, required: true, default: 'user' }
 });
