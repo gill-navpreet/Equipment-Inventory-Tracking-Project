@@ -34,6 +34,12 @@ mongoose.connect('mongodb://localhost:27017/tutorial', function(err) {
 	}
 });
 
+app.get('/graph1', function(req, res) {
+	res.sendFile(path.join(__dirname + '/public/graphs/bargraph.html'));
+});
+app.get('/graph2', function(req, res) {
+	res.sendFile(path.join(__dirname + '/public/graphs/DatevsTotalCheckins.html'));
+});
 // Route
 // Send the user index.html file
 app.get('*', function(req, res) {
