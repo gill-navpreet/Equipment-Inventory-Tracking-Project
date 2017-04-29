@@ -17,7 +17,7 @@ angular.module('inventoryServices', [])
 	};	
 
 	inventoryFactory.deleteInventory = function(barcode) {
-		return $http.delete('/api/inventoryManagement/' + barcode);
+		return $http.put('/api/inventoryManagement/' + barcode);
 	};
 
 	inventoryFactory.editInventory = function(id) {

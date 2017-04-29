@@ -701,7 +701,7 @@ module.exports = function(router) {
 
 
     // Route to delete an inventory item based on its barcode
-    router.delete('/inventoryManagement/:barcode', function(req, res) {
+    router.put('/inventoryManagement/:barcode', function(req, res) {
         var deletedInventory = req.params.barcode; // Assign the barcode from request parameters to a variable
         User.findOne({ username: req.decoded.username }, function(err, mainUser) {
             if (err) throw err; // Throw error if cannot connect
@@ -714,14 +714,28 @@ module.exports = function(router) {
                     res.json({ success: false, message: 'Insufficient Permissions' }); // Return error
                 } else {
                     // Fine the user that needs to be deleted
-                    Inventory.findOneAndRemove({ barcode: deletedInventory }, function(err, inventory) {
+
+                    Inventory.findOne({ barcode: deletedInventory }, function(err, inventory) {
                         if (err) throw err; // Throw error if cannot connect
-                        res.json({ success: true }); // Return success status
+                        if (!inventory) {
+                            res.json({ success: false, message: 'No inventory found' }); // Return error
+                        } else {
+                            inventory.isDeleted = 'true'; // Assign new name to user in database
+                            inventory.save(function(err) {
+                                if (err) {
+                                    console.log(err); // Log any errors to the console
+                                } else {
+                                    res.json({ success: true, message: 'inventory deleted!' }); // Return success message
+                                }
+                            });
+                        }
                     });
                 }
             }
         });
     });
+
+
 
     // Route to get the user that needs to be edited
     router.get('/editInventory/:id', function(req, res) {

@@ -132,6 +132,12 @@ var app = angular.module('appRoutes', ['ngRoute'])
 		controllerAs: 'battery',
 		authenticated: true
 	})	
+	.when('/graph', {
+		templateUrl: 'app/views/pages/statistics/graph.html',
+		controller: 'graphCtrl',
+		controllerAs: 'graph',
+		authenticated: true
+	})
 
 	// If user tries to access any other route --> redirect to home page
 	.otherwise({ redirectTo: '/'});

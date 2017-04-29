@@ -9,19 +9,22 @@ var InventorySchema = new Schema({
 	isCheckedIn: { type: String, required: true, default: true},
 	dateCheckedOut: { type: Date},
 	dateCheckedIn: { type: Date, required: true, default: Date},
-	firstName: { type: String, lowercase: true, default: 'n/a'},
-	lastName: { type: String, lowercase: true, default: 'n/a' },
-	email: { type: String, lowercase: true, default: 'n/a' },
+	firstName: { type: String, lowercase: true, default: ' '},
+	lastName: { type: String, lowercase: true, default: ' ' },
+	email: { type: String, lowercase: true, default: ' ' },
 	phoneNumber: { type: String },
-	supervisorFirstName: { type: String, default: 'n/a' },
-	supervisorLastName: { type: String, default: 'n/a' },
-	supervisorEmail: { type: String, default: 'n/a' },
+	supervisorFirstName: { type: String, default: ' ' },
+	supervisorLastName: { type: String, default: ' ' },
+	supervisorEmail: { type: String, default: ' ' },
 	supervisorPhoneNumber: { type: String },
-	title: { type: String, default: 'n/a'},
-	department: { type: String, default: 'n/a'}, 
-	location: { type: String, default: 'n/a'},
+	title: { type: String, default: ' '},
+	department: { type: String, default: ' '}, 
+	location: { type: String, default: ' '},
 	chargeNumber: { type: String },
-	emailSent: { type: String, default: 'false' }
+	emailSent: { type: String, default: 'false' },
+	batteryTotalTime: { type: Number, default: 0},
+	batteryLifeTime: { type: Number, default: 1000},
+	isDeleted: { type: String, default: 'false'}
 
 });
 
