@@ -4,7 +4,7 @@ angular.module('barCodeGeneratorController',[])
 
 	this.generate = function(){
 
-		JsBarcode("#barcode",Math.floor(Math.random() * 10000000000));
+		JsBarcode("#barcode",Math.floor(1000000000 + Math.random() * 8999999999));
 	};
 });
 
