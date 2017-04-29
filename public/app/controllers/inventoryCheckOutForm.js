@@ -6,6 +6,7 @@ angular.module('inventoryCheckOutFormController',[])
 	var app = this;
 	var product = '';
 	var barcode = '';
+	$scope.departments = ['Department1', 'Department2', 'Department3','Department4','Department5','Department6','Department7'];
 	Inventory.getInventoryBasedOnId($routeParams.id).then(function(data){
 		app.currentInventory = data.data.inventory._id;
 		product = data.data.inventory.product;
@@ -24,7 +25,7 @@ angular.module('inventoryCheckOutFormController',[])
 			inventoryObject.email = $scope.newData.newEmail;
 			inventoryObject.phoneNumber = $scope.newData.newPhoneNumber;
 			inventoryObject.title = $scope.newData.newTitle;
-			inventoryObject.department = $scope.newData.newDepartment;
+			inventoryObject.department = $scope.model;
 			inventoryObject.location = $scope.newData.newLocation;
 			inventoryObject.chargeNumber = $scope.newData.newChargeNumber;
 			inventoryObject.supervisorFirstName = $scope.newData.newSupervisorFirstName;
@@ -47,7 +48,7 @@ angular.module('inventoryCheckOutFormController',[])
 			historyObject.supervisorEmail =  $scope.newData.newSupervisorEmail;
 			historyObject.supervisorPhoneNumber =  $scope.newData.newSupervisorPhoneNumber;
 			historyObject.title =  $scope.newData.newTitle;
-			historyObject.department =  $scope.newData.newDepartment;
+			historyObject.department =  $scope.model;
 			historyObject.location =  $scope.newData.newLocation;
 			historyObject.chargeNumber =  $scope.newData.newChargeNumber;
 			historyObject.description = historyObject.firstName + " " + historyObject.lastName + " " + historyObject.checkedType + " a " + historyObject.product;
