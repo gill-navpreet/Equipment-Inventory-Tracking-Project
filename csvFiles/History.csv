@@ -1,106 +1,134 @@
 Date,Product,Barcode,Status,First-Name,Last-Name,Email,Phone-Number,Supervisor-First-Name,Supervisor-Last-Name,Supervisor-Email,Supervisor-Phone-Number,Title,Department,Charge-Number,Description
-Sat Apr 08 2017 08:17:48 GMT-0700 (Pacific Daylight Time),keyboard,8827647389,checked in,ihuulh,iuhiuh,uihiuh,0, , , ,, , ,0,ihuulh iuhiuh checked in a keyboardihuulh
-Sat Apr 08 2017 08:22:38 GMT-0700 (Pacific Daylight Time),keyboard,8827647389,checked out,asldkjf;l,kjlkjfekwjflk,jlkjelkfjwlkj,0, , , ,, , ,0,asldkjf;l kjlkjfekwjflk checked out a keyboard
-Sat Apr 08 2017 08:24:21 GMT-0700 (Pacific Daylight Time),keyboard,8827647389,checked in,asldkjf;l,kjlkjfekwjflk,jlkjelkfjwlkj,0, , , ,, , ,0,asldkjf;l kjlkjfekwjflk checked in a keyboard
-Sat Apr 08 2017 08:24:38 GMT-0700 (Pacific Daylight Time),keyboard,8827647389,checked out,asldkjf;l,kjlkjfekwjflk,jlkjelkfjwlkj,0, , , ,, , ,0,asldkjf;l kjlkjfekwjflk checked out a keyboard
-Sat Apr 08 2017 08:25:19 GMT-0700 (Pacific Daylight Time),keyboard,8827647389,checked in,asldkjf;l,kjlkjfekwjflk,jlkjelkfjwlkj,0, , , ,, , ,0,asldkjf;l kjlkjfekwjflk checked in a keyboard
-Sat Apr 08 2017 08:27:10 GMT-0700 (Pacific Daylight Time),keyboard,8827647389,checked out,ijlghbiug,bujkbiujb,uljhbiujg,0, , , ,, , ,0,ijlghbiug bujkbiujb checked out a keyboard
-Sat Apr 08 2017 08:27:21 GMT-0700 (Pacific Daylight Time),keyboard,8827647389,checked in,ijlghbiug,bujkbiujb,uljhbiujg,0, , , ,, , ,0,ijlghbiug bujkbiujb checked in a keyboard
-Sat Apr 08 2017 08:28:19 GMT-0700 (Pacific Daylight Time),keyboard,8827647389,checked out,hiujk,hiu,uihj,0, , , ,, , ,0,hiujk hiu checked out a keyboard
-Sat Apr 08 2017 08:28:29 GMT-0700 (Pacific Daylight Time),keyboard,8827647389,checked in,hiujk,hiu,uihj,0, , , ,, , ,0,hiujk hiu checked in a keyboard
-Sat Apr 08 2017 08:29:48 GMT-0700 (Pacific Daylight Time),keyboard,8827647389,checked out,hihku,hiuiu,hiuhi,0, , , ,, , ,0,hihku hiuiu checked out a keyboard
-Sat Apr 08 2017 08:29:58 GMT-0700 (Pacific Daylight Time),keyboard,8827647389,checked in,hihku,hiuiu,hiuhi,0, , , ,, , ,0,hihku hiuiu checked in a keyboard
-Sat Apr 08 2017 08:31:57 GMT-0700 (Pacific Daylight Time),keyboard,8827647389,checked out,oihj,joijio,jhoijh,0, , , ,, , ,0,oihj joijio checked out a keyboard
-Sat Apr 08 2017 08:32:12 GMT-0700 (Pacific Daylight Time),keyboard,8827647389,checked in,oihj,joijio,jhoijh,0, , , ,, , ,0,oihj joijio checked in a keyboard
-Sat Apr 08 2017 08:33:24 GMT-0700 (Pacific Daylight Time),keyboard,8827647389,checked out,liokjnholi;k,jhi;oljhoil;,jhoilhjoilhjoi,0, , , ,, , ,0,liokjnholi;k jhi;oljhoil; checked out a keyboard
-Sat Apr 08 2017 08:33:24 GMT-0700 (Pacific Daylight Time),keyboard,8827647389,checked out,liokjnholi;k,jhi;oljhoil;,jhoilhjoilhjoi,0, , , ,, , ,0,liokjnholi;k jhi;oljhoil; checked out a keyboard
-Sat Apr 08 2017 08:33:39 GMT-0700 (Pacific Daylight Time),keyboard,8827647389,checked in,liokjnholi;k,jhi;oljhoil;,jhoilhjoilhjoi,0, , , ,, , ,0,liokjnholi;k jhi;oljhoil; checked in a keyboard
-Sat Apr 08 2017 08:42:18 GMT-0700 (Pacific Daylight Time),mouseweofijeu,908130923810923,checked out,jefoij,oijioj,joweifj,0, , , ,, , ,0,jefoij oijioj checked out a mouseweofijeu
-Sat Apr 08 2017 08:42:32 GMT-0700 (Pacific Daylight Time),mouseweofijeu,908130923810923,checked in,jefoij,oijioj,joweifj,0, , , ,, , ,0,jefoij oijioj checked in a mouseweofijeu
-Sat Apr 08 2017 08:44:18 GMT-0700 (Pacific Daylight Time),mouseweofijeu,908130923810923,checked out,jefoij,oijioj,joweifj,0, , , ,, , ,0,jefoij oijioj checked out a mouseweofijeu
-Sat Apr 08 2017 08:44:29 GMT-0700 (Pacific Daylight Time),keyboard,8827647389,checked out,oijno;ijhoihjoij,hoijhoijhoijhoijh,ohihjoijhoihjoihjoihjoi,0, , , ,, , ,0,oijno;ijhoihjoij hoijhoijhoijhoijh checked out a keyboard
-Sat Apr 08 2017 08:44:32 GMT-0700 (Pacific Daylight Time),mouseweofijeu,908130923810923,checked in,jefoij,oijioj,joweifj,0, , , ,, , ,0,jefoij oijioj checked in a mouseweofijeu
-Sat Apr 08 2017 08:44:46 GMT-0700 (Pacific Daylight Time),mouseweofijeu,908130923810923,checked in,jefoij,oijioj,joweifj,0, , , ,, , ,0,jefoij oijioj checked in a mouseweofijeu
-Sat Apr 08 2017 08:45:01 GMT-0700 (Pacific Daylight Time),keyboard,8827647389,checked in,oijno;ijhoihjoij,hoijhoijhoijhoijh,ohihjoijhoihjoihjoihjoi,0, , , ,, , ,0,oijno;ijhoihjoij hoijhoijhoijhoijh checked in a keyboard
-Sat Apr 08 2017 08:46:09 GMT-0700 (Pacific Daylight Time),keyboard,8827647389,checked out,hiuhiu,hiuhiu,uihiu,0, , , ,, , ,0,hiuhiu hiuhiu checked out a keyboard
-Sat Apr 08 2017 08:46:19 GMT-0700 (Pacific Daylight Time),keyboard,8827647389,checked in,hiuhiu,hiuhiu,uihiu,0, , , ,, , ,0,hiuhiu hiuhiu checked in a keyboard
-Sat Apr 08 2017 08:47:58 GMT-0700 (Pacific Daylight Time),keyboard,8827647389,checked out,uhuihiu,hiuhiuh,iuhui,0, , , ,, , ,0,uhuihiu hiuhiuh checked out a keyboard
-Sat Apr 08 2017 08:48:14 GMT-0700 (Pacific Daylight Time),keyboard,8827647389,checked in,uhuihiu,hiuhiuh,iuhui,0, , , ,, , ,0,uhuihiu hiuhiuh checked in a keyboard
-Sat Apr 08 2017 09:41:01 GMT-0700 (Pacific Daylight Time),mouseweofijeu,908130923810923,checked out,sdf;jglkqlkjlkerjfglkj,qoiersjfoiwejf,oihjoiwjefioj, , , , ,, , , ,sdf;jglkqlkjlkerjfglkj qoiersjfoiwejf checked out a mouseweofijeu
-Sat Apr 08 2017 09:41:11 GMT-0700 (Pacific Daylight Time),mouseweofijeu,908130923810923,checked in,sdf;jglkqlkjlkerjfglkj,qoiersjfoiwejf,oihjoiwjefioj, , , , ,, , , ,sdf;jglkqlkjlkerjfglkj qoiersjfoiwejf checked in a mouseweofijeu
-Sat Apr 08 2017 09:45:35 GMT-0700 (Pacific Daylight Time),mouseweofijeu,908130923810923,checked out,animal,steve,asteve@ucdavis.edu, , , , ,, , , ,animal steve checked out a mouseweofijeu
-Sat Apr 08 2017 10:07:02 GMT-0700 (Pacific Daylight Time),mouse,123,created, , , , , , , ,, , , ,created a mouse with barcode: 123
-Sat Apr 08 2017 10:07:12 GMT-0700 (Pacific Daylight Time),keyboard,213,created, , , , , , , ,, , , ,created a keyboard with barcode: 213
-Sat Apr 08 2017 10:07:36 GMT-0700 (Pacific Daylight Time),mouse,123,checked out,lsakdjf,lkjf,ofwiejf, , , , ,, , , ,lsakdjf lkjf checked out a mouse
-Sat Apr 08 2017 10:07:37 GMT-0700 (Pacific Daylight Time),mouse,123,checked out,lsakdjf,lkjf,ofwiejf, , , , ,, , , ,lsakdjf lkjf checked out a mouse
-Sat Apr 08 2017 10:14:01 GMT-0700 (Pacific Daylight Time),keyboard,213,checked out,oihjoihj,oihjoiujho,hjoihj, , , , ,, , , ,oihjoihj oihjoiujho checked out a keyboard
-Sat Apr 08 2017 10:15:42 GMT-0700 (Pacific Daylight Time),sladkfj,999,created, , , , , , , ,, , , ,created a sladkfj with barcode: 999
-Sat Apr 08 2017 10:15:57 GMT-0700 (Pacific Daylight Time),sladkfj,999,checked out,;lsdkjflik;j,;oilj,oij, , , , ,, , , ,;lsdkjflik;j ;oilj checked out a sladkfj
-Sat Apr 08 2017 10:17:37 GMT-0700 (Pacific Daylight Time),hlkjdhfs,987987,created, , , , , , , ,, , , ,created a hlkjdhfs with barcode: 987987
-Sat Apr 08 2017 10:18:02 GMT-0700 (Pacific Daylight Time),hlkjdhfs,987987,checked out,oihjoi,hjoiioh,iahays25@gmail.com, , , , ,, , , ,oihjoi hjoiioh checked out a hlkjdhfs
-Sat Apr 08 2017 10:23:31 GMT-0700 (Pacific Daylight Time),hnkjhnbu,111,created, , , , , , , ,, , , ,created a hnkjhnbu with barcode: 111
-Sat Apr 08 2017 10:23:48 GMT-0700 (Pacific Daylight Time),hnkjhnbu,111,checked out,ohoihoi,hoioi,iahays25@gmail.com, , , , ,, , , ,ohoihoi hoioi checked out a hnkjhnbu
-Sat Apr 08 2017 10:23:49 GMT-0700 (Pacific Daylight Time),hnkjhnbu,111,checked out,ohoihoi,hoioi,iahays25@gmail.com, , , , ,, , , ,ohoihoi hoioi checked out a hnkjhnbu
-Sat Apr 08 2017 10:23:50 GMT-0700 (Pacific Daylight Time),hnkjhnbu,111,checked out,ohoihoi,hoioi,iahays25@gmail.com, , , , ,, , , ,ohoihoi hoioi checked out a hnkjhnbu
-Sat Apr 08 2017 10:33:47 GMT-0700 (Pacific Daylight Time),sjdkfhhkjsdhf,888,created, , , , , , , ,, , , ,created a sjdkfhhkjsdhf with barcode: 888
-Sat Apr 08 2017 10:34:09 GMT-0700 (Pacific Daylight Time),sjdkfhhkjsdhf,888,checked out,dfijhoih,oihoi,iahays25@gmail.com, , , , ,, , , ,dfijhoih oihoi checked out a sjdkfhhkjsdhf
-Sat Apr 08 2017 10:35:01 GMT-0700 (Pacific Daylight Time),tfvtyhguf,777,created, , , , , , , ,, , , ,created a tfvtyhguf with barcode: 777
-Sat Apr 08 2017 10:35:24 GMT-0700 (Pacific Daylight Time),tfvtyhguf,777,checked out,ihj,o,iahays25@gmail.com, , , , ,, , , ,ihj o checked out a tfvtyhguf
-Sat Apr 08 2017 10:37:01 GMT-0700 (Pacific Daylight Time),tfvtyhguf,777,created, , , , , , , ,, , , ,created a tfvtyhguf with barcode: 777
-Sat Apr 08 2017 10:37:24 GMT-0700 (Pacific Daylight Time),tfvtyhguf,777,checked out,ihj,o,iahays25@gmail.com, , , , ,, , , ,ihj o checked out a tfvtyhguf
-Sat Apr 08 2017 10:37:44 GMT-0700 (Pacific Daylight Time),vbjhv,8888,created, , , , , , , ,, , , ,created a vbjhv with barcode: 8888
-Sat Apr 08 2017 10:38:00 GMT-0700 (Pacific Daylight Time),vbjhv,8888,checked out,kjbkjb,bugjiu,iahays25@gmail.com, , , , ,, , , ,kjbkjb bugjiu checked out a vbjhv
-Sat Apr 08 2017 10:39:44 GMT-0700 (Pacific Daylight Time),vbjhv,8888,created, , , , , , , ,, , , ,created a vbjhv with barcode: 8888
-Sat Apr 08 2017 10:40:00 GMT-0700 (Pacific Daylight Time),vbjhv,8888,checked out,kjbkjb,bugjiu,iahays25@gmail.com, , , , ,, , , ,kjbkjb bugjiu checked out a vbjhv
-Sat Apr 08 2017 10:40:32 GMT-0700 (Pacific Daylight Time),giugu,9879,created, , , , , , , ,, , , ,created a giugu with barcode: 9879
-Sat Apr 08 2017 10:41:10 GMT-0700 (Pacific Daylight Time),giugu,9879,checked out,adsflkj,lkjlk,iahays25@gmail.com, , , , ,, , , ,adsflkj lkjlk checked out a giugu
-Sat Apr 08 2017 10:42:32 GMT-0700 (Pacific Daylight Time),giugu,9879,created, , , , , , , ,, , , ,created a giugu with barcode: 9879
-Sat Apr 08 2017 10:43:04 GMT-0700 (Pacific Daylight Time),usidhfiusdhf,7772,created, , , , , , , ,, , , ,created a usidhfiusdhf with barcode: 7772
-Sat Apr 08 2017 10:43:38 GMT-0700 (Pacific Daylight Time),usidhfiusdhf,7772,checked out,jennifer,andrews,jen_and00@yahoo.com, , , , ,, , , ,Jennifer Andrews checked out a usidhfiusdhf
-Sat Apr 08 2017 10:45:04 GMT-0700 (Pacific Daylight Time),usidhfiusdhf,7772,created, , , , , , , ,, , , ,created a usidhfiusdhf with barcode: 7772
-Sat Apr 08 2017 11:47:35 GMT-0700 (Pacific Daylight Time),keyboardd,101010,created, , , , , , , ,, , , ,created a keyboardd with barcode: 101010
-Sat Apr 08 2017 11:48:01 GMT-0700 (Pacific Daylight Time),keyboardd,101010,checked out,alskjf,lkj,lkj, , , , ,, , , ,alskjf lkj checked out a keyboardd
-Sat Apr 08 2017 11:48:40 GMT-0700 (Pacific Daylight Time),keyboardd,101010,checked in,alskjf,lkj,lkj, , , , ,, , , ,alskjf lkj checked in a keyboardd
-Sat Apr 08 2017 11:50:40 GMT-0700 (Pacific Daylight Time),keyboardd,101010,checked in,alskjf,lkj,lkj, , , , ,, , , ,alskjf lkj checked in a keyboardd
-Sat Apr 08 2017 11:52:40 GMT-0700 (Pacific Daylight Time),keyboardd,101010,checked in,alskjf,lkj,lkj, , , , ,, , , ,alskjf lkj checked in a keyboardd
-Sun Apr 09 2017 16:29:20 GMT-0700 (Pacific Daylight Time),mouse,123,checked in,lsakdjf,lkjf,ofwiejf, , , , ,, , , ,lsakdjf lkjf checked in a mouse
-Sun Apr 09 2017 16:31:20 GMT-0700 (Pacific Daylight Time),mouse,123,checked in,lsakdjf,lkjf,ofwiejf, , , , ,, , , ,lsakdjf lkjf checked in a mouse
-Sun Apr 09 2017 16:33:20 GMT-0700 (Pacific Daylight Time),mouse,123,checked in,lsakdjf,lkjf,ofwiejf, , , , ,, , , ,lsakdjf lkjf checked in a mouse
-Mon Apr 10 2017 16:23:04 GMT-0700 (Pacific Daylight Time),keyboard,213,checked in,oihjoihj,oihjoiujho,hjoihj, , , , ,, , , ,oihjoihj oihjoiujho checked in a keyboard
-Mon Apr 10 2017 16:23:15 GMT-0700 (Pacific Daylight Time),keyboard,213,checked out,wefpojewf,;ofj;oiwj,foijowifj, , , , ,, , , ,wefpojewf ;ofj;oiwj checked out a keyboard
-Sat Apr 15 2017 22:02:53 GMT-0700 (Pacific Daylight Time),keyboard,213,checked in,wefpojewf,;ofj;oiwj,foijowifj, , , , ,, , , ,wefpojewf ;ofj;oiwj checked in a keyboard
-Sat Apr 15 2017 22:03:09 GMT-0700 (Pacific Daylight Time),keyboard,213,checked out,uyoi,likho;,hoi, , , , ,, , , ,uyoi likho; checked out a keyboard
-Sat Apr 15 2017 22:18:06 GMT-0700 (Pacific Daylight Time),joseph,2938289183,created, , , , , , , ,, , , ,created a joseph with barcode: 2938289183
-Sat Apr 15 2017 22:19:58 GMT-0700 (Pacific Daylight Time),joseph,2938289183,checked out,yu,jab,akd@jkj.com, , , , ,, , , ,yu jab checked out a joseph
-Sat Apr 15 2017 22:20:06 GMT-0700 (Pacific Daylight Time),joseph,2938289183,created, , , , , , , ,, , , ,created a joseph with barcode: 2938289183
-Sat Apr 15 2017 22:21:58 GMT-0700 (Pacific Daylight Time),joseph,2938289183,checked out,yu,jab,akd@jkj.com, , , , ,, , , ,yu jab checked out a joseph
-Sat Apr 15 2017 22:22:06 GMT-0700 (Pacific Daylight Time),joseph,2938289183,created, , , , , , , ,, , , ,created a joseph with barcode: 2938289183
-Sat Apr 15 2017 22:26:55 GMT-0700 (Pacific Daylight Time),water bottle,5207413843,created, , , , , , , ,, , , ,created a water bottle with barcode: 5207413843
-Sun Apr 16 2017 13:58:38 GMT-0700 (Pacific Daylight Time),joseph,2938289183,checked in,yu,jab,akd@jkj.com, , , , ,, , , ,yu jab checked in a joseph
-Sun Apr 16 2017 14:00:38 GMT-0700 (Pacific Daylight Time),joseph,2938289183,checked in,yu,jab,akd@jkj.com, , , , ,, , , ,yu jab checked in a joseph
-Tue Apr 18 2017 11:20:00 GMT-0700 (Pacific Daylight Time),watch,8943723493,created, , , , , , , ,, , , ,created a watch with barcode: 8943723493
-Tue Apr 18 2017 11:20:59 GMT-0700 (Pacific Daylight Time),watch,8943723493,checked out,hfhf,hfhf,fjf@jfjf.com, , , , ,, , , ,hfhf hfhf checked out a watch
-Tue Apr 18 2017 11:22:00 GMT-0700 (Pacific Daylight Time),watch,8943723493,created, , , , , , , ,, , , ,created a watch with barcode: 8943723493
-Tue Apr 18 2017 11:22:59 GMT-0700 (Pacific Daylight Time),watch,8943723493,checked out,hfhf,hfhf,fjf@jfjf.com, , , , ,, , , ,hfhf hfhf checked out a watch
-Tue Apr 25 2017 09:16:03 GMT-0700 (Pacific Daylight Time),watch,8943723493,checked in,hfhf,hfhf,fjf@jfjf.com, , , , ,, , , ,hfhf hfhf checked in a watch
-Tue Apr 25 2017 09:18:03 GMT-0700 (Pacific Daylight Time),watch,8943723493,checked in,hfhf,hfhf,fjf@jfjf.com, , , , ,, , , ,hfhf hfhf checked in a watch
-Tue Apr 25 2017 09:19:07 GMT-0700 (Pacific Daylight Time),watch,8943723493,checked out,lkj,lkj,lkj@lkj.com, , , , ,, , , ,lkj lkj checked out a watch
-Tue Apr 25 2017 09:20:03 GMT-0700 (Pacific Daylight Time),watch,8943723493,checked in,hfhf,hfhf,fjf@jfjf.com, , , , ,, , , ,hfhf hfhf checked in a watch
-Tue Apr 25 2017 09:22:03 GMT-0700 (Pacific Daylight Time),watch,8943723493,checked in,hfhf,hfhf,fjf@jfjf.com, , , , ,, , , ,hfhf hfhf checked in a watch
-Sat Apr 29 2017 08:29:36 GMT-0700 (Pacific Daylight Time),pencil,7263849382,created, , , , , , , ,, , , ,created a pencil with barcode: 7263849382
-Sat Apr 29 2017 08:29:52 GMT-0700 (Pacific Daylight Time),pen,8473628374,created, , , , , , , ,, , , ,created a pen with barcode: 8473628374
-Sat Apr 29 2017 08:31:36 GMT-0700 (Pacific Daylight Time),pencil,7263849382,created, , , , , , , ,, , , ,created a pencil with barcode: 7263849382
-Sat Apr 29 2017 08:31:52 GMT-0700 (Pacific Daylight Time),pen,8473628374,created, , , , , , , ,, , , ,created a pen with barcode: 8473628374
-Sat Apr 29 2017 08:33:36 GMT-0700 (Pacific Daylight Time),pencil,7263849382,created, , , , , , , ,, , , ,created a pencil with barcode: 7263849382
-Sat Apr 29 2017 08:33:52 GMT-0700 (Pacific Daylight Time),pen,8473628374,created, , , , , , , ,, , , ,created a pen with barcode: 8473628374
-Sat Apr 29 2017 08:45:29 GMT-0700 (Pacific Daylight Time),pen,8172363809,created, , , , , , , ,, , , ,created a pen with barcode: 8172363809
-Sat Apr 29 2017 08:45:42 GMT-0700 (Pacific Daylight Time),keyboard,3747939983,created, , , , , , , ,, , , ,created a keyboard with barcode: 3747939983
-Sat Apr 29 2017 08:46:29 GMT-0700 (Pacific Daylight Time),keyboard,9283747323,created, , , , , , , ,, , , ,created a keyboard with barcode: 9283747323
-Sat Apr 29 2017 08:51:53 GMT-0700 (Pacific Daylight Time),computer,9182736483,created, , , , , , , ,, , , ,created a computer with barcode: 9182736483
-Sat Apr 29 2017 08:53:53 GMT-0700 (Pacific Daylight Time),computer,9182736483,created, , , , , , , ,, , , ,created a computer with barcode: 9182736483
-Sat Apr 29 2017 09:11:43 GMT-0700 (Pacific Daylight Time),pencil,7263849382,deleted, , , , , , , ,, , , ,deleted a pencil with barcode: 7263849382
-Sat Apr 29 2017 09:13:43 GMT-0700 (Pacific Daylight Time),pencil,7263849382,deleted, , , , , , , ,, , , ,deleted a pencil with barcode: 7263849382
-Sat Apr 29 2017 09:14:22 GMT-0700 (Pacific Daylight Time),corsair,8827362782,created, , , , , , , ,, , , ,created a corsair with barcode: 8827362782
-Sat Apr 29 2017 09:14:31 GMT-0700 (Pacific Daylight Time),animal,9293787483,created, , , , , , , ,, , , ,created a animal with barcode: 9293787483
-Sat Apr 29 2017 09:15:20 GMT-0700 (Pacific Daylight Time),animal,9293787483,deleted, , , , , , , ,, , , ,deleted a animal with barcode: 9293787483
-Sat Apr 29 2017 09:15:43 GMT-0700 (Pacific Daylight Time),pencil,7263849382,deleted, , , , , , , ,, , , ,deleted a pencil with barcode: 7263849382
+Sun Apr 02 2017 18:37:31 GMT-0700 (PDT),mouse,222222,created, , , , , , , ,, , , ,created a Mouse with barcode: 222222
+Sun Apr 02 2017 18:37:52 GMT-0700 (PDT),keyboard,222223,created, , , , , , , ,, , , ,created a Keyboard with barcode: 222223
+Sun Apr 02 2017 18:39:05 GMT-0700 (PDT),mouse,222222,checked out,navpreet,kaur,nav@hotmail.com, , , , ,, , , ,Navpreet Kaur checked out a mouse
+Sun Apr 02 2017 18:39:31 GMT-0700 (PDT),mouse,222222,created, , , , , , , ,, , , ,created a Mouse with barcode: 222222
+Sun Apr 02 2017 18:39:52 GMT-0700 (PDT),keyboard,222223,created, , , , , , , ,, , , ,created a Keyboard with barcode: 222223
+Sun Apr 02 2017 18:41:05 GMT-0700 (PDT),mouse,222222,checked out,navpreet,kaur,nav@hotmail.com, , , , ,, , , ,Navpreet Kaur checked out a mouse
+Sun Apr 02 2017 18:41:31 GMT-0700 (PDT),mouse,222222,created, , , , , , , ,, , , ,created a Mouse with barcode: 222222
+Sun Apr 02 2017 18:41:52 GMT-0700 (PDT),keyboard,222223,created, , , , , , , ,, , , ,created a Keyboard with barcode: 222223
+Sun Apr 02 2017 18:43:05 GMT-0700 (PDT),mouse,222222,checked out,navpreet,kaur,nav@hotmail.com, , , , ,, , , ,Navpreet Kaur checked out a mouse
+Sun Apr 02 2017 19:13:28 GMT-0700 (PDT),mouse,222222,checked in,navpreet,kaur,nav@hotmail.com, , , , ,, , , ,navpreet kaur checked in a mouse
+Sun Apr 02 2017 19:15:29 GMT-0700 (PDT),mouse,222222,checked in,navpreet,kaur,nav@hotmail.com, , , , ,, , , ,navpreet kaur checked in a mouse
+Sun Apr 02 2017 19:17:29 GMT-0700 (PDT),mouse,222222,checked in,navpreet,kaur,nav@hotmail.com, , , , ,, , , ,navpreet kaur checked in a mouse
+Thu Apr 13 2017 15:55:30 GMT-0700 (PDT),mouse,222222,checked out,wqdwqw,wdwdw,wewewe@dsdsd, , , , ,, , , ,wqdwqw wdwdw checked out a mouse
+Thu Apr 13 2017 16:03:08 GMT-0700 (PDT),mouse,222222,checked in,wqdwqw,wdwdw,wewewe@dsdsd, , , , ,, , , ,wqdwqw wdwdw checked in a mouse
+Thu Apr 13 2017 16:04:03 GMT-0700 (PDT),mouse,222222,checked out,nav,nav,nav, , , , ,, , , ,nav NAV checked out a mouse
+Thu Apr 13 2017 16:04:04 GMT-0700 (PDT),mouse,222222,checked out,nav,nav,nav, , , , ,, , , ,nav NAV checked out a mouse
+Thu Apr 13 2017 16:05:08 GMT-0700 (PDT),mouse,222222,checked out,nav,nav,nav, , , , ,, , , ,nav NAV checked out a mouse
+Thu Apr 13 2017 22:50:26 GMT-0700 (PDT),mouse,222222,checked in,nav,nav,nav, , , , ,, , , ,nav nav checked in a mouse
+Thu Apr 13 2017 22:52:26 GMT-0700 (PDT),mouse,222222,checked in,nav,nav,nav, , , , ,, , , ,nav nav checked in a mouse
+Thu Apr 13 2017 22:54:26 GMT-0700 (PDT),mouse,222222,checked in,nav,nav,nav, , , , ,, , , ,nav nav checked in a mouse
+Thu Apr 13 2017 23:16:26 GMT-0700 (PDT),mouse,222222,created, , , , , , , ,, , , ,created a mouse with barcode: 222222
+Thu Apr 13 2017 23:17:34 GMT-0700 (PDT),mouse,222222,checked out,21,121,121, , , , ,, , , ,21 121 checked out a mouse
+Thu Apr 13 2017 23:18:08 GMT-0700 (PDT),mouse,222222,checked in,21,121,121, , , , ,, , , ,21 121 checked in a mouse
+Thu Apr 13 2017 23:18:26 GMT-0700 (PDT),mouse,222222,created, , , , , , , ,, , , ,created a mouse with barcode: 222222
+Thu Apr 13 2017 23:19:35 GMT-0700 (PDT),mouse,222222,checked out,21,121,121, , , , ,, , , ,21 121 checked out a mouse
+Thu Apr 13 2017 23:20:08 GMT-0700 (PDT),mouse,222222,checked in,21,121,121, , , , ,, , , ,21 121 checked in a mouse
+Thu Apr 13 2017 23:20:26 GMT-0700 (PDT),mouse,222222,created, , , , , , , ,, , , ,created a mouse with barcode: 222222
+Thu Apr 13 2017 23:26:46 GMT-0700 (PDT),mouse,2222233,created, , , , , , , ,, , , ,created a mouse with barcode: 2222233
+Thu Apr 13 2017 23:27:21 GMT-0700 (PDT),mouse,222221,created, , , , , , , ,, , , ,created a mouse with barcode: 222221
+Thu Apr 13 2017 23:28:00 GMT-0700 (PDT),mouse,222225,created, , , , , , , ,, , , ,created a mouse with barcode: 222225
+Thu Apr 13 2017 23:29:05 GMT-0700 (PDT),mouse,222222,checked out,navpreetxxxx xxx   xx,kaur,navpreet.gill@hotmail.com, , , , ,, , , ,Navpreetxxxx xxx   xx Kaur checked out a mouse
+Thu Apr 13 2017 23:29:55 GMT-0700 (PDT),mouse,222222,checked out,navpreet,kaur,navpreet.gill@hotmail, , , , ,, , , ,Navpreet Kaur checked out a mouse
+Thu Apr 13 2017 23:30:00 GMT-0700 (PDT),mouse,222225,created, , , , , , , ,, , , ,created a mouse with barcode: 222225
+Thu Apr 13 2017 23:30:39 GMT-0700 (PDT),keyboard,222223,checked out,xxx,xxx,xxxx, , , , ,, , , ,xxx xxx checked out a keyboard
+Thu Apr 13 2017 23:31:05 GMT-0700 (PDT),mouse,222222,checked out,navpreetxxxx xxx   xx,kaur,navpreet.gill@hotmail.com, , , , ,, , , ,Navpreetxxxx xxx   xx Kaur checked out a mouse
+Thu Apr 13 2017 23:31:55 GMT-0700 (PDT),mouse,222222,checked out,navpreet,kaur,navpreet.gill@hotmail, , , , ,, , , ,Navpreet Kaur checked out a mouse
+Thu Apr 13 2017 23:32:39 GMT-0700 (PDT),mouse,222225,created, , , , , , , ,, , , ,created a mouse with barcode: 222225
+Thu Apr 13 2017 23:32:39 GMT-0700 (PDT),keyboard,222223,checked out,xxx,xxx,xxxx, , , , ,, , , ,xxx xxx checked out a keyboard
+Sat Apr 15 2017 10:25:50 GMT-0700 (PDT),mouse,22,created, , , , , , , ,, , , ,created a mouse with barcode: 22
+Sat Apr 15 2017 10:26:00 GMT-0700 (PDT),keyboard,23,created, , , , , , , ,, , , ,created a keyboard with barcode: 23
+Sat Apr 15 2017 10:26:40 GMT-0700 (PDT),mouse,22,checked out,nav,kaur,nkgkaur@ucdavis.edu, , , , ,, , , ,nav kaur checked out a mouse
+Sat Apr 15 2017 10:27:50 GMT-0700 (PDT),mouse,22,created, , , , , , , ,, , , ,created a mouse with barcode: 22
+Sat Apr 15 2017 10:27:56 GMT-0700 (PDT),mouse,22,checked in,nav,kaur,nkgkaur@ucdavis.edu, , , , ,, , , ,nav kaur checked in a mouse
+Sat Apr 15 2017 10:28:00 GMT-0700 (PDT),keyboard,23,created, , , , , , , ,, , , ,created a keyboard with barcode: 23
+Sat Apr 15 2017 10:29:14 GMT-0700 (PDT),mouse,22,checked out,navpreet,kaur,navpree@tmail.com, , , , ,, , , ,Navpreet Kaur checked out a mouse
+Sat Apr 15 2017 10:30:03 GMT-0700 (PDT),mouse,22,checked in,navpreet,kaur,navpree@hotmail.com, , , , ,, , , ,navpreet kaur checked in a mouse
+Sat Apr 15 2017 10:31:14 GMT-0700 (PDT),mouse,22,checked out,navpreet,kaur,navpree@tmail.com, , , , ,, , , ,Navpreet Kaur checked out a mouse
+Sat Apr 15 2017 10:31:45 GMT-0700 (PDT),mouse,22,checked in,navpreet,kaur,navpree@tmail.com, , , , ,, , , ,navpreet kaur checked in a mouse
+Sat Apr 15 2017 10:32:03 GMT-0700 (PDT),mouse,22,checked in,navpreet,kaur,navpree@hotmail.com, , , , ,, , , ,navpreet kaur checked in a mouse
+Sat Apr 15 2017 10:42:31 GMT-0700 (PDT),mouse,22,checked out,wqqw,wqwq,wqwqw, , , , ,, , , ,wqqw wqwq checked out a mouse
+Sat Apr 15 2017 10:44:31 GMT-0700 (PDT),mouse,22,checked out,wqqw,wqwq,wqwqw, , , , ,, , , ,wqqw wqwq checked out a mouse
+Sat Apr 15 2017 10:45:37 GMT-0700 (PDT),mouse,22,checked in,wqqw,wqwq,wqwqw, , , , ,, , , ,wqqw wqwq checked in a mouse
+Sat Apr 15 2017 10:46:06 GMT-0700 (PDT),mouse,22,checked out,22,212,22, , , , ,, , , ,22 212 checked out a mouse
+Sat Apr 15 2017 10:47:37 GMT-0700 (PDT),mouse,22,checked in,wqqw,wqwq,wqwqw, , , , ,, , , ,wqqw wqwq checked in a mouse
+Sat Apr 15 2017 10:48:06 GMT-0700 (PDT),mouse,22,checked out,22,212,22, , , , ,, , , ,22 212 checked out a mouse
+Sat Apr 15 2017 10:49:37 GMT-0700 (PDT),mouse,22,checked in,wqqw,wqwq,wqwqw, , , , ,, , , ,wqqw wqwq checked in a mouse
+Sat Apr 15 2017 10:52:57 GMT-0700 (PDT),mouse,22,checked out,22,22,2, , , , ,, , , ,22 22 checked out a mouse
+Sat Apr 15 2017 10:56:24 GMT-0700 (PDT),mouse,22,checked out,2,2,2, , , , ,, , , ,2 2 checked out a mouse
+Sat Apr 15 2017 10:58:04 GMT-0700 (PDT),mouse,22,checked out,n,n,n, , , , ,, , , ,n n checked out a mouse
+Sat Apr 15 2017 11:02:31 GMT-0700 (PDT),mouse,22,checked out,e,e,e, , , , ,, , , ,e e checked out a mouse
+Sat Apr 15 2017 11:23:28 GMT-0700 (PDT),mouse,22,checked out,w,e,e, , , , ,, , , ,w e checked out a mouse
+Sat Apr 15 2017 11:30:38 GMT-0700 (PDT),mouse,22,checked out,e,e,e, , , , ,, , , ,e e checked out a mouse
+Sat Apr 15 2017 11:33:29 GMT-0700 (PDT),mouse,22,checked out,rrr,r,r, , , , ,, , , ,rrr r checked out a mouse
+Sat Apr 15 2017 11:39:02 GMT-0700 (PDT),mouse,22,checked out,e,e,e, , , , ,, , , ,e e checked out a mouse
+Sat Apr 15 2017 11:44:00 GMT-0700 (PDT),mouse,22,checked out,ee,e,ee, , , , ,, , , ,ee e checked out a mouse
+Sat Apr 15 2017 11:44:49 GMT-0700 (PDT),mouse,22,checked out,e,e,e, , , , ,, , , ,e e checked out a mouse
+Sat Apr 15 2017 11:46:49 GMT-0700 (PDT),mouse,22,checked out,e,e,e, , , , ,, , , ,e e checked out a mouse
+Sat Apr 15 2017 11:48:49 GMT-0700 (PDT),mouse,22,checked out,e,e,e, , , , ,, , , ,e e checked out a mouse
+Sat Apr 15 2017 12:03:16 GMT-0700 (PDT),mouse,22,checked in,e,e,e, , , , ,, , , ,e e checked in a mouse
+Sat Apr 15 2017 12:04:02 GMT-0700 (PDT),mouse,22,checked in,e,e,e, , , , ,, , , ,e e checked in a mouse
+Sat Apr 15 2017 12:05:03 GMT-0700 (PDT),keyboard,23,checked out,w,w,w, , , , ,, , , ,w w checked out a keyboard
+Sat Apr 15 2017 12:05:16 GMT-0700 (PDT),mouse,22,checked in,e,e,e, , , , ,, , , ,e e checked in a mouse
+Sat Apr 15 2017 12:06:02 GMT-0700 (PDT),mouse,22,checked in,e,e,e, , , , ,, , , ,e e checked in a mouse
+Sat Apr 15 2017 12:07:03 GMT-0700 (PDT),keyboard,23,checked out,w,w,w, , , , ,, , , ,w w checked out a keyboard
+Sat Apr 15 2017 12:07:16 GMT-0700 (PDT),mouse,22,checked in,e,e,e, , , , ,, , , ,e e checked in a mouse
+Sat Apr 15 2017 12:08:02 GMT-0700 (PDT),mouse,22,checked in,e,e,e, , , , ,, , , ,e e checked in a mouse
+Sat Apr 15 2017 12:09:03 GMT-0700 (PDT),keyboard,23,checked out,w,w,w, , , , ,, , , ,w w checked out a keyboard
+Sat Apr 15 2017 12:11:11 GMT-0700 (PDT),mouse,22,checked in,e,e,e, , , , ,, , , ,e e checked in a mouse
+Sat Apr 15 2017 12:11:28 GMT-0700 (PDT),mouse,22,checked in,e,e,e, , , , ,, , , ,e e checked in a mouse
+Sat Apr 15 2017 12:12:11 GMT-0700 (PDT),keyboard,23,checked out,e,e,e, , , , ,, , , ,e e checked out a keyboard
+Sat Apr 15 2017 12:13:16 GMT-0700 (PDT),mouse,22,checked in,e,e,e, , , , ,, , , ,e e checked in a mouse
+Sat Apr 15 2017 12:14:00 GMT-0700 (PDT),mouse,22,checked in,e,e,e, , , , ,, , , ,e e checked in a mouse
+Sat Apr 15 2017 12:14:19 GMT-0700 (PDT),mouse,22,checked in,e,e,e, , , , ,, , , ,e e checked in a mouse
+Sat Apr 15 2017 12:15:16 GMT-0700 (PDT),mouse,22,checked in,e,e,e, , , , ,, , , ,e e checked in a mouse
+Sat Apr 15 2017 12:16:00 GMT-0700 (PDT),mouse,22,checked in,e,e,e, , , , ,, , , ,e e checked in a mouse
+Sat Apr 15 2017 12:16:19 GMT-0700 (PDT),mouse,22,checked in,e,e,e, , , , ,, , , ,e e checked in a mouse
+Sat Apr 15 2017 12:17:16 GMT-0700 (PDT),mouse,22,checked in,e,e,e, , , , ,, , , ,e e checked in a mouse
+Sat Apr 15 2017 12:18:00 GMT-0700 (PDT),mouse,22,checked in,e,e,e, , , , ,, , , ,e e checked in a mouse
+Sat Apr 15 2017 12:18:31 GMT-0700 (PDT),mouse,22,created, , , , , , , ,, , , ,created a mouse with barcode: 22
+Sat Apr 15 2017 12:19:00 GMT-0700 (PDT),mouse,22,created, , , , , , , ,, , , ,created a mouse with barcode: 22
+Sat Apr 15 2017 12:19:21 GMT-0700 (PDT),mouse,22,created, , , , , , , ,, , , ,created a mouse with barcode: 22
+Sat Apr 15 2017 12:21:21 GMT-0700 (PDT),mouse,22,created, , , , , , , ,, , , ,created a mouse with barcode: 22
+Sat Apr 15 2017 12:22:28 GMT-0700 (PDT),mouse,22,checked out,w,w,w, , , , ,, , , ,w w checked out a mouse
+Sat Apr 15 2017 12:23:26 GMT-0700 (PDT),mouse,22,checked in,w,w,w, , , , ,, , , ,w w checked in a mouse
+Sat Apr 15 2017 12:23:52 GMT-0700 (PDT),keyboard,23,created, , , , , , , ,, , , ,created a keyboard with barcode: 23
+Sat Apr 15 2017 12:25:26 GMT-0700 (PDT),mouse,22,checked in,w,w,w, , , , ,, , , ,w w checked in a mouse
+Sat Apr 15 2017 12:25:51 GMT-0700 (PDT),mouse,22,checked out,w,w,w, , , , ,, , , ,w w checked out a mouse
+Sat Apr 15 2017 12:26:47 GMT-0700 (PDT),mouse,22,checked in,w,w,w, , , , ,, , , ,w w checked in a mouse
+Sat Apr 15 2017 12:29:32 GMT-0700 (PDT),mouse,22,checked out,w,w,w, , , , ,, , , ,w w checked out a mouse
+Sat Apr 15 2017 12:31:00 GMT-0700 (PDT),keyboard,23,checked out,w,w,w, , , , ,, , , ,w w checked out a keyboard
+Sat Apr 15 2017 12:32:37 GMT-0700 (PDT),keyboard,23,checked out,e,e,e, , , , ,, , , ,e e checked out a keyboard
+Sat Apr 15 2017 12:32:56 GMT-0700 (PDT),mouse,22,checked in,w,w,w, , , , ,, , , ,w w checked in a mouse
+Sat Apr 15 2017 12:33:31 GMT-0700 (PDT),mouse,22,checked in,w,w,w, , , , ,, , , ,w w checked in a mouse
+Sat Apr 15 2017 12:35:31 GMT-0700 (PDT),mouse,22,checked in,w,w,w, , , , ,, , , ,w w checked in a mouse
+Sat Apr 15 2017 12:37:15 GMT-0700 (PDT),mouse,22,created, , , , , , , ,, , , ,created a mouse with barcode: 22
+Sat Apr 15 2017 12:37:33 GMT-0700 (PDT),mouse,22,checked out,w,w,w, , , , ,, , , ,w w checked out a mouse
+Sat Apr 15 2017 12:42:51 GMT-0700 (PDT),mouse,22,created, , , ,n/a,n/a,n/a,n/a,,n/a,n/a,n/a,created a mouse with barcode: 22
+Sat Apr 15 2017 12:43:07 GMT-0700 (PDT),mouse,22,checked out,w,w,w,n/a,n/a,n/a,n/a,,n/a,n/a,n/a,w w checked out a mouse
+Sat Apr 15 2017 12:43:25 GMT-0700 (PDT),mouse,22,checked in,w,w,w,n/a,n/a,n/a,n/a,,n/a,n/a,n/a,w w checked in a mouse
+Sat Apr 15 2017 12:44:09 GMT-0700 (PDT),mouse,23,created, , , ,n/a,n/a,n/a,n/a,,n/a,n/a,n/a,created a mouse with barcode: 23
+Sat Apr 15 2017 12:46:31 GMT-0700 (PDT),mouse,22,checked out,e,e,e,n/a,n/a,n/a,n/a,,n/a,n/a,n/a,e e checked out a mouse
+Sat Apr 15 2017 12:47:21 GMT-0700 (PDT),mouse,23,checked out,1,f,f,n/a,n/a,n/a,n/a,,n/a,n/a,n/a,1 f checked out a mouse
+Sat Apr 15 2017 12:49:21 GMT-0700 (PDT),mouse,23,checked out,1,f,f,n/a,n/a,n/a,n/a,,n/a,n/a,n/a,1 f checked out a mouse
+Sat Apr 15 2017 12:50:36 GMT-0700 (PDT),mouse,23,checked out,2,e,e,n/a,n/a,n/a,n/a,,n/a,n/a,n/a,2 e checked out a mouse
+Sat Apr 15 2017 12:52:34 GMT-0700 (PDT),mouse,23,checked out,1,r,r,n/a,n/a,n/a,n/a,,n/a,n/a,n/a,1 r checked out a mouse
+Sat Apr 15 2017 12:54:34 GMT-0700 (PDT),mouse,23,checked out,1,r,r,n/a,n/a,n/a,n/a,,n/a,n/a,n/a,1 r checked out a mouse
+Sat Apr 15 2017 12:56:34 GMT-0700 (PDT),mouse,23,checked out,1,r,r,n/a,n/a,n/a,n/a,,n/a,n/a,n/a,1 r checked out a mouse
+Sat Apr 15 2017 14:08:54 GMT-0700 (PDT),mouse,3333333333,created, , , , , , , ,, , , ,created a mouse with barcode: 3333333333
+Sat Apr 15 2017 14:10:54 GMT-0700 (PDT),mouse,3333333333,created, , , , , , , ,, , , ,created a mouse with barcode: 3333333333
+Sat Apr 15 2017 17:51:10 GMT-0700 (PDT),printer for lab,3333333334,created, , , , , , , ,, , , ,created a printer for lab with barcode: 3333333334
+Sat Apr 15 2017 17:53:10 GMT-0700 (PDT),printer for lab,3333333334,created, , , , , , , ,, , , ,created a printer for lab with barcode: 3333333334
+Sat Apr 15 2017 21:42:25 GMT-0700 (PDT),mouse,3333333333,checked out,navpreet,kaur,ee@hotmail.com, , , , ,, , , ,Navpreet Kaur checked out a mouse
+Sun Apr 16 2017 00:29:36 GMT-0700 (PDT),mouse,2222222222,checked in,ee,eeee,ee@gmail.com, , , , ,, , , ,ee eeee checked in a mouse
+Sun Apr 16 2017 00:31:36 GMT-0700 (PDT),mouse,2222222222,checked in,ee,eeee,ee@gmail.com, , , , ,, , , ,ee eeee checked in a mouse
+Sat Apr 22 2017 13:45:23 GMT-0700 (PDT),mouse,2222222222,checked out,navpreet,kaur,gill@hotmail.com, , , , ,, , , ,Navpreet Kaur checked out a mouse
+Sat Apr 22 2017 13:45:47 GMT-0700 (PDT),mouse,2222222222,checked in,navpreet,kaur,gill@hotmail.com, , , , ,, , , ,navpreet kaur checked in a mouse
+Sat Apr 22 2017 13:46:42 GMT-0700 (PDT),mouse,2222222222,checked out,navpreet,kaur,gill@hotmail.com, , , , ,, , , ,Navpreet Kaur checked out a mouse
+Tue Apr 25 2017 09:17:42 GMT-0700 (PDT),mouse,2222222222,checked in,navpreet,kaur,gill@hotmail.com, , , , ,, , , ,navpreet kaur checked in a mouse
+Sat Apr 29 2017 11:48:08 GMT-0700 (PDT),mouse,2222222222,checked out,navpreet,kaur,gill@hotmail.com, , , , ,, , , ,Navpreet Kaur checked out a mouse
+Sat Apr 29 2017 11:48:31 GMT-0700 (PDT),mouse,2222222222,checked in,navpreet,kaur,gill@hotmail.com, , , , ,, , , ,navpreet kaur checked in a mouse
+Sat Apr 29 2017 11:49:07 GMT-0700 (PDT),mouse,2222222222,checked out,navpreet,kaur,gill@hotmail.com, , , , ,, , , ,Navpreet Kaur checked out a mouse
+Sat Apr 29 2017 11:50:08 GMT-0700 (PDT),mouse,2222222222,checked out,navpreet,kaur,gill@hotmail.com, , , , ,, , , ,Navpreet Kaur checked out a mouse
+Sat Apr 29 2017 11:50:31 GMT-0700 (PDT),mouse,2222222222,checked in,navpreet,kaur,gill@hotmail.com, , , , ,, , , ,navpreet kaur checked in a mouse
