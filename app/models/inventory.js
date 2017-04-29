@@ -1,8 +1,9 @@
-var mongoose = require('mongoose');
-var mongooseToCsv = require('mongoose-to-csv');
-var Schema = mongoose.Schema;
+var mongoose = require('mongoose'); // Import Mongoose Package
+var mongooseToCsv = require('mongoose-to-csv'); // Import Mongoose csv files Plugin
+var Schema = mongoose.Schema; // Assign Mongoose Schema function to variable
 
-
+// Define the mongoose schema for inventory
+// Each schema maps to a MongoDB collection and defines the shape of the documents within that collection
 var InventorySchema = new Schema({
 	product: { type: String, lowercase: true, required: true },
 	barcode: { type: Number, required: true, unique: true },
@@ -28,8 +29,11 @@ var InventorySchema = new Schema({
 
 });
 
+// Moongoose plugin that creates a CsvBuilder instance for hinventory Schema
 InventorySchema.plugin(mongooseToCsv, {
+	// define headers and order of headers
 	headers: 'Product Barcode Status Date-Checked-Out Date-Checked-In First-Name Last-Name Email Phone-Number Supervisor-First-Name Supervisor-Last-Name Supervisor-Email Supervisor-Phone-Number Title Department Charge-Number',
+	// define object to header correspondance
 	constraints: {
 		'Product': 'product',
 		'Barcode': 'barcode',
@@ -51,5 +55,5 @@ InventorySchema.plugin(mongooseToCsv, {
 	}
 });
 
-
+// Export to server file
 module.exports = mongoose.model('InventoryForm',InventorySchema);
