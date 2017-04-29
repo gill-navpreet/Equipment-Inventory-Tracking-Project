@@ -725,7 +725,7 @@ module.exports = function(router) {
                                 if (err) {
                                     console.log(err); // Log any errors to the console
                                 } else {
-                                    res.json({ success: true, message: 'inventory deleted!' }); // Return success message
+                                    res.json({ success: true, message: 'inventory deleted!', barcode: deletedInventory, product: inventory.product }); // Return success message
                                 }
                             });
                         }

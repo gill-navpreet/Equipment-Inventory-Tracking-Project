@@ -1,6 +1,6 @@
 angular.module('inventoryManagementController', ['ui.bootstrap'])
 
-.controller('inventoryManagementCtrl', function(Inventory) {
+.controller('inventoryManagementCtrl', function(Inventory,History) {
 	var app = this;
 	app.currentPage = 1;
 	app.pageSize = 10;
@@ -56,6 +56,18 @@ angular.module('inventoryManagementController', ['ui.bootstrap'])
 		Inventory.deleteInventory(barcode).then(function(data) {
 			if(data.data.success) {
 				getInventory();
+				console.log(data);
+				
+				var historyObject = {};
+				historyObject.product = data.data.product;
+				historyObject.barcode = data.data.barcode;
+				historyObject.checkedType = 'deleted';
+				historyObject.date = Date.now();
+				historyObject.description = historyObject.checkedType + " a " + historyObject.product + " with barcode: " + historyObject.barcode;
+				console.log(historyObject);
+				History.create(historyObject);
+							
+
 			} else {
 				app.showMoreError = data.data.message;
 			}
