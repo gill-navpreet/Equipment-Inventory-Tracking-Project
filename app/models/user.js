@@ -1,8 +1,8 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var bcrypt = require('bcrypt-nodejs'); // for password encryption
+var mongoose = require('mongoose'); // Import Mongoose Package
+var Schema = mongoose.Schema; // Assign Mongoose Schema function to variable
+var bcrypt = require('bcrypt-nodejs'); // Import Bcrypt Package for password encryption
 var titlize = require('mongoose-title-case'); // Import Mongoose Title Case Plugin
-var validate = require('mongoose-validator');
+var validate = require('mongoose-validator'); // Import Mongoose Validator Plugin
 
 // User Name Validator
 var nameValidator = [
@@ -59,6 +59,7 @@ var passwordValidator = [
 ];
 
 // Define the mongoose schema 
+// Each schema maps to a MongoDB collection and defines the shape of the documents within that collection
 var UserSchema = new Schema({
   name: { type: String, required: true, validate: nameValidator },
   // unique ensures only one user
@@ -74,10 +75,11 @@ UserSchema.pre('save', function(next){
   var user = this;
   //checks if the user modified the password, if not, it doesn't run the hash function which was changing the password on us
   if (!user.isModified('password')) return next();
-  bcrypt.hash(user.password, null, null, function(err,hash) {
-    if(err) return next(err);
-    user.password = hash;
-    next();
+  // Function to encrypt password 
+  bcrypt.hash(user.password, null, null, function(err,hash) { 
+    if(err) return next(err); // Exit if error is found
+    user.password = hash; // Assign the hash to the user's password so it is saved in database encrypted
+    next(); // Exit Bcrypt function
   });
 });
 
@@ -87,9 +89,9 @@ UserSchema.plugin(titlize, {
 });
 
 // Function validates password by comparing password provided by user to the "this" user password
-// returns true or false value
+// returns true (if password matches) or false value
 UserSchema.methods.comparePassword = function(password) {
-  return bcrypt.compareSync(password, this.password);
+  return bcrypt.compareSync(password, this.password); 
 };
 
 // Export to server file

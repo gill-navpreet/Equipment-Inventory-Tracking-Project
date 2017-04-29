@@ -9,7 +9,7 @@ var bodyParser = require('body-parser');// Node.js body parsing middleware. Pars
 var router = express.Router(); // Invoke the express router 
 var appRoutes = require('./app/routes/api')(router); // file for routes
 var path = require('path');// Import path module
-var Inventory = require('./app/models/inventory');
+var Inventory = require('./app/models/inventory'); // Import inventory.js 
 
 
 
@@ -34,19 +34,21 @@ mongoose.connect('mongodb://localhost:27017/tutorial', function(err) {
 	}
 });
 
+// Set the graph layouts
 app.get('/graph1', function(req, res) {
 	res.sendFile(path.join(__dirname + '/public/graphs/bargraph.html'));
 });
 app.get('/graph2', function(req, res) {
 	res.sendFile(path.join(__dirname + '/public/graphs/DatevsTotalCheckins.html'));
 });
+
 // Route
 // Send the user index.html file
 app.get('*', function(req, res) {
 	res.sendFile(path.join(__dirname + '/public/app/views/index.html'));
 });
 
-// Server port / starts
+// Start server
 app.listen(port, function(){
 	console.log('Running the server on port ' + port);
 });
