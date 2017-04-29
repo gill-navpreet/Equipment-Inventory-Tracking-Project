@@ -23,9 +23,9 @@ var InventorySchema = new Schema({
 	location: { type: String, default: ' '},
 	chargeNumber: { type: String },
 	emailSent: { type: String, default: 'false' },
+	isDeleted: { type: String, default: 'false' },
 	batteryTotalTime: { type: Number, default: 0},
-	batteryLifeTime: { type: Number, default: 1000},
-	isDeleted: { type: String, default: 'false'}
+	batteryLifeTime: { type: Number, default: 10000}
 
 });
 

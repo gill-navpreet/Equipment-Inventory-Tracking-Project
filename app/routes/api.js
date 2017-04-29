@@ -1042,6 +1042,15 @@ module.exports = function(router) {
         if (req.body.firstName) var newFirstName = req.body.firstName; // Check if a change to name was requested
         if (req.body.lastName) var newLastName = req.body.lastName; // Check if a change to username was requested
         if (req.body.email) var newEmail = req.body.email; // Check if a change to e-mail was requested
+        if (req.body.phoneNumber) var newPhoneNumber = req.body.phoneNumber;
+        if (req.body.supervisorFirstName) var newSupervisorFirstName = req.body.supervisorFirstName;
+        if (req.body.supervisorLastName) var newSupervisorLastName = req.body.supervisorLastName;
+        if (req.body.supervisorPhoneNumber) var newSupervisorPhoneNumber = req.body.supervisorPhoneNumber;
+        if (req.body.supervisorEmail) var newSupervisorEmail = req.body.supervisorEmail;
+        if (req.body.title) var newTitle = req.body.title;
+        if (req.body.department) var newDepartment = req.body.department;
+        if (req.body.location) var newLocation = req.body.location;
+        if (req.body.chargeNumber) var newChargeNumber = req.body.chargeNumber;
         if (req.body.product) var newProduct = req.body.product; // Check if a change to permission was requested
         if (req.body.barcode) var newBarcode = req.body.barcode;
         if (req.body.isCheckedIn) var newIsCheckedIn = req.body.isCheckedIn; 
@@ -1064,6 +1073,62 @@ module.exports = function(router) {
                 inventory.save();
             });
         }
+        if (newPhoneNumber) {
+            Inventory.findOne({ _id: editInventory}, function(err, inventory) {
+                inventory.phoneNumber = newPhoneNumber;
+                inventory.save();
+            });
+        }
+        if (newSupervisorFirstName) {
+            Inventory.findOne({ _id: editInventory}, function(err, inventory) {
+                inventory.supervisorFirstName = newSupervisorFirstName;
+                inventory.save();
+            });
+        }
+        if (newSupervisorLastName) {
+            Inventory.findOne({ _id: editInventory}, function(err, inventory) {
+                inventory.supervisorLastName = newSupervisorLastName;
+                inventory.save();
+            });
+        }
+        if (newSupervisorEmail) {
+            Inventory.findOne({ _id: editInventory}, function(err, inventory) {
+                inventory.supervisorEmail = newSupervisorEmail;
+                inventory.save();
+            });
+        }
+
+        if (newSupervisorPhoneNumber) {
+            Inventory.findOne({ _id: editInventory}, function(err, inventory) {
+                inventory.supervisorPhoneNumber = newSupervisorPhoneNumber;
+                inventory.save();
+            });
+        }
+        if (newTitle) {
+            Inventory.findOne({ _id: editInventory}, function(err, inventory) {
+                inventory.title = newTitle;
+                inventory.save();
+            });
+        }
+        if (newDepartment) {
+            Inventory.findOne({ _id: editInventory}, function(err, inventory) {
+                inventory.department = newDepartment;
+                inventory.save();
+            });
+        }
+        if (newLocation) {
+            Inventory.findOne({ _id: editInventory}, function(err, inventory) {
+                inventory.location = newLocation;
+                inventory.save();
+            });
+        }
+        if (newChargeNumber) {
+            Inventory.findOne({ _id: editInventory}, function(err, inventory) {
+                inventory.chargeNumber = newChargeNumber;
+                inventory.save();
+            });
+        }
+
         if (newIsCheckedIn) {
             Inventory.findOne({ _id: editInventory}, function(err, inventory) {
                 inventory.isCheckedIn = newIsCheckedIn;
@@ -1076,6 +1141,13 @@ module.exports = function(router) {
                 inventory.save();
             });
         }
+        Inventory.findOne( { _id: editInventory}, function(err,inventory) {
+            console.log(newDateCheckedIn);
+            console.log(inventory.dateCheckedOut);
+            inventory.batteryTotalTime += newDateCheckedIn - inventory.dateCheckedOut;
+            inventory.save();
+
+        });        
     });
 
     // return router to server

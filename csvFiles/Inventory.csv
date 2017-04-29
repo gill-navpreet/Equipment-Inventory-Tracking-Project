@@ -1,9 +1,4 @@
 Product,Barcode,Status,Date-Checked-Out,Date-Checked-In,First-Name,Last-Name,Email,Phone-Number,Supervisor-First-Name,Supervisor-Last-Name,Supervisor-Email,Supervisor-Phone-Number,Title,Department,Charge-Number
-pencil,7263849382,true,,Sat Apr 29 2017 08:29:36 GMT-0700 (Pacific Daylight Time), , , ,, , , ,, , ,
-pen,8473628374,true,,Sat Apr 29 2017 08:29:52 GMT-0700 (Pacific Daylight Time), , , ,, , , ,, , ,
-pen,8172363809,true,,Sat Apr 29 2017 08:45:29 GMT-0700 (Pacific Daylight Time), , , ,, , , ,, , ,
-keyboard,3747939983,true,,Sat Apr 29 2017 08:45:42 GMT-0700 (Pacific Daylight Time), , , ,, , , ,, , ,
-keyboard,9283747323,true,,Sat Apr 29 2017 08:46:29 GMT-0700 (Pacific Daylight Time), , , ,, , , ,, , ,
-computer,9182736483,true,,Sat Apr 29 2017 08:51:53 GMT-0700 (Pacific Daylight Time), , , ,, , , ,, , ,
-corsair,8827362782,true,,Sat Apr 29 2017 09:14:22 GMT-0700 (Pacific Daylight Time),jyugf, , ,, , , ,, , ,
-animal,9293787483,true,,Sat Apr 29 2017 09:14:31 GMT-0700 (Pacific Daylight Time), , , ,, , , ,, , ,
+hohoh,8878986867,true,Sat Apr 29 2017 13:26:29 GMT-0700 (Pacific Daylight Time),Sat Apr 29 2017 13:26:38 GMT-0700 (Pacific Daylight Time), , , , , , , ,, , , 
+joseph,9028309200,true,Sat Apr 29 2017 12:30:17 GMT-0700 (Pacific Daylight Time),Sat Apr 29 2017 12:32:22 GMT-0700 (Pacific Daylight Time), , , , , , , ,, , , 
+animal,292982828,true,,Sat Apr 29 2017 12:28:42 GMT-0700 (Pacific Daylight Time), , , ,, , , ,, , ,

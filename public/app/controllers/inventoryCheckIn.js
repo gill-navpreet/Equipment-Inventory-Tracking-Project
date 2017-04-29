@@ -42,7 +42,7 @@ angular.module('inventoryCheckInController',[])
 
 						History.create(historyObject);
 						
-						Inventory.checkOutUpdate(inventoryObject);
+						Inventory.checkInUpdate(inventoryObject);
 						app.successMsg = 'Checking in ....Redirecting';
 
 
