@@ -1,4 +1,0 @@
-Product,Barcode,Status,Date-Checked-Out,Date-Checked-In,First-Name,Last-Name,Email,Phone-Number,Supervisor-First-Name,Supervisor-Last-Name,Supervisor-Email,Supervisor-Phone-Number,Title,Department,Charge-Number
-hohoh,8878986867,true,Sat Apr 29 2017 13:26:29 GMT-0700 (Pacific Daylight Time),Sat Apr 29 2017 13:26:38 GMT-0700 (Pacific Daylight Time), , , , , , , ,, , , 
-joseph,9028309200,true,Sat Apr 29 2017 12:30:17 GMT-0700 (Pacific Daylight Time),Sat Apr 29 2017 12:32:22 GMT-0700 (Pacific Daylight Time), , , , , , , ,, , , 
-animal,292982828,true,,Sat Apr 29 2017 12:28:42 GMT-0700 (Pacific Daylight Time), , , ,, , , ,, , ,
