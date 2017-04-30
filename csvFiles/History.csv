@@ -1,4 +1,5 @@
 Date,Product,Barcode,Status,First-Name,Last-Name,Email,Phone-Number,Supervisor-First-Name,Supervisor-Last-Name,Supervisor-Email,Supervisor-Phone-Number,Title,Department,Charge-Number,Description
+<<<<<<< HEAD
 Sun Apr 02 2017 18:37:31 GMT-0700 (PDT),mouse,222222,created, , , , , , , ,, , , ,created a Mouse with barcode: 222222
 Sun Apr 02 2017 18:37:52 GMT-0700 (PDT),keyboard,222223,created, , , , , , , ,, , , ,created a Keyboard with barcode: 222223
 Sun Apr 02 2017 18:39:05 GMT-0700 (PDT),mouse,222222,checked out,navpreet,kaur,nav@hotmail.com, , , , ,, , , ,Navpreet Kaur checked out a mouse

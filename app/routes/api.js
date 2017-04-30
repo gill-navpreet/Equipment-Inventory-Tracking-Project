@@ -108,7 +108,7 @@ writeStream.on('finish', function() {
         }
 
          //Parse all the data from History.csv into another csv
-        var data = fs.createWriteStream('csvFiles/DatevsTotalCheckinsbyDay.csv');
+        var data = fs.createWriteStream('public/app/csvFiles/DatevsTotalCheckinsbyDay.csv');
       
         // Output to Data.csv (unfixed)
         // Check-ins by month
@@ -122,7 +122,7 @@ writeStream.on('finish', function() {
             data.write(dateKeys[i] + "," + items + "\n");
         }
 
-        data = fs.createWriteStream('csvFiles/DatevsTotalCheckoutsbyDay.csv');
+        data = fs.createWriteStream('public/app/csvFiles/DatevsTotalCheckoutsbyDay.csv');
 
         data.write("Date,Checkouts\n");
         dateKeys = checkoutDatesbyDay.keys();
@@ -134,7 +134,7 @@ writeStream.on('finish', function() {
             data.write(dateKeys[i] + "," + items + "\n");
         }
 
-        data = fs.createWriteStream('csvFiles/DatevsTotalCheckinsbyMonth.csv');
+        data = fs.createWriteStream('public/app/csvFiles/DatevsTotalCheckinsbyMonth.csv');
 
         data.write("Date,Checkins\n");
         dateKeys = checkinDatesbyMonth.keys();
@@ -146,7 +146,7 @@ writeStream.on('finish', function() {
             data.write(dateKeys[i] + "," + items + "\n");
         }
 
-        data = fs.createWriteStream('csvFiles/DatevsTotalCheckoutsbyMonth.csv');
+        data = fs.createWriteStream('public/app/csvFiles/DatevsTotalCheckoutsbyMonth.csv');
 
         data.write("Date,Checkouts\n");
         dateKeys = checkoutDatesbyMonth.keys();
@@ -158,7 +158,7 @@ writeStream.on('finish', function() {
             data.write(dateKeys[i] + "," + items + "\n");
         }
 
-        data = fs.createWriteStream('csvFiles/DatevsDepartmentCheckinsbyDay.csv');
+        data = fs.createWriteStream('public/app/csvFiles/DatevsDepartmentCheckinsbyDay.csv');
 
         //Check-Ins by department
         data.write("Date,Departments\n");
@@ -171,7 +171,7 @@ writeStream.on('finish', function() {
             data.write("\n");
         }
 
-        data = fs.createWriteStream('csvFiles/DatevsDepartmentCheckoutsbyDay.csv');
+        data = fs.createWriteStream('public/app/csvFiles/DatevsDepartmentCheckoutsbyDay.csv');
 
         //Check-Outs by department
         data.write("Date,Departments\n");
