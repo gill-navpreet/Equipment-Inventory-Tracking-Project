@@ -1,0 +1,4 @@
+Product,Barcode,Status,Date-Checked-Out,Date-Checked-In,First-Name,Last-Name,Email,Phone-Number,Supervisor-First-Name,Supervisor-Last-Name,Supervisor-Email,Supervisor-Phone-Number,Title,Department,Charge-Number
+mouse,2222222222,true,Sat Apr 29 2017 12:02:59 GMT-0700 (PDT),Sat Apr 15 2017 12:42:51 GMT-0700 (PDT), , , , , , , ,, , , 
+mouse,23,false,,Sat Apr 15 2017 12:44:09 GMT-0700 (PDT),n/a,n/a,n/a,n/a,n/a,n/a,n/a,,n/a,n/a,n/a
+mouse,3333333333,false,Sat Apr 15 2017 21:42:25 GMT-0700 (PDT),Sat Apr 15 2017 14:08:54 GMT-0700 (PDT),navpreet,kaur,ee@hotmail.com,333-333-3333,ewe,ewe,gill@hotmail.com,,ew,we,ewew
