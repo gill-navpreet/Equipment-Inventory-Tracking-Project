@@ -45,7 +45,7 @@ angular.module('authServices',[])
 		AuthToken.setToken();
 	};
 
-	return authFactory;
+	return authFactory; // Return factory object
 })
 
 // Factory for jwt
@@ -72,22 +72,20 @@ angular.module('authServices',[])
 		return $window.localStorage.getItem('token');
 	};
 
-	return authTokenFactory;
+	return authTokenFactory; // Return factory object
 })
 
 
 // Factory to attach tokens to every request
+// Used to configure headers with token (passed into config, app.js file)
 .factory('AuthInterceptors', function(AuthToken) {
-	var authInterceptorsFactory = {};
+	var authInterceptorsFactory = {}; // Create factory object
 
-	authInterceptorsFactory.request = function(config) {
-		
-		var token = AuthToken.getToken();
-
-		if(token) config.headers['x-access-token'] = token;
-
-		return config;
+	// Function to check for token in local storage and attach to header 
+	authInterceptorsFactory.request = function(config) {	
+		var token = AuthToken.getToken();// Check if a token is in local storage
+		if(token) config.headers['x-access-token'] = token; //If exists, attach to headers
+		return config;// Return config object for use in app.js (config file)
 	};
-
-	return authInterceptorsFactory;
+	return authInterceptorsFactory;// Return factory object
 });
