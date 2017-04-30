@@ -1,5 +1,6 @@
 angular.module('barCodeGeneratorController',[])
 
+// Controller: barCodeGenCtrl is used to generate barcodes 
 .controller('barCodeGenCtrl', function($scope){
 
 	this.generate = function(){

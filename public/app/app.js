@@ -1,3 +1,5 @@
+//AngularJS module defines an application
+//Can add controllers, directives, filters, and more things that you would like to your AngularJS application
 angular.module('userApp',['appRoutes','userControllers','userServices','ngAnimate','mainController','authServices','inventoryFormController',
 	'userServices','barCodeGeneratorController','historyController','managementController','inventoryManagementController','inventoryCheckInController',
 	'inventoryCheckOutController','inventoryCheckOutFormController','historyServices','batteryManagerController','graphController'])

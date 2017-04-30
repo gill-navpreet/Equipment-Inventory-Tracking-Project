@@ -1,7 +1,16 @@
+// ngRoute module routes your application to different pages without reloading the entire application
 var app = angular.module('appRoutes', ['ngRoute'])
 
 // Configure Routes
 
+// Info: when(path, route);
+
+// path:  matched against $location.path. 
+// If $location.path contains redundant trailing slash or is missing one, the route will still match 
+// and the $location.path will be updated to add or drop the trailing slash to exactly match the route definition
+
+// route: Mapping information to be assigned to $route.current on route match.
+// Object properties:
 // 'templateUrl' : Provides the html page to show when the route i saccessed
 // 'controller' : Defines the name of registered controller for each "view".
 // 'controllerAs' : An identifier name for a reference to the controller. If present, the controller will be published to scope under the controllerAs name.
@@ -10,7 +19,7 @@ var app = angular.module('appRoutes', ['ngRoute'])
 
 .config(function($routeProvider, $locationProvider) {
 	$locationProvider.hashPrefix('');
-	$routeProvider
+	$routeProvider //helps to define what page to display when a user clicks a link
 
 	// Home Route
 	.when('/', {
