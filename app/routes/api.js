@@ -341,16 +341,26 @@ module.exports = function(router) {
     // http://localhost:port/api/history
     router.post('/history', function(req,res) {
         var history = new History();
-        history.firstName = req.body.firstName;
-        history.lastName = req.body.lastName;
-        history.email = req.body.email;
-        history.product = req.body.product;
-        history.barcode = req.body.barcode;
-        history.checkedType = req.body.checkedType;
-        history.date = Date.now();
-        history.description = req.body.description;
+        if(req.body.firstName) history.firstName = req.body.firstName;
+        if(req.body.lastName) history.lastName = req.body.lastName;
+        if(req.body.email) history.email = req.body.email;
+        if(req.body.product) history.product = req.body.product;
+        if(req.body.barcode) history.barcode = req.body.barcode;
+        if(req.body.checkedType) history.checkedType = req.body.checkedType;
+        if(req.body.date) history.date = req.body.date;
+        if(req.body.description) history.description = req.body.description;
+        if(req.body.phoneNumber) history.phoneNumber = req.body.phoneNumber;
+        if(req.body.supervisorFirstName) history.supervisorFirstName = req.body.supervisorFirstName;
+        if(req.body.supervisorLastName) history.supervisorLastName = req.body.supervisorLastName;
+        if(req.body.supervisorPhoneNumber) history.supervisorPhoneNumber = req.body.supervisorPhoneNumber;
+        if(req.body.supervisorEmail) history.supervisorEmail = req.body.supervisorEmail;
+        if(req.body.title) history.title = req.body.title;
+        if(req.body.department) history.department = req.body.department;
+        if(req.body.location) history.location = req.body.location;
+        if(req.body.chargeNumber) history.chargeNumber = req.body.chargeNumber;
         history.save();
     });
+
 
     // GET USER HISTORY ROUTE
     // http://localhost:port/api/history
