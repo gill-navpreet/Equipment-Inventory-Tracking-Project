@@ -109,7 +109,7 @@ writeStream.on('finish', function() {
         // Parse all the data from History.csv into another csv
         var data = fs.createWriteStream('public/csvFiles/DatevsTotalCheckinsbyDay.csv');
         
-        // Check-ins by month
+        // Check-ins by day
         data.write("Date,Checkins\n");
         dateKeys = checkinDatesbyDay.keys();
         for(var i = 0; i < dateKeys.length; i++) {
@@ -122,6 +122,7 @@ writeStream.on('finish', function() {
 
         data = fs.createWriteStream('public/csvFiles/DatevsTotalCheckoutsbyDay.csv');
 
+        // Check-outs by day
         data.write("Date,Checkouts\n");
         dateKeys = checkoutDatesbyDay.keys();
         for(var i = 0; i < dateKeys.length; i++) {
@@ -134,6 +135,7 @@ writeStream.on('finish', function() {
 
         data = fs.createWriteStream('public/csvFiles/DatevsTotalCheckinsbyMonth.csv');
 
+        // Check-ins by month
         data.write("Date,Checkins\n");
         dateKeys = checkinDatesbyMonth.keys();
         for(var i = 0; i < dateKeys.length; i++) {
