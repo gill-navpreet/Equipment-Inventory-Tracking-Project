@@ -8,7 +8,7 @@ angular.module('mainController', ['authServices'])
 	// Helps with switching the view on the basis of if the user is logged in or not 
 	app.loadme = false;
 
-    // ANytime the route is changed or a page is refreshed, attach the user info to it
+    // Anytime the route is changed or a page is refreshed, attach the user info to it
 	$rootScope.$on('$routeChangeStart', function() {
 		if(Auth.isLoggedIn()) {
 			app.isLoggedIn = true;
@@ -21,28 +21,29 @@ angular.module('mainController', ['authServices'])
 					if(data.data.permission === 'admin' || data.data.permission === 'moderator'){
 						// can use this variable in Index.html file; see Index.html file for usage
 						app.authorized = true;
-						app.loadme = true;
+						app.loadme = true; // Show main HTML now that data is obtained in AngularJS
 					} else {
-						app.loadme = true;
+						app.loadme = true; // Show main HTML now that data is obtained in AngularJS
 					}
 				});
 
-				app.loadme = true;
+				app.loadme = true;// Show main HTML now that data is obtained in AngularJS
 			});
 		} else {
-			app.isLoggedIn = false;
-			app.username = '';
-			app.loadme = true;
+			app.isLoggedIn = false; // User is not logged in, set variable to falses
+			app.username = ''; // Clear username
+			app.loadme = true;// Show main HTML now that data is obtained in AngularJS
 		}
 	});
 
 
 	this.doLogin = function(loginData){
-		app.loading = true;
-		app.errorMsg = false;
+		app.loading = true; // Start bootstrap loading icon
+		app.errorMsg = false; // Clear errorMsg whenever user attempts a login
 
 		Auth.login(app.loginData).then(function(data) {
 			if(data.data.success){
+				// Stop bootstrap loading icon
 				app.loading = false;
 				//Create Success Message
 				app.successMsg = data.data.message +'....Redirecting';
@@ -55,8 +56,9 @@ angular.module('mainController', ['authServices'])
 					app.successMsg = false;
 				}, 2000);
 			} else {
-				//Create on error message
+				// Don't start bootstrap loading icon
 				app.loading = false;
+				// Return error message to login page
 				app.errorMsg = data.data.message;
 			}
 		});
