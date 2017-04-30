@@ -79,7 +79,7 @@
 	</div>
 	<br>
 
-	<!-- Department -->
+	<!-- Department 
 	<div ng-class="{ 'has-success':(checkOutForm.checkOutFormTable.department.$valid && !checkOutForm.checkOutFormTable.department.$pristine), 'has-error':(!checkOutForm.checkOutFormTable.department.$valid && !checkOutForm.checkOutFormTable.department.$pristine) || (!checkOutForm.checkOutFormTable.department.$valid && checkOutForm.checkOutFormTable.$submitted)}">
 		<label>Department:</label>
 		<input class="form-control" type="text" name='department' placeholder="please enter department" ng-model="newData.newDepartment" ng-pattern="/((([a-zA-Z])+[ ]*)+)$/" required>
@@ -90,6 +90,13 @@
         </ul>
 	</div>
 	<br>
+     -->
+    <label>Department:</label> 
+    <br>
+  		<select ng-model="model" ng-options="department for department in departments"></select>
+  	<br>	
+  	<br>	
+
 
 	<!-- Location -->
 	<div ng-class="{ 'has-success':(checkOutForm.checkOutFormTable.location.$valid && !checkOutForm.checkOutFormTable.location.$pristine), 'has-error':(!checkOutForm.checkOutFormTable.location.$valid && !checkOutForm.checkOutFormTable.location.$pristine) || (!checkOutForm.checkOutFormTable.location.$valid && checkOutForm.checkOutFormTable.$submitted)}">

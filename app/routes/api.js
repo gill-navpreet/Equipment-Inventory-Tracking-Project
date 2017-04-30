@@ -1,10 +1,10 @@
 // packages
-var User = require('../models/user');
-var Inventory = require('../models/inventory');
-var History = require('../models/history');
+var User = require('../models/user');  // Import User Model
+var Inventory = require('../models/inventory');  // Import Inventory Model
+var History = require('../models/history');  // Import History Model
 var jwt = require('jsonwebtoken'); // Used to provide session info as cookie in a secured way
 var secret = 'ecs193ab'; // Provides extra security to jwt
-var cron = require('node-cron');
+var cron = require('node-cron'); // Import task scheduler for cron  job, source: https://www.npmjs.com/package/node-cron
 //sendgrid information to send autonomous emails.
 var nodemailer = require('nodemailer');
 var sgTransport = require('nodemailer-sendgrid-transport');
@@ -12,11 +12,12 @@ var fs = require('fs');
 var parse = require('csv-parse');
 var HashMap = require('hashmap');
 
+// Query and stream
 Inventory.findAndStreamCsv()
   .pipe(fs.createWriteStream('csvFiles/Inventory.csv'));
 
+// Query and stream
 var writeStream = fs.createWriteStream('csvFiles/History.csv');
-
 History.findAndStreamCsv()
   .pipe(writeStream);
 
@@ -235,7 +236,7 @@ var options = {
 
 var client = nodemailer.createTransport(sgTransport(options));
 
-//Scheduler. any inventory checked out will send an email reminder. 
+//Scheduler: any inventory checked out will send an email reminder. 
 cron.schedule('* * * * * *', function(){
     Inventory.find({}, function(err,inventoryforms) {
         for(var i = 0; i < inventoryforms.length; i++){
@@ -299,10 +300,7 @@ module.exports = function(router) {
                 if(err) { 
                     // Check if any validation errors exists (from user model)
                     if (err.errors !== null) {
-                        // console.log(err);
-                        // console.log(err.errors);
-                        // console.log(err.code);
-                        if (err.code == 11000) {
+                        if (err.code == 11000) {// Check if duplication error exists
                             if (err.errmsg[61] == "u") {
                                 res.json({ success: false, message: 'That username is already taken' }); // Display error if username already taken
                             } else if (err.errmsg[61] == "e") {
@@ -341,7 +339,8 @@ module.exports = function(router) {
         }
     });
 
-
+    // POST USER HISTORY ROUTE
+    // http://localhost:port/api/history
     router.post('/history', function(req,res) {
         var history = new History();
         history.firstName = req.body.firstName;
@@ -355,6 +354,8 @@ module.exports = function(router) {
         history.save();
     });
 
+    // GET USER HISTORY ROUTE
+    // http://localhost:port/api/history
     router.get('/history', function(req,res) {
         History.find({}, function(err,history) {
             if(err) throw err;
@@ -418,7 +419,7 @@ module.exports = function(router) {
     });
 
     // GET INVENTORY FROM ROUTE
-    //: http://localhost:port/api/inventory
+    // http://localhost:port/api/inventory
     router.get('/inventory', function(req,res) {
         Inventory.find({}, function(err,inventoryforms) {
             if(err) throw err;
@@ -542,7 +543,7 @@ module.exports = function(router) {
         });
     });
 
-
+    // Route to post the user that was edited
     router.put('/edit', function(req, res) {
         var editUser = req.body._id; // Assign _id from user to be editted to a variable
         if (req.body.name) var newName = req.body.name; // Check if a change to name was requested
@@ -552,7 +553,7 @@ module.exports = function(router) {
         User.findOne({ username: req.decoded.username }, function(err, mainUser) {
             if (err) throw err; // Throw err if cannot connnect
             if (!mainUser) {
-                res.json({ success: false, message: "no user found" }); // Return erro
+                res.json({ success: false, message: "no user found" }); // Return error
             } else {
                 if (newName) {
                     if (mainUser.permission === 'admin' || mainUser.permission === 'moderator') {
@@ -728,6 +729,7 @@ module.exports = function(router) {
         });
     });
 
+    // Route to get inventory
     router.get('/inventoryManagement', function(req, res) {
         Inventory.find({}, function(err, inventoryforms) {
             if (err) throw err; // Throw error if cannot connect
@@ -755,7 +757,7 @@ module.exports = function(router) {
 
 
     // Route to delete an inventory item based on its barcode
-    router.delete('/inventoryManagement/:barcode', function(req, res) {
+    router.put('/inventoryManagement/:barcode', function(req, res) {
         var deletedInventory = req.params.barcode; // Assign the barcode from request parameters to a variable
         User.findOne({ username: req.decoded.username }, function(err, mainUser) {
             if (err) throw err; // Throw error if cannot connect
@@ -768,14 +770,28 @@ module.exports = function(router) {
                     res.json({ success: false, message: 'Insufficient Permissions' }); // Return error
                 } else {
                     // Fine the user that needs to be deleted
-                    Inventory.findOneAndRemove({ barcode: deletedInventory }, function(err, inventory) {
+
+                    Inventory.findOne({ barcode: deletedInventory }, function(err, inventory) {
                         if (err) throw err; // Throw error if cannot connect
-                        res.json({ success: true }); // Return success status
+                        if (!inventory) {
+                            res.json({ success: false, message: 'No inventory found' }); // Return error
+                        } else {
+                            inventory.isDeleted = 'true'; // Assign new name to user in database
+                            inventory.save(function(err) {
+                                if (err) {
+                                    console.log(err); // Log any errors to the console
+                                } else {
+                                    res.json({ success: true, message: 'inventory deleted!', barcode: deletedInventory, product: inventory.product }); // Return success message
+                                }
+                            });
+                        }
                     });
                 }
             }
         });
     });
+
+
 
     // Route to get the user that needs to be edited
     router.get('/editInventory/:id', function(req, res) {
@@ -788,14 +804,14 @@ module.exports = function(router) {
             } else {
                 // Check if logged in user has editing privileges
                 if (mainUser.permission === 'admin' || mainUser.permission === 'moderator') {
-                    // Find the user to be editted
+                    // Find the user to be edited
                     Inventory.findOne({ _id: editInventory }, function(err, inventory) {
                         if (err) throw err; // Throw error if cannot connect
                         // Check if user to edit is in database
                         if (!inventory) {
                             res.json({ success: false, message: 'No inventory found' }); // Return error
                         } else {
-                            res.json({ success: true, inventory: inventory }); // Return the user to be editted
+                            res.json({ success: true, inventory: inventory }); // Return the user to be edited
                         }
                     });
                 } else {
@@ -805,21 +821,21 @@ module.exports = function(router) {
         });
     });
 
-
+    // Route to post the user was edited above
     router.put('/editInventory', function(req, res) {
         var editInventory = req.body._id; // Assign _id from user to be editted to a variable
         if (req.body.firstName) var newFirstName = req.body.firstName; // Check if a change to name was requested
         if (req.body.lastName) var newLastName = req.body.lastName; // Check if a change to username was requested
         if (req.body.email) var newEmail = req.body.email; // Check if a change to e-mail was requested
         if (req.body.product) var newProduct = req.body.product; // Check if a change to permission was requested
-        if (req.body.barcode) var newBarcode = req.body.barcode;
-        if (req.body.isCheckedIn) var newIsCheckedIn = req.body.isCheckedIn;
-        User.findOne({ username: req.decoded.username }, function(err, mainUser) {
+        if (req.body.barcode) var newBarcode = req.body.barcode; // Check if a change to barcode was requested
+        if (req.body.isCheckedIn) var newIsCheckedIn = req.body.isCheckedIn; // Check if a change to checked in field was requested
+        User.findOne({ username: req.decoded.username }, function(err, mainUser) { // find user
             if (err) throw err; // Throw err if cannot connnect
             if (!mainUser) {
-                res.json({ success: false, message: "no user found" }); // Return erro
+                res.json({ success: false, message: "no user found" }); // Return error
             } else {
-                if (newFirstName) {
+                if (newFirstName) { // if first name was edited, change it in database too
                     if (mainUser.permission === 'admin' || mainUser.permission === 'moderator') {
                         Inventory.findOne({ _id: editInventory }, function(err, inventory) {
                             if (err) throw err; // Throw error if cannot connect
@@ -840,7 +856,7 @@ module.exports = function(router) {
                         res.json({ success: false, message: 'Insufficient Permissions' }); // Return error
                     }
                 }
-                if (newLastName) {
+                if (newLastName) { // if last name was edited, change it in database too
                     if (mainUser.permission === 'admin' || mainUser.permission === 'moderator') {
                         Inventory.findOne({ _id: editInventory }, function(err, inventory) {
                             if (err) throw err; // Throw error if cannot connect
@@ -861,7 +877,7 @@ module.exports = function(router) {
                         res.json({ success: false, message: 'Insufficient Permissions' }); // Return error
                     }
                 }
-                if (newEmail) {
+                if (newEmail) { // if email was edited, change it in database too
                     if (mainUser.permission === 'admin' || mainUser.permission === 'moderator') {
                         Inventory.findOne({ _id: editInventory }, function(err, inventory) {
                             if (err) throw err; // Throw error if cannot connect
@@ -882,7 +898,7 @@ module.exports = function(router) {
                         res.json({ success: false, message: 'Insufficient Permissions' }); // Return error
                     }
                 }
-                if (newProduct) {
+                if (newProduct) { // if product was edited, change it in database too
                     if (mainUser.permission === 'admin' || mainUser.permission === 'moderator') {
                         Inventory.findOne({ _id: editInventory }, function(err, inventory) {
                             if (err) throw err; // Throw error if cannot connect
@@ -903,7 +919,7 @@ module.exports = function(router) {
                         res.json({ success: false, message: 'Insufficient Permissions' }); // Return error
                     }
                 }
-                if (newBarcode) {
+                if (newBarcode) { // if barcode was edited, change it in database too
                     if (mainUser.permission === 'admin' || mainUser.permission === 'moderator') {
                         Inventory.findOne({ _id: editInventory }, function(err, inventory) {
                             if (err) throw err; // Throw error if cannot connect
@@ -924,7 +940,7 @@ module.exports = function(router) {
                         res.json({ success: false, message: 'Insufficient Permissions' }); // Return error
                     }
                 }
-                if (newIsCheckedIn) {
+                if (newIsCheckedIn) { // if checked in field was edited, change it in database too
                     if (mainUser.permission === 'admin' || mainUser.permission === 'moderator') {
                         Inventory.findOne({ _id: editInventory }, function(err, inventory) {
                             if (err) throw err; // Throw error if cannot connect
@@ -941,7 +957,7 @@ module.exports = function(router) {
                                 });
                             }
                         });
-                    } else {
+                    } else { 
                         res.json({ success: false, message: 'Insufficient Permissions' }); // Return error
                     }
                 }
@@ -950,17 +966,20 @@ module.exports = function(router) {
         });
     });
 
+    // Route to get the inventory from database based on barcode
     router.get('/getInventoryIdBasedOnBarcode/:barcode', function(req, res) {
         var editInventory = req.params.barcode;
         Inventory.findOne({ barcode: editInventory }, function(err, inventory) {
-            if (!inventory) {
+            if (!inventory) { // no inventory with specified barcode exists
                 res.json({ success: false, message: 'No inventory found' });
-            } else {
+            } else { // found inventory
                 res.json({ success: true, inventory: inventory });
             }
         });
     });
 
+    // Route to get the inventory from database based on _id field in database
+    // gets _id: from URL
     router.get('/getInventoryBasedOnId/:id', function(req, res) {
         var editInventory = req.params.id; // Assign the _id from parameters to variable
         Inventory.findOne({ _id: editInventory}, function (err, inventory) {
@@ -969,29 +988,29 @@ module.exports = function(router) {
         
     });
 
-
+    // Route to post update to database database when a product is checked out
     router.put('/checkOutUpdate', function(req, res) {
         var editInventory = req.body._id; // Assign _id from user to be editted to a variable
         if (req.body.firstName) var newFirstName = req.body.firstName; // Check if a change to name was requested
         if (req.body.lastName) var newLastName = req.body.lastName; // Check if a change to username was requested
         if (req.body.email) var newEmail = req.body.email; // Check if a change to e-mail was requested
-        if (req.body.phoneNumber) var newPhoneNumber = req.body.phoneNumber;
-        if (req.body.supervisorFirstName) var newSupervisorFirstName = req.body.supervisorFirstName;
-        if (req.body.supervisorLastName) var newSupervisorLastName = req.body.supervisorLastName;
-        if (req.body.supervisorPhoneNumber) var newSupervisorPhoneNumber = req.body.supervisorPhoneNumber;
-        if (req.body.supervisorEmail) var newSupervisorEmail = req.body.supervisorEmail;
-        if (req.body.title) var newTitle = req.body.title;
-        if (req.body.department) var newDepartment = req.body.department;
-        if (req.body.location) var newLocation = req.body.location;
-        if (req.body.chargeNumber) var newChargeNumber = req.body.chargeNumber;
+        if (req.body.phoneNumber) var newPhoneNumber = req.body.phoneNumber; // Check if a change to phone number was requested
+        if (req.body.supervisorFirstName) var newSupervisorFirstName = req.body.supervisorFirstName; // Check if a change to supervisor's first name was requested
+        if (req.body.supervisorLastName) var newSupervisorLastName = req.body.supervisorLastName; // Check if a change to supervisor's last name was requested
+        if (req.body.supervisorPhoneNumber) var newSupervisorPhoneNumber = req.body.supervisorPhoneNumber; // Check if a change to supervisor's phone number was requested
+        if (req.body.supervisorEmail) var newSupervisorEmail = req.body.supervisorEmail; // Check if a change to supervisor's e-mail was requested
+        if (req.body.title) var newTitle = req.body.title; // Check if a change to title was requested
+        if (req.body.department) var newDepartment = req.body.department; // Check if a change to department was requested
+        if (req.body.location) var newLocation = req.body.location; // Check if a change to location was requested
+        if (req.body.chargeNumber) var newChargeNumber = req.body.chargeNumber; // Check if a change to charge number was requested
         if (req.body.product) var newProduct = req.body.product; // Check if a change to permission was requested
-        if (req.body.barcode) var newBarcode = req.body.barcode;
-        if (req.body.isCheckedIn) var newIsCheckedIn = req.body.isCheckedIn; 
-        if (req.body.dateCheckedOut) var newDateCheckedOut = req.body.dateCheckedOut;  
-        if (newFirstName) {
-            Inventory.findOne({ _id: editInventory}, function(err, inventory) {
-                inventory.firstName = newFirstName;
-                inventory.save();
+        if (req.body.barcode) var newBarcode = req.body.barcode; // Check if a change to barcode was requested
+        if (req.body.isCheckedIn) var newIsCheckedIn = req.body.isCheckedIn;  // Check if a change to check in date was requested
+        if (req.body.dateCheckedOut) var newDateCheckedOut = req.body.dateCheckedOut;   // Check if a change to check out date was requested
+        if (newFirstName) { // if first name was edited 
+            Inventory.findOne({ _id: editInventory}, function(err, inventory) { //find the entry in database based on id found in URL
+                inventory.firstName = newFirstName; // save it in inventory object
+                inventory.save(); // update database
             });
         }
         if (newLastName) {
@@ -1076,20 +1095,30 @@ module.exports = function(router) {
         }
     });
 
-
+    // Route to post update to database database when a product is checked in
     router.put('/checkInUpdate', function(req, res) {
         var editInventory = req.body._id; // Assign _id from user to be editted to a variable
         if (req.body.firstName) var newFirstName = req.body.firstName; // Check if a change to name was requested
         if (req.body.lastName) var newLastName = req.body.lastName; // Check if a change to username was requested
         if (req.body.email) var newEmail = req.body.email; // Check if a change to e-mail was requested
+        if (req.body.phoneNumber) var newPhoneNumber = req.body.phoneNumber;
+        if (req.body.supervisorFirstName) var newSupervisorFirstName = req.body.supervisorFirstName; // Check if a change to supervisor's first name was requested
+        if (req.body.supervisorLastName) var newSupervisorLastName = req.body.supervisorLastName; // Check if a change to supervisor's last name was requested
+        if (req.body.supervisorPhoneNumber) var newSupervisorPhoneNumber = req.body.supervisorPhoneNumber; // Check if a change to supervisor's phone number was requested
+        if (req.body.supervisorEmail) var newSupervisorEmail = req.body.supervisorEmail; // Check if a change to supervisor's e-mail was requested
+        if (req.body.title) var newTitle = req.body.title; // Check if a change to title was requested
+        if (req.body.department) var newDepartment = req.body.department; // Check if a change to department was requested
+        if (req.body.location) var newLocation = req.body.location; // Check if a change to location was requested
+        if (req.body.chargeNumber) var newChargeNumber = req.body.chargeNumber; // Check if a change to charge number was requested
         if (req.body.product) var newProduct = req.body.product; // Check if a change to permission was requested
-        if (req.body.barcode) var newBarcode = req.body.barcode;
-        if (req.body.isCheckedIn) var newIsCheckedIn = req.body.isCheckedIn; 
-        if (req.body.dateCheckedIn) var newDateCheckedIn = req.body.dateCheckedIn;  
-        if (newFirstName) {
-            Inventory.findOne({ _id: editInventory}, function(err, inventory) {
-                inventory.firstName = newFirstName;
-                inventory.save();
+        if (req.body.barcode) var newBarcode = req.body.barcode; // Check if a change to barcode was requested
+        if (req.body.isCheckedIn) var newIsCheckedIn = req.body.isCheckedIn; // Check if a change to is check in date fieldwas requested
+        if (req.body.dateCheckedIn) var newDateCheckedIn = req.body.dateCheckedIn; // Check if a change to check in date was requested
+
+        if (newFirstName) { // if first name was edited 
+            Inventory.findOne({ _id: editInventory}, function(err, inventory) { //find the entry in database based on id found in URL
+                inventory.firstName = newFirstName; // save it in inventory object
+                inventory.save();// update database
             });
         }
         if (newLastName) {
@@ -1104,6 +1133,62 @@ module.exports = function(router) {
                 inventory.save();
             });
         }
+        if (newPhoneNumber) {
+            Inventory.findOne({ _id: editInventory}, function(err, inventory) {
+                inventory.phoneNumber = newPhoneNumber;
+                inventory.save();
+            });
+        }
+        if (newSupervisorFirstName) {
+            Inventory.findOne({ _id: editInventory}, function(err, inventory) {
+                inventory.supervisorFirstName = newSupervisorFirstName;
+                inventory.save();
+            });
+        }
+        if (newSupervisorLastName) {
+            Inventory.findOne({ _id: editInventory}, function(err, inventory) {
+                inventory.supervisorLastName = newSupervisorLastName;
+                inventory.save();
+            });
+        }
+        if (newSupervisorEmail) {
+            Inventory.findOne({ _id: editInventory}, function(err, inventory) {
+                inventory.supervisorEmail = newSupervisorEmail;
+                inventory.save();
+            });
+        }
+
+        if (newSupervisorPhoneNumber) {
+            Inventory.findOne({ _id: editInventory}, function(err, inventory) {
+                inventory.supervisorPhoneNumber = newSupervisorPhoneNumber;
+                inventory.save();
+            });
+        }
+        if (newTitle) {
+            Inventory.findOne({ _id: editInventory}, function(err, inventory) {
+                inventory.title = newTitle;
+                inventory.save();
+            });
+        }
+        if (newDepartment) {
+            Inventory.findOne({ _id: editInventory}, function(err, inventory) {
+                inventory.department = newDepartment;
+                inventory.save();
+            });
+        }
+        if (newLocation) {
+            Inventory.findOne({ _id: editInventory}, function(err, inventory) {
+                inventory.location = newLocation;
+                inventory.save();
+            });
+        }
+        if (newChargeNumber) {
+            Inventory.findOne({ _id: editInventory}, function(err, inventory) {
+                inventory.chargeNumber = newChargeNumber;
+                inventory.save();
+            });
+        }
+
         if (newIsCheckedIn) {
             Inventory.findOne({ _id: editInventory}, function(err, inventory) {
                 inventory.isCheckedIn = newIsCheckedIn;
@@ -1116,6 +1201,13 @@ module.exports = function(router) {
                 inventory.save();
             });
         }
+        Inventory.findOne( { _id: editInventory}, function(err,inventory) {
+            console.log(newDateCheckedIn);
+            console.log(inventory.dateCheckedOut);
+            inventory.batteryTotalTime += newDateCheckedIn - inventory.dateCheckedOut;
+            inventory.save();
+
+        });        
     });
 
     // return router to server

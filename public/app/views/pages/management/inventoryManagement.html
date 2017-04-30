@@ -70,7 +70,7 @@
 	            <th>Is Checked In:</th>
 	        </tr>
         </thead>
-        <tbody ng-repeat="inventory in inventoryManagement.inventoryforms | pagination: (inventoryManagement.currentPage -1) * inventoryManagement.pageSize | limitTo: inventoryManagement.pageSize">
+        <tbody ng-repeat="inventory in inventoryManagement.inventoryforms | pagination: (inventoryManagement.currentPage -1) * inventoryManagement.pageSize | limitTo: inventoryManagement.pageSize" ng-if="inventory.isDeleted==='false'">
 	        <tr>
 	            <td>{{ inventory.firstName }}</td>
 	            <td>{{ inventory.lastName }}</td>

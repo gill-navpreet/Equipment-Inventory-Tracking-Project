@@ -36,7 +36,7 @@
     <script src="app/controllers/inventoryCheckOut.js"></script>
     <script src="app/controllers/inventoryCheckOutForm.js"></script>
     <script src="app/controllers/batteryManagerCtrl.js"></script>
-
+    <script src="app/controllers/graphCtrl.js"></script>
 
 
     <!-- Angular Services -->
@@ -50,7 +50,6 @@
 
     <!-- JSbarcode -->
     <script src="assets/js/JsBarcode.all.min.js"></script>
-    <script src="//d3js.org/d3.v4.min.js"></script>
 
 
 
@@ -110,8 +109,11 @@
                     <a ng-show="main.isLoggedIn" href="#history"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> History</a>
                 </li>
                 <li>
-                    <a ng-show="main.isLoggedIn" href="#search"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Search Statistic</a>
+                    <a ng-show="main.isLoggedIn" href="#search"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search Statistic</a>
                 </li>
+                <li>
+                    <a ng-show="main.isLoggedIn" href="#graph"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Graphs </a>
+                </li>                
                 <li ng-show="main.isLoggedIn">
                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span><font color="#337AB7"> APPS</font>
                 </li>
