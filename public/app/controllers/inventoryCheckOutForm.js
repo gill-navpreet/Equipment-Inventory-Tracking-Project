@@ -1,5 +1,5 @@
 angular.module('inventoryCheckOutFormController',[])
-
+// Controller for the inventory check out form
 .controller('inventoryCheckOutFormCtrl', function(Inventory,History,$routeParams,$scope,$location,$timeout) {
 
 
@@ -132,37 +132,42 @@ angular.module('inventoryCheckOutFormController',[])
 '	Wildlife, Fish and Conservation Biology',
 '	Women and Gender Studies'
 	];
+
+	// Factory that gest inventory values based on the _id of the inventory. $http.get('/api/getInventoryIdBasedOnBarcode/' + barcode);
+	// $routeParams.id grabs the _id value from the URL makes a get request with it. 
 	Inventory.getInventoryBasedOnId($routeParams.id).then(function(data){
 		app.currentInventory = data.data.inventory._id;
 		product = data.data.inventory.product;
 		barcode = data.data.inventory.barcode;
 	});
 
+
+	//when you check out, all the data in all entries are passed into this function
 	app.checkOutForm = function(newData){
 		if($scope.newData.newFirstName == null || $scope.newData.newFirstName == '' || $scope.newData.newLastName == null || $scope.newData.newLastName == ''  || $scope.newData.newEmail == null || $scope.newData.newEmail == ''){
 			
 		} else {	
-			var inventoryObject = {};
-			var historyObject = {};
+			var inventoryObject = {}; //inventory object to update the inventory
+			var historyObject = {}; //history object to create a new history log
 			inventoryObject._id = app.currentInventory;
 			inventoryObject.firstName = $scope.newData.newFirstName;
 			inventoryObject.lastName = $scope.newData.newLastName;
 			inventoryObject.email = $scope.newData.newEmail;
 			inventoryObject.phoneNumber = $scope.newData.newPhoneNumber;
 			inventoryObject.title = $scope.newData.newTitle;
-			inventoryObject.department = $scope.model;
+			inventoryObject.department = $scope.model; // grabs the selection from scope for department
 			inventoryObject.location = $scope.newData.newLocation;
 			inventoryObject.chargeNumber = $scope.newData.newChargeNumber;
 			inventoryObject.supervisorFirstName = $scope.newData.newSupervisorFirstName;
 			inventoryObject.supervisorLastName = $scope.newData.newSupervisorLastName;
 			inventoryObject.supervisorEmail = $scope.newData.newSupervisorEmail;
 			inventoryObject.supervisorPhoneNumber = $scope.newData.newSupervisorPhoneNumber;
-			inventoryObject.isCheckedIn = 'false';
-			inventoryObject.dateCheckedOut = Date.now();
+			inventoryObject.isCheckedIn = 'false'; // we change checked in value to false because it is no longer checked in
+			inventoryObject.dateCheckedOut = Date.now(); 
 
 			historyObject.product = product;
 			historyObject.barcode = barcode;
-			historyObject.checkedType = 'checked out';
+			historyObject.checkedType = 'checked out'; 
 			historyObject.firstName = $scope.newData.newFirstName;
 			historyObject.lastName =  $scope.newData.newLastName;
 			historyObject.email =  $scope.newData.newEmail;
@@ -178,13 +183,15 @@ angular.module('inventoryCheckOutFormController',[])
 			historyObject.chargeNumber =  $scope.newData.newChargeNumber;
 			historyObject.description = historyObject.firstName + " " + historyObject.lastName + " " + historyObject.checkedType + " a " + historyObject.product;
 
+			// Factory that creates a new entry in the database of History that uses $http.post('/api/history', histData);
 			History.create(historyObject);
 
-
+			// Factory that updates the values of the inventory $http.put('/api/checkOutUpdate', id);
 			Inventory.checkOutUpdate(inventoryObject);
 			app.errorMsg = false;
 			app.loading = true;
 			app.successMsg = 'Checking out ....Redirecting';
+			// redirects after 2000 ms, (2seconds)
 			$timeout(function(){
 				$location.path('/');
 			}, 2000);

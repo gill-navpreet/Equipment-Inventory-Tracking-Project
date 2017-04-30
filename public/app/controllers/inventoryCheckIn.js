@@ -50,7 +50,7 @@ angular.module('inventoryCheckInController',[])
 						Inventory.checkInUpdate(inventoryObject); // Update the inventory in database
 						app.successMsg = 'Checking in ....Redirecting'; // Show the redirect message to user
 
-						// Redirect to home page after two milliseconds (2 seconds)
+						// Redirect to home page after two thousand milliseconds (2 seconds)
 						$timeout(function(){
 							$location.path('/');	
 						}, 2000);

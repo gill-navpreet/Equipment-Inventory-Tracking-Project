@@ -1,18 +1,21 @@
 angular.module('inventoryManagementController', ['ui.bootstrap'])
-
+// Controller that handles inventory management
 .controller('inventoryManagementCtrl', function(Inventory,History) {
 	var app = this;
-	app.currentPage = 1;
-	app.pageSize = 10;
-	app.loading = true;
+	app.currentPage = 1; // sets the current page to 1
+	app.pageSize = 10; // allows for 10 items on each page
+	app.loading = true; 
 	app.accessDenied = true;
 	app.errorMsg = false;
 	app.editAccess = false;
 	app.deleteAccess = false;
 	app.dateNow = Date.now();
+	//function created so retrieving items from the database to be displayed can be done multiple times throughout the program
 	function getInventory() {
+		// Factory that retrieves all the inventory items from the database and uses $http.get('/api/inventoryManagement/');
 		Inventory.getInventoryForms().then(function(data) {
 			if(data.data.success) {
+				// verifies if the permissions are from admin and moderator to be using the management features
 				if(data.data.permission === 'admin' || data.data.permission === 'moderator') {
 					app.inventoryforms = data.data.inventoryforms;
 					console.log(data);
@@ -34,9 +37,10 @@ angular.module('inventoryManagementController', ['ui.bootstrap'])
 			}
 		});
 	}
-
+	//calls above function to retrieve from database to display on screen
 	getInventory();
 
+	// shows user entered value
 	app.showMore = function(number) {
 		app.showMoreError = false;
 		if(number > 0) {
@@ -46,18 +50,18 @@ angular.module('inventoryManagementController', ['ui.bootstrap'])
 		}
 
 	};
-
+	// shows all entries
 	app.showAll = function() {
 		app.pageSize = undefined;
 		app.showMoreError = false;
 	};
-
+	// deletes inventory by changing value of isDeleted to true. 
 	app.deleteInventory = function(barcode) {
 		Inventory.deleteInventory(barcode).then(function(data) {
 			if(data.data.success) {
 				getInventory();
 				console.log(data);
-				
+				//logs history of deleted value
 				var historyObject = {};
 				historyObject.product = data.data.product;
 				historyObject.barcode = data.data.barcode;
@@ -78,7 +82,7 @@ angular.module('inventoryManagementController', ['ui.bootstrap'])
 
 
 
-
+// filter that creates slices of the amount of inventory to have multiple pages to choose from on the bottom of the screen
 .filter('pagination', function() {
 	return function(data,start) {
 		if(!data || !data.length) { return; }
@@ -88,14 +92,16 @@ angular.module('inventoryManagementController', ['ui.bootstrap'])
 })
 
 
-
+// Controller for editing inventory
 .controller('editInventoryCtrl', function($scope, $routeParams,User, Inventory, $timeout) {
 	var app = this;
 	$scope.firstNameTab = 'active';
 	app.phase1 = true;
-
+	// when user clicks on edit, to edit inventory, the _id is thrown into the URL to be retrieved by $routeParams.id
+	// Factory uses $http.put('/api/editInventory', id);
 	Inventory.getInventory($routeParams.id).then(function(data) {
 		if(data.data.success) {
+			// initializes all input fields with the values of the item that was clicked for edit
 			$scope.newFirstName = data.data.inventory.firstName;
 			$scope.newLastName = data.data.inventory.lastName;
 			$scope.newEmail = data.data.inventory.email;
@@ -108,9 +114,9 @@ angular.module('inventoryManagementController', ['ui.bootstrap'])
 			app.errorMsg = data.data.message;
 		}
 	});
-
+	// each phase will activate when clicked. Setting the other ones to default/ false, and the tab selected to active/true
 	app.firstNamePhase = function() {
-		$scope.firstNameTab = 'active';
+		$scope.firstNameTab = 'active'; // 
 		$scope.lastNameTab = 'default';
 		$scope.emailTab = 'default';
 		$scope.productTab = 'default';
