@@ -8,7 +8,8 @@ var cron = require('node-cron'); // Import task scheduler for cron  job, source:
 //sendgrid information to send autonomous emails.
 var nodemailer = require('nodemailer');
 var sgTransport = require('nodemailer-sendgrid-transport');
-var fs = require('fs');
+// var fs = require('fs');
+var fs = require('file-system');
 var parse = require('csv-parse');
 var HashMap = require('hashmap');
 

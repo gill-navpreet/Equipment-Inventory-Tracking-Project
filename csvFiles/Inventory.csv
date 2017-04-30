@@ -1,4 +1,6 @@
 Product,Barcode,Status,Date-Checked-Out,Date-Checked-In,First-Name,Last-Name,Email,Phone-Number,Supervisor-First-Name,Supervisor-Last-Name,Supervisor-Email,Supervisor-Phone-Number,Title,Department,Charge-Number
-hohoh,8878986867,true,Sat Apr 29 2017 21:30:07 GMT-0700 (Pacific Daylight Time),Sat Apr 29 2017 21:30:39 GMT-0700 (Pacific Daylight Time), , , , , , , ,, , , 
-joseph,9028309200,true,Sat Apr 29 2017 12:30:17 GMT-0700 (Pacific Daylight Time),Sat Apr 29 2017 12:32:22 GMT-0700 (Pacific Daylight Time), , , , , , , ,, , , 
-animal,292982828,true,,Sat Apr 29 2017 12:28:42 GMT-0700 (Pacific Daylight Time), , , ,, , , ,, , ,
+mouse,2222222222,false,Sat Apr 29 2017 21:04:42 GMT-0700 (PDT),Sat Apr 15 2017 12:42:51 GMT-0700 (PDT),navpreet,kaur,gill@hotmail.com,333-333-3333,wwq,wqwqwq,www@gmail.com,,ewewwe,African American and African Studies,3333
+mouse,23,false,,Sat Apr 15 2017 12:44:09 GMT-0700 (PDT),n/a,n/a,n/a,n/a,n/a,n/a,n/a,,n/a,n/a,n/a
+mouse,3333333333,false,Sat Apr 15 2017 21:42:25 GMT-0700 (PDT),Sat Apr 15 2017 14:08:54 GMT-0700 (PDT),navpreet,kaur,ee@hotmail.com,333-333-3333,ewe,ewe,gill@hotmail.com,,ew,we,ewew
+printer for lab,6666666666,true,,Sat Apr 29 2017 21:08:04 GMT-0700 (PDT), , , ,, , , ,, , ,
+printer,5555555555,true,,Sat Apr 29 2017 21:10:21 GMT-0700 (PDT), , , ,, , , ,, , ,
