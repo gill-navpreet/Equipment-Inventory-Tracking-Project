@@ -4,51 +4,11 @@
 </div>
 <!-- Header -->
 
-<br>
-
-<!-- Loading Icon (Bootstrap) -->
-<div class="jumbotron text-center" ng-show="management.loading">
-    <span class="glyphicon glyphicon-repeat spinner"></span>
-    <p>Loading....</p>
-</div>
-<!-- Loading Icon (Bootstrap) -->
-
-<br>
-
-<!-- Apply Button Filter -->
-<button type="button" ng-click="management.showMore(number);" class="btn btn-success">Apply Filter</button>
-
-<!--/ Show All Button -->
-<button type="button" ng-click="management.showAll();" class="btn btn-warning">Show All</button>
-
-<!-- Input For Filter  -->
-<div class="showmore">
-    <div class="col-lg-6">
-        <div class="input-group">
-            <span class="input-group-addon">Results to display:</span>
-            <input type="text" class="form-control" ng-model="number">
-        </div>
-    </div>
-</div>
-<!-- Input For Filter  -->
-
-<br>
-<br>
-
-<!-- Custom Error Message -->
-<div class="row show-hide-message" ng-show="management.showMoreError">
-    <div class="alert alert-danger">{{ management.showMoreError }}</div>
-</div>
-<!-- Custom Error Message -->
-
-<br>
-<br>
-
 <!-- User Management Table -->
 <div class="panel panel-success">
     <!-- Heading -->
     <div class="panel-heading">
-        <strong>User Management</strong>
+        <strong>Current User List</strong>
     </div>
     <!-- Start: Table -->
     <table class="table">
