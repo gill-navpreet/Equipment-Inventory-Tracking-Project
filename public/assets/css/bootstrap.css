@@ -3307,9 +3307,9 @@ fieldset[disabled] .btn-info.focus {
 }
 .btn-warning:focus,
 .btn-warning.focus {
-  color: #fff;
-  background-color: #daaa00;
-  border-color: rgba(0,40,85,0.85);
+  color:#fff;
+  background-color:  #002855;
+  border-color: #daaa00;
 }
 .btn-warning:hover {
   color: #002855;
