@@ -4025,10 +4025,14 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   background-color: #e5e5e5;
 }
 .nav > li > a > img {
+  color:#daaa00;
   max-width: none;
 }
 
 .nav-tabs {
+  color:#daaa00;
+  background-color: #002855;
+  text-decoration: none;
   border-bottom: 1px solid #ddd;
 }
 .nav-tabs > li {
@@ -4036,20 +4040,22 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   margin-bottom: -1px;
 }
 .nav-tabs > li > a {
+  color:#daaa00;
   margin-right: 2px;
   line-height: 1.42857143;
   border: 1px solid transparent;
   border-radius: 4px 4px 0 0;
 }
 .nav-tabs > li > a:hover {
+  color:#daaa00;
   border-color: #eee #eee #ddd;
 }
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
-  color: #555;
+  color: #002855;
   cursor: default;
-  background-color: #fff;
+  background-color: #daaa00;;
   border: 1px solid #ddd;
   border-bottom-color: transparent;
 }
@@ -6782,5 +6788,22 @@ button.close {
   .hidden-print {
     display: none !important;
   }
+}
+.uctable{
+  font-weight: bold;
+  margin-bottom: 10px;
+  background-color: #fff;
+  border: 6px solid transparent;
+  border-radius: 6px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+          box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+  font-size: 20px;
+  color: #daaa00;
+  background-image:url(/assets/pictures/ucd-global.png);
+  background-repeat: repeat;
+  background-attachment: fixed;
+  background-position: left center;
+  width: 113%;
+  /*float: center; */
 }
 /*# sourceMappingURL=bootstrap.css.map */

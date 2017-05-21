@@ -41,9 +41,9 @@
 </div> -->
 
 <!-- User Management Table -->
-<div class="panel panel-success" >
+<div >
     <!-- Heading -->
-    <div class="panel-heading">Inventory</div>
+    <div class="uctable"> Inventory</div>
     <!-- Start: Table -->
     <table class="table table-bordered" style="font-size: 12px">
     	<thead>
@@ -63,6 +63,7 @@
 	            <th>Product:</th>
 	            <th>Bar Code:</th>
 	            <th>Is Checked In:</th>
+                <!-- <th> Modify<th> -->
 	        </tr>
         </thead>
         <tbody ng-repeat="inventory in inventoryManagement.inventoryforms | pagination: (inventoryManagement.currentPage -1) * inventoryManagement.pageSize | limitTo: inventoryManagement.pageSize" ng-if="inventory.isDeleted==='false'">
@@ -86,8 +87,7 @@
 	                <a href="#editInventory/{{ inventory._id }}">
 	                    <button type="button"  ng-show="inventoryManagement.editAccess" class="btn btn-primary">Edit</button>
 	                </a>
-	                <!-- <button type="button" ng-click="inventoryManagement.deleteInventory(inventory.barcode);" ng-show="inventoryManagement.deleteAccess" class="btn btn-danger">Delete</button> -->
-                    <button type="button" ng-click="inventoryManagement.deleteInventory(inventory.barcode);" confirm="Are you sure to delete the item?" confirm-title="Please verify?" confirm-ok="Yes" confirm-cancel="No"ng-show="inventoryManagement.deleteAccess" class="btn btn-danger">Delete</button> 
+	                <button type="button" ng-click="inventoryManagement.deleteInventory(inventory.barcode);" ng-show="inventoryManagement.deleteAccess" class="btn btn-danger">Delete</button> 
 	            </td>
 	        </tr>
 	    </tbody>    
