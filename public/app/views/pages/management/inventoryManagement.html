@@ -1,6 +1,6 @@
 <!-- Header -->
 <div class="page-header">
-    <h1>Inventory Management</h1>
+    <h2>Inventory Management</h2>
 </div>
 <!-- Header -->
 
@@ -91,7 +91,8 @@
 	                <a href="#editInventory/{{ inventory._id }}">
 	                    <button type="button"  ng-show="inventoryManagement.editAccess" class="btn btn-primary">Edit</button>
 	                </a>
-	                <button type="button" ng-click="inventoryManagement.deleteInventory(inventory.barcode);" ng-show="inventoryManagement.deleteAccess" class="btn btn-danger">Delete</button>
+	                <!-- <button type="button" ng-click="inventoryManagement.deleteInventory(inventory.barcode);" ng-show="inventoryManagement.deleteAccess" class="btn btn-danger">Delete</button> -->
+                    <button type="button" ng-click="inventoryManagement.deleteInventory(inventory.barcode);" confirm="Are you sure to delete the item?" confirm-title="Please verify?" confirm-ok="Yes" confirm-cancel="No"ng-show="inventoryManagement.deleteAccess" class="btn btn-danger">Delete</button> 
 	            </td>
 	        </tr>
 	    </tbody>    

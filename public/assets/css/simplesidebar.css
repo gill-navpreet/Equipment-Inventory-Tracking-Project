@@ -26,7 +26,9 @@
     margin-left: -250px;
     width: 0;
     height: 100%;
-    background: #000;
+    /*background: #000;*/
+     background:rgba(0,40,85,0.85);
+     /*background:#FFFFDD none repeat scroll 0 0;*/
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -65,13 +67,19 @@
 
 .sidebar-nav li a {
     display: block;
-    color: #999999;
+    /*color: #999999;*/
+    color: #fff;
     text-decoration: none;
 }
 
 .sidebar-nav li a:hover {
-    background: rgba(255, 255, 255, 0.2);
-    color: #fff;
+    background-color:#daaa00;
+    color:#002855;
+
+    /*background: rgba(255, 255, 255, 0.2);*/
+    /*background:rgba(0,40,85,0.85);
+    color: #fff;*/
+    /*color: #002855;*/
     text-decoration: none;
 }
 
@@ -87,12 +95,16 @@
 }
 
 .sidebar-nav > .sidebar-brand a {
-    color: #999999;
+    color: #daaa00 ;
 }
 
 .sidebar-nav > .sidebar-brand a:hover {
     background: none;
     color: #fff;
+}
+
+.yellow, .yellow a {
+  color: #daaa00;
 }
 
 @media (min-width: 768px) {
