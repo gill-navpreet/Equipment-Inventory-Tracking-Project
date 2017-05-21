@@ -1,5 +1,8 @@
 Product,Barcode,Status,Date-Checked-Out,Date-Checked-In,First-Name,Last-Name,Email,Phone-Number,Supervisor-First-Name,Supervisor-Last-Name,Supervisor-Email,Supervisor-Phone-Number,Title,Department,Charge-Number
-computer mouse,12345678,false,Wed Apr 12 2017 20:02:02 GMT-0700 (Pacific Daylight Time),Wed Apr 12 2017 19:49:22 GMT-0700 (Pacific Daylight Time),billy,bob,billybob@yahoo.com,1234567890,no,one,noone@yahoo.com,,plumber,mario bros.,239048230
-keyboard,87654321,true,Wed Apr 12 2017 19:58:47 GMT-0700 (Pacific Daylight Time),Wed Apr 12 2017 19:56:42 GMT-0700 (Pacific Daylight Time), , , , , , , ,, , , 
-microphone,1234567890,false,Sat Apr 29 2017 21:10:55 GMT-0700 (Pacific Daylight Time),Thu Apr 27 2017 13:19:46 GMT-0700 (Pacific Daylight Time),billy,bob,billybob@yahoo.com,510-456-4545,sldkfjsd,dkfjsdklf,sdsfkjsd@yahoo.com,,sldfskd,African American and African Studies,3456
->>>>>>> 81a669d13fbe214d3e1d9d887ed641fbe2cbe992
+mouse,2222222222,true,,Tue May 16 2017 01:20:53 GMT-0700 (PDT), , , ,, , , ,, , ,
+printer for lab,3333333333,true,,Tue May 16 2017 01:21:01 GMT-0700 (PDT), , , ,, , , ,, , ,
+printer for lab,2222222223,true,,Tue May 16 2017 01:48:15 GMT-0700 (PDT), , , ,, , , ,, , ,
+sas,3333333334,true,,Wed May 17 2017 22:36:03 GMT-0700 (PDT), , , ,, , , ,, , ,
+printer,2222222226,true,,Wed May 17 2017 22:43:27 GMT-0700 (PDT),,,,,,,,,,,
+mouse,2333333333,true,,Sat May 20 2017 18:45:41 GMT-0700 (PDT),,,,,,,,,,,
+mouse,2222222224,true,,Sat May 20 2017 19:53:57 GMT-0700 (PDT),,,,,,,,,,,
