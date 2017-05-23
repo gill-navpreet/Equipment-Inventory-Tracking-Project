@@ -158,19 +158,6 @@ writeStream.on('finish', function() {
             data.write(dateKeys[i] + "," + items + "\n");
         }
 
-        data = fs.createWriteStream('public/app/csvFiles/DatevsDepartmentCheckinsbyDay.csv');
-
-        //Check-Ins by department
-        data.write("Date,Departments\n");
-        dateKeys = checkinDatesbyDay.keys();
-        for(var i = 0; i < dateKeys.length; i++) {
-            deptKeys = checkinDatesbyDay.get(dateKeys[i]).keys().sort();
-            data.write(dateKeys[i]);
-            for(var j = 0; j < deptKeys.length; j++)
-                data.write("," + deptKeys[j] + "(" + checkinDatesbyDay.get(dateKeys[i]).get(deptKeys[j]) + ")");
-            data.write("\n");
-        }
-
         data = fs.createWriteStream('public/app/csvFiles/DatevsDepartmentCheckoutsbyDay.csv');
 
         //Check-Outs by department
@@ -181,6 +168,18 @@ writeStream.on('finish', function() {
             data.write(dateKeys[i]);
             for(var j = 0; j < deptKeys.length; j++)
                 data.write("," + deptKeys[j] + "(" + checkoutDatesbyDay.get(dateKeys[i]).get(deptKeys[j]) + ")");
+            data.write("\n");
+        }
+
+        data = fs.createWriteStream('public/app/csvFiles/DatevsDepartmentCheckoutsbyMonth.csv');
+        
+        data.write("Date,Departments\n");
+        dateKeys = checkoutDatesbyMonth.keys();
+        for(var i = 0; i < dateKeys.length; i++) {
+            deptKeys = checkoutDatesbyMonth.get(dateKeys[i]).keys().sort();
+            data.write(dateKeys[i]);
+            for(var j = 0; j < deptKeys.length; j++)
+                data.write("," + deptKeys[j] + "(" + checkoutDatesbyMonth.get(dateKeys[i]).get(deptKeys[j]) + ")");
             data.write("\n");
         }
         
