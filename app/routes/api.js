@@ -172,6 +172,7 @@ writeStream.on('finish', function() {
         }
         
         data = fs.createWriteStream('public/app/csvFiles/DatevsDepartmentCheckoutsbyMonth.csv');
+        
         data.write("Date,Departments\n");
         dateKeys = checkoutDatesbyMonth.keys();
         for(var i = 0; i < dateKeys.length; i++) {
