@@ -28,8 +28,10 @@ writeStream.on('finish', function() {
     var entries = [];
     //Read history from csv file that was just produced
     var readStream = fs.createReadStream('csvFiles/History.csv');
+    //Separate each entry's elements by commas
     readStream.pipe(parse({delimiter: ','}))
     .on('data', function(line) {
+        //Store every history entry into an array
         entries.push(line);
     });
 
@@ -45,20 +47,25 @@ writeStream.on('finish', function() {
         var dateKeys, deptKeys;
         //Iterate through hashmap values for output
         var deptValues, items;
-
+        //Parse dates into the format YYYY-MM(-DD)
         parseDates(entries);
 
         for(var i = 0; i < entries.length; i++) {
+            //Process each entry in history
             var element = entries[i];
+            //Iterator for departments by day
             var departments = new HashMap();
+            //Iterator for departments by month
             var department = new HashMap();
 
             if(element[3] === "checked in") {
                 //If there is already a department list for a given date, obtain that list and maybe add to it
                 if(checkinDatesbyDay.has(element[0]))
+                    //Use the date formatted as YYYY-MM-DD as the key
                     departments.copy(checkinDatesbyDay.get(element[0]));
 
                 if(checkinDatesbyMonth.has(element[0].substring(0,7)))
+                    //Use the date formatted as YYYY-MM as the key, rather than YYYY-MM-DD
                     department.copy(checkinDatesbyMonth.get(element[0].substring(0,7)));
 
                 //If a new department checks out equipment, add to the list
@@ -83,6 +90,7 @@ writeStream.on('finish', function() {
                 checkinDatesbyMonth.set(element[0].substring(0,7), department);
             }
             else if(element[3] === "checked out") {
+                //Same process as previous if-statement, but for checkouts
                 if(checkoutDatesbyDay.has(element[0]))
                    departments.copy(checkoutDatesbyDay.get(element[0]));
 
@@ -134,7 +142,7 @@ writeStream.on('finish', function() {
             deptValues = checkoutDatesbyDay.get(dateKeys[i]).values();
             for(var j = 0; j < deptValues.length; j++)
                 items += deptValues[j];
-            // Print the day followed by how many items were checked out
+            // Write the day followed by how many items were checked out
             data.write(dateKeys[i] + "," + items + "\n");
         }
 
@@ -149,7 +157,7 @@ writeStream.on('finish', function() {
             deptValues = checkinDatesbyMonth.get(dateKeys[i]).values();
             for(var j = 0; j < deptValues.length; j++)
                 items += deptValues[j];
-            // Print the month followed by how many items were checked in
+            // Write the month followed by how many items were checked in
             data.write(dateKeys[i] + "," + items + "\n");
         }
 
@@ -164,7 +172,7 @@ writeStream.on('finish', function() {
             deptValues = checkoutDatesbyMonth.get(dateKeys[i]).values();
             for(var j = 0; j < deptValues.length; j++)
                 items += deptValues[j];
-            // Print the month followed by how many items were checked out
+            // Write the month followed by how many items were checked out
             data.write(dateKeys[i] + "," + items + "\n");
         }
 
@@ -200,6 +208,7 @@ writeStream.on('finish', function() {
             data.write("\n");
         }
         
+        // Close the write stream
         data.end();
     });
 });
