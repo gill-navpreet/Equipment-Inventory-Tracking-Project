@@ -41,6 +41,9 @@ app.get('/graph1', function(req, res) {
 app.get('/graph2', function(req, res) {
 	res.sendFile(path.join(__dirname + '/public/graphs/DatevsTotalCheckins.html'));
 });
+app.get('/graph3', function(req, res) {
+	res.sendFile(path.join(__dirname + '/public/graphs/DatevsTotalCheckouts.html'));
+});
 
 // Route
 // Send the user index.html file
