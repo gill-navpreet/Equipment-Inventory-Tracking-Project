@@ -179,7 +179,7 @@ writeStream.on('finish', function() {
         data = fs.createWriteStream('public/app/csvFiles/DatevsDepartmentCheckoutsbyDay.csv');
 
         //Department checkouts by day
-        data.write("Date,Departments\n");
+        data.write("Department Checkouts by Day\n");
         dateKeys = checkoutDatesbyDay.keys();
         for(var i = 0; i < dateKeys.length; i++) {
             // Obtain department names in alphabetical order
@@ -188,14 +188,14 @@ writeStream.on('finish', function() {
             data.write(dateKeys[i]);
             for(var j = 0; j < deptKeys.length; j++)
                 // For each department, write its name followed by how many it's checked out on a particular day
-                data.write("," + deptKeys[j] + "(" + checkoutDatesbyDay.get(dateKeys[i]).get(deptKeys[j]) + ")");
+                data.write("\n\t" + deptKeys[j] + " (" + checkoutDatesbyDay.get(dateKeys[i]).get(deptKeys[j]) + ")");
             data.write("\n");
         }
 
         data = fs.createWriteStream('public/app/csvFiles/DatevsDepartmentCheckoutsbyMonth.csv');
         
         // Department checkouts by month
-        data.write("Date,Departments\n");
+        data.write("Department Checkouts by Month\n");
         dateKeys = checkoutDatesbyMonth.keys();
         for(var i = 0; i < dateKeys.length; i++) {
             // Obtain department names in alphabetical order
@@ -204,7 +204,7 @@ writeStream.on('finish', function() {
             data.write(dateKeys[i]);
             for(var j = 0; j < deptKeys.length; j++)
                 // For each department, write its name followed by how many it's checked out during a particular month
-                data.write("," + deptKeys[j] + "(" + checkoutDatesbyMonth.get(dateKeys[i]).get(deptKeys[j]) + ")");
+                data.write("\n\t" + deptKeys[j] + " (" + checkoutDatesbyMonth.get(dateKeys[i]).get(deptKeys[j]) + ")");
             data.write("\n");
         }
         
