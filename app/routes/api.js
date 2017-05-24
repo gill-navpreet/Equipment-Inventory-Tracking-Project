@@ -127,7 +127,7 @@ writeStream.on('finish', function() {
             deptValues = checkinDatesbyDay.get(dateKeys[i]).values();
             for(var j = 0; j < deptValues.length; j++)
                 items += deptValues[j];
-            // Print the day followed by how many items were checked in
+            // Write the day followed by how many items were checked in
             data.write(dateKeys[i] + "," + items + "\n");
         }
 
