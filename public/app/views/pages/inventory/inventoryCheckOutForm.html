@@ -117,7 +117,9 @@
 		<p class="help-block" ng-show="(!checkOutForm.checkOutFormTable.$pristine && checkOutForm.checkOutFormTable.chargeNumber.$error.required) || (checkOutForm.checkOutFormTable.$submitted  && checkOutForm.checkOutFormTable.chargeNumber.$error.required)"> This field is required </p>
 		<ul ng-show="(!checkOutForm.checkOutFormTable.chargeNumber.$pristine && checkOutForm.checkOutFormTable.chargeNumber.$error.pattern)" class="help-block">
            <li>Must not contain any special characters </li>
-           <li>Must be either 4 digits long or 7 characters long </li>
+           <li>Must be either 4 digits long, For eg. 2345 </li>
+           <li> OR </li>
+           <li> Must be 8 characters long with first character being a digit or a number, For eg. 3GOPROSS</li>
         </ul>
 	</div>
 	<br>
