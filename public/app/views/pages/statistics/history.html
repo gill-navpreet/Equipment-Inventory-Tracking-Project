@@ -12,28 +12,7 @@
 	<button type="button" class="btn btn-default">Date</button>
 </div>
 
-<!-- Apply Button Filter -->
-<button type="button" ng-click="hist.showMore(number);" class="btn btn-success">Apply Filter</button>
 
-<!--/ Show All Button -->
-<button type="button" ng-click="hist.showAll();" class="btn btn-warning">Show All</button>
-
-<!-- Input For Filter  -->
-<div class="showmore">
-    <div class="col-lg-6">
-        <div class="input-group">
-            <span class="input-group-addon">Number of results to display:</span>
-            <input type="text" class="form-control" ng-model="number">
-        </div>
-    </div>
-</div>
-
-<!-- Custom Error Message -->
-
-<div class="row show-hide-message" ng-show="hist.showMoreError">
-<br>
-    <div class="alert alert-danger">{{ hist.showMoreError }}</div>
-</div>
 
 <div class="navbar-form">
 	<div class="form-group">
@@ -91,3 +70,27 @@
 
 
 <ul uib-pagination total-items="(hist.historyData  | filter: searchFilter).length" items-per-page="hist.pageSize" ng-model="hist.currentPage"></ul>
+<br>
+</br>
+<!-- Apply Button Filter -->
+<button type="button" ng-click="hist.showMore(number);" class="btn btn-success">Apply Filter</button>
+
+<!--/ Show All Button -->
+<button type="button" ng-click="hist.showAll();" class="btn btn-warning">Show All</button>
+
+<!-- Input For Filter  -->
+<div class="showmore">
+    <div class="col-lg-6">
+        <div class="input-group">
+            <span class="input-group-addon">Number of results to display:</span>
+            <input type="text" class="form-control" ng-model="number">
+        </div>
+    </div>
+</div>
+
+<!-- Custom Error Message -->
+
+<div class="row show-hide-message" ng-show="hist.showMoreError">
+<br>
+    <div class="alert alert-danger">{{ hist.showMoreError }}</div>
+</div>
