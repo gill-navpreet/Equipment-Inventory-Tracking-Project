@@ -54,10 +54,10 @@
 	<!-- Phone Number -->
 	<div ng-class="{ 'has-success':(checkOutForm.checkOutFormTable.phoneNumber.$valid && !checkOutForm.checkOutFormTable.phoneNumber.$pristine), 'has-error':(!checkOutForm.checkOutFormTable.phoneNumber.$valid && !checkOutForm.checkOutFormTable.phoneNumber.$pristine) || (!checkOutForm.checkOutFormTable.phoneNumber.$valid && checkOutForm.checkOutFormTable.$submitted)}">
 		<label>Phone Number:</label>
-		<input class = "form-control" type = "text" name = "phoneNumber" placeholder="please enter phone number in the format xxx-xxx-xxxx" ng-model="newData.newPhoneNumber" ng-pattern="/^[2-9]\d{2}-\d{3}-\d{4}$/" required>
+		<input class = "form-control" type = "text" name = "phoneNumber" placeholder="please enter phone number in the format xxx-xxx-xxxx or xxxxxxxxxx" ng-model="newData.newPhoneNumber" ng-pattern="/(^(([1-9]\d{2}-\d{3}-\d{4})|(\d{10}))$)/" required>
 		<p class="help-block" ng-show="(!checkOutForm.checkOutFormTable.$pristine && checkOutForm.checkOutFormTable.phoneNumber.$error.required) || (checkOutForm.checkOutFormTable.$submitted  && checkOutForm.checkOutFormTable.phoneNumber.$error.required)"> This field is required </p>
         <ul ng-show="(!checkOutForm.checkOutFormTable.phoneNumber.$pristine && checkOutForm.checkOutFormTable.phoneNumber.$error.pattern)" class="help-block">
-            <li>Must be in format xxx-xxx-xxxx </li>
+            <li>Must be in format xxx-xxx-xxxx or xxxxxxxxxx</li>
             <li>Must only contain numbers </li>
             <li>Must be 10 digits long</li>
         </ul>
@@ -173,10 +173,10 @@
 	<!-- Supervisor's Phone Number -->
 	<div ng-class="{ 'has-success':(checkOutForm.checkOutFormTable.supervisorPhoneNumber.$valid && !checkOutForm.checkOutFormTable.supervisorPhoneNumber.$pristine), 'has-error':(!checkOutForm.checkOutFormTable.supervisorPhoneNumber.$valid && !checkOutForm.checkOutFormTable.supervisorPhoneNumber.$pristine) || (!checkOutForm.checkOutFormTable.supervisorPhoneNumber.$valid && checkOutForm.checkOutFormTable.$submitted)}">
 		<label>Supervisor's Phone Number:</label>
-		<input class = "form-control" type = "text" name = "supervisorPhoneNumber" placeholder="please enter supervisor's phone number in the format xxx-xxx-xxxx" ng-model="newData.newSupervisorPhoneNumber" ng-pattern="/^[2-9]\d{2}-\d{3}-\d{4}$/" required>
+		<input class = "form-control" type = "text" name = "supervisorPhoneNumber" placeholder="please enter supervisor's phone number in the format xxx-xxx-xxxx or xxxxxxxxxx" ng-model="newData.newSupervisorPhoneNumber" ng-pattern="/(^(([1-9]\d{2}-\d{3}-\d{4})|(\d{10}))$)/" required>
 		<p class="help-block" ng-show="(!checkOutForm.checkOutFormTable.$pristine && checkOutForm.checkOutFormTable.supervisorPhoneNumber.$error.required) || (checkOutForm.checkOutFormTable.$submitted  && checkOutForm.checkOutFormTable.supervisorPhoneNumber.$error.required)"> This field is required </p>
         <ul ng-show="(!checkOutForm.checkOutFormTable.supervisorPhoneNumber.$pristine && checkOutForm.checkOutFormTable.supervisorPhoneNumber.$error.pattern)" class="help-block">
-            <li>Must be in format xxx-xxx-xxxx </li>
+            <li>Must be in format xxx-xxx-xxxx  or xxxxxxxxxx </li>
             <li>Must only contain numbers </li>
             <li>Must be 10 digits long</li>
         </ul>
