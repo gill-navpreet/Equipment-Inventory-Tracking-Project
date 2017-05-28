@@ -51,6 +51,7 @@
 				<th>Bar Code:</th>
 				<th>Checked Type:</th>
 				<th>Description: </th>
+				<th>Department: </th>
 			</tr>
 		</thead>
 		<tbody ng-repeat="history in hist.historyData  | filter: searchFilter | pagination: (hist.currentPage - 1) * hist.pageSize | limitTo: hist.pageSize">
@@ -63,6 +64,7 @@
 				<td>{{ history.barcode }}</td>
 				<td>{{ history.checkedType }}</td>
 				<td>{{ history.description }}</td>
+				<td>{{ history.department}}</td>
 			</tr>
 		</tbody>
 	</table>

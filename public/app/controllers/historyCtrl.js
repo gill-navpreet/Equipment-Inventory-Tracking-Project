@@ -53,8 +53,8 @@ angular.module('historyController',['ui.bootstrap'])
 	};
 
 
-	app.advancedSearch = function(searchByFirstName, searchByLastName, searchByEmail) {
-		if (searchByFirstName || searchByLastName || searchByEmail) {
+	app.advancedSearch = function(searchByFirstName, searchByLastName, searchByEmail, searchByDepartment) {
+		if (searchByFirstName || searchByLastName || searchByEmail || searchByDepartment) {
 			$scope.advancedSearchFilter = {};
 			if (searchByFirstName) {
 				$scope.advancedSearchFilter.firstName = searchByFirstName;
@@ -64,6 +64,9 @@ angular.module('historyController',['ui.bootstrap'])
 			}
 			if (searchByEmail) {
 				$scope.advancedSearchFilter.email = searchByEmail;
+			}
+			if (searchByDepartment) {
+				$scope.advancedSearchFilter.department = searchByDepartment;
 			}
 			app.searchLimit = undefined;
 		}

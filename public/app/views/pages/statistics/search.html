@@ -33,9 +33,16 @@
 	<button type="button" class="btn btn-default">Email</button>
 </div>
 
+<!-- Search by department -->
+<div class="navbar-form">
+	<div class="form-group">
+		<input type="text" class="form-control" name="search" placeholder="search by..." ng-model="searchByDepartment">
+	</div>
+	<button type="button" class="btn btn-default">Department</button>
+</div>
 
 <div class="navbar-form">
-	<button type="button" ng-click="hist.advancedSearch(searchByFirstName, searchByLastName, searchByEmail);" class="btn btn-warning">Search</button>
+	<button type="button" ng-click="hist.advancedSearch(searchByFirstName, searchByLastName, searchByEmail, searchByDepartment);" class="btn btn-warning">Search</button>
 	<br>
 	<br>
 
@@ -49,6 +56,7 @@
 		<li><a ng-click="hist.sortOrder('firstName');" href="">First Name</a></li>
 		<li><a ng-click="hist.sortOrder('lastName');" href="">Last Name</a></li>
 		<li><a ng-click="hist.sortOrder('email');" href="">Email</a></li>
+		<li><a ng-click="hist.sortOrder('department');" href="">Department</a></li>
 	</ul>
 
 </div>
@@ -83,6 +91,7 @@
 				<th>Bar Code:</th>
 				<th>Checked Type:</th>
 				<th>Description:</th>
+				<th>Department:</th>
 			</tr>
 		</thead>
 		<tbody ng-repeat="history in hist.historyData |filter: advancedSearchFilter | pagination: (hist.currentPage - 1) * hist.pageSize | limitTo: hist.searchLimit | orderBy: hist.sort">
@@ -94,7 +103,8 @@
 				<td>{{ history.product }}</td>
 				<td>{{ history.barcode }}</td>
 				<td>{{ history.checkedType }}</td>
-				<td>{{ history.description }}</td>
+				<td>{{ history.description}}</td>
+				<td>{{ history.department}}</td>
 			</tr>
 		</tbody>
 	</table>
