@@ -4,7 +4,7 @@
 
 <br>
 
-<ul class="nav nav-tabs">
+<!-- <ul class="nav nav-tabs">
     <li role="presentation" ng-click="editInventory.firstNamePhase();" ng-class="firstNameTab"><a href="">First Name</a></li>
     <li role="presentation" ng-click="editInventory.lastNamePhase();" ng-class="lastNameTab"><a href="">Last Name</a></li>
     <li role="presentation" ng-click="editInventory.emailPhase();" ng-class="emailTab"><a href="">Email</a></lir>
@@ -13,9 +13,9 @@
     <li role="presentation" ng-click="editInventory.isCheckedInPhase();" ng-class="isCheckedInTab"><a href="">Is Checked In</a></li>
 
 </ul>
-
+ -->
 <!-- Phase One: First Name -->
-<form name ="editInventory.firstNameForm" ng-submit="editInventory.updateFirstName(newFirstName)" ng-show="editInventory.phase1" novalidate>
+<form name ="editInventory.firstNameForm" ng-submit="editInventory.updateFirstName(newFirstName)" novalidate>
 	<!-- First Name -->
 	<div ng-class="{'has-success': (editInventory.firstNameForm.firstName.$valid && !editInventory.firstNameForm.firstName.$pristine),'has-error':((!editInventory.firstNameForm.firstName.$valid && !editInventory.firstNameForm.firstName.$pristine) || ((!editInventory.firstNameForm.firstName.$valid)&& editInventory.firstNameForm.$submitted)) }">
 		<label>Current First Name:</label>
@@ -38,10 +38,10 @@
 </form>
 
 <!-- Phase Two: Last Name -->
-<form name ="editInventory.lastNameForm" ng-submit="editInventory.updateLastName(newLastName)" ng-show="editInventory.phase2" novalidate>
+<form name ="editInventory.lastNameForm" ng-submit="editInventory.updateLastName(newLastName)"  novalidate>
 	<!-- Last Name -->
 	<div ng-class="{'has-success': (editInventory.lastNameForm.lastName.$valid && !editInventory.lastNameForm.lastName.$pristine),'has-error':((!editInventory.lastNameForm.lastName.$valid && !editInventory.lastNameForm.lastName.$pristine) || ((!editInventory.lastNameForm.lastName.$valid)&& editInventory.lastNameForm.$submitted)) }">
-		<label>Last Name:</label>
+		<label>Current Last Name:</label>
 		<input class = "form-control" type = "text" name = "lastName" placeholder="please enter last name" ng-model="newLastName" ng-pattern="/^([a-zA-Z]{2,20})$/" ng-minlength="2" ng-maxlength="20" required>
 		<p class="help-block "ng-show="(!editInventory.lastNameForm.$pristine && editInventory.lastNameForm.lastName.$error.required) || (editInventory.lastNameForm.$submitted && editInventory.lastNameForm.lastName.$error.required)"> This field is required </p>
 		<ul ng-show="(!editInventory.lastNameForm.lastName.$pristine && editInventory.lastNameForm.lastName.$error.pattern) || (!editInventory.lastNameForm.lastName.$pristine && editInventory.lastNameForm.lastName.$error.minlength) || (!editInventory.lastNameForm.lastName.$pristine && editInventory.lastNameForm.lastName.$error.maxlength)" class="help-block">
@@ -61,9 +61,9 @@
 </form>
 
 <!-- Phase Three: Email -->
-<form name ="editInventory.emailForm" ng-submit="editInventory.updateEmail(newEmail)" ng-show="editInventory.phase3" novalidate>
+<form name ="editInventory.emailForm" ng-submit="editInventory.updateEmail(newEmail)" novalidate>
 	<div ng-class="{ 'has-success':(editInventory.emailForm.email.$valid && !editInventory.emailForm.email.$pristine && !register.emailInvalid), 'has-error':(!editInventory.emailForm.email.$valid && !editInventory.emailForm.email.$pristine) || (!editInventory.emailForm.email.$valid && editInventory.emailForm.$submitted)}">
-		<label>Email:</label>
+		<label>Current Email:</label>
 		<input class = "form-control" type = "text" name = "email" placeholder="please enter email" ng-model="newEmail" ng-minlength="3" ng-maxlength="40" ng-pattern="/^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$/" required>
 		<p class="help-block" ng-show="(!editInventory.emailForm.$pristine && editInventory.emailForm.email.$error.required) || (editInventory.emailForm.$submitted  && editInventory.emailForm.email.$error.required)"> This field is required </p>
         <ul ng-show="(!editInventory.emailForm.email.$pristine && editInventory.emailForm.email.$error.pattern) || (!editInventory.emailForm.email.$pristine && editInventory.emailForm.email.$error.minlength) || (!editInventory.emailForm.email.$pristine && editInventory.emailForm.email.$error.maxlength)" class="help-block">
@@ -84,10 +84,10 @@
 </form>
 
 <!-- Phase Four: Product -->
-<form name ="editInventory.productForm" ng-submit="editInventory.updateProduct(newProduct)" ng-show="editInventory.phase4" novalidate>
+<form name ="editInventory.productForm" ng-submit="editInventory.updateProduct(newProduct)"  novalidate>
 	<!-- Product -->
 	<div ng-class="{'has-success': (editInventory.productForm.product.$valid && !editInventory.productForm.product.$pristine),'has-error':((!editInventory.productForm.product.$valid && !editInventory.productForm.product.$pristine) || ((!editInventory.productForm.product.$valid)&& editInventory.productForm.$submitted)) }">
-		<label>Product:</label>
+		<label>Current Product:</label>
 		<input class = "form-control" type = "text" name = "product" placeholder="please enter product name" ng-model="newProduct" id="bcode" ng-pattern="/^((([a-zA-Z])+[ ]*)+)$/" required>
 		<p class="help-block "ng-show="(!editInventory.productForm.$pristine && editInventory.productForm.product.$error.required) || (editInventory.productForm.$submitted && editInventory.productForm.product.$error.required)"> This field is required </p>
 		<ul ng-show="(!editInventory.productForm.product.$pristine && editInventory.productForm.product.$error.pattern)" class="help-block">
@@ -106,10 +106,10 @@
 </form>
 
 <!-- Phase Five: Barcode -->
-<form name ="editInventory.barcodeForm" ng-submit="editInventory.updateBarcode(newBarcode)" ng-show="editInventory.phase5" novalidate>
+<form name ="editInventory.barcodeForm" ng-submit="editInventory.updateBarcode(newBarcode)"  novalidate>
 	<!-- Bar Code -->
 	<div ng-class="{'has-success': (editInventory.barcodeForm.barcode.$valid && !editInventory.barcodeForm.barcode.$pristine),'has-error':((!editInventory.barcodeForm.barcode.$valid && !editInventory.barcodeForm.barcode.$pristine) || ((!editInventory.barcodeForm.barcode.$valid)&& editInventory.barcodeForm.$submitted)) }">
-		<label>Bar Code:</label>
+		<label>Current Bar Code:</label>
 		<input class = "form-control" type = "text" name = "barcode" placeholder="please scan an item or enter a 10-digit barcode" ng-model="newBarcode" id="bcode" ng-pattern="/^[0-9]{10}/" ng-minlength="10" ng-maxlength="10" focus="true" required>
 		<p class="help-block "ng-show="(!editInventory.barcodeForm.$pristine && editInventory.barcodeForm.barcode.$error.required) || (editInventory.barcodeForm.$submitted && editInventory.barcodeForm.barcode.$error.required)"> This field is required </p>
 		<ul ng-show="(!editInventory.barcodeForm.barcode.$pristine && editInventory.barcodeForm.barcode.$error.pattern) || (!editInventory.barcodeForm.barcode.$pristine && editInventory.barcodeForm.barcode.$error.minlength) || (!editInventory.barcodeForm.barcode.$pristine && editInventory.barcodeForm.barcode.$error.maxlength)" class="help-block">
@@ -128,7 +128,7 @@
 </form>
 
 <!-- Phase Six: Is Checked In -->
-<form name ="editInventory.isCheckedInForm" ng-submit="editInventory.updateIsCheckedIn(newIsCheckedIn)" ng-show="editInventory.phase6" novalidate>
+<form name ="editInventory.isCheckedInForm" ng-submit="editInventory.updateIsCheckedIn(newIsCheckedIn)"  novalidate>
 	<div ng-class="{ 'has-success':(editInventory.isCheckedInForm.isCheckedIn.$valid && !editInventory.isCheckedInForm.isCheckedIn.$pristine), 'has-error':(!editInventory.isCheckedInForm.isCheckedIn.$valid && !editInventory.isCheckedInForm.isCheckedIn.$pristine) || (!editInventory.isCheckedInForm.isCheckedIn.$valid && editInventory.isCheckedInForm.$submitted)}">
 		<label>Current Is Checked In:</label>
 		<input class = "form-control" type = "text" name = "isCheckedIn" placeholder="true: checked in, false: checked out" ng-model="newIsCheckedIn" ng-pattern="/^(true|false)$/" required>

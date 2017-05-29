@@ -4,15 +4,15 @@
 
 <br>
 
-<ul class="nav nav-tabs">
+<!-- <ul class="nav nav-tabs">
     <li role="presentation" ng-click="edit.namePhase();" ng-class="nameTab"><a href="">Name</a></li>
     <li role="presentation" ng-click="edit.usernamePhase();" ng-class="usernameTab"><a href="">Username</a></li>
     <li role="presentation" ng-click="edit.emailPhase();" ng-class="emailTab"><a href="">E-mail</a></li>
     <li role="presentation" ng-click="edit.permissionsPhase();" ng-class="permissionsTab"><a href="">Permission</a></li>
-</ul>
+</ul> -->
 
 
-<form name ="edit.nameForm" ng-submit="edit.updateName(newName)" ng-show="edit.phase1">
+<form name ="edit.nameForm" ng-submit="edit.updateName(newName)">
 	<label>Current Name:</label>
 	<input class = "form-control" type = "text" name = "name" placeholder="please enter name" ng-model = "newName">
 	<br>
@@ -21,9 +21,9 @@
 	
 	<br>
 </form>
-
+	<br>
 <!-- Phase One: Username -->
-<form name ="edit.usernameForm" ng-submit="edit.updateUsername(newUsername)" ng-show="edit.phase2">
+<form name ="edit.usernameForm" ng-submit="edit.updateUsername(newUsername)">
 	<label>Current Username:</label>
 	<input class = "form-control" type = "text" name = "username" placeholder="please enter username" ng-model = "newUsername">
 	<br>
@@ -32,8 +32,9 @@
 	
 	<br>
 </form>
+	<br>
 <!-- Phase One: Email -->
-<form name ="edit.emailForm" ng-submit="edit.updateEmail(newEmail)" ng-show="edit.phase3">
+<form name ="edit.emailForm" ng-submit="edit.updateEmail(newEmail)" >
 	<label>Current Email:</label>
 	<input class = "form-control" type = "text" name = "email" placeholder="please enter email" ng-model = "newEmail">
 	<br>
@@ -42,8 +43,9 @@
 	
 	<br>
 </form>
+	<br>
 <!-- Phase One: Permissions -->
-<div ng-show="edit.phase4">
+<div>
     <label>Current Permission:</label>{{ newPermission }}
     <br>
     <br>
@@ -54,6 +56,7 @@
     <!-- Admin Permission Button -->
     <button ng-disabled="edit.disableAdmin" ng-click="edit.updatePermissions('admin');" type="button" class="btn btn-warning">Admin</button>
 </div>
+	<br>
 
 
 
