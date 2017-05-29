@@ -99,21 +99,26 @@ angular.module('inventoryManagementController', ['ui.bootstrap'])
 	app.phase1 = true;
 	// when user clicks on edit, to edit inventory, the _id is thrown into the URL to be retrieved by $routeParams.id
 	// Factory uses $http.put('/api/editInventory', id);
-	Inventory.getInventory($routeParams.id).then(function(data) {
-		if(data.data.success) {
-			// initializes all input fields with the values of the item that was clicked for edit
-			$scope.newFirstName = data.data.inventory.firstName;
-			$scope.newLastName = data.data.inventory.lastName;
-			$scope.newEmail = data.data.inventory.email;
-			$scope.newProduct = data.data.inventory.product;
-			$scope.newBarcode = data.data.inventory.barcode;
-			$scope.newIsCheckedIn = data.data.inventory.isCheckedIn;
-			app.currentInventory = data.data.inventory._id;
+	function getInventory(){
+		Inventory.getInventory($routeParams.id).then(function(data) {
+			if(data.data.success) {
+				// initializes all input fields with the values of the item that was clicked for edit
+				$scope.newBatteryLifeTime = data.data.inventory.batteryLifeTime/1000;
+				$scope.newBatteryTotalTime = data.data.inventory.batteryTotalTime;
+				$scope.newFirstName = data.data.inventory.firstName;
+				$scope.newLastName = data.data.inventory.lastName;
+				$scope.newEmail = data.data.inventory.email;
+				$scope.newProduct = data.data.inventory.product;
+				$scope.newBarcode = data.data.inventory.barcode;
+				$scope.newIsCheckedIn = data.data.inventory.isCheckedIn;
+				app.currentInventory = data.data.inventory._id;
 
-		} else {
-			app.errorMsg = data.data.message;
-		}
-	});
+			} else {
+				app.errorMsg = data.data.message;
+			}
+		});
+	}
+	getInventory();
 	// each phase will activate when clicked. Setting the other ones to default/ false, and the tab selected to active/true
 	app.firstNamePhase = function() {
 		$scope.firstNameTab = 'active'; // 
@@ -382,7 +387,62 @@ angular.module('inventoryManagementController', ['ui.bootstrap'])
             });
        
     };
+    app.updateBatteryLifeTime = function(newBatteryLifeTime) {
+        app.errorMsg = false; // Clear any error messages
+        app.disabled = true; // Disable form while processing
+        // Check if the name being submitted is valid
+ 
+            var inventoryObject = {}; // Create a user object to pass to function
+            inventoryObject._id = app.currentInventory; // Get _id to search database
+            inventoryObject.batteryLifeTime = $scope.newBatteryLifeTime*1000; // Set the new name to the user
+            // Runs function to update the user's name
+            Inventory.editInventory(inventoryObject).then(function(data) {
+                // Check if able to edit the user's name
+                if (data.data.success) {
+                    app.successMsg = data.data.message; // Set success message
+                    // Function: After two seconds, clear and re-enable
+                    $timeout(function() {
+                        app.batteryLifeTimeForm.batteryLifeTime.$setPristine(); // Reset name form
+                        app.batteryLifeTimeForm.batteryLifeTime.$setUntouched(); // Reset name form
+                        app.successMsg = false; // Clear success message
+                        app.disabled = false; // Enable form for editing
+                    }, 2000);
+                } else {
+                    app.errorMsg = data.data.message; // Clear any error messages
+                    app.disabled = false; // Enable form for editing
+                }
+            });
+       
+    };
 
+    app.updateBatteryTotalTime = function() {
+        app.errorMsg = false; // Clear any error messages
+        app.disabled = true; // Disable form while processing
+        // Check if the name being submitted is valid
+ 
+            var inventoryObject = {}; // Create a user object to pass to function
+            inventoryObject._id = app.currentInventory; // Get _id to search database
+            inventoryObject.batteryTotalTime = 1; // Set the new name to the user
+            // Runs function to update the user's name
+            Inventory.editInventory(inventoryObject).then(function(data) {
+                // Check if able to edit the user's name
+                if (data.data.success) {
+                    app.successMsg = data.data.message; // Set success message
+                    // Function: After two seconds, clear and re-enable
+                    $timeout(function() {
+                        app.batteryTotalTimeForm.batteryTotalTime.$setPristine(); // Reset name form
+                        app.batteryTotalTimeForm.batteryTotalTime.$setUntouched(); // Reset name form
+                        app.successMsg = false; // Clear success message
+                        app.disabled = false; // Enable form for editing
+                    }, 2000);
+                } else {
+                    app.errorMsg = data.data.message; // Clear any error messages
+                    app.disabled = false; // Enable form for editing
+                }
+            });
+            getInventory();
+       
+    };
 
 
 });

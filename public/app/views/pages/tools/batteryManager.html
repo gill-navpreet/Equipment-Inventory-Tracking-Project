@@ -12,17 +12,25 @@
 	        <tr>
 	            <th>Product:</th>
 	            <th>Bar Code:</th>
-	            <th>Battery Life:</th>
+                <th>Battery Elapsed Time:</th>
+                <th>Battery Life Time:</th>
 	        </tr>
         </thead>
         <tbody ng-repeat="inventory in battery.inventoryforms" ng-if="inventory.isDeleted==='false'">
 	        <tr>
 	            <td>{{ inventory.product }}</td>
 	            <td>{{ inventory.barcode }}</td>
+                <td>{{ inventory.batteryTotalTime/1000 }} seconds</td>                
+                <td>{{ inventory.batteryLifeTime/1000 }} seconds</td>
                 <td ng-if="(inventory.batteryTotalTime/inventory.batteryLifeTime) >= 1"><img src="assets/pictures/battery/red.png" style="width:25px;height:36px;"></td>
                 <td ng-if="(inventory.batteryTotalTime/inventory.batteryLifeTime) >= 0.66 && (inventory.batteryTotalTime/inventory.batteryLifeTime) < 1"><img src="assets/pictures/battery/orange.png" style="width:25px;height:36px;"></td>
                 <td ng-if="(inventory.batteryTotalTime/inventory.batteryLifeTime) >= 0.33 && (inventory.batteryTotalTime/inventory.batteryLifeTime) < 0.66"><img src="assets/pictures/battery/yellow.png" style="width:25px;height:36px;"></td>
                 <td ng-if="(inventory.batteryTotalTime/inventory.batteryLifeTime) >= 0.00 && (inventory.batteryTotalTime/inventory.batteryLifeTime) < 0.33"><img src="assets/pictures/battery/green.png" style="width:25px;height:36px;"></td>
+                <td>
+                    <a href="#editBattery/{{ inventory._id }}">
+                        <button type="button"  class="btn btn-primary">Edit</button>
+                    </a>
+                </td>
             </tr>
 	    </tbody>    
         <!-- End: Table -->

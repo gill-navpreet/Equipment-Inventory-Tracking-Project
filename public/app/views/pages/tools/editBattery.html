@@ -1,3 +1,39 @@
-<div class="page-header">
-    <h2>Edit Battery</h2>
+<div class="page-header"> 
+	<h2>Edit Battery</h2>
 </div>
+
+<br>
+
+
+<!-- Phase One: First Name -->
+<form name ="editInventory.batteryLifeTimeForm" ng-submit="editInventory.updateBatteryLifeTime(newBatteryLifeTime)">
+	<!-- First Name -->
+		<label>Current Battery Life Time:</label>
+		<input class = "form-control" type = "text" name = "batteryLifeTime" placeholder="please enter Battery Life Time" ng-model="newBatteryLifeTime"  required>
+	<br>
+	<button class = "btn btn-primary" type = "submit">Update</button>
+	
+	<br>
+</form>
+
+<br>
+
+<form name ="editInventory.batteryLifeTimeForm" ng-submit="editInventory.updateBatteryTotalTime();">
+	<label>Current Battery Total Time: {{newBatteryTotalTime/1000}}</label>
+	<br>
+	<br>
+	<button class="btn btn-primary" type="submit">Reset</button>
+</form>
+
+<br>
+
+
+<div class = "row show-hide-message" ng-show = "editInventory.successMsg">
+	<div class = "alert alert-success">{{ editInventory.successMsg }}</div>
+</div>
+
+<br>
+
+<div class = "row show-hide-message" ng-show = "editInventory.errorMsg">
+	<div class = "alert alert-danger">{{ editInventory.errorMsg }}</div>
+</div> 

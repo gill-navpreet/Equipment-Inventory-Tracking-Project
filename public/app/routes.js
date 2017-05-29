@@ -147,12 +147,17 @@ var app = angular.module('appRoutes', ['ngRoute'])
 		controllerAs: 'graph',
 		authenticated: true
 	})
-	
 	.when('/advancedSearch', {
 		templateUrl: 'app/views/pages/statistics/advancedSearch.html',
 		controller: 'histCtrl',
 		controllerAs: 'hist',
 		authenticated: true
+	})
+	.when('/editBattery/:id', {
+		templateUrl: 'app/views/pages/tools/editBattery.html',
+		controller: 'editInventoryCtrl',
+		controllerAs: 'editInventory',
+		authenticated: true,
 	})
 
 	// If user tries to access any other route --> redirect to home page

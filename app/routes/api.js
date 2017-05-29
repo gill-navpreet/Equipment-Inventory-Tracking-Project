@@ -864,6 +864,8 @@ module.exports = function(router) {
         if (req.body.product) var newProduct = req.body.product; // Check if a change to permission was requested
         if (req.body.barcode) var newBarcode = req.body.barcode; // Check if a change to barcode was requested
         if (req.body.isCheckedIn) var newIsCheckedIn = req.body.isCheckedIn; // Check if a change to checked in field was requested
+        if (req.body.batteryLifeTime) var newBatteryLifeTime = req.body.batteryLifeTime;
+        if (req.body.batteryTotalTime) var newBatteryTotalTime = req.body.batteryTotalTime;
         User.findOne({ username: req.decoded.username }, function(err, mainUser) { // find user
             if (err) throw err; // Throw err if cannot connnect
             if (!mainUser) {
@@ -992,6 +994,48 @@ module.exports = function(router) {
                             }
                         });
                     } else { 
+                        res.json({ success: false, message: 'Insufficient Permissions' }); // Return error
+                    }
+                }
+                if (newBatteryLifeTime) { // if barcode was edited, change it in database too
+                    if (mainUser.permission === 'admin' || mainUser.permission === 'moderator') {
+                        Inventory.findOne({ _id: editInventory }, function(err, inventory) {
+                            if (err) throw err; // Throw error if cannot connect
+                            if (!inventory) {
+                                res.json({ success: false, message: 'No inventory found' }); // Return error
+                            } else {
+                                inventory.batteryLifeTime = newBatteryLifeTime; // Assign new name to user in database
+                                inventory.save(function(err) {
+                                    if (err) {
+                                        console.log(err); // Log any errors to the console
+                                    } else {
+                                        res.json({ success: true, message: 'Battery Life Time has been updated!' }); // Return success message
+                                    }
+                                });
+                            }
+                        });
+                    } else {
+                        res.json({ success: false, message: 'Insufficient Permissions' }); // Return error
+                    }
+                }
+                if (newBatteryTotalTime) { // if barcode was edited, change it in database too
+                    if (mainUser.permission === 'admin' || mainUser.permission === 'moderator') {
+                        Inventory.findOne({ _id: editInventory }, function(err, inventory) {
+                            if (err) throw err; // Throw error if cannot connect
+                            if (!inventory) {
+                                res.json({ success: false, message: 'No inventory found' }); // Return error
+                            } else {
+                                inventory.batteryTotalTime = 0; // Assign new name to user in database
+                                inventory.save(function(err) {
+                                    if (err) {
+                                        console.log(err); // Log any errors to the console
+                                    } else {
+                                        res.json({ success: true, message: 'Battery Total Time has been updated!' }); // Return success message
+                                    }
+                                });
+                            }
+                        });
+                    } else {
                         res.json({ success: false, message: 'Insufficient Permissions' }); // Return error
                     }
                 }
