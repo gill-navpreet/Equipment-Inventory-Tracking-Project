@@ -13,9 +13,18 @@
 <a href="/graph3" target="_blank" id="code" type="submit" class="btn btn-success" style="width:400px;"></span> Date vs Checkins by Month</a>
 </div>
  -->
-<div>
+<!-- <div>
 	<div class="uctable"> Date vs Checkins by Month</div>
  	<iframe name="iframe1" src="/graph2" align="top" height="350" width="100%" hspace="10" vspace="10" align="middle" style="border:none;"></iframe>
  	<div class="uctable"> Date vs Checkouts by Month</div>
  	<iframe name="iframe1" src="/graph3" align="top" height="350" width="100%" hspace="10" vspace="10" align="middle" style="border:none;"></iframe>
-<div>
+<div> -->
+<div> 
+  <button class = "btn btn-success" type = "submit" ng-click="showIframe1 = !showIframe1">Date vs Checkins by Month</button>
+  <iframe name="iframe1" src="/graph2" ng-if="showIframe1" align="top" height="350" width="100%" hspace="10" vspace="10" align="middle" style="border:none;"></iframe>
+ </div>
+ <br>
+ <div> 
+  <button class = "btn btn-success" type = "submit" ng-click="showIframe2 = !showIframe2">Date vs Checkouts by Month</button>
+  <iframe name="iframe2" src="/graph2" ng-if="showIframe2" align="top" height="350" width="100%" hspace="10" vspace="10" align="middle" style="border:none;"></iframe>
+</div>
