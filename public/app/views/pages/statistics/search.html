@@ -10,95 +10,37 @@
 
 	</div>
 	<button type="button" class="btn btn-default">Date</button>
-</div>	
+</div>
+
+
 
 <div class="navbar-form">
 	<div class="form-group">
-		<input type="text" class="form-control" name="search" placeholder="search by..." ng-model="searchByFirstName">
+		<input type="text" class="form-control" name="search" placeholder="search for..." ng-model="searchKeyword">
 	</div>
-	<button type="button" class="btn btn-default">First Name</button>
-</div>
-
-<div class="navbar-form">
-	<div class="form-group">
-		<input type="text" class="form-control" name="search" placeholder="search by..." ng-model="searchByLastName">
-	</div>
-	<button type="button" class="btn btn-default">Last Name</button>
-</div>
-
-<div class="navbar-form">
-	<div class="form-group">
-		<input type="text" class="form-control" name="search" placeholder="search by..." ng-model="searchByEmail">
-	</div>
-	<button type="button" class="btn btn-default">Email</button>
-</div>
-
-<!-- Search by department -->
-<div class="navbar-form">
-	<div class="form-group">
-		<input type="text" class="form-control" name="search" placeholder="search by..." ng-model="searchByDepartment">
-	</div>
-	<button type="button" class="btn btn-default">Department</button>
-</div>
-
-<!-- Search by Product -->
-<div class="navbar-form">
-	<div class="form-group">
-		<input type="text" class="form-control" name="search" placeholder="search by..." ng-model="searchByProduct">
-	</div>
-	<button type="button" class="btn btn-default">Product</button>
-</div>
-
-<!-- Search by barcode-->
-<div class="navbar-form">
-	<div class="form-group">
-		<input type="text" class="form-control" name="search" placeholder="search by..." ng-model="searchByBarcode">
-	</div>
-	<button type="button" class="btn btn-default">Barcode</button>
-</div>
-
-<div class="navbar-form">
-	<button type="button" ng-click="hist.advancedSearch(searchByFirstName, searchByLastName, searchByEmail, searchByDepartment, searchByProduct,searchByBarcode);" class="btn btn-warning">Search</button>
-	<br>
-	<br>
-
-	<div class="btn-group">
-	<button type="button" class="btn btn-danger">Sort by</button>
-	<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-		<span class="caret"></span>
-		<span class="sr-only">Toggle Dropdown</span>
-	</button>
-	<ul class="dropdown-menu">
-		<li><a ng-click="hist.sortOrder('firstName');" href="">First Name</a></li>
-		<li><a ng-click="hist.sortOrder('lastName');" href="">Last Name</a></li>
-		<li><a ng-click="hist.sortOrder('email');" href="">Email</a></li>
-		<li><a ng-click="hist.sortOrder('department');" href="">Department</a></li>
-		<li><a ng-click="hist.sortOrder('product');" href="">Product</a></li>
-		<li><a ng-click="hist.sortOrder('barcode');" href="">Barcode</a></li>
-
-	</ul>
-
+	<button type="button" ng-click="hist.search(searchKeyword, number);" class="btn btn-default">Search</button>
+	<button type="button" ng-click="hist.clear();" class="btn btn-default">Clear</button>
+	<a href="#advancedSearch"><button type="button" class="btn btn-default">Advanced Search</button></a>
 </div>
 
 <br>
 
-<div ng-show="hist.searchLimit === undefined">
-	<p><strong>Results: </strong>
-	{{ (hist.historyData | filter: advancedSearchFilter | limitTo: hist.searchLimit).length }}
+<div ng-show="searchFilter !== undefined">
+	<p><strong>Total results: </strong>
+	{{ (hist.historyData  | filter: searchFilter).length }}
 
 	</p>
 </div>
 
-<div ng-show="hist.sort">
-	<p><strong>Sort by: </strong>
-	{{ hist.sort }}
+<div ng-show="searchFilter !== undefined">
+	<p><strong>Showing: </strong>
+	{{ (hist.historyData  | filter: searchFilter | limitTo: hist.pageSize).length }}
 	</p>
 </div>
 
-<br>
 
 <div class="panel panel-success">
-	<div class="panel-heading">History Log Actions</div>
+	<div class="panel-heading">Search History</div>
 	<table class=table>
 		<thead>
 			<tr>
@@ -109,11 +51,11 @@
 				<th>Product:</th>
 				<th>Bar Code:</th>
 				<th>Checked Type:</th>
-				<th>Description:</th>
-				<th>Department:</th>
+				<th>Description: </th>
+				<th>Department: </th>
 			</tr>
 		</thead>
-		<tbody ng-repeat="history in hist.historyData |filter: advancedSearchFilter | pagination: (hist.currentPage - 1) * hist.pageSize | limitTo: hist.searchLimit | orderBy: hist.sort">
+		<tbody ng-repeat="history in hist.historyData  | filter: searchFilter | pagination: (hist.currentPage - 1) * hist.pageSize | limitTo: hist.pageSize">
 			<tr ng-if= "(history.date | date:'yyyyMMdd') >= (from | date:'yyyyMMdd') && (history.date | date:'yyyyMMdd') <= (to | date:'yyyyMMdd')">
 				<td>{{ history.date | date: 'medium' }}</td>
 				<td>{{ history.firstName }}</td>
@@ -122,7 +64,7 @@
 				<td>{{ history.product }}</td>
 				<td>{{ history.barcode }}</td>
 				<td>{{ history.checkedType }}</td>
-				<td>{{ history.description}}</td>
+				<td>{{ history.description }}</td>
 				<td>{{ history.department}}</td>
 			</tr>
 		</tbody>
@@ -130,4 +72,28 @@
 </div>		
 
 
-<ul uib-pagination total-items="(hist.historyData  | filter: advancedSearchFilter).length" items-per-page="hist.pageSize" ng-model="hist.currentPage"></ul>
+<ul uib-pagination total-items="(hist.historyData  | filter: searchFilter).length" items-per-page="hist.pageSize" ng-model="hist.currentPage"></ul>
+<br>
+</br>
+<!-- Apply Button Filter -->
+<button type="button" ng-click="hist.showMore(number);" class="btn btn-success">Apply Filter</button>
+
+<!--/ Show All Button -->
+<button type="button" ng-click="hist.showAll();" class="btn btn-warning">Show All</button>
+
+<!-- Input For Filter  -->
+<div class="showmore">
+    <div class="col-lg-6">
+        <div class="input-group">
+            <span class="input-group-addon">Number of results to display:</span>
+            <input type="text" class="form-control" ng-model="number">
+        </div>
+    </div>
+</div>
+
+<!-- Custom Error Message -->
+
+<div class="row show-hide-message" ng-show="hist.showMoreError">
+<br>
+    <div class="alert alert-danger">{{ hist.showMoreError }}</div>
+</div>
