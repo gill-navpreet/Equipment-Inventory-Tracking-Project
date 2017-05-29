@@ -293,8 +293,39 @@ cron.schedule('* * * * * *', function(){
                     console.log('Email sent to: ' + inventoryforms[i].email + ' with message ' + textMessage);
                 
                 }
-            }    
+            }
+            if(inventoryforms[i].isCheckedIn == 'false' && inventoryforms[i].emailSent == 'true' && inventoryforms[i].secondEmailSent == 'false'){
+                if((Date.now() - inventoryforms[i].dateCheckedOut) > 30000){// replace the console logs with the mail sent above.
+                    inventoryforms[i].secondEmailSent = 'true'; 
+                    inventoryforms[i].save(); //please don't delete this, or it sends TONS Of emails
+                    var returnDate = new Date();
+                    returnDate.setDate(returnDate.getDate()+14);
+                    var textMessage = '<b>' + inventoryforms[i].firstName + ' ' + inventoryforms[i].lastName + ', your item: ' + inventoryforms[i].product + ' must be returned by\n\n' + returnDate + '<b>';
+                    var subjectMessage = 'Ergonomics Dept, 2nd return date reminder';
+                    var email = {
+                        from: 'ErgDept@ucdavis.edu',
+                        to: inventoryforms[i].email,
+                        subject: subjectMessage,
+                        text: textMessage,
+                        html: textMessage
+                    };
+                    var sendSecondEmail = function(){
+                        client.sendMail(email, function(err, info){
+                            if (err ){
+                                console.log(err);
+                            }
+                            else {
+                                console.log('Message sent: ' + info.response);
+                            }
+                        });
+                    };
+                    sendSecondEmail();    
+                    console.log('Email sent to: ' + inventoryforms[i].email + ' with message ' + textMessage);
+                
+                }
+            }       
         }
+
     });
 
 });
@@ -1283,6 +1314,8 @@ module.exports = function(router) {
             console.log(newDateCheckedIn);
             console.log(inventory.dateCheckedOut);
             inventory.batteryTotalTime += newDateCheckedIn - inventory.dateCheckedOut;
+            inventory.emailSent = 'false';
+            inventory.secondEmailSent = 'false';
             inventory.save();
 
         });        
