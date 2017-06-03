@@ -1,6 +1,2 @@
 Product,Barcode,Status,Date-Checked-Out,Date-Checked-In,First-Name,Last-Name,Email,Phone-Number,Supervisor-First-Name,Supervisor-Last-Name,Supervisor-Email,Supervisor-Phone-Number,Title,Department,Charge-Number
-mous,1234932844,false,Mon May 29 2017 02:01:16 GMT-0700 (Pacific Daylight Time),Mon May 29 2017 02:01:56 GMT-0700 (Pacific Daylight Time),lkj,iohoi,ihays007@gmail.com,9165991264,lkj,lkj,opij@oij.com,,lkj,Agricultural and Resource Economics,9999
-pencil,938240933,true,,Sun May 28 2017 20:11:57 GMT-0700 (Pacific Daylight Time),,,,,,,,,,,
-pencil,9349843949,true,,Sun May 28 2017 20:12:45 GMT-0700 (Pacific Daylight Time),,,,,,,,,,,
-mouse,1939849279,true,,Mon May 29 2017 02:07:17 GMT-0700 (Pacific Daylight Time),,,,,,,,,,,
-pen,923840928,true,,Mon May 29 2017 02:07:31 GMT-0700 (Pacific Daylight Time),,,,,,,,,,,
+mouse,2222222222,true,,Sun May 28 2017 21:06:11 GMT-0700 (PDT),,,,,,,,,,,
