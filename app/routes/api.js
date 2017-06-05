@@ -66,7 +66,6 @@ cron.schedule('* * * * * *', function(){
             //Iterate through hashmap values for output
             var deptValues, items;
             //Parse dates into the format YYYY-MM(-DD)
-            var test = entries[1][0].split(" ");
             
             parseDates(entries);
 
@@ -180,9 +179,12 @@ cron.schedule('* * * * * *', function(){
                 // Write the month followed by how many items were checked in
                 data.write(dateKeys[i] + "," + items + "\n");
             }
-            for(var i = 0; i < test.length; i++)
+
+            data.write("Size: " + (entries.length-1) + "\n");
+            for(var i = 1; i < entries.length; i++)
             {
-                data.write(test[i] + " i = " + i + "\n");
+                var element = entries[i];
+                data.write(element[0] + "\n");
             }
 
             data = fs.createWriteStream('public/app/csvFiles/DatevsTotalCheckoutsbyMonth.csv');
@@ -241,10 +243,10 @@ cron.schedule('* * * * * *', function(){
         //Parse date string into a certain format to be used later for D3 output
         var element;
         var month;
-        for(var i = 0; i < data.length; i++) {
+        for(var i = 1; i < data.length; i++) {
             element = data[i][0].split(" ");
-            if(element.length < 9)//Skip iteration code if entry isn't valid
-                continue;
+            //if(element.length < 9)//Skip iteration code if entry isn't valid
+              //  continue;
             if(element[1] === "Jan")
                 month = "01";
             else if(element[1] === "Feb")
