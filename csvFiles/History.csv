@@ -1,3 +1,5 @@
 Date,Product,Barcode,Status,First-Name,Last-Name,Email,Phone-Number,Supervisor-First-Name,Supervisor-Last-Name,Supervisor-Email,Supervisor-Phone-Number,Title,Department,Charge-Number,Description
 Sun Jun 04 2017 17:11:05 GMT-0700 (Pacific Daylight Time),mouse,2222222222,created,,,,,,,,,,,,created a mouse with barcode: 2222222222
 Sun Jun 04 2017 17:36:58 GMT-0700 (Pacific Daylight Time),printer,4444444444,created,,,,,,,,,,,,created a printer with barcode: 4444444444
+Sun Jun 04 2017 17:54:10 GMT-0700 (Pacific Daylight Time),mouse,2222222222,checked out,joe,joe,joe@joe.com,9292929292,joe,joe,joe@joe.com,,joe,Japanese,3939,joe joe checked out a mouse
+Sun Jun 04 2017 17:59:31 GMT-0700 (Pacific Daylight Time),printer,4444444444,checked out,lkj,lkj,lkj@lkj.com,3908409000,lkj,lkj,lkj@lkj.com,,lkj,Japanese,3288,lkj lkj checked out a printer

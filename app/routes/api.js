@@ -15,242 +15,7 @@ var HashMap = require('hashmap');
 
 
 
-// Query and stream
-Inventory.findAndStreamCsv()
-  .pipe(fs.createWriteStream('csvFiles/Inventory.csv'));
 
-// Query and stream
-var writeStream = fs.createWriteStream('csvFiles/History.csv');
-
-History.findAndStreamCsv()
-  .pipe(writeStream);
-
-//When the csv is created, read what's in it and parse the data
-writeStream.on('finish', function() {
-    //Store each history entry into a list
-    var entries = [];
-    //Read history from csv file that was just produced
-    var readStream = fs.createReadStream('csvFiles/History.csv');
-    //Separate each entry's elements by commas
-    readStream.pipe(parse({delimiter: ','}))
-    .on('data', function(line) {
-        //Store every history entry into an array
-        entries.push(line);
-    });
-
-    readStream.on('end', function() {
-        //Keep track of number of items checked in/out for each month
-        //Each hashmap stores a hashmap that keeps the number of equipment used by each department
-        var checkinDatesbyDay = new HashMap();
-        var checkoutDatesbyDay = new HashMap();
-        var checkinDatesbyMonth = new HashMap();
-        var checkoutDatesbyMonth = new HashMap();
-
-        //Iterate through hashmap keys for storage
-        var dateKeys, deptKeys;
-        //Iterate through hashmap values for output
-        var deptValues, items;
-        //Parse dates into the format YYYY-MM(-DD)
-        parseDates(entries);
-
-        for(var i = 0; i < entries.length; i++) {
-            //Process each entry in history
-            var element = entries[i];
-            //Iterator for departments by day
-            var departments = new HashMap();
-            //Iterator for departments by month
-            var department = new HashMap();
-
-            if(element[3] === "checked in") {
-                //If there is already a department list for a given date, obtain that list and maybe add to it
-                if(checkinDatesbyDay.has(element[0]))
-                    //Use the date formatted as YYYY-MM-DD as the key
-                    departments.copy(checkinDatesbyDay.get(element[0]));
-
-                if(checkinDatesbyMonth.has(element[0].substring(0,7)))
-                    //Use the date formatted as YYYY-MM as the key, rather than YYYY-MM-DD
-                    department.copy(checkinDatesbyMonth.get(element[0].substring(0,7)));
-
-                //If a new department checks out equipment, add to the list
-                if(!departments.has(element[13]))
-                    items = 1;
-                //Otherwise increment the number of items by 1
-                else
-                    items = departments.get(element[13])+1;
-
-                //Store number of items with department as key
-                departments.set(element[13], items);
-
-                 if(!department.has(element[13]))
-                    items = 1;
-                //Otherwise increment the number of items by 1
-                else
-                    items = department.get(element[13])+1;
-
-                department.set(element[13], items);
-                //Store departments with date as key
-                checkinDatesbyDay.set(element[0], departments);
-                checkinDatesbyMonth.set(element[0].substring(0,7), department);
-            }
-            else if(element[3] === "checked out") {
-                //Same process as previous if-statement, but for checkouts
-                if(checkoutDatesbyDay.has(element[0]))
-                   departments.copy(checkoutDatesbyDay.get(element[0]));
-
-                if(checkoutDatesbyMonth.has(element[0].substring(0,7)))
-                   department.copy(checkoutDatesbyMonth.get(element[0].substring(0,7)));
-
-                if(!departments.has(element[13]))
-                    items = 1;
-                else
-                    items = departments.get(element[13])+1;
-
-                departments.set(element[13], items);
-
-                if(!department.has(element[13]))
-                    items = 1;
-                else
-                    items = department.get(element[13])+1;
-
-                department.set(element[13], items);
-                checkoutDatesbyDay.set(element[0], departments);
-                checkoutDatesbyMonth.set(element[0].substring(0,7), department);
-            }
-        }
-
-         //Parse all the data from History.csv into multiple csvs
-        var data = fs.createWriteStream('public/app/csvFiles/DatevsTotalCheckinsbyDay.csv');
-      
-        // Total checkins by day
-        data.write("Date,Checkins\n");
-        dateKeys = checkinDatesbyDay.keys();
-        for(var i = 0; i < dateKeys.length; i++) {
-            items = 0;
-            // Obtain how many items have been checked in on a particular day
-            deptValues = checkinDatesbyDay.get(dateKeys[i]).values();
-            for(var j = 0; j < deptValues.length; j++)
-                items += deptValues[j];
-            // Write the day followed by how many items were checked in
-            data.write(dateKeys[i] + "," + items + "\n");
-        }
-
-        data = fs.createWriteStream('public/app/csvFiles/DatevsTotalCheckoutsbyDay.csv');
-
-        // Total checkouts by day
-        data.write("Date,Checkouts\n");
-        dateKeys = checkoutDatesbyDay.keys();
-        for(var i = 0; i < dateKeys.length; i++) {
-            items = 0;
-            // Obtain how many items have been checked out on a particular day
-            deptValues = checkoutDatesbyDay.get(dateKeys[i]).values();
-            for(var j = 0; j < deptValues.length; j++)
-                items += deptValues[j];
-            // Write the day followed by how many items were checked out
-            data.write(dateKeys[i] + "," + items + "\n");
-        }
-
-        data = fs.createWriteStream('public/app/csvFiles/DatevsTotalCheckinsbyMonth.csv');
-
-        // Total checkins by month
-        data.write("Date,Checkins\n");
-        dateKeys = checkinDatesbyMonth.keys();
-        for(var i = 0; i < dateKeys.length; i++) {
-            items = 0;
-            // Obtain how many items have been checked in during a particular month
-            deptValues = checkinDatesbyMonth.get(dateKeys[i]).values();
-            for(var j = 0; j < deptValues.length; j++)
-                items += deptValues[j];
-            // Write the month followed by how many items were checked in
-            data.write(dateKeys[i] + "," + items + "\n");
-        }
-
-        data = fs.createWriteStream('public/app/csvFiles/DatevsTotalCheckoutsbyMonth.csv');
-
-        // Total checkouts by month
-        data.write("Date,Checkouts\n");
-        dateKeys = checkoutDatesbyMonth.keys();
-        for(var i = 0; i < dateKeys.length; i++) {
-            items = 0;
-            // Obtain how many items have been checked out during a particular month
-            deptValues = checkoutDatesbyMonth.get(dateKeys[i]).values();
-            for(var j = 0; j < deptValues.length; j++)
-                items += deptValues[j];
-            // Write the month followed by how many items were checked out
-            data.write(dateKeys[i] + "," + items + "\n");
-        }
-
-        data = fs.createWriteStream('public/app/csvFiles/DatevsDepartmentCheckoutsbyDay.csv');
-
-        //Department checkouts by day
-        data.write("Department Checkouts by Day\n\n");
-        dateKeys = checkoutDatesbyDay.keys();
-        for(var i = 0; i < dateKeys.length; i++) {
-            // Obtain department names in alphabetical order
-            deptKeys = checkoutDatesbyDay.get(dateKeys[i]).keys().sort();
-            // Write the day
-            data.write(dateKeys[i]);
-            for(var j = 0; j < deptKeys.length; j++)
-                // For each department, write its name followed by how many it's checked out on a particular day
-                data.write("\n\t" + deptKeys[j] + " (" + checkoutDatesbyDay.get(dateKeys[i]).get(deptKeys[j]) + ")");
-            data.write("\n\n");
-        }
-
-        data = fs.createWriteStream('public/app/csvFiles/DatevsDepartmentCheckoutsbyMonth.csv');
-        
-        // Department checkouts by month
-        data.write("Department Checkouts by Month\n\n");
-        dateKeys = checkoutDatesbyMonth.keys();
-        for(var i = 0; i < dateKeys.length; i++) {
-            // Obtain department names in alphabetical order
-            deptKeys = checkoutDatesbyMonth.get(dateKeys[i]).keys().sort();
-            // Write the month
-            data.write(dateKeys[i]);
-            for(var j = 0; j < deptKeys.length; j++)
-                // For each department, write its name followed by how many it's checked out during a particular month
-                data.write("\n\t" + deptKeys[j] + " (" + checkoutDatesbyMonth.get(dateKeys[i]).get(deptKeys[j]) + ")");
-            data.write("\n\n");
-        }
-        
-        // Close the write stream
-        data.end();
-    });
-});
-
-function parseDates(data) {
-    //Parse date string into a certain format to be used later for D3 output
-    var element;
-    var month;
-    for(var i = 0; i < data.length; i++) {
-        element = data[i][0].split(" ");
-        if(element.length < 9)//Skip iteration code if entry isn't valid
-            continue;
-        if(element[1] === "Jan")
-            month = "01";
-        else if(element[1] === "Feb")
-            month = "02";
-        else if(element[1] === "Mar")
-            month = "03";
-        else if(element[1] === "Apr")
-            month = "04";
-        else if(element[1] === "May")
-            month = "05";
-        else if(element[1] === "Jun")
-            month = "06";
-        else if(element[1] === "Jul")
-            month = "07";
-        else if(element[1] === "Aug")
-            month = "08";
-        else if(element[1] === "Sep")
-            month = "09";
-        else if(element[1] === "Oct")
-            month = "10";
-        else if(element[1] === "Nov")
-            month = "11";
-        else if(element[1] === "Dec")
-            month = "12";
-        data[i][0] = element[3].concat("-" + month + "-" + element[2]);
-    }
-}
 
 //sendgrid information to send autonomous emails.
 
@@ -263,6 +28,246 @@ var options = {
 
 var client = nodemailer.createTransport(sgTransport(options));
 
+
+cron.schedule('* * * * * *', function(){
+    // Query and stream
+    Inventory.findAndStreamCsv()
+      .pipe(fs.createWriteStream('csvFiles/Inventory.csv'));
+
+    // Query and stream
+    var writeStream = fs.createWriteStream('csvFiles/History.csv');
+
+    History.findAndStreamCsv()
+      .pipe(writeStream);
+
+    //When the csv is created, read what's in it and parse the data
+    writeStream.on('finish', function() {
+        //Store each history entry into a list
+        var entries = [];
+        //Read history from csv file that was just produced
+        var readStream = fs.createReadStream('csvFiles/History.csv');
+        //Separate each entry's elements by commas
+        readStream.pipe(parse({delimiter: ','}))
+        .on('data', function(line) {
+            //Store every history entry into an array
+            entries.push(line);
+        });
+
+        readStream.on('end', function() {
+            //Keep track of number of items checked in/out for each month
+            //Each hashmap stores a hashmap that keeps the number of equipment used by each department
+            var checkinDatesbyDay = new HashMap();
+            var checkoutDatesbyDay = new HashMap();
+            var checkinDatesbyMonth = new HashMap();
+            var checkoutDatesbyMonth = new HashMap();
+
+            //Iterate through hashmap keys for storage
+            var dateKeys, deptKeys;
+            //Iterate through hashmap values for output
+            var deptValues, items;
+            //Parse dates into the format YYYY-MM(-DD)
+            parseDates(entries);
+
+            for(var i = 0; i < entries.length; i++) {
+                //Process each entry in history
+                var element = entries[i];
+                //Iterator for departments by day
+                var departments = new HashMap();
+                //Iterator for departments by month
+                var department = new HashMap();
+
+                if(element[3] === "checked in") {
+                    //If there is already a department list for a given date, obtain that list and maybe add to it
+                    if(checkinDatesbyDay.has(element[0]))
+                        //Use the date formatted as YYYY-MM-DD as the key
+                        departments.copy(checkinDatesbyDay.get(element[0]));
+
+                    if(checkinDatesbyMonth.has(element[0].substring(0,7)))
+                        //Use the date formatted as YYYY-MM as the key, rather than YYYY-MM-DD
+                        department.copy(checkinDatesbyMonth.get(element[0].substring(0,7)));
+
+                    //If a new department checks out equipment, add to the list
+                    if(!departments.has(element[13]))
+                        items = 1;
+                    //Otherwise increment the number of items by 1
+                    else
+                        items = departments.get(element[13])+1;
+
+                    //Store number of items with department as key
+                    departments.set(element[13], items);
+
+                     if(!department.has(element[13]))
+                        items = 1;
+                    //Otherwise increment the number of items by 1
+                    else
+                        items = department.get(element[13])+1;
+
+                    department.set(element[13], items);
+                    //Store departments with date as key
+                    checkinDatesbyDay.set(element[0], departments);
+                    checkinDatesbyMonth.set(element[0].substring(0,7), department);
+                }
+                else if(element[3] === "checked out") {
+                    //Same process as previous if-statement, but for checkouts
+                    if(checkoutDatesbyDay.has(element[0]))
+                       departments.copy(checkoutDatesbyDay.get(element[0]));
+
+                    if(checkoutDatesbyMonth.has(element[0].substring(0,7)))
+                       department.copy(checkoutDatesbyMonth.get(element[0].substring(0,7)));
+
+                    if(!departments.has(element[13]))
+                        items = 1;
+                    else
+                        items = departments.get(element[13])+1;
+
+                    departments.set(element[13], items);
+
+                    if(!department.has(element[13]))
+                        items = 1;
+                    else
+                        items = department.get(element[13])+1;
+
+                    department.set(element[13], items);
+                    checkoutDatesbyDay.set(element[0], departments);
+                    checkoutDatesbyMonth.set(element[0].substring(0,7), department);
+                }
+            }
+
+             //Parse all the data from History.csv into multiple csvs
+            var data = fs.createWriteStream('public/app/csvFiles/DatevsTotalCheckinsbyDay.csv');
+          
+            // Total checkins by day
+            data.write("Date,Checkins\n");
+            dateKeys = checkinDatesbyDay.keys();
+            for(var i = 0; i < dateKeys.length; i++) {
+                items = 0;
+                // Obtain how many items have been checked in on a particular day
+                deptValues = checkinDatesbyDay.get(dateKeys[i]).values();
+                for(var j = 0; j < deptValues.length; j++)
+                    items += deptValues[j];
+                // Write the day followed by how many items were checked in
+                data.write(dateKeys[i] + "," + items + "\n");
+            }
+
+            data = fs.createWriteStream('public/app/csvFiles/DatevsTotalCheckoutsbyDay.csv');
+
+            // Total checkouts by day
+            data.write("Date,Checkouts\n");
+            dateKeys = checkoutDatesbyDay.keys();
+            for(var i = 0; i < dateKeys.length; i++) {
+                items = 0;
+                // Obtain how many items have been checked out on a particular day
+                deptValues = checkoutDatesbyDay.get(dateKeys[i]).values();
+                for(var j = 0; j < deptValues.length; j++)
+                    items += deptValues[j];
+                // Write the day followed by how many items were checked out
+                data.write(dateKeys[i] + "," + items + "\n");
+            }
+
+            data = fs.createWriteStream('public/app/csvFiles/DatevsTotalCheckinsbyMonth.csv');
+
+            // Total checkins by month
+            data.write("Date,Checkins\n");
+            dateKeys = checkinDatesbyMonth.keys();
+            for(var i = 0; i < dateKeys.length; i++) {
+                items = 0;
+                // Obtain how many items have been checked in during a particular month
+                deptValues = checkinDatesbyMonth.get(dateKeys[i]).values();
+                for(var j = 0; j < deptValues.length; j++)
+                    items += deptValues[j];
+                // Write the month followed by how many items were checked in
+                data.write(dateKeys[i] + "," + items + "\n");
+            }
+
+            data = fs.createWriteStream('public/app/csvFiles/DatevsTotalCheckoutsbyMonth.csv');
+
+            // Total checkouts by month
+            data.write("Date,Checkouts\n");
+            dateKeys = checkoutDatesbyMonth.keys();
+            for(var i = 0; i < dateKeys.length; i++) {
+                items = 0;
+                // Obtain how many items have been checked out during a particular month
+                deptValues = checkoutDatesbyMonth.get(dateKeys[i]).values();
+                for(var j = 0; j < deptValues.length; j++)
+                    items += deptValues[j];
+                // Write the month followed by how many items were checked out
+                data.write(dateKeys[i] + "," + items + "\n");
+            }
+
+            data = fs.createWriteStream('public/app/csvFiles/DatevsDepartmentCheckoutsbyDay.csv');
+
+            //Department checkouts by day
+            data.write("Department Checkouts by Day\n\n");
+            dateKeys = checkoutDatesbyDay.keys();
+            for(var i = 0; i < dateKeys.length; i++) {
+                // Obtain department names in alphabetical order
+                deptKeys = checkoutDatesbyDay.get(dateKeys[i]).keys().sort();
+                // Write the day
+                data.write(dateKeys[i]);
+                for(var j = 0; j < deptKeys.length; j++)
+                    // For each department, write its name followed by how many it's checked out on a particular day
+                    data.write("\n\t" + deptKeys[j] + " (" + checkoutDatesbyDay.get(dateKeys[i]).get(deptKeys[j]) + ")");
+                data.write("\n\n");
+            }
+
+            data = fs.createWriteStream('public/app/csvFiles/DatevsDepartmentCheckoutsbyMonth.csv');
+            
+            // Department checkouts by month
+            data.write("Department Checkouts by Month\n\n");
+            dateKeys = checkoutDatesbyMonth.keys();
+            for(var i = 0; i < dateKeys.length; i++) {
+                // Obtain department names in alphabetical order
+                deptKeys = checkoutDatesbyMonth.get(dateKeys[i]).keys().sort();
+                // Write the month
+                data.write(dateKeys[i]);
+                for(var j = 0; j < deptKeys.length; j++)
+                    // For each department, write its name followed by how many it's checked out during a particular month
+                    data.write("\n\t" + deptKeys[j] + " (" + checkoutDatesbyMonth.get(dateKeys[i]).get(deptKeys[j]) + ")");
+                data.write("\n\n");
+            }
+            
+            // Close the write stream
+            data.end();
+        });
+    });
+
+    function parseDates(data) {
+        //Parse date string into a certain format to be used later for D3 output
+        var element;
+        var month;
+        for(var i = 0; i < data.length; i++) {
+            element = data[i][0].split(" ");
+            if(element.length < 9)//Skip iteration code if entry isn't valid
+                continue;
+            if(element[1] === "Jan")
+                month = "01";
+            else if(element[1] === "Feb")
+                month = "02";
+            else if(element[1] === "Mar")
+                month = "03";
+            else if(element[1] === "Apr")
+                month = "04";
+            else if(element[1] === "May")
+                month = "05";
+            else if(element[1] === "Jun")
+                month = "06";
+            else if(element[1] === "Jul")
+                month = "07";
+            else if(element[1] === "Aug")
+                month = "08";
+            else if(element[1] === "Sep")
+                month = "09";
+            else if(element[1] === "Oct")
+                month = "10";
+            else if(element[1] === "Nov")
+                month = "11";
+            else if(element[1] === "Dec")
+                month = "12";
+            data[i][0] = element[3].concat("-" + month + "-" + element[2]);
+        }
+    }
+
+});
 //Scheduler: any inventory checked out will send an email reminder. 
 cron.schedule('* * * * * *', function(){
     Inventory.find({}, function(err,inventoryforms) {
