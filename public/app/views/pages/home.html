@@ -40,7 +40,7 @@
 
   <b>Search</b>
   <br>
-  The user can perform a general or advanced search on the system's recorded history. The advanced search allows the application of filters according to first name, last name, email, department, product, and/or bar code.
+  The user can perform a general or advanced search based on the system's history. The advanced search allows the application of filters according to first name, last name, email, department, product, and/or bar code.
   <br>
   <br>
 
@@ -64,6 +64,30 @@
   </font>
   </p>
   <br>
+
+  <li ng-show="main.isLoggedIn && main.authorized">
+  <h2>MANAGEMENT</h2>
+  <p>
+  <font size="4">
+  <b>Inventory Add</b>
+  <br>
+  Administrators can add to the current inventory with the name of the product and its bar code, which can either be scanned or entered as a 10-digit bar code.
+  <br>
+  <br>
+  <b>Inventory Edit/Delete</b>
+  <br>
+  Administrators can modify information of items checked in or checked out as well as delete items from the current inventory.
+  <br>
+  <br>
+  <b>User Register</b>
+  <br>
+  Users can be registered when providing their full name, email, username, and password.
+  <br>
+  <br>
+  <b>User Edit/Delete</b>
+  <br>
+  Administrators can modify user information and delete users from the system.
+  </li>
   <br>
   <br>
   <br>
