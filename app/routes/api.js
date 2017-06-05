@@ -180,13 +180,6 @@ cron.schedule('* * * * * *', function(){
                 data.write(dateKeys[i] + "," + items + "\n");
             }
 
-            data.write("Size: " + (entries.length-1) + "\n");
-            for(var i = 1; i < entries.length; i++)
-            {
-                var element = entries[i];
-                data.write(element[0] + "\n");
-            }
-
             data = fs.createWriteStream('public/app/csvFiles/DatevsTotalCheckoutsbyMonth.csv');
 
             // Total checkouts by month
@@ -245,8 +238,6 @@ cron.schedule('* * * * * *', function(){
         var month;
         for(var i = 1; i < data.length; i++) {
             element = data[i][0].split(" ");
-            //if(element.length < 9)//Skip iteration code if entry isn't valid
-              //  continue;
             if(element[1] === "Jan")
                 month = "01";
             else if(element[1] === "Feb")
