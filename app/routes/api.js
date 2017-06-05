@@ -177,6 +177,7 @@ cron.schedule('* * * * * *', function(){
                     items += deptValues[j];
                 // Write the month followed by how many items were checked in
                 data.write(dateKeys[i] + "," + items + "\n");
+                console.log(dateKeys[i]);
             }
 
             data = fs.createWriteStream('public/app/csvFiles/DatevsTotalCheckoutsbyMonth.csv');
