@@ -120,3 +120,15 @@ Mon May 29 2017 02:07:31 GMT-0700 (Pacific Daylight Time),pen,923840928,created,
 Mon May 29 2017 02:07:08 GMT-0700 (Pacific Daylight Time),mous,1234932844,deleted,,,,,,,,,,,,deleted a mous with barcode: 1234932844
 Mon May 29 2017 02:07:09 GMT-0700 (Pacific Daylight Time),pencil,9349843949,deleted,,,,,,,,,,,,deleted a pencil with barcode: 9349843949
 Mon May 29 2017 02:07:17 GMT-0700 (Pacific Daylight Time),mouse,1939849279,created,,,,,,,,,,,,created a mouse with barcode: 1939849279
+Mon May 29 2017 02:09:58 GMT-0700 (Pacific Daylight Time),mouse,921348090,created,,,,,,,,,,,,created a mouse with barcode: 0921348090
+Mon May 29 2017 02:10:07 GMT-0700 (Pacific Daylight Time),pen,923840393,created,,,,,,,,,,,,created a pen with barcode: 0923840393
+Mon May 29 2017 02:10:47 GMT-0700 (Pacific Daylight Time),mouse,921348090,deleted,,,,,,,,,,,,deleted a mouse with barcode: 921348090
+Mon May 29 2017 02:11:38 GMT-0700 (Pacific Daylight Time),mouse,921348090,deleted,,,,,,,,,,,,deleted a mouse with barcode: 921348090
+Mon May 29 2017 02:11:38 GMT-0700 (Pacific Daylight Time),pen,923840393,deleted,,,,,,,,,,,,deleted a pen with barcode: 923840393
+Mon May 29 2017 02:11:58 GMT-0700 (Pacific Daylight Time),animal,9204829802,created,,,,,,,,,,,,created a animal with barcode: 9204829802
+Mon May 29 2017 02:12:32 GMT-0700 (Pacific Daylight Time),animal,9204829802,checked out,lkj,lkj,ihays007@gmail.com,0980980900,lkj,lkj,lkj@lkj.com,,lkj,Anthropology,9090,lkj lkj checked out a animal
+Mon May 29 2017 02:11:38 GMT-0700 (Pacific Daylight Time),mouse,921348090,deleted,,,,,,,,,,,,deleted a mouse with barcode: 921348090
+Mon May 29 2017 02:11:38 GMT-0700 (Pacific Daylight Time),pen,923840393,deleted,,,,,,,,,,,,deleted a pen with barcode: 923840393
+Mon May 29 2017 02:11:58 GMT-0700 (Pacific Daylight Time),animal,9204829802,created,,,,,,,,,,,,created a animal with barcode: 9204829802
+Mon May 29 2017 02:12:32 GMT-0700 (Pacific Daylight Time),animal,9204829802,checked out,lkj,lkj,ihays007@gmail.com,0980980900,lkj,lkj,lkj@lkj.com,,lkj,Anthropology,9090,lkj lkj checked out a animal
+Mon May 29 2017 02:14:50 GMT-0700 (Pacific Daylight Time),animal,9204829802,checked in,lkj,lkj,ihays007@gmail.com,,,,,,,,,lkj lkj checked in a animal
