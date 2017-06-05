@@ -67,7 +67,7 @@ cron.schedule('* * * * * *', function(){
             var deptValues, items;
             //Parse dates into the format YYYY-MM(-DD)
             parseDates(entries);
-            console.log(entries);
+            // console.log(entries);
 
             for(var i = 0; i < entries.length; i++) {
                 //Process each entry in history
