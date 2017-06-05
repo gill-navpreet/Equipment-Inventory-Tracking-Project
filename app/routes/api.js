@@ -48,8 +48,10 @@ cron.schedule('* * * * * *', function(){
         var readStream = fs.createReadStream('csvFiles/History.csv');
         //Separate each entry's elements by commas
         readStream.pipe(parse({delimiter: ','}))
+        .on('error', function(e) { throw e; })
         .on('data', function(line) {
             //Store every history entry into an array
+            console.log(line);
             entries.push(line);
         });
 

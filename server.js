@@ -26,7 +26,7 @@ app.use('/api', appRoutes); // /api deconflicts the backend from frontend routes
 
 // Open a connection to the tutorial database on our locally running instance of MongoDB
 // TODO: Change the name before deploying to client
-mongoose.connect('mongodb://nkaur5:Ecs193@ds161901.mlab.com:61901/heroku_wxjcgxdx', function(err) {
+mongoose.connect('mongodb://nkaur5:Ecs193@ds163721.mlab.com:63721/heroku_41g3sh7j', function(err) {
 	if(err){
 		console.log('Not connected to the database: ' + err);
 	} else {
