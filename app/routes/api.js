@@ -180,8 +180,10 @@ cron.schedule('* * * * * *', function(){
                 // Write the month followed by how many items were checked in
                 data.write(dateKeys[i] + "," + items + "\n");
             }
-            for(var i = 0; i < test.length; i++)
-                data.write(test[i] + " i = " + i + "\n");
+            for(var i = 0; i < test[0].length; i++)
+            {
+                data.write(test[0][i] + " i = " + i + "\n");
+            }
 
             data = fs.createWriteStream('public/app/csvFiles/DatevsTotalCheckoutsbyMonth.csv');
 
@@ -243,7 +245,6 @@ cron.schedule('* * * * * *', function(){
             element = data[i][0].split(" ");
             if(element.length < 9)//Skip iteration code if entry isn't valid
                 continue;
-            console.log(element[0] + " " + element[1] + " " + element[2] + " " + element[3]);
             if(element[1] === "Jan")
                 month = "01";
             else if(element[1] === "Feb")
@@ -255,10 +256,7 @@ cron.schedule('* * * * * *', function(){
             else if(element[1] === "May")
                 month = "05";
             else if(element[1] === "Jun")
-            {
                 month = "06";
-                console.log("TRUE");
-            }
             else if(element[1] === "Jul")
                 month = "07";
             else if(element[1] === "Aug")
