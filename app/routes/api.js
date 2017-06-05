@@ -243,6 +243,7 @@ cron.schedule('* * * * * *', function(){
             element = data[i][0].split(" ");
             if(element.length < 9)//Skip iteration code if entry isn't valid
                 continue;
+            console.log(element[0] + " " + element[1] + " " + element[2] + " " + element[3]);
             if(element[1] === "Jan")
                 month = "01";
             else if(element[1] === "Feb")
@@ -254,7 +255,10 @@ cron.schedule('* * * * * *', function(){
             else if(element[1] === "May")
                 month = "05";
             else if(element[1] === "Jun")
+            {
                 month = "06";
+                console.log("TRUE");
+            }
             else if(element[1] === "Jul")
                 month = "07";
             else if(element[1] === "Aug")
