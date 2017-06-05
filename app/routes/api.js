@@ -264,7 +264,6 @@ cron.schedule('* * * * * *', function(){
             else if(element[1] === "Dec")
                 month = "12";
             data[i][0] = element[3].concat("-" + month + "-" + element[2]);
-            //console.log(data[i][0]);
         }
     }
 
