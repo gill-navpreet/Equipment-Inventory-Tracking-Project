@@ -67,6 +67,8 @@ angular.module('mainController', ['authServices'])
 	// Steps to do when user presses logout
 	this.logout = function() {
 		Auth.logout();
+		app.isLoggedIn = false;
+		app.authorized = false;
 		//redirect the user to home page 
 		//TODO : remove the logout.html file
 		$location.path('/');
