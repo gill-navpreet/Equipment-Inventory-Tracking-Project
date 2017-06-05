@@ -1,0 +1,3 @@
+Date,Product,Barcode,Status,First-Name,Last-Name,Email,Phone-Number,Supervisor-First-Name,Supervisor-Last-Name,Supervisor-Email,Supervisor-Phone-Number,Title,Department,Charge-Number,Description
+Sun Jun 04 2017 17:11:05 GMT-0700 (Pacific Daylight Time),mouse,2222222222,created,,,,,,,,,,,,created a mouse with barcode: 2222222222
+Sun Jun 04 2017 17:36:58 GMT-0700 (Pacific Daylight Time),printer,4444444444,created,,,,,,,,,,,,created a printer with barcode: 4444444444

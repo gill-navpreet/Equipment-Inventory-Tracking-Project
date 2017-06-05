@@ -13,12 +13,15 @@ var fs = require('file-system');
 var parse = require('csv-parse');
 var HashMap = require('hashmap');
 
+
+
 // Query and stream
 Inventory.findAndStreamCsv()
   .pipe(fs.createWriteStream('csvFiles/Inventory.csv'));
 
 // Query and stream
 var writeStream = fs.createWriteStream('csvFiles/History.csv');
+
 History.findAndStreamCsv()
   .pipe(writeStream);
 
