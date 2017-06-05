@@ -181,7 +181,7 @@ cron.schedule('* * * * * *', function(){
                 data.write(dateKeys[i] + "," + items + "\n");
             }
             for(var i = 0; i < test.length; i++)
-                data.write(test[i]);
+                data.write(test[i] + " i = " + i + "\n");
 
             data = fs.createWriteStream('public/app/csvFiles/DatevsTotalCheckoutsbyMonth.csv');
 
