@@ -67,7 +67,6 @@ cron.schedule('* * * * * *', function(){
             var deptValues, items;
             //Parse dates into the format YYYY-MM(-DD)
             parseDates(entries);
-            // console.log(entries);
 
             for(var i = 0; i < entries.length; i++) {
                 //Process each entry in history
@@ -178,7 +177,6 @@ cron.schedule('* * * * * *', function(){
                     items += deptValues[j];
                 // Write the month followed by how many items were checked in
                 data.write(dateKeys[i] + "," + items + "\n");
-                console.log(dateKeys[i]);
             }
 
             data = fs.createWriteStream('public/app/csvFiles/DatevsTotalCheckoutsbyMonth.csv');
