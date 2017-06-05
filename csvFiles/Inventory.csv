@@ -1,3 +1,0 @@
-Product,Barcode,Status,Date-Checked-Out,Date-Checked-In,First-Name,Last-Name,Email,Phone-Number,Supervisor-First-Name,Supervisor-Last-Name,Supervisor-Email,Supervisor-Phone-Number,Title,Department,Charge-Number
-mouse,2222222222,false,Sun Jun 04 2017 17:54:10 GMT-0700 (Pacific Daylight Time),Sun Jun 04 2017 17:11:05 GMT-0700 (Pacific Daylight Time),joe,joe,joe@joe.com,9292929292,joe,joe,joe@joe.com,,joe,Japanese,3939
-printer,4444444444,false,Sun Jun 04 2017 17:59:31 GMT-0700 (Pacific Daylight Time),Sun Jun 04 2017 17:36:58 GMT-0700 (Pacific Daylight Time),lkj,lkj,lkj@lkj.com,3908409000,lkj,lkj,lkj@lkj.com,,lkj,Japanese,3288
