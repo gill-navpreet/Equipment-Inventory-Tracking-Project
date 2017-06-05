@@ -30,8 +30,8 @@ var margin = {top: 20, right: 20, bottom: 70, left: 40},
 
 // Parse the Date / time
 // to run locally uncomment the folloowing line and remove the one for heroku
-// var parsedate = d3.time.format("%Y-%m").parse;
-var parsedate = d3.time.format("%a %b").parse;
+ var parsedate = d3.time.format("%Y-%m").parse;
+//var parsedate = d3.time.format("%a %b").parse;
 
 
 var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
@@ -42,8 +42,8 @@ var xAxis = d3.svg.axis()
     .scale(x)
     .orient("bottom")
     // to run locally uncomment the folloowing line and remove the one for heroku
-    // .tickFormat(d3.time.format("%Y-%m"));
-    .tickFormat(d3.time.format("%B"));
+     .tickFormat(d3.time.format("%Y-%m"));
+    //.tickFormat(d3.time.format("%B"));
 
 var yAxis = d3.svg.axis()
     .scale(y)
