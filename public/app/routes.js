@@ -34,8 +34,8 @@ var app = angular.module('appRoutes', ['ngRoute'])
 		templateUrl: 'app/views/pages/users/register.html',
 		controller: 'regCtrl',
 		controllerAs: 'register',
-		// authenticated: true,
-		// permission: ['admin','moderator']
+		authenticated: true,
+		permission: ['admin','moderator']
 	})
 	
 	.when('/login', {
