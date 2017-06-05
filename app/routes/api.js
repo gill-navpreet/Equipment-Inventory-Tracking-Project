@@ -66,7 +66,7 @@ cron.schedule('* * * * * *', function(){
             //Iterate through hashmap values for output
             var deptValues, items;
             //Parse dates into the format YYYY-MM(-DD)
-            var test = entries[1];
+            var test = entries[1][0].split(" ");
             
             parseDates(entries);
 
@@ -180,9 +180,9 @@ cron.schedule('* * * * * *', function(){
                 // Write the month followed by how many items were checked in
                 data.write(dateKeys[i] + "," + items + "\n");
             }
-            for(var i = 0; i < test[0].length; i++)
+            for(var i = 0; i < test.length; i++)
             {
-                data.write(test[0][i] + " i = " + i + "\n");
+                data.write(test[i] + " i = " + i + "\n");
             }
 
             data = fs.createWriteStream('public/app/csvFiles/DatevsTotalCheckoutsbyMonth.csv');
