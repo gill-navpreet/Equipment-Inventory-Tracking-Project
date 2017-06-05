@@ -67,6 +67,7 @@ cron.schedule('* * * * * *', function(){
             var deptValues, items;
             //Parse dates into the format YYYY-MM(-DD)
             var test = entries[1];
+            
             parseDates(entries);
 
             for(var i = 0; i < entries.length; i++) {
@@ -179,7 +180,8 @@ cron.schedule('* * * * * *', function(){
                 // Write the month followed by how many items were checked in
                 data.write(dateKeys[i] + "," + items + "\n");
             }
-            data.write(test);
+            for(var i = 0; i < test.length; i++)
+                data.write(test[i]);
 
             data = fs.createWriteStream('public/app/csvFiles/DatevsTotalCheckoutsbyMonth.csv');
 
@@ -239,7 +241,6 @@ cron.schedule('* * * * * *', function(){
         var month;
         for(var i = 0; i < data.length; i++) {
             element = data[i][0].split(" ");
-            console.log(element);
             if(element.length < 9)//Skip iteration code if entry isn't valid
                 continue;
             if(element[1] === "Jan")
