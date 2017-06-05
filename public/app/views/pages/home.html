@@ -9,11 +9,20 @@
   <h2>ABOUT</h2>
   <p>
   <font size="4">
-  Welcome to the Equipment Rental and Inventory Tracker for the UC Davis Ergonomics Lab! This website employs a tracking system for equipment check-ins and check-outs made by various UC Davis departments, maintains their statistics and monthly history, and allows system administrators to add, edit, and delete information regarding inventory and the number of registered users. See below for details of each section.
+  Welcome to the Equipment Rental and Inventory Tracker for the UC Davis Ergonomics Lab! This website employs a tracking system for equipment check-ins and check-outs made by various UC Davis departments, maintains their statistics and monthly history, and allows system administrators to add, edit, and delete information regarding inventory and the number of registered users.
+  <br>
+  <br>
+  <div ng-show="!main.isLoggedIn">
+  Please log in to get started.
+  </div>
+  <div ng-show="main.isLoggedIn">
+  See below for more details on each section.
+  </div>
   </font>
   </p>
   <br>
 
+  <div ng-show="main.isLoggedIn">
   <h2>INVENTORY</h2>
   <p>
   <font size="4">
@@ -66,7 +75,7 @@
   </p>
   <br>
 
-  <li ng-show="main.isLoggedIn && main.authorized">
+  <div ng-show="main.authorized">
   <h2>MANAGEMENT</h2>
   <p>
   <font size="4">
@@ -88,10 +97,13 @@
   <b>User Edit/Delete</b>
   <br>
   Administrators can modify user information and delete users from the system.
-  </li>
+  </font>
+  </p>
+  </div>
   <br>
   <br>
   <br>
   <br>
   <br>
+  </div>
 </div>
