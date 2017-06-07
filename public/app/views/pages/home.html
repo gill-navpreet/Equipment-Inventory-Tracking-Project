@@ -2,18 +2,18 @@
 	 <div class="jumbotron">
         <h2>Equipment Rental and Inventory Tracker</h2>
     </div>
-    <img src="http://i.imgur.com/4wAvIMg.png" width="99.9%"/>
+    <!-- <img src="http://i.imgur.com/3wAvIMg.png" width="99.9%"/> -->
 
-  <h2> Hello {{ main.username }}</h2>
+  <h3> Hello {{ main.username }}</h3>
   <br>
-  <h2>ABOUT</h2>
+  <h3>ABOUT</h3>
   <p>
-  <font size="4">
+  <font size="3">
   Welcome to the Equipment Rental and Inventory Tracker for the UC Davis Ergonomics Lab! This website employs a tracking system for equipment check-ins and check-outs made by various UC Davis departments, maintains their statistics and monthly history, and allows system administrators to add, edit, and delete information regarding inventory and registered users.
   <br>
   <br>
-  <div ng-show="!main.isLoggedIn">
-  Please log in to get started.
+  <div ng-show="!main.isLoggedIn" >
+  Please <a href="#login"> log in </a> to get started.
   </div>
   <div ng-show="main.isLoggedIn">
   See below for more details on each section.
@@ -23,9 +23,9 @@
   <br>
 
   <div ng-show="main.isLoggedIn">
-  <h2>INVENTORY</h2>
+  <h3>INVENTORY</h3>
   <p>
-  <font size="4">
+  <font size="3">
   <b>Checking In</b>
   <br>
   To return equipment that was previously checked out from inventory, the user must either scan or enter the 10-digit bar code of an item.
@@ -38,9 +38,9 @@
   </p>
   <br>
 
-  <h2>STATISTICS</h2>
+  <h3>STATISTICS</h3>
   <p>
-  <font size="4">
+  <font size="3">
   <b>History</b>
   <br>
   Equipment that was checked in, checked out, added to, and deleted from inventory is shown here. Information regarding the date, person, and department performing each action is also provided.
@@ -60,9 +60,9 @@
   </p>
   <br>
 
-  <h2>APPS</h2>
+  <h3>APPS</h3>
   <p>
-  <font size="4">
+  <font size="3">
   <b>Bar Code Generator</b>
   <br>
   A bar code can be generated randomly for a piece of equipment. Once generated, the user can save its image in his/her local device.
@@ -76,9 +76,9 @@
   <br>
 
   <div ng-show="main.authorized">
-  <h2>MANAGEMENT</h2>
+  <h3>MANAGEMENT</h3>
   <p>
-  <font size="4">
+  <font size="3">
   <b>Inventory Add</b>
   <br>
   Administrators can add to the current inventory with the name of the product and its bar code, which can either be scanned or entered as 10 digits.
