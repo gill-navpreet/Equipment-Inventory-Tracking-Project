@@ -190,7 +190,7 @@ angular.module('inventoryCheckOutFormController',[])
 			Inventory.checkOutUpdate(inventoryObject);
 			app.errorMsg = false;
 			app.loading = true;
-			app.successMsg = 'Checking out ....Redirecting';
+			app.successMsg = 'Successfully Checked-out ....Redirecting';
 			// redirects after 2000 ms, (2seconds)
 			$timeout(function(){
 				$location.path('/');

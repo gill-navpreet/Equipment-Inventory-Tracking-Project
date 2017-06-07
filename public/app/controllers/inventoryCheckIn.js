@@ -48,7 +48,7 @@ angular.module('inventoryCheckInController',[])
 						History.create(historyObject);// Create and update history object
 						
 						Inventory.checkInUpdate(inventoryObject); // Update the inventory in database
-						app.successMsg = 'Checking in ....Redirecting'; // Show the redirect message to user
+						app.successMsg = 'Sucessfully Checked-in ....Redirecting'; // Show the redirect message to user
 
 						// Redirect to home page after two thousand milliseconds (2 seconds)
 						$timeout(function(){
