@@ -67,13 +67,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#menu-toggle" id="menu-toggle"><span class="glyphicon glyphicon-list yellow" aria-hidden="true"></span></a>
+            <a class="navbar-brand" href="#menu-toggle" id="menu-toggle"><span class="glyphicon glyphicon-list yellow" aria-hidden="false"></span></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-home yellow" aria-hidden="true"></span> <font color="#daaa00">Home </font></a></li>
-                <li><a ng-show="main.isLoggedIn" href="#login" ng-click="main.logout();"><span class="glyphicon glyphicon-off yellow" aria-hidden="true"></span> <font color="#daaa00"> Logout </font></a></li>
-                <li><a ng-show="!main.isLoggedIn" href="#login"><span class="glyphicon glyphicon-user yellow" aria-hidden="true"></span><font color="#daaa00"> Login </font></a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-home yellow" aria-hidden="false"></span> <font color="#daaa00">Home </font></a></li>
+                <li><a ng-show="main.isLoggedIn" href="#login" ng-click="main.logout();"><span class="glyphicon glyphicon-off yellow" aria-hidden="false"></span> <font color="#daaa00"> Logout </font></a></li>
+                <li><a ng-show="!main.isLoggedIn" href="#login"><span class="glyphicon glyphicon-user yellow" aria-hidden="false"></span><font color="#daaa00"> Login </font></a></li>
             </ul>
            
         </div>
@@ -90,53 +90,53 @@
                 </li>
                 <li class="sidebar-brand">
                     <a ng-show="main.isLoggedIn" href="#profile" class="navbar-brand">
-                        <span class="glyphicon glyphicon-user yellow" aria-hidden="true"> </span> {{ main.username }}'s Profile
+                        <span class="glyphicon glyphicon-user yellow" aria-hidden="false"> </span> {{ main.username }}'s Profile
                     </a>
                 </li>
                 <li ng-show="main.isLoggedIn">
-                    <span class="glyphicon glyphicon-search yellow" aria-hidden="true"></span><font color="#daaa00"> INVENTORY</font>
+                    <span class="glyphicon glyphicon-search yellow" aria-hidden="false"></span><font color="#daaa00"> INVENTORY</font>
                 </li>
                 <li>
-                    <a ng-show="main.isLoggedIn" href="#inventoryCheckIn"><span class="glyphicon glyphicon-save" aria-hidden="true"></span> Check-In</a>
+                    <a ng-show="main.isLoggedIn" href="#inventoryCheckIn"><span class="glyphicon glyphicon-save" aria-hidden="false"></span> Check-In</a>
                 </li>
                 <li>
-                    <a ng-show="main.isLoggedIn" href="#inventoryCheckOut"><span class="glyphicon glyphicon-open" aria-hidden="true"></span> Check-Out</a>
+                    <a ng-show="main.isLoggedIn" href="#inventoryCheckOut"><span class="glyphicon glyphicon-open" aria-hidden="false"></span> Check-Out</a>
                 </li>               
                 <li ng-show="main.isLoggedIn">
-                    <span class="glyphicon glyphicon-search yellow" aria-hidden="true"></span><font color="#daaa00"> STATISTICS</font>
+                    <span class="glyphicon glyphicon-search yellow" aria-hidden="false"></span><font color="#daaa00"> STATISTICS</font>
                 </li>
                 <li>
-                    <a ng-show="main.isLoggedIn" href="#history"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> History</a>
+                    <a ng-show="main.isLoggedIn" href="#history"><span class="glyphicon glyphicon-tasks" aria-hidden="false"></span> History</a>
                 </li>
                 <li>
-                    <a ng-show="main.isLoggedIn" href="#search"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</a>
+                    <a ng-show="main.isLoggedIn" href="#search"><span class="glyphicon glyphicon-search" aria-hidden="false"></span> Search</a>
                 </li>
                 <li>
-                    <a ng-show="main.isLoggedIn" href="#graph"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Graphs </a>
+                    <a ng-show="main.isLoggedIn" href="#graph"><span class="glyphicon glyphicon-stats" aria-hidden="false"></span> Graphs </a>
                 </li>                
                 <li ng-show="main.isLoggedIn">
-                    <span class="glyphicon glyphicon-search yellow" aria-hidden="true"></span><font color="#daaa00"> APPS</font>
+                    <span class="glyphicon glyphicon-search yellow" aria-hidden="false"></span><font color="#daaa00"> APPS</font>
                 </li>
                 <li>
-                    <a ng-show="main.isLoggedIn" href="#barCodeGen"><span class="glyphicon glyphicon-barcode" aria-hidden="true"></span> Bar Code Generator</a>
+                    <a ng-show="main.isLoggedIn" href="#barCodeGen"><span class="glyphicon glyphicon-barcode" aria-hidden="false"></span> Bar Code Generator</a>
                 </li>
                 <li>
-                    <a ng-show="main.isLoggedIn" href="#batteryManager"><span class="glyphicon glyphicon-scale" aria-hidden="true"></span> Battery Management</a>
+                    <a ng-show="main.isLoggedIn" href="#batteryManager"><span class="glyphicon glyphicon-scale" aria-hidden="false"></span> Battery Management</a>
                 </li>
                   <li ng-show="main.isLoggedIn && main.authorized">
-                    <span class="glyphicon glyphicon-search yellow" aria-hidden="true"></span><font color="#daaa00"> MANAGEMENT</font>
+                    <span class="glyphicon glyphicon-search yellow" aria-hidden="false"></span><font color="#daaa00"> MANAGEMENT</font>
                 </li>
                 <li>
-                    <a ng-show="main.isLoggedIn && main.authorized" href="#inventoryForm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Inventory Add</a>
+                    <a ng-show="main.isLoggedIn && main.authorized" href="#inventoryForm"><span class="glyphicon glyphicon-plus" aria-hidden="false"></span> Inventory Add</a>
                 </li>
                 <li>
-                    <a ng-show="main.isLoggedIn && main.authorized" href="#inventoryManagement"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Inventory Edit/Delete</a>
+                    <a ng-show="main.isLoggedIn && main.authorized" href="#inventoryManagement"><span class="glyphicon glyphicon-minus" aria-hidden="false"></span> Inventory Edit/Delete</a>
                 </li>
                 <li>
-                    <a ng-show="main.isLoggedIn && main.authorized" href="#register"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> User Registration</a>
+                    <a ng-show="main.isLoggedIn && main.authorized" href="#register"><span class="glyphicon glyphicon-plus" aria-hidden="false"></span> User Registration</a>
                 </li>
                 <li>
-                    <a ng-show="main.isLoggedIn && main.authorized" href="#management"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> User Edit/Delete</a>
+                    <a ng-show="main.isLoggedIn && main.authorized" href="#management"><span class="glyphicon glyphicon-minus" aria-hidden="false"></span> User Edit/Delete</a>
                 </li> 
             </ul>
         </div>
