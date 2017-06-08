@@ -29,7 +29,7 @@
 		<!-- Email Validation -->
 		<p class="help-block" ng-show="(!regForm.$pristine && regForm.email.$error.required) || (regForm.$submitted && regForm.email.$error.required)"> This field is required </p>
         <ul ng-show="(!regForm.email.$pristine && regForm.email.$error.pattern) || (!regForm.email.$pristine && regForm.email.$error.minlength) || (!regForm.email.$pristine && regForm.email.$error.maxlength)" class="help-block">
-            <li>Must contain "@"</li>
+            <li>Must contain "@" and "."</li>
             <li>Must not contain any special characters</li>
             <li>Must be at least 3 characters but no more than 40</li>
         </ul>
