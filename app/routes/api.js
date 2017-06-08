@@ -364,7 +364,7 @@ module.exports = function(router) {
                 if(err) { 
                     // Check if any validation errors exists (from user model)
                     if (err.errors !== null) {
-                        res.json({ success: false, message: err }); 
+                        res.json({ success: false, message: err.code }); 
                         if (err.code == 11000) {// Check if duplication error exists
                             if (err.errmsg[61] == "u") {
                                 res.json({ success: false, message: 'That username is already taken' }); // Display error if username already taken
