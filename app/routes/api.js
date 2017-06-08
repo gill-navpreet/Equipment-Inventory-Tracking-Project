@@ -366,9 +366,9 @@ module.exports = function(router) {
                     if (err.errors !== null) {
                         res.json({ success: false, message: err.code }); 
                         if (err.code == 11000) {// Check if duplication error exists
-                            if (err.errmsg[61] == "u") {
+                            if (err.errmsg[68] == "u") {
                                 res.json({ success: false, message: 'That username is already taken' }); // Display error if username already taken
-                            } else if (err.errmsg[61] == "e") {
+                            } else if (err.errmsg[68] == "e") {
                                 res.json({ success: false, message: 'That e-mail is already taken' }); // Display error if e-mail already taken
                             }
                         } else if (err.errors.name) {
@@ -385,9 +385,9 @@ module.exports = function(router) {
                     } else if (err) {
                         // Check if duplication error exists
                         if (err.code == 11000) {
-                            if (err.errmsg[61] == "u") {
+                            if (err.errmsg[68] == "u") {
                                 res.json({ success: false, message: 'That username is already taken' }); // Display error if username already taken
-                            } else if (err.errmsg[61] == "e") {
+                            } else if (err.errmsg[68] == "e") {
                                 res.json({ success: false, message: 'That e-mail is already taken' }); // Display error if e-mail already taken
                             }
                         } else {
