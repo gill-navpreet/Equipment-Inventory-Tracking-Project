@@ -395,7 +395,8 @@ module.exports = function(router) {
                     }
                 } else { // Send success message back to controller/request
                     if(err)
-                        {console.log(err);}
+                        {console.log(err);
+                        res.json({ success: false, message: err }); }
                     else
                         {res.send({ success: true, message: 'user created!' });}
                 }
