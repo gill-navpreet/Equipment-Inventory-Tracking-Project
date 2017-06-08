@@ -51,7 +51,7 @@ cron.schedule('* * * * * *', function(){
         .on('error', function(e) { throw e; })
         .on('data', function(line) {
             //Store every history entry into an array
-            console.log(line);
+            //console.log(line);
             entries.push(line);
         });
 
