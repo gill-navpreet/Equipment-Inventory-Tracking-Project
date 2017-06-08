@@ -33,11 +33,26 @@
 	<br>
 </form>
 	<br>
+	
 <!-- Phase One: Email -->
 <form name ="edit.emailForm" ng-submit="edit.updateEmail(newEmail)" >
-	<label>Current Email:</label>
+	<div ng-class="{ 'has-success':(edit.emailForm.email.$valid && !edit.emailForm.email.$pristine && !register.emailInvalid), 'has-error':(!edit.emailForm.email.$valid && !edit.emailForm.email.$pristine) || (!edit.emailForm.email.$valid && edit.emailForm.$submitted) || register.emailInvalid }">
+		<!-- Email Input -->
+		<label>Current Email:</label>
+		<input class = "form-control" type = "text" name = "email" placeholder="please enter email" ng-model = "newEmail" ng-minlength="3" ng-maxlength="40" ng-pattern="/^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/" required>
+		<!-- Email Validation -->
+		<p class="help-block" ng-show="(!edit.emailForm.$pristine && edit.emailForm.email.$error.required) || (edit.emailForm.$submitted && edit.emailForm.email.$error.required)"> This field is required </p>
+        <ul ng-show="(!edit.emailForm.email.$pristine && edit.emailForm.email.$error.pattern) || (!edit.emailForm.email.$pristine && edit.emailForm.email.$error.minlength) || (!edit.emailForm.email.$pristine && edit.emailForm.email.$error.maxlength)" class="help-block">
+            <li>Must contain "@" and "."</li>
+            <li>Must not contain any special characters</li>
+            <li>Must be at least 3 characters but no more than 40</li>
+        </ul>
+	</div>
+
+
+	<!-- <label>Current Email:</label>
 	<input class = "form-control" type = "text" name = "email" placeholder="please enter email" ng-model = "newEmail">
-	<br>
+	<br> -->
 	
 	<button class = "btn btn-primary" type = "submit">Update</button>
 	
