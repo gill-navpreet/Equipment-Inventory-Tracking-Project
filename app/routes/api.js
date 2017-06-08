@@ -365,11 +365,11 @@ module.exports = function(router) {
                     // Check if any validation errors exists (from user model)
                     if (err.errors !== null) {
                          console.log(err);
-                         res.json({ success: false, message: err.errmsg[63] }); 
+                         res.json({ success: false, message: err.errmsg[57] }); 
                         if (err.code == 11000) {// Check if duplication error exists
-                            if (err.errmsg[63] == "u") {
+                            if (err.errmsg[57] == "u") {
                                 res.json({ success: false, message: 'That username is already taken' }); // Display error if username already taken
-                            } else if (err.errmsg[63] == "e") {
+                            } else if (err.errmsg[57] == "e") {
                                 res.json({ success: false, message: 'That e-mail is already taken' }); // Display error if e-mail already taken
                             }
                         } else if (err.errors.name) {
@@ -386,9 +386,9 @@ module.exports = function(router) {
                     } else if (err) {
                         // Check if duplication error exists
                         if (err.code == 11000) {
-                            if (err.errmsg[63] == "u") {
+                            if (err.errmsg[57] == "u") {
                                 res.json({ success: false, message: 'That username is already taken' }); // Display error if username already taken
-                            } else if (err.errmsg[63] == "e") {
+                            } else if (err.errmsg[57] == "e") {
                                 res.json({ success: false, message: 'That e-mail is already taken' }); // Display error if e-mail already taken
                             }
                         } else {
