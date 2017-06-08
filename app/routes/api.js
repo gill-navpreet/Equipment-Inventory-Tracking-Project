@@ -701,6 +701,11 @@ module.exports = function(router) {
                                 user.save(function(err) {
                                     if (err) {
                                         console.log(err); // Log error to console
+                                        if (err.code == 11000) {// Check if duplication error exists
+                                        // The index will have to be change if anything changes in the database name"
+                                            if (err.errmsg[57] == "e") {
+                                                res.json({ success: false, message: 'That e-mail is already taken' }); // Display error if email already taken
+                                            } }
                                     } else {
                                         res.json({ success: true, message: 'E-mail has been updated' }); // Return success
                                     }
