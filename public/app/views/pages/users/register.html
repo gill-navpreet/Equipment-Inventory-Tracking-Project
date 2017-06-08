@@ -25,7 +25,7 @@
 	<div ng-class="{ 'has-success':(regForm.email.$valid && !regForm.email.$pristine && !register.emailInvalid), 'has-error':(!regForm.email.$valid && !regForm.email.$pristine) || (!regForm.email.$valid && regForm.$submitted) || register.emailInvalid }">
 		<!-- Email Input -->
 		<label>Email:</label>
-		<input class = "form-control" type = "text" name = "email" placeholder="please enter email" ng-model = "register.regData.email" ng-minlength="3" ng-maxlength="40" ng-pattern="/^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$/" required>
+		<input class = "form-control" type = "text" name = "email" placeholder="please enter email" ng-model = "register.regData.email" ng-minlength="3" ng-maxlength="40" ng-pattern="/^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/" required>
 		<!-- Email Validation -->
 		<p class="help-block" ng-show="(!regForm.$pristine && regForm.email.$error.required) || (regForm.$submitted && regForm.email.$error.required)"> This field is required </p>
         <ul ng-show="(!regForm.email.$pristine && regForm.email.$error.pattern) || (!regForm.email.$pristine && regForm.email.$error.minlength) || (!regForm.email.$pristine && regForm.email.$error.maxlength)" class="help-block">

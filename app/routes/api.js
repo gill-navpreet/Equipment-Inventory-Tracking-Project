@@ -367,6 +367,7 @@ module.exports = function(router) {
                          console.log(err);
                          //res.json({ success: false, message: err.errmsg[57] }); 
                         if (err.code == 11000) {// Check if duplication error exists
+                            // The index will have to be change if anything changes in the database name"
                             if (err.errmsg[57] == "u") {
                                 res.json({ success: false, message: 'That username is already taken' }); // Display error if username already taken
                             } else if (err.errmsg[57] == "e") {

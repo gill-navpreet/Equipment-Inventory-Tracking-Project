@@ -38,7 +38,7 @@
 	<!-- Email -->
 	<div ng-class="{ 'has-success':(checkOutForm.checkOutFormTable.email.$valid && !checkOutForm.checkOutFormTable.email.$pristine && !register.emailInvalid), 'has-error':(!checkOutForm.checkOutFormTable.email.$valid && !checkOutForm.checkOutFormTable.email.$pristine) || (!checkOutForm.checkOutFormTable.email.$valid && checkOutForm.checkOutFormTable.$submitted)}">
 		<label>Email:</label>
-		<input class = "form-control" type = "text" name = "email" placeholder="please enter email" ng-model="newData.newEmail" ng-minlength="3" ng-maxlength="40" ng-pattern="/^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$/" required>
+		<input class = "form-control" type = "text" name = "email" placeholder="please enter email" ng-model="newData.newEmail" ng-minlength="3" ng-maxlength="40" ng-pattern="/^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/" required>
 		<p class="help-block" ng-show="(!checkOutForm.checkOutFormTable.$pristine && checkOutForm.checkOutFormTable.email.$error.required) || (checkOutForm.checkOutFormTable.$submitted  && checkOutForm.checkOutFormTable.email.$error.required)"> This field is required </p>
         <ul ng-show="(!checkOutForm.checkOutFormTable.email.$pristine && checkOutForm.checkOutFormTable.email.$error.pattern) || (!checkOutForm.checkOutFormTable.email.$pristine && checkOutForm.checkOutFormTable.email.$error.minlength) || (!checkOutForm.checkOutFormTable.email.$pristine && checkOutForm.checkOutFormTable.email.$error.maxlength)" class="help-block">
             <li>Must contain "@"</li>
@@ -159,7 +159,7 @@
 	<!-- Supervisor's Email -->
 	<div ng-class="{ 'has-success':(checkOutForm.checkOutFormTable.supEmail.$valid && !checkOutForm.checkOutFormTable.supEmail.$pristine && !register.emailInvalid), 'has-error':(!checkOutForm.checkOutFormTable.supEmail.$valid && !checkOutForm.checkOutFormTable.supEmail.$pristine) || (!checkOutForm.checkOutFormTable.supEmail.$valid && checkOutForm.checkOutFormTable.$submitted) }">
 		<label>Email:</label>
-		<input class = "form-control" type = "text" name = "supEmail" placeholder="please enter supervisor's email" ng-model="newData.newSupervisorEmail" ng-minlength="3" ng-maxlength="40" ng-pattern="/^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$/" required>
+		<input class = "form-control" type = "text" name = "supEmail" placeholder="please enter supervisor's email" ng-model="newData.newSupervisorEmail" ng-minlength="3" ng-maxlength="40" ng-pattern="/^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/" required>
 		<p class="help-block" ng-show="(!checkOutForm.checkOutFormTable.$pristine && checkOutForm.checkOutFormTable.supEmail.$error.required) || (checkOutForm.checkOutFormTable.$submitted  && checkOutForm.checkOutFormTable.supEmail.$error.required)"> This field is required </p>
         <ul ng-show="(!checkOutForm.checkOutFormTable.email.$pristine && checkOutForm.checkOutFormTable.supEmail.$error.pattern) || (!checkOutForm.checkOutFormTable.supEmail.$pristine && checkOutForm.checkOutFormTable.supEmail.$error.minlength) || (!checkOutForm.checkOutFormTable.supEmail.$pristine && checkOutForm.checkOutFormTable.supEmail.$error.maxlength)" class="help-block">
             <li>Must contain "@"</li>
