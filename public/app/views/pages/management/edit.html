@@ -13,8 +13,21 @@
 
 
 <form name ="edit.nameForm" ng-submit="edit.updateName(newName)">
-	<label>Current Name:</label>
-	<input class = "form-control" type = "text" name = "name" placeholder="please enter name" ng-model = "newName">
+	<!-- <label>Current Name:</label>
+	<input class = "form-control" type = "text" name = "name" placeholder="please enter name" ng-model = "newName"> -->
+	<div ng-class="{'has-success': (edit.nameForm.name.$valid && !edit.nameForm.name.$pristine),'has-error':((!edit.nameForm.name.$valid && !edit.nameForm.name.$pristine) || ((!edit.nameForm.name.$valid)&& edit.nameForm.$submitted)) }">
+		<!--  Name Input -->
+		<label>Name:</label>
+		<input class = "form-control" type = "text" name = "name" placeholder="please enter name" ng-model = "newName" ng-pattern="/^(([a-zA-Z]{3,20})+[ ]+([a-zA-Z]{3,20})+)+$/" ng-minlength="3" ng-maxlength="20" required>
+		<!-- Name Validation -->
+		<p class="help-block "ng-show="(!edit.nameForm.$pristine && edit.nameForm.name.$error.required) || (edit.nameForm.$submitted && edit.nameForm.name.$error.required)"> This field is required </p>
+		<ul ng-show="(!edit.nameForm.name.$pristine && edit.nameForm.name.$error.pattern) || (!edit.nameForm.name.$pristine && edit.nameForm.name.$error.minlength) || (!edit.nameForm.name.$pristine && edit.nameForm.name.$error.maxlength)" class="help-block">
+            <li>Must have a space in between first and last firstName</li>
+            <li>Must not contain any special characters</li>
+            <li>Must not contain any numbers</li>
+            <li>Must be at least 3 characters but no more than 20</li>
+        </ul>
+	</div>
 	<br>
 	
 	<button class = "btn btn-primary" type = "submit">Update</button>
@@ -24,8 +37,21 @@
 	<br>
 <!-- Phase One: Username -->
 <form name ="edit.usernameForm" ng-submit="edit.updateUsername(newUsername)">
-	<label>Current Username:</label>
-	<input class = "form-control" type = "text" name = "username" placeholder="please enter username" ng-model = "newUsername">
+	<!-- <label>Current Username:</label>
+	<input class = "form-control" type = "text" name = "username" placeholder="please enter username" ng-model = "newUsername"> -->
+
+	<!-- Username -->
+	<div ng-class="{ 'has-success':(edit.usernameForm.username.$valid && !edit.usernameForm.username.$pristine), 'has-error':(!edit.usernameForm.username.$valid && !edit.usernameForm.username.$pristine) || (!edit.usernameForm.username.$valid && edit.usernameForm.$submitted)}">
+		<!-- Username Input -->
+		<label>Username:</label>
+		<input class = "form-control" type = "text" name = "username" placeholder="please enter username" ng-model = "newUsername" ng-minlength="3" ng-maxlength="25" ng-pattern="/^(?!.*?[\W])(?=.*?[a-zA-Z]|=.*?[A-Z]).{3,16}$/"required>
+		<!-- Username Validation -->
+		<p class="help-block" ng-show="(!edit.usernameForm.$pristine && edit.usernameForm.username.$error.required) || (edit.usernameForm.$submitted && edit.usernameForm.username.$error.required)">This field is required </p>
+	   	<ul ng-show="(!edit.usernameForm.username.$pristine && edit.usernameForm.username.$error.pattern) || (!edit.usernameForm.username.$pristine && edit.usernameForm.username.$error.minlength) || (!edit.usernameForm.username.$pristine && edit.usernameForm.username.$error.maxlength)" class="help-block">
+	        <li>Must not contain any special characters or spaces</li>
+	        <li>Must be at least 3 characters but no more than 25</li>
+	    </ul>
+	</div>
 	<br>
 	
 	<button class = "btn btn-primary" type = "submit">Update</button>
@@ -33,7 +59,7 @@
 	<br>
 </form>
 	<br>
-	
+
 <!-- Phase One: Email -->
 <form name ="edit.emailForm" ng-submit="edit.updateEmail(newEmail)" >
 	<div ng-class="{ 'has-success':(edit.emailForm.email.$valid && !edit.emailForm.email.$pristine && !register.emailInvalid), 'has-error':(!edit.emailForm.email.$valid && !edit.emailForm.email.$pristine) || (!edit.emailForm.email.$valid && edit.emailForm.$submitted) || register.emailInvalid }">
@@ -53,7 +79,8 @@
 	<!-- <label>Current Email:</label>
 	<input class = "form-control" type = "text" name = "email" placeholder="please enter email" ng-model = "newEmail">
 	<br> -->
-	
+
+	<br>
 	<button class = "btn btn-primary" type = "submit">Update</button>
 	
 	<br>
